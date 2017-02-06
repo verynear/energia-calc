@@ -1,0 +1,28 @@
+// Buttons
+.btn {
+  box-shadow: none;
+  border: none;
+
+  .icon-plus {
+    bottom: -1px;
+    margin-left: 4px;
+  }
+}
+
+.btn-primary {
+  &:active {
+    background: $primary-color-dark;
+  }
+}
+
+.btn-outline {
+  border: 1px solid $base-font-color;
+  color: $base-font-color;
+  background: none;
+
+  &:hover {
+    border-color: $primary-color-dark;
+    color: $link-color-hover;
+    background: none;
+  }
+}

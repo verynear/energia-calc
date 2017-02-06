@@ -1,0 +1,86 @@
+// Wego framework
+//-----------------
+@import "wegowise_styles/base/normalize";
+@import "wegowise_styles/utility/variables";
+@import "wegowise_styles/utility/placeholders";
+@import "wegowise_styles/utility/mixins";
+@import "wegowise_styles/base/fonts";
+@import "wegowise_styles/base/general";
+@import "wegowise_styles/base/type";
+@import "wegowise_styles/component/forms";
+@import "wegowise_styles/component/btn";
+@import "wegowise_styles/component/table";
+@import "wegowise_styles/layout/structure";
+
+// Wego Audit
+//-----------------
+@import "vendor/fancybox";
+@import "utility/variables";
+@import "utility/animations";
+@import "base/icons";
+//-- Layout
+@import "layout/footer";
+@import "layout/header";
+//-- Components
+@import "component/btn";
+@import "component/crumbs";
+@import "component/delete-query";
+@import "component/modal";
+@import "component/pane";
+@import "component/sibling-menu";
+@import "component/tab-menu";
+@import "component/table";
+@import "component/titlebar";
+//-- Views
+@import "view/login";
+@import "view/sub-structures";
+
+.hide {
+  display: none;
+}
+
+.content {
+  @extend %clearfix;
+}
+
+.active-content {
+  border: 1px solid $grey;
+  float: left;
+  margin-left: -1px;
+  width: $site-inner-width - $sibling-menu-width;
+  background: #fff;
+  position: relative;
+  z-index: 9;
+  padding: 0 20px 20px 20px;
+}
+
+.section-title {
+  line-height: $table-real-line-height;
+  font-weight: bold;
+  background-color: $grey-lightest;
+  border-bottom: 1px solid $grey;
+  padding: 0 $table-h-padding;
+  display: block;
+  width: 100%;
+}
+
+.section-title__action {
+  float: right;
+  font-weight: normal;
+  padding: 0 10px;
+}
+
+.form-row {
+  background: #fff;
+}
+
+.active-content__details {
+  .form-row__label {
+    width: 200px;
+  }
+}
+
+.active-content__photos {
+  padding-top: 20px;
+
+}

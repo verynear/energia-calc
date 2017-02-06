@@ -1,0 +1,7 @@
+# You should copy this file to development.yml and replace the IP address with
+# the private IP address that your WegoAudit and WegoWise servers are running
+# on.
+#
+# Note: The URLs MUST have a trailing slash.
+api_login_base: 'http://10.0.1.13:9292/'
+wegowise_server_base: 'http://10.0.1.13:3000/'

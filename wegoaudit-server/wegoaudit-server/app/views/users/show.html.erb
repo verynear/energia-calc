@@ -1,0 +1,7 @@
+<h3>User</h3>
+<p>Name: <%= @user.name if @user.name %></p>
+<ul>
+<% @buildings.each do |building| %>
+  <li><%= building %></li>
+<% end %>
+</ul>

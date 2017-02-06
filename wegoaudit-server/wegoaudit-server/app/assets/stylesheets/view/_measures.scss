@@ -1,0 +1,11 @@
+.active-content__measures {
+  .measure-notes {
+    clear: both;
+    width: 600px;
+    display: none;
+  }
+
+  .notes-toggler:checked ~ .measure-notes {
+    display: block;
+  }
+}

@@ -1,0 +1,31 @@
+<h3>Organizations</h3><%= link_to 'update', download_organizations_path %>
+<ul>
+  <% @organizations.each do |organization| %>
+    <li>
+      <div><%= organization.name %></div>
+      <ul>
+        <li>
+          <div>Members</div>
+          <ul>
+            <% organization.memberships.includes(:user).each do |member| %>
+              <li>
+                <%= [member.full_name, member.role, member.access].join(' - ') %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+        <li>
+          <div>Buildings <%= link_to 'Update from Wegowise', download_buildings_organization_path(organization) %></div>
+          <ul>
+            <% organization.buildings.each do |building| %>
+              <li>
+                <% building_text = [building.nickname, "#{building.street_address}, #{building.city} #{building.state_code}"].join(' - ') %>
+                <%= link_to building_text, building_path(building) %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  <% end %>
+</ul>

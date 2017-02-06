@@ -1,0 +1,20 @@
+<% if photo.asset.processing? %>
+  <span class="thumb">
+    <%= image_tag 'thumb/missing.png',
+          alt: '',
+          height: 150 %>
+  </span>
+<%- else %>
+  <span class="thumb">
+    <%= link_to audit_photo_path(current_audit, photo),
+          method: :delete,
+          class: 'thumb__delete' do %>
+      <i class="icon-trash"></i>
+    <%- end %>
+    <%= link_to(download_audit_photo_path(current_audit, photo, style: :medium),
+          class: 'js-gallery',
+          data: { fancybox_group: 'gallery' }) do %>
+      <%= image_tag download_audit_photo_path(current_audit, photo, style: :thumb) %>
+    <%- end %>
+  </span>
+<% end %>

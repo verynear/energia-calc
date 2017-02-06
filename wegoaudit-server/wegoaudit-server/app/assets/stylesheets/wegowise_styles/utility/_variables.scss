@@ -1,0 +1,220 @@
+$asset-url: "" !default;
+
+// Font path
+//-----------
+// Use with interpolation syntax: #{$font-path}
+$font-path: "/fonts" !default;
+
+// Site config
+//-------------
+$is-responsive: true !default;
+
+// CTAs
+//--------
+$link-color: #4396fa !default;
+$link-color-hover: darken($link-color, 8%) !default;
+$primary-color: #ee5330 !default;
+$secondary-color: #354d67 !default;
+
+
+// Shades of grey
+//------------------
+$grey-lightest: #f5f5f5 !default;
+$grey-light: #e8e8e8 !default;
+$grey: #bababa !default;
+$grey-dark: #757575 !default;
+$grey-darker: #444 !default;
+$grey-darkest: #333 !default;
+
+
+
+// More colors
+// ------------
+// assign to variables, don't use directly
+$pink: #eb5b7b !default;
+$green: #67c282 !default;
+$yellow: #edb707 !default;
+$yellow-light: #edcd3a !default;
+$blue-light: #36a8f5 !default;
+$red: #d94838 !default;
+
+$offset-color: $green !default;
+$impact: #273a4d !default;
+$placeholder-color: $grey !default;
+
+
+// States and alerts
+//------------------------
+// Warning
+$warning-font-color: #8a6d3b !default;
+$warning-bg-color: #fcf8e3 !default;
+$warning-border-color: #fcf8e3 !default;
+
+// Danger
+$danger-font-color: #a94442 !default;
+$danger-bg-color: #f2dede !default;
+$danger-border-color: #ebccd1 !default;
+
+// Success
+$success-font-color: #3c763d !default;
+$success-bg-color: #dff0d8 !default;
+$success-border-color: #d6e9c6 !default;
+
+// Info
+$info-font-color: #31708f !default;
+$info-bg-color: #d9edf7 !default;
+$info-border-color: #bce8f1 !default;
+
+
+
+// Typography
+//------------
+// Font families
+$base-font-family: 'Dagny', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$bold-font-family: 'DagnyBold', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$title-font-family: 'OpenSansBold', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$secondary-title-font-family: 'OpenSansLight', 'HelveticaNeue-Light', 'Helvetica Neue Light', Arial, sans-serif !default;
+$fixed-font-family: 'inconsolata-1','inconsolata-2', Monaco, 'Courier New', monospace;
+
+// Colors
+$base-font-color: $grey-darkest !default;
+$bold-font-color: $grey-darkest !default;
+$title-font-color: $grey-darker !default;
+$meta-font-color: $grey !default;
+
+// Sizes
+$base-font-size: 16px !default;
+$base-line-height: 24px !default;
+$small-font-size: 14px !default;
+$impact-font-size: $base-font-size*1.25 !default;
+$lead-font-size: $impact-font-size !default;
+$fixed-font-size: 14px !default;
+
+// Titles
+$h1-size: 36px !default;
+$h1-size-small: 21px !default;
+$h2-size: 27px !default;
+$h3-size: 23px !default;
+$h3-size-small: 16px !default;
+$h4-size: 19px !default;
+
+
+// Buttons
+//---------
+
+// Spacing
+$btn-vertical-padding: 0.71em !default;
+$btn-horizontal-padding: 1.5em !default;
+
+// Default button
+//--Normal
+$btn-color: $grey-dark !default;
+$btn-bg: #f5f5f5 !default;
+$btn-border: darken($btn-bg, 9%) !default;
+
+//--Hover
+$btn-color-hover: $grey-darkest !default;
+$btn-bg-hover: lighten($btn-bg, 2%) !default;
+$btn-border-hover: darken($btn-border, 9%) !default;
+
+
+// Bare (white) button
+//--Normal
+$btn-bare-color: $grey-dark !default;
+$btn-bare-bg: #fff !default;
+$btn-bare-border: darken($btn-bg, 13%) !default;
+
+//--Hover
+$btn-bare-color-hover: $grey-darkest !default;
+$btn-bare-bg-hover: #fff !default;
+$btn-bare-border-hover: darken($btn-border, 9%) !default;
+
+
+// Primary button
+//--Normal
+$btn-primary-color: darken(white, 4%) !default;
+$btn-primary-bg: $primary-color !default;
+$btn-primary-border: darken($primary-color, 9%) !default;
+
+//--Hover
+$btn-primary-color-hover: #fff !default;
+$btn-primary-bg-hover: darken($primary-color, 5%) !default;
+$btn-primary-border-hover: darken($primary-color, 11%) !default;
+
+
+// Secondary button
+//--Normal
+$btn-secondary-color: darken(white, 4%) !default;
+$btn-secondary-bg: $link-color !default;
+$btn-secondary-border: darken($link-color, 6%) !default;
+//--Hover
+$btn-secondary-color-hover: #fff !default;
+$btn-secondary-bg-hover: darken($link-color, 5%) !default;
+$btn-secondary-border-hover: darken($link-color, 11%) !default;
+
+$radius: 2px !default;
+$checkmark-size: 50px !default; // Used on thank you pages
+
+
+// Forms
+//-------
+$form-row-horizontal-padding: 10px;
+$form-row-vertical-padding: 6px;
+$form-row-label-width: 160px !default;
+$form-row-label-spacing: 30px !default; //Right margin
+$form-row-bg-color: darken(#fff,2%) !default;
+$form-row-line-height: $base-line-height*1.5;
+$input-width: 210px;
+$input-height: 30px;
+$input-padding-horizontal: 4px;
+$input-border-color: $grey;
+$input-border-color-focus: darken($input-border-color,12%);
+$input-shadow-focus: 0 0 7px rgba(#000,.15);
+$inputs-list:  'input[type="email"]',
+                'input[type="number"]',
+                'input[type="password"]',
+                'input[type="search"]',
+                'input[type="tel"]',
+                'input[type="text"]',
+                'input[type="url"]',
+                'input[type="color"]',
+                'input[type="date"]',
+                'input[type="datetime"]',
+                'input[type="datetime-local"]',
+                'input[type="month"]',
+                'input[type="time"]',
+                'input[type="week"]',
+                '.uneditable-input';
+$unquoted-inputs-list: ();
+@each $input-type in $inputs-list {
+  $unquoted-inputs-list: append($unquoted-inputs-list, unquote($input-type), comma);
+}
+$all-text-inputs: $unquoted-inputs-list;
+
+// Tables
+//--------
+$table-bg-color: darken(#fff,2%);
+$table-border-color: darken(#fff,7%);
+
+// Structure
+//-----------
+
+//--header
+$wego-logo-height: 30px;
+$wego-logo-width: 113px;
+
+//--Footer
+$footer-bg: #fff !default;
+$footer-color: $base-font-color !default;
+$footer-link-color: lighten($grey-dark,8%) !default;
+$footer-link-color-hover: #000 !default;
+$footer-line-height: $base-line-height !default;
+
+$section-v-spacing: $base-line-height*2 !default; //Vertical padding on the <section> element
+$site-width: 1100px !default;
+
+// Component
+//-- Subheader
+$subheader-height: $base-line-height*6 !default;
+$subheader-bg-color: #3185eb !default;
+$subheader-color: #fff !default;

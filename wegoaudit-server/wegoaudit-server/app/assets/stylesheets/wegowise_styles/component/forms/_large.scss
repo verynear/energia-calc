@@ -1,0 +1,41 @@
+// Override some basic sizing to create forms
+// with taller inputs and more padding
+.form--large {
+  .form-row {
+    padding-bottom: 6px;
+  }
+
+  .form-row__label,
+  .form-section__label,
+  .radio-inline,
+  .checkbox-inline {
+    line-height: 40px;
+  }
+
+  #{$all-text-inputs},
+  textarea,
+  select,
+  .uneditable-input,
+  .addon {
+    padding: 6px;
+  }
+
+  #{$all-text-inputs},
+  select,
+  .uneditable-input,
+  .addon {
+    height: 36px;
+  }
+
+  .addon {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  select {
+    margin-top: 3px;
+    // Fix ie8
+    height: inherit \9;
+    padding: 6px \9;
+  }
+}

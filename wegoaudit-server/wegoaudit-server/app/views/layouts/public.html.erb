@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= content_for?(:title) ? yield(:title) : "WegoAudit" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "WegoAudit" %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <%= link_to image_tag('logo-white.svg'), root_path %>
+        <nav class="global-menu">
+          <%= link_to 'Login', signin_path %>
+        </nav>
+      </div>
+    </header>
+
+    <%= render 'layouts/messages' %>
+
+    <section class="content">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+// Tables
+$table-v-padding: 3px;
+$table-h-padding: 10px;
+$table-line-height: $base-line-height * 1.5;
+$table-real-line-height: $table-line-height + ($table-v-padding * 2);
+
+// Transitions
+$transition-speed: 0.3s;
+$custom-bezier: cubic-bezier(0.465, 0.183, 0.153, 0.946);
+$opacity-transition: opacity $transition-speed ease-in-out;
+
+// Icons
+$unlocked-color: #74C48F;
+$locked-color: #e53935;
+
+// Layout
+$sibling-menu-width: 250px;
+$site-inner-width: $site-width - 40;
+$delete-query-link-width: 85px;
+$delete-query-q-width: 110px;
+$modal-padding: 20px;
+
+// Danger
+$danger-bg: #F2DEDE;
+$danger-color: #A94442;
+$danger-border: #EBCCD1;
+
+// Success
+$success-bg: #dff0d8;
+$success-color: #3c763d;
+$success-border: #d6e9c6;
+
+// Tooltips
+$tooltip-bg-color: #323232;
+$tooltip-color: #ecf0f1;
+$tooltip-arrow-size: 6px;
+
+$active-content-border-color: $grey;

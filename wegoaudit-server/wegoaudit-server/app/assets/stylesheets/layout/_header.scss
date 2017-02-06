@@ -1,0 +1,18 @@
+// Header
+.header {
+  @extend %clearfix;
+  background: $primary-color;
+  padding: 20px 0 12px;
+}
+
+.wego-logo {
+  float: left;
+}
+
+.global-menu {
+  float: right;
+
+  a {
+    color: #fff;
+  }
+}

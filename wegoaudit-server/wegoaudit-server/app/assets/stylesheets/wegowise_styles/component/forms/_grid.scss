@@ -1,0 +1,66 @@
+// Grid style input sizes
+input[class*="span"],
+select[class*="span"],
+textarea[class*="span"] {
+  margin-left: 0;
+}
+
+// Override default label widths
+form {
+
+  .span1,
+  .input-micro {
+    width: 30px;
+  }
+
+  .span2,
+  .input-mini {
+    width: 70px;
+  }
+
+  .span3,
+  .input-small {
+    width: 110px;
+  }
+
+  .span4,
+  .input-medium {
+    width: 150px;
+  }
+
+  .span5 {
+    width: 190px;
+  }
+
+  .span6,
+  .input-large {
+    width: 230px;
+  }
+
+  .span7,
+  .input-xlarge {
+    width: 270px;
+  }
+
+  .span8 {
+    width: 310px;
+  }
+
+  .span9,
+  .input-xxlarge {
+    width: 350px;
+  }
+
+  .span10 {
+    width: 390px;
+  }
+
+  .span11 {
+    width: 430px;
+  }
+
+  .span12,
+  .input-xxxlarge {
+    width: 470px;
+  }
+}

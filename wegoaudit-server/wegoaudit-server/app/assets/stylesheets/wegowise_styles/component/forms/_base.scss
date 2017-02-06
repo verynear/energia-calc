@@ -1,0 +1,193 @@
+form {
+  margin: 0 0 $base-line-height;
+
+  .table & {
+    margin: 0;
+  }
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+label {
+  color: $grey-darkest;
+}
+
+// Float almost everything!
+#{$all-text-inputs},
+input[type="radio"],
+input[type="checkbox"],
+textarea,
+select,
+.uneditable-input,
+.radio-inline,
+.checkbox-inline,
+.addon,
+.form-row__help {
+  float: left;
+}
+
+// Inputs, Textareas, Selects
+#{$all-text-inputs},
+textarea,
+.uneditable-input {
+  @extend %form-input-vertical-alignment;
+  width: $input-width;
+  display: block;
+  padding: 4px;
+  font-size: $base-font-size;
+  font-family: $base-font-family;
+  line-height: $base-line-height;
+  color: $base-font-color;
+  border: 1px solid $input-border-color;
+}
+
+#{$all-text-inputs},
+textarea,
+.uneditable-input {
+  box-shadow: inset 0 1px 1px rgba(#000,.075);
+  transition: border linear .2s, box-shadow linear .2s;
+}
+
+.uneditable-textarea {
+  width: auto;
+  height: auto;
+}
+
+// For text that needs to appear as an input but should not be an input
+.uneditable-input {
+  background-color: #fff;
+  cursor: not-allowed;
+  line-height: 20px;
+}
+
+// Placeholders - don't combine!
+input:-moz-placeholder {
+  color: $placeholder-color;
+}
+
+:-ms-input-placeholder {
+  color: $placeholder-color;
+}
+
+::-webkit-input-placeholder {
+  color: $placeholder-color;
+}
+
+// Mini reset for unique input types
+input[type="image"],
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin-top: 11px;
+  *margin-top: 0; /* IE7 */
+  line-height: normal;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+// Reset the file input to browser defaults
+input[type="file"] {
+  width: auto;
+  padding: initial;
+  line-height: inherit;
+  border: initial;
+  background-color: #fff;
+  background-color: initial;
+  box-shadow: none;
+}
+
+// Help out input buttons
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  width: auto;
+  height: auto;
+}
+
+// Set the height of select and file controls to match text inputs
+select,
+input[type="file"] {
+  height: 28px; /* In IE7, the height of the select element cannot be changed by height, only font-size */
+  *margin-top: 4px; /* For IE7, add top margin to align select with labels */
+  line-height: 28px;
+}
+
+// Reset line-height for IE
+input[type="file"] {
+  line-height: 18px \9;
+}
+
+// Chrome on Linux and Mobile Safari need background-color
+select {
+  @extend %form-input-vertical-alignment;
+  width: $input-width;
+  margin-top: 4px;
+  // Fix ie8
+  height: inherit \9;
+  padding: 4px \9;
+
+  // Only style selects in webkit
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    border: 1px solid $input-border-color;
+    line-height: $base-line-height;
+    padding: 4px;
+  }
+
+  ~ select {
+    margin-left: 20px;
+  }
+}
+
+// Make multiple select elements height not fixed
+select[multiple],
+select[size] {
+  height: auto;
+}
+
+// Remove shadow from image inputs
+input[type="image"] {
+  box-shadow: none;
+  border: 0;
+}
+
+// Make textarea height behave
+textarea {
+  height: auto;
+}
+
+// Hidden inputs
+input[type="hidden"] {
+  display: none;
+}
+
+// Legends
+// -----------
+legend {
+  // Stop IE making it blue
+  color: $base-font-color;
+}
+
+.form-title {
+  display: block;
+  width: 100%;
+  padding-top: ($base-line-height - 1);
+  padding-bottom: $base-line-height/2;
+  color: $base-font-color;
+  font-weight: bold;
+  font-size: $impact-font-size;
+  line-height: $base-line-height;
+  border: 0;
+  border-bottom: 1px solid #eee;
+  text-indent: 5px;
+
+  small {
+    font-size: $small-font-size;
+    color: $grey-dark;
+  }
+}

@@ -1,0 +1,19 @@
+source 'https://rubygems.org'
+
+gem 'afmotion'
+gem 'bubble-wrap', require: false
+gem 'cdq'
+gem 'formotion'
+gem 'ib'
+gem 'motion-blitz'
+gem 'motion-cocoapods', '>= 1.4'
+gem 'motion-hockeyapp'
+gem 'rake'
+gem 'sugarcube', require: false
+gem 'xcodeproj', '>= 0.13.0'
+
+group :spec do
+  gem 'motion-facon'
+  gem 'motion-redgreen'
+  gem 'webstub'
+end

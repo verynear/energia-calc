@@ -1,0 +1,58 @@
+// Override Wego variables
+//-------------------------
+$is-responsive: false;
+$grey-lightest: #fafafa;
+$base-font-size: 14px;
+$site-width: 960px;
+
+$primary-color: #2196F3;
+$primary-color-lightest: #E3F2FD;
+$primary-color-light: #BBDEFB;
+$primary-color-darker: #1976D2;
+$primary-color-dark: #1565C0;
+$link-color: $primary-color-darker;
+
+// Wego framework
+//-----------------
+@import "wegowise_styles/base/normalize";
+@import "wegowise_styles/utility/variables";
+@import "wegowise_styles/utility/placeholders";
+@import "wegowise_styles/utility/mixins";
+@import "wegowise_styles/base/fonts";
+@import "wegowise_styles/base/general";
+@import "wegowise_styles/base/type";
+@import "wegowise_styles/component/forms";
+@import "wegowise_styles/component/btn";
+@import "wegowise_styles/component/table";
+@import "wegowise_styles/layout/structure";
+
+// Wego Audit
+//-----------------
+@import "vendor/fancybox";
+@import "utility/variables";
+@import "utility/animations";
+//-- Base
+@import "base/icons";
+@import "base/general";
+//-- Layout
+@import "layout/footer";
+@import "layout/header";
+//-- Components
+@import "component/btn";
+@import "component/crumbs";
+@import "component/delete-query";
+@import "component/forms";
+@import "component/icons";
+@import "component/modal";
+@import "component/notice";
+@import "component/pane";
+@import "component/sibling-menu";
+@import "component/tab-menu";
+@import "component/table";
+@import "component/tooltips";
+@import "component/titlebar";
+//-- Views
+@import "view/gallery";
+@import "view/login";
+@import "view/measures";
+@import "view/sub-structures";

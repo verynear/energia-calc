@@ -1,0 +1,87 @@
+.structure-row {
+  display: block;
+  line-height: $table-real-line-height;
+  border: 1px solid transparent;
+  border-bottom-color: $grey-light;
+  position: relative;
+  padding: 0 $table-h-padding;
+  transition: border-color 0.3s ease-in-out;
+  position: relative;
+
+  &:before,
+  &:after {
+    content: '';
+    background: $primary-color;
+    display: block;
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    transition: width 0.15s ease-in-out;
+  }
+
+  &.deleting {
+    background-color: $danger-bg;
+    color: $danger-color;
+
+    a {
+      color: $danger-color;
+    }
+  }
+
+  .row-actions {
+    position: absolute;
+    z-index: 9;
+    right: 0;
+    top: 0;
+    // 40px per icon
+    width: 120px;
+  }
+
+  &:hover {
+    &:before,
+    &:after {
+      width: 50%;
+    }
+
+    &:before {
+      left: 50%;
+    }
+
+    &:after {
+      right: 50%;
+    }
+
+    .row-actions__link {
+      opacity: 1;
+    }
+  }
+}
+
+.structure-row__link {
+  display: block;
+  color: $base-font-color;
+}
+
+
+// Demo only
+.just4demo-success-hide {
+  display: none;
+}
+
+.structure-row--new {
+  display: block;
+  animation-duration: 5s;
+  animation-fill-mode: both;
+  animation-name: successBgFlash;
+
+  .structure-row__link {
+    animation-duration: 5s;
+    animation-fill-mode: both;
+    animation-name: successLinkFlash;
+
+    &:hover {
+      color: $link-color-hover !important;
+    }
+  }
+}

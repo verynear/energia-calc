@@ -1,0 +1,7 @@
+<div class="active-content__photos">
+  <%= render 'web/photos/new_photo_form', structure: structure %>
+
+  <%- structure.structure_images.each do |photo| %>
+    <%= render 'web/photos/photo', photo: photo %>
+  <%- end %>
+</div>

@@ -1,0 +1,19 @@
+<div class="active-content__details js-autosave-form">
+  <%= form_for [current_audit, @sample_group], remote: true do |f| %>
+    <fieldset>
+      <legend class="section-title">
+        Sample Group
+      </legend>
+
+      <div class="form-row">
+        <%= f.label :name, class: 'form-row__label' %>
+        <%= f.text_field :name, disabled: !can_edit? %>
+      </div>
+
+      <div class="form-row">
+        <%= f.label :n_structures, 'Sample Size', class: 'form-row__label' %>
+        <%= f.text_field :n_structures, disabled: !can_edit? %>
+      </div>
+    </fieldset>
+  <%- end %>
+</div>

@@ -1,0 +1,46 @@
+<%- title 'All audits' %>
+
+<%- content_for(:titlebar) do %>
+  <a class="titlebar__btn btn btn-outline js-modal-open" href="#new-audit-modal">
+    New audit <i class="icon-plus"></i>
+  </a>
+<%- end %>
+
+<%- content_for(:title_links) do %>
+  <%= link_to('View deleted audits', deleted_audits_path, class: 'titlebar__link') %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Audit name</th>
+      <th>Audit type</th>
+      <th>Created by</th>
+      <th colspan="2">Performed on</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @audits.each do |audit| %>
+      <tr>
+        <td><%= link_to_audit audit %></td>
+        <td><%= audit.audit_type.name %></td>
+        <td><%= audit.user.full_name %></td>
+        <td><%= audit.performed_on.strftime('%m/%d/%Y') %></td>
+        <td class="row-actions">
+          <%= render 'web/navigation/trash', delete_object: audit unless audit.is_locked? %>
+          <%= link_to('#clone-audit-modal',
+                      class: 'tooltip row-actions__link js-modal-open js-clone-audit',
+                      data: {
+                        audit_type: audit.audit_type_name,
+                        source_audit_id: audit.id,
+                        tooltip: 'Clone' }) do %>
+            <i class="icon-clone"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render 'clone_modal' %>
+<%= render 'new_audit_modal' %>

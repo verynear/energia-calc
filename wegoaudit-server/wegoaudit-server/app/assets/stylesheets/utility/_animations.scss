@@ -1,0 +1,31 @@
+@keyframes successBgFlash {
+  0%   {
+    background: $success-bg;
+    border-bottom-color: $success-border;
+  }
+
+  100% {
+    background: #fff;
+    border-bottom-color: $grey-light;
+  }
+}
+
+@keyframes successLinkFlash {
+  0%   {
+    color: $success-color;
+  }
+
+  100% {
+    color: $base-font-color;
+  }
+}
+
+@keyframes animate-notice-bg {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -20px 0;
+  }
+}

@@ -1,0 +1,363 @@
+<ul class='no-list-style'>
+  <li class='level-1'>
+    <div class='field_title'>Name:</div>
+    <%= @building.nickname %>
+  </li>
+  <li class='level-1'>
+    <div class='field_title'>Type:</div>
+    <%= @building.object_type %>
+  </li>
+  <li class='level-1'>
+    <div class='field_title'>Details:</div>
+    <ul class='no-list-style' style='display: none'>
+      <li>
+        <div class='field_title grouping'>Building Details</div>
+        <ul class='no-list-style'>
+          <li>
+            <div class='field_title'>Street Address</div>
+            <%= @building.street_address %>
+          </li>
+          <li>
+            <div class='field_title'>City</div>
+            <%= @building.city %>
+          </li>
+          <li>
+            <div class='field_title'>State</div>
+            <%= @building.state_code %>
+          </li>
+          <li>
+            <div class='field_title'>Zip</div>
+            <%= @building.zip_code %>
+          </li>
+          <li>
+            <div class='field_title'>County</div>
+            <%= @building.county %>
+          </li>
+          <li>
+            <div class='field_title'>Country</div>
+            <%= @building.country %>
+          </li>
+          <li>
+            <div class='field_title'>Latitude</div>
+            <%= @building.lat %>
+          </li>
+          <li>
+            <div class='field_title'>Longitude</div>
+            <%= @building.lng %>
+          </li>
+          <li>
+            <div class='field_title'>Climate Zone</div>
+            <%= @building.climate_zone %>
+          </li>
+          <li>
+            <div class='field_title'>SQFT</div>
+            <%= @building.sqft %>
+          </li>
+          <li>
+            <div class='field_title'>Year Built</div>
+            <%= @building.year_built %>
+          </li>
+          <li>
+            <div class='field_title'>Low Income</div>
+            <%= @building.low_income %>
+          </li>
+          <li>
+            <div class='field_title'>Resident Type</div>
+            <%= @building.resident_type %>
+          </li>
+          <li>
+            <div class='field_title'>Number of Stories</div>
+            <%= @building.n_stories %>
+          </li>
+          <li>
+            <div class='field_title'>Building Type</div>
+            <%= @building.building_type %>
+          </li>
+          <li>
+            <div class='field_title'>Construction</div>
+            <%= @building.construction %>
+          </li>
+          <li>
+            <div class='field_title'>Number of Apartments</div>
+            <%= @building.n_apartments %>
+          </li>
+          <li>
+            <div class='field_title'>Number of Bedrooms</div>
+            <%= @building.n_bedrooms %>
+          </li>
+          <li>
+            <div class='field_title'>Heating Fuel</div>
+            <%= @building.heating_fuel %>
+          </li>
+          <li>
+            <div class='field_title'>Heating System</div>
+            <%= @building.heating_system %>
+          </li>
+          <li>
+            <div class='field_title'>Hot Water Fuel</div>
+            <%= @building.hot_water_fuel %>
+          </li>
+          <li>
+            <div class='field_title'>Hot Water System</div>
+            <%= @building.hot_water_system %>
+          </li>
+          <li>
+            <div class='field_title'>Cooling System</div>
+            <%= @building.cooling_system %>
+          </li>
+          <li>
+            <div class='field_title'>Number of Elevators</div>
+            <%= @building.n_elevators %>
+          </li>
+          <li>
+            <div class='field_title'>Dryer Fuel</div>
+            <%= @building.dryer_fuel %>
+          </li>
+          <li>
+            <div class='field_title'>Draft</div>
+            <%= @building.draft %>
+          </li>
+          <li>
+            <div class='field_title'>Notes</div>
+            <%= @building.notes %>
+          </li>
+          <li>
+            <div class='field_title'>Green Certified</div>
+            <%= @building.green_certified %>
+          </li>
+          <li>
+            <div class='field_title'>LEED Certified</div>
+            <%= @building.leed_certified %>
+          </li>
+          <li>
+            <div class='field_title'>LEED Level</div>
+            <%= @building.leed_level %>
+          </li>
+          <li>
+            <div class='field_title'>EPA Certified</div>
+            <%= @building.epa_certified %>
+          </li>
+          <li>
+            <div class='field_title'>NAHB Certified</div>
+            <%= @building.nahb_certified %>
+          </li>
+          <li>
+            <div class='field_title'>Other Certifications</div>
+            <%= @building.other_certified %>
+          </li>
+          <li>
+            <div class='field_title'>Has Laundry?</div>
+            <%= @building.has_laundry %>
+          </li>
+          <li>
+            <div class='field_title'>Has Pool?</div>
+            <%= @building.has_pool %>
+          </li>
+          <li>
+            <div class='field_title'>Pool Year Round?</div>
+            <%= @building.pool_year_round %>
+          </li>
+          <li>
+            <div class='field_title'>Pool Fuel</div>
+            <%= @building.pool_fuel %>
+          </li>
+          <li>
+            <div class='field_title'>Apartment SQFT</div>
+            <%= @building.apartment_sqft %>
+          </li>
+          <li>
+            <div class='field_title'>Has Basement?</div>
+            <%= @building.has_basement %>
+          </li>
+          <li>
+            <div class='field_title'>Basement SQFT</div>
+            <%= @building.basement_sqft %>
+          </li>
+          <li>
+            <div class='field_title'>Basement Conditioned?</div>
+            <%= @building.basement_conditioned %>
+          </li>
+          <li>
+            <div class='field_title'>Number of Gas General Meters</div>
+            <%= @building.n_gas_general_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Number of Gas Area Meters</div>
+            <%= @building.n_gas_area_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Number of Electric General Meters</div>
+            <%= @building.n_electric_general_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Number of Electric Area Meters</div>
+            <%= @building.n_electric_area_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Number of Water General Meters</div>
+            <%= @building.n_water_general_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Number of Water Area Meters</div>
+            <%= @building.n_water_area_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Conditioned sqft</div>
+            <%= @building.conditioned_sqft %>
+          </li>
+          <li>
+            <div class='field_title'>Number of Oil Area Meters</div>
+            <%= @building.n_oil_area_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Number of Oil General Meters</div>
+            <%= @building.n_oil_general_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Public Housing?</div>
+            <%= @building.public_housing %>
+          </li>
+          <li>
+            <div class='field_title'>water_area_meters_count</div>
+            <%= @building.water_area_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>electric_area_meters_count</div>
+            <%= @building.electric_area_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>gas_area_meters_count</div>
+            <%= @building.gas_area_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>oil_area_meters_count</div>
+            <%= @building.oil_area_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>water_general_meters_count</div>
+            <%= @building.water_general_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>electric_general_meters_count</div>
+            <%= @building.electric_general_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>gas_general_meters_count</div>
+            <%= @building.gas_general_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>oil_general_meters_count</div>
+            <%= @building.oil_general_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>steam_general_meters_count</div>
+            <%= @building.steam_general_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>steam_area_meters_count</div>
+            <%= @building.steam_area_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>propane_general_meters_count</div>
+            <%= @building.propane_general_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>propane_area_meters_count</div>
+            <%= @building.propane_area_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>tenant_pays_area_water</div>
+            <%= @building.tenant_pays_area_water %>
+          </li>
+          <li>
+            <div class='field_title'>tenant_pays_area_electric</div>
+            <%= @building.tenant_pays_area_electric %>
+          </li>
+          <li>
+            <div class='field_title'>tenant_pays_area_gas</div>
+            <%= @building.tenant_pays_area_gas %>
+          </li>
+          <li>
+            <div class='field_title'>tenant_pays_area_oil</div>
+            <%= @building.tenant_pays_area_oil %>
+          </li>
+          <li>
+            <div class='field_title'>tenant_pays_area_steam</div>
+            <%= @building.tenant_pays_area_steam %>
+          </li>
+          <li>
+            <div class='field_title'>tenant_pays_area_propane</div>
+            <%= @building.tenant_pays_area_propane %>
+          </li>
+          <li>
+            <div class='field_title'>solar_general_meters_count</div>
+            <%= @building.solar_general_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>solar_area_meters_count</div>
+            <%= @building.solar_area_meters_count %>
+          </li>
+          <li>
+            <div class='field_title'>apartments_count</div>
+            <%= @building.apartments_count %>
+          </li>
+          <li>
+            <div class='field_title'>areas_count</div>
+            <%= @building.areas_count %>
+          </li>
+          <li>
+            <div class='field_title'>other_building_type</div>
+            <%= @building.other_building_type %>
+          </li>
+          <li>
+            <div class='field_title'>object_type</div>
+            <%= @building.object_type %>
+          </li>
+          <li>
+            <div class='field_title'>Number of steam General Meters</div>
+            <%= @building.n_steam_general_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Number of steam Area Meters</div>
+            <%= @building.n_steam_area_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Number of propane General Meters</div>
+            <%= @building.n_propane_general_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Number of propane Area Meters</div>
+            <%= @building.n_propane_area_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Number of solar General Meters</div>
+            <%= @building.n_solar_general_meters %>
+          </li>
+          <li>
+            <div class='field_title'>Number of solar Area Meters</div>
+            <%= @building.n_solar_area_meters %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class='level-1'>
+    <div class='field_title'>
+      Substructures:
+    </div>
+    <ul class='no-list-style'>
+      <% @building.structure.substructures.sort { |a, b| a.structure_type_id <=> b.structure_type_id }.each do |substruct| %>
+        <li>
+        <%= [substruct.structure_type.name, substruct.name].join(' - ') %>
+        <% if substruct.substructures.count > 0 %>
+          <ul>
+            <% substruct.substructures.each do |s| %>
+              <li><%= [s.structure_type.name, s.name].join(' - ') %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+</ul>

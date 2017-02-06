@@ -1,0 +1,49 @@
+// Default
+.btn {
+  @extend %btn;
+  box-shadow: 0 1px 0 rgba(#000,0.25);
+}
+
+// Bare
+.btn-bare {
+  @extend %btn-bare;
+}
+
+// Primary
+.btn-primary {
+  @extend %btn-primary;
+  box-shadow: 0 1px 0 #a31e00;
+}
+
+// Secondary
+.btn-secondary {
+  @extend %btn-secondary;
+  box-shadow: 0 1px 0 darken(#0c77f9, 15%);
+}
+
+.btn-primary,
+.btn-secondary {
+  text-shadow: 0 -1px 1px rgba(#000,0.3);
+}
+
+.btn-small {
+  font-size: 0.85em;
+}
+
+.btn-large {
+  font-size: 1.3em;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  .btn & {
+    vertical-align: -1px;
+  }
+
+  .btn-small & {
+    vertical-align: -2px;
+  }
+
+  .btn-large & {
+    vertical-align: -4px;
+  }
+}

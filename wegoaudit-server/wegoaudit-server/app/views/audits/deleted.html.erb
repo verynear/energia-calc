@@ -1,0 +1,42 @@
+<%- title 'Deleted audits' %>
+
+<%- content_for(:title_links) do %>
+  <%= link_to('View audits', audits_path, class: 'titlebar__link') %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Audit name</th>
+      <th>Audit type</th>
+      <th>Created by</th>
+      <th>Performed on</th>
+      <th>Expires in</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @audits.each do |audit| %>
+      <tr>
+        <td><%= audit.name %></td>
+        <td><%= audit.audit_type.name %></td>
+        <td><%= audit.user.full_name %></td>
+        <td><%= audit.performed_on.strftime('%m/%d/%Y') %></td>
+        <td><%= expires_in(audit) %></td>
+        <td class="row-actions">
+          <%= link_to(immediate_delete_audit_path(audit),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?',
+                              tooltip: 'Delete forever' },
+                      class: 'tooltip row-actions__link') do %>
+            <i class="icon-trash"></i>
+          <% end %>
+          <%= link_to(undelete_audit_path(audit),
+                      data: { tooltip: 'Restore' },
+                      class: 'tooltip row-actions__link') do %>
+            <i class="icon-restore"></i>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

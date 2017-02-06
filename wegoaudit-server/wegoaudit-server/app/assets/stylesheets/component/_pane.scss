@@ -1,0 +1,31 @@
+.pane-wrapper {
+  position: relative;
+  margin-top: -1px;
+
+  > div {
+    width: 100%;
+    display: none;
+    top: 0;
+    left: 0;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+  }
+
+  > .active,
+  > .prev,
+  > .next {
+    display: block;
+  }
+
+  > div,
+  > .active.right,
+  > .active.left {
+    opacity: 0;
+  }
+
+  > .next.left,
+  > .prev.right,
+  > .active {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,47 @@
+.delete-query {
+  position: absolute;
+  z-index: 19;
+  background: $danger-bg;
+  right: -1px;
+  top: -1px;
+  bottom: -1px;
+  width: $delete-query-q-width + ($delete-query-link-width * 2);
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: height 0.2s ease-in, opacity 0.2s ease-in;
+
+  &.in {
+    height: $table-real-line-height + 2;
+    opacity: 1;
+  }
+
+  a {
+    display: block;
+    float: left;
+    width: $delete-query-link-width;
+    text-align: center;
+    border-left: 1px solid $danger-border;
+
+    i {
+      top: 2px;
+      right: -2px;
+      font-size: 12px;
+    }
+  }
+}
+
+.delete-query__q {
+  display: block;
+  text-align: center;
+  float: left;
+  width: $delete-query-q-width;
+}
+
+.delete-query__yes {
+  color: $danger-color;
+}
+
+.delete-query__no {
+  color: $base-font-color;
+}

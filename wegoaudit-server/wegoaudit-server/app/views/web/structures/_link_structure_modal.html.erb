@@ -1,0 +1,24 @@
+<div class="modal js-modal" id="link-structure-modal">
+  <div class="modal__header">
+    <a href="#" class="modal__close js-modal-close">
+      <i class="icon-close"></i>
+    </a>
+    <h2 class="modal__title">Link structure</h2>
+  </div>
+
+  <%= form_tag search_audit_buildings_path(current_audit), remote: true do %>
+    <div class="form-row form-row--search">
+      <%= text_field_tag :q, '',
+            autofocus: true,
+            class: 'input-has-append',
+            placeholder: 'Search...' %>
+      <button type="submit" class="js-submit-search addon addon-append">
+        <i class="icon-lupe"></i>
+      </button>
+    </div>
+  <%- end %>
+
+  <%= form_tag '', method: :post, class: 'js-submit-link' do %>
+    <div class="js-results"></div>
+  <%- end %>
+</div>

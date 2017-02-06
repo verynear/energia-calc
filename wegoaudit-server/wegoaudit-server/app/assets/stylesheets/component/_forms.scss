@@ -1,0 +1,42 @@
+.form-row {
+  background: #fff;
+}
+
+.active-content__details {
+  .form-row__label {
+    width: 200px;
+  }
+}
+
+.form-row--date {
+  select {
+    width: 80px;
+  }
+}
+
+select {
+  &.month {
+    width: 100px;
+  }
+
+  &.day {
+    width: 50px;
+  }
+
+  &.year {
+    width: 70px;
+  }
+}
+
+input + button.addon {
+  margin-left: 0;
+}
+
+button i {
+  margin-top: 2px;
+}
+
+.form-row--search {
+  border-bottom: none;
+  margin-top: 10px;
+}

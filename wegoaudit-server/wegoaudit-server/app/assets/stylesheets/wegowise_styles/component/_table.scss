@@ -1,0 +1,39 @@
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  width: 100%;
+
+  th,
+  td {
+    padding: 10px 8px;
+    line-height: $base-line-height*1.5;
+  }
+
+  th {
+    vertical-align: bottom;
+    border-bottom: 1px solid $table-border-color;
+    @extend %bold-font;
+  }
+
+  td {
+    vertical-align: top;
+  }
+}
+
+.table--bordered {
+  border: 1px solid $table-border-color;
+
+  th,
+  td {
+    border-left: 1px solid $table-border-color;
+  }
+}
+
+.table--striped {
+  tr:nth-child(even) {
+    td {
+      background: darken(#fff,3%);
+    }
+  }
+}

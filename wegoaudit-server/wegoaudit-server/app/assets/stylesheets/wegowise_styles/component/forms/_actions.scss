@@ -1,0 +1,29 @@
+.form-actions {
+  @extend %clearfix;
+  color: $grey;
+  border-top: solid 3px $grey-light;
+  padding: $form-row-vertical-padding $form-row-horizontal-padding;
+  background: #fff;
+
+  button,
+  a,
+  .sep {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+
+  .cancel {
+    margin-top: 5px;
+    text-shadow: 0 1px 0 #fff;
+  }
+
+  .sep {
+    color: $grey;
+    margin: 5px 10px;
+    &:before,
+    &:after {
+      content: "\00A0\2013\00A0"; // hex for Unicode space.endash.space
+      color: #d5d5d5;
+    }
+  }
+}

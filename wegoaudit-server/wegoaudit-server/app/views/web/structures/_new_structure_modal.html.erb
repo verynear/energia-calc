@@ -1,0 +1,34 @@
+<div class="modal js-modal" id="new-structure-modal">
+  <div class="modal__header">
+    <a href="#" class="modal__close js-modal-close">
+      <i class="icon-close"></i>
+    </a>
+    <h2 class="modal__title">Create a new structure</h2>
+  </div>
+  <%= form_for [current_audit, @substructure] do |f| %>
+    <%= f.hidden_field :parent_structure_id, class: 'js-parent-structure-id' %>
+    <%= f.hidden_field :sample_group_id %>
+    <%= hidden_field_tag :parent_structure_type, '', class: 'js-parent-structure-type' %>
+
+    <div class="form-row">
+      <%= f.label :name, class: 'form-row__label' %>
+      <%= f.text_field :name, autofocus: true %>
+    </div>
+
+    <div class="form-row">
+      <%= label_tag :structure_type, 'Type', class: 'form-row__label' %>
+      <%= select_tag :structure_type, [], class: 'js-structure-types' %>
+    </div>
+
+    <div class="form-row">
+      <%= label_tag :structure_subtype, 'Subtype', class: 'form-row__label' %>
+      <%= select_tag :structure_subtype, [], class: 'js-structure-subtypes' %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit 'Create',
+            class: 'btn btn-primary',
+            data: { disable_with: 'Creating...' } %>
+    </div>
+  <%- end %>
+</div>

@@ -1,0 +1,23 @@
+<%- if buildings.blank? %>
+  <div class="form-row">
+    No buildings found that match "<%= params[:q] %>".
+  </div>
+<%- else %>
+  <%- buildings.each do |building| %>
+    <div class="form-row">
+      <%= label_tag building.id, class: 'radio radio-inline' do %>
+        <%= radio_button_tag 'building_id',
+              building.id,
+              false,
+              id: building.id %>
+        <%= building.name %>
+      <%- end %>
+    </div>
+  <%- end %>
+
+  <div class="form-actions">
+    <%= submit_tag 'Link',
+          class: 'btn btn-primary',
+          data: { disable_with: 'Linking...' } %>
+  </div>
+<%- end %>

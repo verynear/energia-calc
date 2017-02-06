@@ -1,0 +1,22 @@
+.flash-notice,
+.flash-alert {
+  $stripe-color: $primary-color;
+  $stripe-opacity: 0.05;
+
+  font-size: $base-font-size + 2;
+  font-weight: bold;
+  display: none;
+  background-color: $grey-lightest;
+  border-bottom: 1px solid $grey-light;
+  background-image: linear-gradient(135deg, rgba($stripe-color, $stripe-opacity) 25%,
+                    transparent 25%,
+                    transparent 50%,
+                    rgba($stripe-color, $stripe-opacity) 50%,
+                    rgba($stripe-color, $stripe-opacity) 75%,
+                    transparent 75%,
+                    transparent);
+  background-size: 10px 10px;
+  animation: animate-notice-bg 3s linear infinite;
+  padding: 20px 0;
+  text-align: center;
+}

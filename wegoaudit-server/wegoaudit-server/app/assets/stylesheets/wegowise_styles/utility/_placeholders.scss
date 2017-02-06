@@ -1,0 +1,238 @@
+%clearfix {
+  *zoom:1;
+
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+%title-font {
+  font-family: $title-font-family;
+  font-weight: normal !important;
+}
+
+%secondary-title-font {
+  font-family: $secondary-title-font-family;
+  font-weight: normal !important;
+}
+
+%bold-font {
+  font-weight: bold;
+  color: $bold-font-color;
+}
+
+%children-respect-padding {
+  &>:first-child {
+    margin-top: 0;
+  }
+
+  &>:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Vertically align anything even when
+// container height is unknown, IE9+
+%vertical-align {
+  position: relative;
+  top: 50%;
+  transform:(translateY(-50%));
+}
+
+// Buttons
+//----------
+%btn {
+  color: $btn-color;
+  background-color: $btn-bg;
+  border-color: $btn-border;
+  border-radius: $radius;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  line-height: 1;
+  margin: 0 0 1.25em;
+  padding: $btn-vertical-padding $btn-horizontal-padding;
+  position: relative;
+  text-align: center;
+  display: inline-block;
+
+  &:hover {
+    color: $btn-color-hover;
+    background-color: $btn-bg-hover;
+    border-color: $btn-border-hover;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  span {
+    vertical-align: -3px;
+  }
+}
+
+%btn-bare {
+  color: $btn-bare-color;
+  background-color: $btn-bare-bg;
+  border-color: $btn-bare-border;
+
+  &:hover {
+    color: $btn-bare-color-hover;
+    background-color: $btn-bare-bg-hover;
+    border-color: $btn-bare-border-hover;
+  }
+}
+
+%btn-primary {
+  color: $btn-primary-color;
+  background-color: $btn-primary-bg;
+  border-color: $btn-primary-border;
+
+  &:hover {
+    color: $btn-primary-color-hover;
+    background-color: $btn-primary-bg-hover;
+    border-color: $btn-primary-border-hover;
+  }
+}
+
+%btn-secondary {
+  color: $btn-secondary-color;
+  background-color: $btn-secondary-bg;
+  border-color: $btn-secondary-border;
+
+  &:hover {
+    color: $btn-secondary-color-hover;
+    background-color: $btn-secondary-bg-hover;
+    border-color: $btn-secondary-border-hover;
+  }
+}
+
+%well {
+  background-color: darken(#fff, 3%);
+  border: 1px solid darken(#fff, 8%);
+}
+
+// Webkit-style focus
+// ------------------
+%tab-focus {
+  // Default
+  outline: thin dotted #333;
+  // Webkit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+%form-input-vertical-alignment {
+  height: $input-height;
+  margin-top: ($form-row-line-height - $input-height) / 2;
+}
+
+// Nav
+//------
+%nav {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    display: block;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+
+%nav-inline-link {
+  padding: 0 15px;
+  display: inline-block;
+}
+
+
+// Stop ios flicker
+//------------------
+// Hardware accelerated transitions, use translate property with the rendering
+// advantages of 3D transforms but with greater x-browser compatibility
+%hd-accelerate {
+  transform: translateZ(0);
+  perspective: 1000;
+  backface-visibility: hidden;
+}
+
+
+// Patterns
+//---------
+%pattern-grid-noise {
+  background-image: image-url("patterns/grid-noise.png");
+}
+
+%pattern-grid-noise-bordered {
+  @extend %pattern-grid-noise;
+  border: 1px solid $grey-light;
+}
+
+%pattern-grid-noise-bordered-horizontal {
+  @extend %pattern-grid-noise-bordered;
+  border-left: none;
+  border-right: none;
+}
+
+%pattern-grid-noise--light {
+  background-image: image-url("patterns/grid-noise--light.png");
+}
+
+%pattern-grid-noise-bordered--light {
+  @extend %pattern-grid-noise--light;
+  border: 1px solid $grey-light;
+}
+
+
+// Panels and alerts
+//--------------------
+%alert {
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: $radius;
+}
+
+%panel {
+  @extend %children-respect-padding;
+  border-style: solid;
+  border-width: 1px;
+  padding: $base-line-height/2;
+}
+
+%panel-warning {
+  color: $warning-font-color;
+  background-color: $warning-bg-color;
+  border-color: $warning-border-color;
+}
+
+%panel-success {
+  color: $success-font-color;
+  background-color: $success-bg-color;
+  border-color: $success-border-color;
+}
+
+%panel-danger {
+  color: $danger-font-color;
+  background-color: $danger-bg-color;
+  border-color: $danger-border-color;
+}
+
+%panel-info {
+  color: $info-font-color;
+  background-color: $info-bg-color;
+  border-color: $info-border-color;
+}

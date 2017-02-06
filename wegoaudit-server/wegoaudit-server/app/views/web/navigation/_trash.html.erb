@@ -1,0 +1,13 @@
+<%= link_to('#',
+            class: 'tooltip row-actions__link js-trash',
+            data: { tooltip: 'Delete' }) do %>
+  <i class="icon-trash"></i>
+<% end %>
+
+<div class="delete-query js-delete-query">
+  <span class="delete-query__q">Are you sure?</span>
+  <%= link_to_delete_object delete_object %>
+  <%= link_to('#', class: 'delete-query__no js-delete-query-no') do %>
+    Cancel <i class="icon-close"></i>
+  <% end %>
+</div>

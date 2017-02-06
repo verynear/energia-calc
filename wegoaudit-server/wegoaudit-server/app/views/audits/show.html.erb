@@ -1,0 +1,33 @@
+<%- title @audit.name %>
+
+<%- content_for(:crumbs) do %>
+  <div class="crumbs">
+    <%= link_to 'All audits', audits_path %>
+    <i class="icon-chevron-right"></i>
+    <%= @audit.name %>
+  </div>
+<% end -%>
+
+<%- content_for(:title_links) do %>
+  <%= lock_icon(current_audit) %>
+<% end -%>
+
+<%= render 'audits_menu' %>
+
+<div class="active-content js-active-content">
+  <%= render 'tab_menu' %>
+
+  <div class="pane-wrapper">
+    <%= render 'web/structures/substructures', structure: @audit.structure %>
+    <%= render 'web/structures/details', structure: @audit.structure %>
+    <%= render 'web/photos/photos', structure: @audit.structure %>
+    <%= render 'measures', audit: @audit %>
+  </div>
+</div>
+
+<%= render 'web/structures/clone_structure_modal' %>
+<%= render 'web/structures/link_structure_modal' %>
+<%= render 'web/structures/new_structure_modal',
+      parent_structure: @audit.structure %>
+<%= render 'web/sample_groups/new_sample_group_modal',
+      parent_structure: @audit.structure %>

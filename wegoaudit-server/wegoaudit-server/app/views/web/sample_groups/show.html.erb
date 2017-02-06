@@ -1,0 +1,41 @@
+<%- title @sample_group.name %>
+
+<%- content_for(:titlebar) do %>
+  <%- if can_edit? && !@sample_group.is_complete? %>
+    <a class="titlebar__btn btn btn-outline js-modal-open js-update-subtypes"
+       data-structure-type-id="<%= @sample_group.structure_type_id %>"
+       href="#new-structure-modal">
+      Add Sample <i class="icon-plus"></i>
+    </a>
+  <%- end %>
+<%- end %>
+
+<%- content_for(:crumbs) do %>
+  <div class="crumbs">
+    <%= link_to 'All audits', audits_path %>
+    <i class="icon-chevron-right"></i>
+    <%- crumb_links(current_audit, @sample_group.parent_object).each do |link_args| %>
+      <%= link_to *link_args %>
+      <i class="icon-chevron-right"></i>
+    <%- end %>
+    <%= @sample_group.name %>
+  </div>
+<%- end %>
+
+<%- content_for(:title_links) do %>
+  <%= lock_icon(current_audit) %>
+<% end -%>
+
+<%= render 'web/navigation/sibling_menu', object: @sample_group %>
+
+<div class="active-content js-active-content">
+  <%= render 'tab_menu' %>
+
+  <div class="pane-wrapper">
+    <%= render 'substructures', sample_group: @sample_group %>
+    <%= render 'details', sample_group: @sample_group %>
+  </div>
+</div>
+
+<%= render 'web/structures/clone_structure_modal' %>
+<%= render 'web/structures/new_structure_modal' %>

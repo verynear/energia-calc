@@ -1,0 +1,5 @@
+<div>
+  <%- @sample_group.substructures.each do |structure| %>
+    <%= render 'web/structures/structure_row', structure: structure %>
+  <%- end %>
+</div>

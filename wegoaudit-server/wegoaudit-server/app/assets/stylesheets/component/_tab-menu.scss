@@ -1,0 +1,44 @@
+.tab-menu {
+  @extend %clearfix;
+  position: relative;
+  z-index: 8;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid $active-content-border-color;
+  display: block;
+  line-height: $table-real-line-height + 1;
+
+  &:hover {
+    .active a {
+      border-bottom-color: lighten($primary-color, 30%);
+
+      &:hover {
+        border-bottom-color: $primary-color;
+      }
+    }
+  }
+
+  li {
+    display: block;
+    float: left;
+    width: 25%;
+    list-style: none;
+  }
+
+  a {
+    border-bottom: 3px solid transparent;
+    text-align: center;
+    display: block;
+    color: $base-font-color;
+    margin-bottom: -2px;
+
+    &:hover {
+      border-bottom-color: $primary-color;
+    }
+  }
+
+  .active a {
+    border-bottom-color: $primary-color;
+    color: $grey-dark;
+  }
+}

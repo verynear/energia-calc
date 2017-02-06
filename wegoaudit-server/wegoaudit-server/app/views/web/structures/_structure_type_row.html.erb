@@ -1,0 +1,7 @@
+<div class="section-title">
+  <%- if can_edit? %>
+    <%= render 'web/navigation/add_structure_type',
+          structure_type: structure_type %>
+  <%- end %>
+  <%= structure_type.name %>
+</div>

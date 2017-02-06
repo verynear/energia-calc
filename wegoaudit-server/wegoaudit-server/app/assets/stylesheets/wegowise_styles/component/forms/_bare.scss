@@ -1,0 +1,24 @@
+.form--bare {
+  .form-title,
+  .form-actions,
+  .form-row {
+    border: none;
+  }
+
+  .form-row {
+    padding-bottom: 0;
+    background: transparent;
+  }
+
+  .form-row,
+  .form-actions {
+    padding-left: 0;
+  }
+
+  &:not(.form--vertical) {
+    .form-row__label {
+      text-align: right;
+      margin-right: $form-row-label-spacing - 10px;
+    }
+  }
+}

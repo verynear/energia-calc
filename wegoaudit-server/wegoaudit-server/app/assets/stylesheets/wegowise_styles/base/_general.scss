@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: $base-font-size;
+  line-height: 1.5;
+  color: $base-font-color;
+  font-family: $base-font-family;
+}
+
+a {
+  text-decoration: none;
+  color: $link-color;
+  transition: color, 0.3s;
+
+  &:hover,
+  &:active {
+    color: $link-color-hover;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a,
+a:visited,
+a:focus,
+a:hover,
+a:active {
+  outline: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+// Position content off the screen so that it's not
+// visible but still accesible by screen readers
+// http://webaim.org/techniques/css/invisiblecontent/
+.machine-only {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}

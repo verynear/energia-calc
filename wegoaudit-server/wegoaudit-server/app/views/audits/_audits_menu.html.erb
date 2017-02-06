@@ -1,0 +1,9 @@
+<nav class="sibling-menu  js-sidebar-nav">
+  <div class="sibling-menu__title">
+    Audits
+  </div>
+
+  <%- current_user.audits.active.order(performed_on: :desc).each do |audit| %>
+    <%= link_to audit.name, audit, class: (audit == @audit) ? 'active' : '' %>
+  <%- end %>
+</nav>

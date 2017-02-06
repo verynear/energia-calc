@@ -1,0 +1,38 @@
+<div class="modal js-modal" id="clone-audit-modal">
+  <div class="modal__header">
+    <a href="#" class="modal__close js-modal-close">
+      <i class="icon-close"></i>
+    </a>
+    <h2 class="modal__title">Clone audit</h2>
+  </div>
+
+  <%= form_tag clone_audits_path, method: :post do |f| %>
+    <%= hidden_field_tag :source_audit_id, '', class: 'js-source-audit-id' %>
+
+    <div class="form-row">
+      <%= label_tag 'audit[name]', 'Name', class: 'form-row__label' %>
+      <%= text_field_tag 'audit[name]' %>
+    </div>
+
+    <div class="form-row">
+      <%= label_tag :type, 'Type', class: 'form-row__label' %>
+      <%= text_field_tag :type, '', disabled: true, class: 'js-audit-type' %>
+    </div>
+
+    <div class="form-row">
+      <%= label_tag :audit_performed_on, 'Date', class: 'form-row__label' do %>
+        Date
+      <%- end %>
+      <%= date_select :audit, :performed_on,
+                      order: [:month, :day, :year],
+                      id: 'performed_on_date',
+                      with_css_classes: true %>
+    </div>
+
+    <div class="form-actions">
+      <%= submit_tag 'Create',
+            class: 'btn btn-primary',
+            data: { disable_with: 'Creating...' } %>
+    </div>
+  <%- end %>
+</div>

@@ -1,0 +1,47 @@
+.sibling-menu {
+  width: $sibling-menu-width;
+  float: left;
+
+  a {
+    display: block;
+    border: 1px solid $grey-light;
+    border-top-color: transparent;
+    color: #696969;
+    line-height: $table-real-line-height;
+    background-color: $grey-lightest;
+    padding: 0 $table-h-padding;
+
+    &:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    &:first-child {
+      border-top-color: $grey-light;
+    }
+  }
+
+  .active {
+    background-color: #fff;
+    border-right-color: transparent !important;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-color: $grey;
+    position: relative;
+    z-index: 10;
+    color: #000;
+  }
+}
+
+.sibling-menu__title {
+  display: block;
+  padding: 0 $table-h-padding;
+  border: 1px solid $grey-light;
+  border-top-color: transparent;
+  line-height: $table-real-line-height;
+  font-weight: bold;
+
+  &:first-child {
+    border-top-color: $grey-light;
+  }
+}

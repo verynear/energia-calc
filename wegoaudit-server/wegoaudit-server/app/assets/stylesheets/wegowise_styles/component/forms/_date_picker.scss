@@ -1,0 +1,20 @@
+input.datepicker {
+  width: 90px;
+  padding-right: 20px;
+}
+
+.cal-icon {
+  width: 20px;
+  margin: 0 -20px 0 0;
+  position: relative;
+  left: -20px;
+  line-height: $base-line-height;
+  top: 7px;
+  display: inline-block !important;
+  z-index: 2;
+
+  i {
+    color: mix($link-color, black);
+    cursor: pointer;
+  }
+}

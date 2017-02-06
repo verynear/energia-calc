@@ -1,0 +1,5 @@
+$(function() {
+  $('.js-results').html(
+    '<%= escape_javascript(render('results', buildings: @buildings)) %>'
+  );
+});

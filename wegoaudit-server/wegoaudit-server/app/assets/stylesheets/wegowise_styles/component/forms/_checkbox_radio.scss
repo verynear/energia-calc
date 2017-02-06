@@ -1,0 +1,42 @@
+// Indent the labels to position radios/checkboxes as hanging
+.radio,
+.checkbox {
+  padding-left: 18px;
+}
+
+.radio input[type="radio"],
+.checkbox input[type="checkbox"] {
+  margin-left: -18px;
+}
+
+// Move the options list down to align with labels
+// has to be padding because margin collaspes
+.checkbox:first-child:not(.checkbox-inline),
+.radio:first-child:not(.radio-inline) {
+  padding-top: 5px;
+}
+
+// Radios and checkboxes on same line
+.radio-inline,
+.checkbox-inline {
+  line-height: $form-row-line-height;
+  vertical-align: middle;
+}
+
+// space out consecutive inline controls
+.radio-inline + .radio-inline,
+.checkbox-inline + .checkbox-inline {
+  margin-left: 15px;
+}
+
+.radio-block,
+.checkbox-block {
+  line-height: $form-row-line-height;
+  margin-bottom: -6px;
+  display: block;
+
+  // Push the checkboxes over to the right otherwise they will wrap around the legend
+  fieldset:first-child & {
+    margin-left: $form-row-label-width + $form-row-label-spacing + 5px;
+  }
+}

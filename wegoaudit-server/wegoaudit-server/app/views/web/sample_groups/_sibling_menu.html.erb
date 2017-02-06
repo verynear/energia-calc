@@ -1,0 +1,11 @@
+<nav class="sibling-menu js-sidebar-nav">
+  <div class="sibling-menu__title">
+    <%= object.parent_object.structure_type.name %>
+  </div>
+
+  <%- object.parent_object.substructures.each do |substructure| %>
+    <%= link_to substructure.name,
+          [current_audit, substructure],
+          class: (substructure == object) ? 'active' : '' %>
+  <%- end %>
+</nav>

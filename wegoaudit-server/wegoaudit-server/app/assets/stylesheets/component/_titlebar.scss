@@ -1,0 +1,25 @@
+// Titlebar
+.titlebar {
+  @extend %clearfix;
+  padding: $base-line-height 0 $base-line-height/2;
+}
+
+.titlebar__title {
+  display: inline-block;
+  margin: 0;
+  font-size: 20px;
+
+  + i {
+    margin-left: 5px;
+    font-size: 16px;
+    top: 2px;
+  }
+}
+
+.titlebar__link {
+  margin-left: 10px;
+}
+
+.titlebar__btn {
+  float: right;
+}

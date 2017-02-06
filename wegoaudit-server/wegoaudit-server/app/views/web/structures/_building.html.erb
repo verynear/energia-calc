@@ -1,0 +1,8 @@
+<% ['nickname', 'street_address', 'city', 'climate_zone', 'state_code', 'country', 'county', 'zip_code', 'lat', 'lng', 'low_income', 'building_type', 'sqft', 'conditioned_sqft', 'year_built', 'construction', 'n_bedrooms', 'n_apartments', 'apartment_sqft', 'n_stories', 'n_elevators', 'has_basement', 'basement_conditioned', 'basement_sqft', 'public_housing', 'resident_type', 'epa_certified', 'green_certified', 'nahb_certified', 'leed_certified', 'leed_level',  'other_certified', 'heating_system',  'heating_fuel',  'hot_water_system',  'hot_water_fuel',  'cooling_system',  'n_electric_area_meters', 'n_electric_general_meters', 'tenant_pays_area_electric', 'n_gas_area_meters', 'n_gas_general_meters', 'tenant_pays_area_gas', 'n_water_area_meters', 'n_water_general_meters', 'tenant_pays_area_water', 'n_oil_area_meters', 'n_oil_general_meters', 'tenant_pays_area_oil', 'n_propane_area_meters', 'n_propane_general_meters', 'tenant_pays_area_propane', 'n_steam_area_meters', 'n_steam_general_meters', 'tenant_pays_area_steam', 'n_solar_area_meters', 'n_solar_general_meters'].each do |field_name| %>
+  <div class="form-row">
+    <label class="form-row__label">
+      <%= field_name.gsub('_', ' ').titleize %>
+    </label>
+    <input disabled="disabled" type="text" value="<%= physical_structure.send(field_name.to_sym) %>">
+  </div>
+<% end %>

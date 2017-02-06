@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "https://wegoaudit.wegowise.com/retrocalc/schemas/audit.json",
+  "type": "object",
+  "definitions": {
+    "field_value": {
+      "type": "object",
+      "properties": {
+        "value": { },
+        "value_type": { "type": "string" },
+        "name": { "type": "string" }
+      },
+      "required": ["value", "value_type", "name"],
+      "additionalProperties": false
+    },
+    "measure": {
+      "type": "object",
+      "properties": {
+        "api_name": { "type": "string" },
+        "name": { "type": "string" },
+        "notes": {
+          "anyOf": [{ "type": "string" },
+                    { "type": "null" }]
+        }
+      },
+      "required": ["name", "api_name"],
+      "additionalProperties": false
+    },
+    "structure_type": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "api_name": { "type": "string" }
+      },
+      "required": ["name", "api_name"],
+      "additionalProperties": false
+    },
+    "sample_group": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "n_structures": { "type": "integer" },
+        "parent_structure_id": { "type": "string" }
+      },
+      "required": ["parent_structure_id", "id", "name", "n_structures"],
+      "additionalProperties": false
+    },
+    "photo": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "thumb_url": { "type": "string" },
+        "medium_url": { "type": "string" }
+      },
+      "required": ["id", "thumb_url", "medium_url"],
+      "additionalProperties": false
+    },
+    "structure": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "structure_type": { "$ref": "#/definitions/structure_type" },
+        "n_structures": { "type": "number" },
+        "sample_group_id": {
+          "anyOf": [{ "type": "string" },
+                    { "type": "null" }]
+        },
+        "wegowise_id": {
+          "anyOf": [{ "type": "integer" },
+                    { "type": "null" }]
+        },
+        "field_values": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/definitions/field_value" }
+        },
+        "substructures":  {
+          "type": "array",
+          "items": { "$ref": "#/definitions/structure" }
+        },
+        "photos": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/photo" }
+        }
+      },
+      "required": ["id", "name", "field_values", "structure_type", "n_structures"],
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "audit": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "date": { "type": "string" },
+        "audit_type": { "type": "string" },
+        "structures": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/structure" }
+        },
+        "sample_groups": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/sample_group" }
+        },
+        "measures": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/measure" }
+        },
+        "photos": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/photo" }
+        }
+      },
+      "required": ["id", "name", "date", "audit_type"],
+      "additionalProperties": false
+    },
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,35 @@
+<div class="modal js-modal" id="new-audit-modal">
+  <div class="modal__header">
+    <a href="#" class="modal__close js-modal-close">
+      <i class="icon-close"></i>
+    </a>
+    <h2 class="modal__title">Create a new audit</h2>
+  </div>
+  <%= form_for Audit.new do |f| %>
+    <div class="form-row">
+      <%= f.label :name, class: 'form-row__label' %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="form-row">
+      <%= f.label :audit_type_id, 'Type', class: 'form-row__label' %>
+      <%= f.select :audit_type_id, audit_type_options %>
+    </div>
+
+    <div class="form-row">
+      <%= f.label :performed_on, class: 'form-row__label' do %>
+        Date
+      <%- end %>
+      <%= f.date_select :performed_on,
+                        order: [:month, :day, :year],
+                        id: 'performed_on_date',
+                        with_css_classes: true %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit 'Create',
+            class: 'btn btn-primary',
+            data: { disable_with: 'Creating...' } %>
+    </div>
+  <%- end %>
+</div>

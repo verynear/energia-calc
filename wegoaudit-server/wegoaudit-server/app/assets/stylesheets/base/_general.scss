@@ -1,0 +1,38 @@
+.hide {
+  display: none;
+}
+
+.content {
+  @extend %clearfix;
+}
+
+.active-content {
+  border: 1px solid $grey;
+  float: left;
+  margin-left: -1px;
+  width: $site-inner-width - $sibling-menu-width;
+  background: #fff;
+  position: relative;
+  z-index: 9;
+  padding: 0 20px 20px 20px;
+}
+
+.section-title {
+  line-height: $table-real-line-height;
+  font-weight: bold;
+  background-color: $grey-lightest;
+  border-bottom: 1px solid $grey;
+  padding: 0 $table-h-padding;
+  display: block;
+  width: 100%;
+}
+
+.section-title__action {
+  float: right;
+  font-weight: normal;
+  padding: 0 10px;
+}
+
+.crumbs {
+  margin-top: $base-line-height/4;
+}
