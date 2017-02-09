@@ -1,23 +1,24 @@
 class AuditsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :find_audit, except: [:clone, :create, :deleted, :index]
+  # before_filter :authenticate_user!
+  # before_filter :find_audit, except: [:clone, :create, :deleted, :index]
 
-  helper_method :current_audit
+  # helper_method :current_audit
 
   def index
-    respond_to do |format|
-      format.html do
-        @audits = current_user.available_audits
-                              .active
-                              .includes(:audit_type)
-                              .order(performed_on: :desc)
-      end
+    # respond_to do |format|
+    #   format.html do
+      @audits = Audits.all
+        # @audits = current_user.available_audits
+        #                       .active
+        #                       .includes(:audit_type)
+        #                       .order(performed_on: :desc)
+      # end
 
       format.json do
-        @audits = current_user.audits.active
+        # @audits = current_user.audits.active
         render json: @audits
       end
-    end
+    # end
   end
 
   def clone
@@ -160,7 +161,7 @@ class AuditsController < ApplicationController
   end
 
   def current_audit
-    return nil unless params[:id]
+    # return nil unless params[:id]
     @audit ||= current_user.available_audits.find(params[:id])
   end
 end

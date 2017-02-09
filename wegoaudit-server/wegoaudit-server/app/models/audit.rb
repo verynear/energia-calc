@@ -6,10 +6,13 @@ class Audit < ActiveRecord::Base
   include Cloneable,
           SoftDestruction
 
+  attr_accessor :name, :is_archived, :performed_on, :user_id, :created_at, :updated_at, :upload_attempt_on, :successful_upload_on, :structure_id, :locked_by, :audit_type_id, :destroy_attempt_on
+
   belongs_to :audit_type
   belongs_to :user
   belongs_to :structure
-  belongs_to :locked_by_user, foreign_key: :locked_by, class_name: 'User'
+  # belongs_to :locked_by_user, foreign_key: :locked_by, class_name: 'User'
+  belongs_to class_name: 'User'
 
   has_many :field_values, through: :structure
   has_many :measure_values

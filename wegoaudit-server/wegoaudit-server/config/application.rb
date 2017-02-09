@@ -28,10 +28,7 @@ module Wegosurvey
     end
 
     config.paperclip_defaults = {
-      bucket: ENV.fetch('WEGOAUDIT_S3_BUCKET'),
-      s3_credentials: Rails.root.join('config', 'paperclip_aws_s3.yml'),
-      s3_permissions: :private,
-      storage: :s3
+      storage: :filesystem
     }
 
     # Settings in config/environments/* take precedence over those specified here.

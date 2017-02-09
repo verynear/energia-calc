@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # General purpose routes that are used by both the web UI and iOS
   #
   get '/auth/:provider/callback' => 'sessions#create'
@@ -7,18 +8,19 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'sessions#failure'
   resources :users, only: [:index, :show]
 
+
   # Routes that the WegoAudit web UI depends on.
   #
   resources :audits, only: [:index, :create, :show, :destroy] do
-    collection do
-      post :clone
-      get :deleted
-    end
+     collection do
+       post :clone
+       get :deleted
+     end
 
-    member do
-      delete :immediate_delete
-      get :undelete
-    end
+     member do
+       delete :immediate_delete
+       get :undelete
+     end
   end
   resources :structure_types, only: [] do
     member do

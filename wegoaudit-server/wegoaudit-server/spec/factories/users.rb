@@ -5,6 +5,7 @@ FactoryGirl.define do
     last_name 'User'
     provider 'wegowise'
     sequence(:wegowise_id) { |id| id }
+    sequence(:email) { |n| "email#{n}@factory.com" }
     token 'token'
     secret 'secret'
   end
