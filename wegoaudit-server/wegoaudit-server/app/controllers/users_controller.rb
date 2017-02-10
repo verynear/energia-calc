@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    @user = User.find(get_user_id)
     # @buildings = WegoBuilding.new(current_user).index
     @buildings = Building.all
 

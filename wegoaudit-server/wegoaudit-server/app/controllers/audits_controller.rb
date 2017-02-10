@@ -1,24 +1,24 @@
 class AuditsController < ApplicationController
   # before_filter :authenticate_user!
-  # before_filter :find_audit, except: [:clone, :create, :deleted, :index]
+  before_filter :find_audit, except: [:clone, :create, :deleted, :index]
 
-  # helper_method :current_audit
+  helper_method :current_audit
 
   def index
-    # respond_to do |format|
-    #   format.html do
-      @audits = Audits.all
+     respond_to do |format|
+       format.html do
+          @audits = Audit.all
         # @audits = current_user.available_audits
         #                       .active
         #                       .includes(:audit_type)
         #                       .order(performed_on: :desc)
-      # end
+       end
 
       format.json do
-        # @audits = current_user.audits.active
+        @audits = current_user.audits.active
         render json: @audits
       end
-    # end
+    end
   end
 
   def clone
@@ -43,7 +43,7 @@ class AuditsController < ApplicationController
   end
 
   def deleted
-    @audits = current_user.available_audits.destroyed
+    @audits = Audit.destroyed
   end
 
   def immediate_delete
@@ -156,12 +156,12 @@ class AuditsController < ApplicationController
   end
 
   def find_audit
-    @audit = current_user.available_audits.find_by_id(params[:id])
+    @audit = Audit.find_by_id(params[:id])
     head :not_found unless @audit
   end
 
   def current_audit
-    # return nil unless params[:id]
+    return nil unless params[:id]
     @audit ||= current_user.available_audits.find(params[:id])
   end
 end

@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, path: '', path_names: { sign_in: 'signin', sign_out: 'signout'}
   # General purpose routes that are used by both the web UI and iOS
-  #
-  get '/auth/:provider/callback' => 'sessions#create'
-  get '/signin' => 'sessions#new', :as => :signin
-  get '/signout' => 'sessions#destroy', :as => :signout
-  get '/auth/failure' => 'sessions#failure'
+
   resources :users, only: [:index, :show]
 
 

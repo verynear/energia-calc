@@ -4,7 +4,7 @@ class BuildingsController < SecuredController
   before_filter :load_building, except: [:create, :index, :update]
 
   def index
-    @organizations = current_user.organizations
+    @organizations = Organization.all
 
     respond_to do |format|
       format.html do
@@ -55,7 +55,7 @@ class BuildingsController < SecuredController
   private
 
   def load_building
-    @building = current_user.buildings.find_by(id: params[:id])
+    @building = Building.find_by(id: params[:id])
   end
 
   def building_id

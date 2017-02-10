@@ -34,12 +34,12 @@ module WegowiseClient
   end
 
   def access_token
-    consumer = OAuth::Consumer.new(Rails.application.secrets.omniauth_provider_key,
-                                   Rails.application.secrets.omniauth_provider_secret,
-                                   site: base_uri)
-    token_hash = { oauth_token: user.token,
-                   oauth_token_secret: user.secret }
-    return OAuth::AccessToken.from_hash(consumer, token_hash)
+    # consumer = OAuth::Consumer.new(Rails.application.secrets.omniauth_provider_key,
+    #                                Rails.application.secrets.omniauth_provider_secret,
+    #                                site: base_uri)
+    # token_hash = { oauth_token: user.token,
+    #                oauth_token_secret: user.secret }
+    # return OAuth::AccessToken.from_hash(consumer, token_hash)
   end
 
   def success?
