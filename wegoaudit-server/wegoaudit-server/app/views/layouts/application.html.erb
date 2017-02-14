@@ -14,9 +14,12 @@
       <div class="container">
         <%= link_to image_tag('logo-white.svg'), root_path %>
         <nav class="global-menu">
-          <%= link_to 'Logout', '/users/sign_out' %>
+          <ul class="nav">
+            <%= render 'layouts/navigation_links' %>
+          </ul>
         </nav>
       </div>
+      
     </header>
 
     <p class="notice"><%= notice %></p>

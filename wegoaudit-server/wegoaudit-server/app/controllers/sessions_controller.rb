@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
      if session[:user_id]
        redirect_to root_path
      else
-       redirect_to 'users/sign_in'
+       redirect_to root_path
      end
   end
 

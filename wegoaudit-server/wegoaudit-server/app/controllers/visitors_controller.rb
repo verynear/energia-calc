@@ -1,7 +1,18 @@
 class VisitorsController < ApplicationController
-  layout 'public'
+  
+  layout :determine_layout
 
   def index
-    redirect_to audits_path if user_signed_in?
+    
   end
+
+  private
+
+    def determine_layout
+      if user_signed_in?
+        'application'
+      else
+        'public'
+      end
+    end
 end

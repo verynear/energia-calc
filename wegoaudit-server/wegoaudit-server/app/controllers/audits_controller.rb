@@ -1,5 +1,5 @@
 class AuditsController < ApplicationController
-  # before_filter :authenticate_user!
+  before_filter :authenticate_user!
   before_filter :find_audit, except: [:clone, :create, :deleted, :index]
 
   helper_method :current_audit
