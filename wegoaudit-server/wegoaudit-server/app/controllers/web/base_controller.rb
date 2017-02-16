@@ -6,7 +6,7 @@ module Web
 
     def current_audit
       return nil unless params[:audit_id]
-      @current_audit ||= current_user.available_audits.find(params[:audit_id])
+      @current_audit ||= Audit.find(params[:audit_id])
     end
 
     def redirect_to_parent(structure, options = {})

@@ -15,14 +15,14 @@ class AuditsController < ApplicationController
        end
 
       format.json do
-        @audits = current_user.audits.active
+        @audits = Audit.all
         render json: @audits
       end
     end
   end
 
   def clone
-    source_audit = current_user.available_audits.active.find(params[:source_audit_id])
+    source_audit = Audit.find(params[:source_audit_id])
     new_audit_params = params.require(:audit).permit(:name, :performed_on)
     AuditCloneService.execute!(params: new_audit_params,
                                source_audit: source_audit)
@@ -162,6 +162,6 @@ class AuditsController < ApplicationController
 
   def current_audit
     return nil unless params[:id]
-    @audit ||= current_user.available_audits.find(params[:id])
+    @audit ||= Audit.find(params[:id])
   end
 end

@@ -28,8 +28,8 @@ class MeterImportService < BaseServicer
   end
 
   def retrieval_user
-    return user if user && user.token.present?
-    return organization.owner if organization && organization.owner.token.present?
+    return user if user && current_user
+    return organization.owner if organization
     raise 'An organization or user that has allowed access to Wegowise must be
            included in the initialization parameters.'.squish
   end
