@@ -6,7 +6,8 @@ class AuditCloneService < BaseServicer
   def execute!
     new_audit_params = params.merge(
       audit_type_id: source_audit.audit_type_id,
-      user_id: source_audit.user_id
+      user_id: source_audit.user_id,
+      organization_id: source_audit.organization_id
     )
 
     self.audit = Audit.new(new_audit_params)

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :buildings, through: :organizations
 
   def active_audits
-    audits.active
+    Audit.where(organization_id: organization_id)
   end
 
   def full_name(reverse = false)
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
     @available_audits ||= if organizations.first.present?
       Audit.where(user: organizations.first.users)
     else
-      audits
+      Audit.where(organization_id: organization_id)
     end
   end
 
@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
       created_at: created_at,
       updated_at: updated_at,
       auth_token: token,
-      email: email }
+      email: email,
+      organization_id: organization_id }
   end
 end

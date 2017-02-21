@@ -3,7 +3,7 @@ module Retrocalc
     before_filter :load_user
 
     def index
-      return missing_wegowise_id unless wegowise_id
+      return missing_organization_id unless organization_id
       return unable_to_find_user unless @user
 
       audits_json = @user.active_audits.map do |audit|
@@ -14,7 +14,7 @@ module Retrocalc
     end
 
     def show
-      return missing_wegowise_id unless wegowise_id
+      return missing_organization_id unless organization_id
       return unable_to_find_user unless @user
 
       audit = @user.active_audits.find(params[:id])

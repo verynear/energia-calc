@@ -122,7 +122,8 @@ class AuditsController < ApplicationController
                   :successful_upload_on,
                   :audit_type_id,
                   :created_at,
-                  :updated_at)
+                  :updated_at,
+                  :organization_id)
   end
 
   def audit_structure_type

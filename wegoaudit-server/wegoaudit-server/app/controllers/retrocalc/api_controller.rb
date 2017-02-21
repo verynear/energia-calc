@@ -1,24 +1,24 @@
 module Retrocalc
   class ApiController < ApplicationController
     def load_user
-      @user = User.find_by(wegowise_id: wegowise_id)
+      @user = User.find_by(organization_id: organization_id)
     end
 
-    def wegowise_id
-      params[:wegowise_id]
+    def organization_id
+      params[:organization_id]
     end
 
-    def missing_wegowise_id
+    def missing_organization_id
       result = error_response(
-        :missing_wegowise_id,
-        "wegowise_id is a required parameter")
+        :missing_organization_id,
+        "organization_id is a required parameter")
       render json: result, status: 400
     end
 
     def unable_to_find_user
       result = error_response(
         :user_not_found,
-        "Unable to find wegowise id #{wegowise_id}")
+        "Unable to find organization id #{organization_id}")
       render json: result, status: 404
     end
 

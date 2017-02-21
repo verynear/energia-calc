@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209221717) do
+ActiveRecord::Schema.define(version: 20170221215846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20170209221717) do
     t.uuid     "locked_by"
     t.uuid     "audit_type_id"
     t.datetime "destroy_attempt_on"
+    t.integer  "organization_id"
   end
 
   create_table "buildings", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
@@ -365,6 +366,7 @@ ActiveRecord::Schema.define(version: 20170209221717) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.integer  "organization_id",        default: 2
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

@@ -19,7 +19,8 @@ class AuditCreator < BaseServicer
     params.require(:audit)
           .permit(:audit_type_id,
                   :name,
-                  :performed_on)
+                  :performed_on,
+                  :organization_id)
   end
 
   def audit_structure_type
