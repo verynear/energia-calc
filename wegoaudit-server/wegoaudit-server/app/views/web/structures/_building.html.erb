@@ -3,6 +3,6 @@
     <label class="form-row__label">
       <%= field_name.gsub('_', ' ').titleize %>
     </label>
-    <input disabled="disabled" type="text" value="<%= physical_structure.send(field_name.to_sym) %>">
+    <input type="text" value="<%= physical_structure.send(field_name.to_sym) %>">
   </div>
 <% end %>
