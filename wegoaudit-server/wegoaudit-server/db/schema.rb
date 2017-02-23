@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221215846) do
+ActiveRecord::Schema.define(version: 20170223190558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -344,21 +344,21 @@ ActiveRecord::Schema.define(version: 20170221215846) do
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "username"
-    t.string   "provider"
-    t.integer  "wegowise_id"
+    t.string   "provider",               default: "wegowise"
+    t.integer  "wegowise_id",            default: 1234
     t.string   "token"
     t.string   "secret"
     t.string   "phone"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "organization"
+    t.string   "organization",           default: "Elevate Energy"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",               null: false
+    t.string   "encrypted_password",     default: "",               null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,                null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
