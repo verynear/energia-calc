@@ -29,7 +29,6 @@ module Wegosurvey
 
     config.paperclip_defaults = {
       storage: :filesystem,
-      command_path: '/usr/bin/convert'
     }
 
     # Settings in config/environments/* take precedence over those specified here.
