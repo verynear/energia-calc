@@ -86,7 +86,7 @@ class DynamicSchemaImporter
     end
 
     def object_name
-      parse_string_field('Object (Heating System, Envelop, Water, etc)')
+      parse_string_field('Object (Heating System, Envelope, Water, etc)')
     end
 
     def object_subtypes

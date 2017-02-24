@@ -34,8 +34,7 @@ class StructureType < ActiveRecord::Base
       self
     elsif parent_structure_type.genus_structure_type?
       parent_structure_type
-    elsif grandparent_structure_type &&
-      grandparent_structure_type.genus_structure_type?
+    elsif grandparent_structure_type && grandparent_structure_type.genus_structure_type?
       grandparent_structure_type
     else
       self
