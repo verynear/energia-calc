@@ -11,16 +11,29 @@ class StructureGroupingPresenter
   end
 
   def fields
-    grouping.fields.order(:display_order).map do |field|
-      StructureFieldPresenter.new(structure, field, field_values[field.id])
-    end
-  end
+      grouping.fields.order(:display_order).map do |field|
+        if field.value_type != 'picker'
+          StructureFieldPresenter.new(structure, field, field_values[field.id])
+        else
+          StructureFieldPresenter.new(structure, field, collection)
+        end
+      end
+  end  
 
-  private
+  # private
 
   def field_values
     @field_values ||= structure.field_values.map do |field_value|
       [field_value.field_id, field_value]
     end.to_h
   end
+
+  def collection
+    collection = []
+    grouping.field_enumerations.map do |field_enumeration|
+      collection << [field_enumeration.value]
+    end
+    collection
+  end
+
 end

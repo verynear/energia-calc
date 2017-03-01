@@ -36,9 +36,15 @@
             <%= label_tag field.name.parameterize,
                   field.name,
                   class: 'form-row__label' %>
-            <%= render "web/fields/#{field.partial}",
-                  name: field.name.parameterize,
-                  value: field.value %>
+            <% if field.value_type != 'picker' %>
+              <%= render "web/fields/#{field.partial}",
+                    name: field.name.parameterize,
+                    value: field.field_value_value %>
+            <% else %>
+              <%= render "web/fields/#{field.partial}",
+                    name: field.name.parameterize,
+                    value: field.field_value %>
+            <% end %>
           </div>
         <%- end %>
       <%- end %>

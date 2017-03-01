@@ -5,12 +5,14 @@ class Structure < ActiveRecord::Base
   belongs_to :structure_type
   belongs_to :parent_structure, class_name: 'Structure'
   belongs_to :sample_group
+
   has_many :child_structure_types, through: :structure_type
   has_many :sample_groups, foreign_key: :parent_structure_id
   has_many :structure_images
   has_many :substructures, foreign_key: :parent_structure_id,
                            class_name: 'Structure'
   has_many :field_values
+  has_many :field_enumerations
   belongs_to :physical_structure, polymorphic: true
 
   scope :active, -> do
@@ -35,6 +37,10 @@ class Structure < ActiveRecord::Base
   end
 
   def value_for_field(field)
-    field_values.where(field_id: field.id).first
+      field_values.where(field_id: field.id).first
+  end
+
+  def value_for_picker_field(field)
+      field_enumerations.where(field_id: field.id)
   end
 end

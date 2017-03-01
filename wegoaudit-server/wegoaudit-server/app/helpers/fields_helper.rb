@@ -56,4 +56,5 @@ module FieldsHelper
   def state_select_tag(name, value, options = {})
     select_tag name, options_for_select(US_STATES, value), options
   end
+
 end

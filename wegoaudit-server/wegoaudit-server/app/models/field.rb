@@ -24,7 +24,7 @@ class Field < ActiveRecord::Base
 
   def form
     hash = base_form
-    hash.merge!(items: enumeration_values) if picker?
+    hash.merge!(items: field_enumerations) if picker?
     hash
   end
 
@@ -36,9 +36,9 @@ class Field < ActiveRecord::Base
     value_type == 'date'
   end
 
-  def enumeration_values
-    return nil unless picker?
-    field_enumerations.order(:display_order).map(&:value)
+  def field_enumerations
+    # return nil unless picker?
+    @field_enumeration = FieldEnumeration.where(field_id: field.id)
   end
 
   def grouping

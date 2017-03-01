@@ -16,6 +16,7 @@ class StructureFieldPresenter
 
   attr_reader :field,
               :field_value,
+              :field_enumeration,
               :structure
 
   delegate :name,
@@ -26,13 +27,26 @@ class StructureFieldPresenter
 
   delegate :value,
            to: :field_value,
+           prefix: true,
            allow_nil: true
+
+  delegate :value,
+           to: :enumeration_value,
+           prefix: true,
+           allow_nil: true
+
 
   class << self
     def model_name
       Field.model_name
     end
+
+    def f_enumerations
+      FieldEnumeration.where(field_id: field.id)
+    end
   end
+
+  
 
   def initialize(structure, field, field_value = nil)
     @structure = structure
