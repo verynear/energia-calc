@@ -15,7 +15,7 @@ class StructureGroupingPresenter
         if field.value_type != 'picker'
           StructureFieldPresenter.new(structure, field, field_values[field.id])
         else
-          StructureFieldPresenter.new(structure, field, collection)
+          StructureFieldPresenter.new(structure, field, collection, field_values[field.id]['string_value'])
         end
       end
   end  

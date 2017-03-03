@@ -43,7 +43,8 @@
             <% else %>
               <%= render "web/fields/#{field.partial}",
                     name: field.name.parameterize,
-                    value: field.field_value %>
+                    value: field.field_value,
+                    seldefault: field.string_value %>
             <% end %>
           </div>
         <%- end %>

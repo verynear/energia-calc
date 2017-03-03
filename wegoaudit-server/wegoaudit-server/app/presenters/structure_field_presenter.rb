@@ -48,10 +48,15 @@ class StructureFieldPresenter
 
   
 
-  def initialize(structure, field, field_value = nil)
+  def initialize(structure, field, field_value = nil, string_value = nil)
     @structure = structure
     @field = field
     @field_value = field_value
+    @string_value = string_value
+  end
+
+  def string_value
+    @string_value
   end
 
   def partial

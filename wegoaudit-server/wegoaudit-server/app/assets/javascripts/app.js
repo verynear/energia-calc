@@ -125,7 +125,7 @@ $(function modals() {
 // Autosubmit fields on blur
 // --------------------------------
 $(function autosubmitForms() {
-  $('.js-autosave-form').on('change', 'input,textarea', function() {
+  $('.js-autosave-form').on('change', 'input,textarea,select', function() {
     $(this).parents('form').submit();
   });
 });
