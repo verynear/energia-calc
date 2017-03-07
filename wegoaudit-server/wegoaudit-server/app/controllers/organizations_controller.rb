@@ -2,7 +2,7 @@ class OrganizationsController < SecuredController
   before_filter :load_organization, only: [:download_buildings, :show]
 
   def index
-    @organizations = Organization.all
+    @organizations = Organizaion.all
   end
 
   def show
@@ -29,6 +29,6 @@ class OrganizationsController < SecuredController
   private
 
   def load_organization
-    @organization = Organization.all
+    @organization = Organization.find(params[:id])
   end
 end

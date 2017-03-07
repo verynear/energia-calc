@@ -35,6 +35,6 @@ class StructureTypeSubtypesPresenter
 
   def selectable_subtypes
     return [] if has_no_subtypes?
-    selected_type.child_structure_types.pluck(:name, :id)
+    selected_type.child_structure_types.order(:name).pluck(:name, :id)
   end
 end

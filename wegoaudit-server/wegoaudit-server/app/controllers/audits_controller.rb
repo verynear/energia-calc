@@ -7,7 +7,7 @@ class AuditsController < ApplicationController
   def index
      respond_to do |format|
        format.html do
-          @audits = Audit.all
+          @audits = Audit.all.order(performed_on: :desc)
         # @audits = current_user.available_audits
         #                       .active
         #                       .includes(:audit_type)
