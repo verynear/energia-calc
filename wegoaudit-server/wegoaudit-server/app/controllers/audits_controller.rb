@@ -7,7 +7,7 @@ class AuditsController < ApplicationController
   def index
      respond_to do |format|
        format.html do
-          @audits = Audit.all.order(performed_on: :desc)
+          @audits = Audit.active.includes(:audit_type).order(performed_on: :desc).all
         # @audits = current_user.available_audits
         #                       .active
         #                       .includes(:audit_type)
@@ -15,7 +15,7 @@ class AuditsController < ApplicationController
        end
 
       format.json do
-        @audits = Audit.all
+        @audits = Audit.active.all
         render json: @audits
       end
     end

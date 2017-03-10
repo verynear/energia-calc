@@ -13,6 +13,7 @@ module Retrocalc
         id: audit.id,
         name: audit.name,
         date: audit.performed_on,
+        field_values: fields_for(audit),
         audit_type: audit.audit_type.try(:name)
       }
 
@@ -27,6 +28,16 @@ module Retrocalc
     end
 
     private
+
+    def fields_for(audit)
+      field_values = audit.field_values.includes(:field)
+
+      field_values.each_with_object({}) do |value, hash|
+        api_name = value.field.api_name
+
+        hash[api_name] = value.value 
+      end
+    end
 
     def measures_json(measure_values)
       audit.measure_values.map do |measure_value|

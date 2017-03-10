@@ -37,7 +37,7 @@ class Field < ActiveRecord::Base
   end
 
   def field_enumerations
-    # return nil unless picker?
+    return nil unless picker?
     @field_enumeration = FieldEnumeration.where(field_id: field.id)
   end
 

@@ -40,10 +40,6 @@ class StructureFieldPresenter
     def model_name
       Field.model_name
     end
-
-    def f_enumerations
-      FieldEnumeration.where(field_id: field.id)
-    end
   end
 
   

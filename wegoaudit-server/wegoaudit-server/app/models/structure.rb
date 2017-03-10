@@ -37,7 +37,7 @@ class Structure < ActiveRecord::Base
   end
 
   def value_for_field(field)
-      field_values.where(field_id: field.id).first
+      field_values.where(structure_id: structure.id).where(field_id: field.id)
   end
 
   def value_for_picker_field(field)
