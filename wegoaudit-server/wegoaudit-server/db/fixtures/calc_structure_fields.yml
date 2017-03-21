@@ -1,0 +1,366 @@
+per_unit_cost:
+  name: 'Per unit cost'
+  value_type: decimal
+
+# These fields are only temporarily defined here
+# DHW
+afue:
+  name: 'AFUE'
+  value_type: decimal
+tank_efficiency:
+  name: 'Tank efficiency'
+  value_type: decimal
+input_in_therms:
+  name: 'Input in therms'
+  value_type: decimal
+# toilets
+rated_gallons_per_flush:
+  name: 'Rated gallons per flush '
+  value_type: decimal
+percent_leaking:
+  name: 'Percent leaking'
+  value_type: decimal
+daily_leakage:
+  name: 'Daily leakage'
+  value_type: decimal
+flushes_per_day:
+  name: 'Daily leakage'
+  value_type: decimal
+# duct air sealing
+leakage:
+  name: 'Leakage'
+  value_type: string
+r_value:
+  name: 'R-value'
+  value_type: decimal
+annual_heating_savings:
+  name: 'Annual heating savings'
+  value_type: decimal
+annual_cooling_savings:
+  name: 'Annual cooling savings'
+  value_type: decimal
+percentage_within_conditioned_space:
+  name: '% within conditioned space'
+  value_type: decimal
+cooling_capacity:
+  name: 'Cooling capacity'
+  value_type: decimal
+heating_capacity:
+  name: 'Heating capacity'
+  value_type: decimal
+seer_cooling_efficiency:
+  name: 'SEER cooling efficiency'
+  value_type: decimal
+heating_efficiency:
+  name: 'Heating efficiency'
+  value_type: decimal
+# install cogeneration system
+implementation_cost:
+  name: 'Implementation cost'
+  value_type: decimal
+annual_maintenance_cost:
+  name: 'Annual maintenance cost'
+  value_type: decimal
+input_annual_gas_savings:
+  name: 'Annual gas savings'
+  value_type: decimal
+input_annual_electric_savings:
+  name: 'Annual electric savings'
+  value_type: decimal
+input_annual_oil_savings:
+  name: 'Annual oil savings'
+  value_type: decimal
+# install temperature limiting thermostats
+temperature_limit:
+  name: 'Temperature limit'
+  value_type: decimal
+warm_weather_shutdown_temperature:
+  name: 'Warm weather shutdown temp.'
+  value_type: decimal
+energy_source:
+  name: 'Energy source'
+  value_type: picker
+  options:
+    - oil
+    - gas
+    - electric
+# interior lighting and controls
+lamps_per_fixture:
+  name: 'Lamps per fixture'
+  value_type: decimal
+per_fixture_cost:
+  name: 'Per fixture cost'
+  value_type: decimal
+watts_per_lamp:
+  name: 'Watts per lamp'
+  value_type: decimal
+wattage:
+  name: 'Total wattage'
+  value_type: decimal
+lamp_type:
+  name: 'Lamp type'
+  value_type: picker
+  options:
+    - Fluorescent
+    - CFL
+    - Incandescent
+    - Halogen
+    - LED
+    - HID
+ballast_type:
+  name: 'Ballast type'
+  value_type: picker
+  options:
+    - electronic
+    - magnetic
+    - none
+lighting_controls:
+  name: 'Lighting controls'
+  value_type: 'picker'
+  options:
+    - Manual Switch
+    - Bi-level occupancy
+    - occupancy sensor
+    - timer
+    - photocell
+    - sensor
+    - dimming
+    - step dimming
+    - none
+operating_hours_per_week:
+  name: 'Operating hours per week'
+  value_type: decimal
+percentage_of_time_occupied:
+  name: '% of time occupied'
+  value_type: decimal
+bilevel_fixture_low_power_wattage:
+  name: 'Bi-level fixture low-power kwh'
+  value_type: decimal
+bilevel_fixture_high_power_wattage:
+  name: 'Bi-level fixture high-power kwh'
+  value_type: decimal
+# sewer abatement
+abatement_system:
+  name: 'System to be implemented on'
+  value_type: string
+annual_water_usage_through_meter:
+  name: 'Water usage for meter / year'
+  value_type: decimal
+sewer_rate_per_gallon:
+  name: 'Sewer rate per gallon'
+  value_type: decimal
+# solar thermal
+input_annual_gas_savings:
+  name: 'Annual gas savings'
+  value_type: decimal
+input_annual_electric_savings:
+  name: 'Annual electric savings'
+  value_type: decimal
+# solar PV
+weather_data_location:
+  name: 'Weather data location'
+  value_type: string
+dc_system_size:
+  name: 'DC System Size'
+  value_type: decimal
+module_type:
+  name: 'Module type'
+  value_type: picker
+  options:
+    - standard
+    - premium
+    - thin film
+array_type:
+  name: 'Array type'
+  value_type: picker
+  options:
+    - fixed (open rack)
+    - fixed (roof mount)
+    - 1-axis tracking
+    - 1-axis backtracking
+    - 2-axis tracking
+system_loss:
+  name: 'System loss'
+  value_type: decimal
+tilt:
+  name: 'Tilt'
+  value_type: decimal
+azimuth:
+  name: 'Tilt'
+  value_type: decimal
+system_type:
+  name: 'System type'
+  value_type: picker
+  options:
+    - residential
+    - commercial
+initial_cost:
+  name: 'Initial cost'
+  value_type: decimal
+potential_incentives:
+  name: 'Potential incentives'
+  value_type: decimal
+annual_electric_output:
+  name: 'Annual electric output'
+  value_type: decimal
+annual_solar_radiation:
+  name: 'Annual solar radiation'
+  value_type: decimal
+energy_value:
+  name: 'Energy value'
+  value_type: decimal
+# steam vent replacement
+input_annual_gas_savings:
+  name: 'Annual gas savings'
+  value_type: decimal
+# showerheads
+dhw_hot_water_temperature:
+  name: 'Hot water temperature (F)'
+  value_type: decimal
+dhw_cold_water_temperature:
+  name: 'Pre-DHW water temperature (F)'
+  value_type: decimal
+gpm:
+  name: 'GPM'
+  value_type: decimal
+minutes_per_occupant_daily:
+  name: 'Minutes per occupant daily'
+  value_type: decimal
+average_shower_temperature:
+  name: 'Average shower temperature (F)'
+  value_type: decimal
+days_used_per_year:
+  name: 'Days used per year'
+  value_type: decimal
+# upgrade ventilation system
+input_annual_gas_savings:
+  name: 'Annual gas savings'
+  value_type: decimal
+input_annual_electric_savings:
+  name: 'Annual electric savings'
+  value_type: decimal
+input_annual_oil_savings:
+  name: 'Annual oil savings'
+  value_type: decimal
+air_volume_in_cfm_existing:
+  name: 'Existing vent. air volume (CFM)'
+  value_type: decimal
+air_volume_in_cfm_proposed:
+  name: 'Proposed vent. air volume (CFM)'
+  value_type: decimal
+# dhw_pipe_insulation
+dhw_btu_per_hour:
+  name: 'DHW Input (btu/hour)'
+  value_type: decimal
+number_fires_per_day:
+  name: 'Number of heater fires per day'
+  value_type: decimal
+number_heater_days_per_year:
+  name: 'Number of heater days per year'
+  value_type: decimal
+outer_pipe_diameter_in_inches:
+  name: 'Outer pipe diameter in inches'
+  value_type: picker
+  options:
+    - 1.05
+    - 1.32
+    - 1.66
+    - 1.9
+    - 2.38
+    - 2.88
+    - 3.5
+    - 4
+    - 4.5
+    - 5.56
+r_value_of_pipe_insulation:
+  name: 'R-value of pipe insulation'
+  value_type: decimal
+length_insulated_pipe:
+  name: 'Length of insulated pipes'
+  value_type: decimal
+length_uninsulated_pipe:
+  name: 'Length of uninsulated pipes'
+  value_type: decimal
+pipe_material:
+  name: 'Pipe material'
+  value_type: picker
+  options:
+    - 'cast iron'
+    - 'mild steel'
+    - 'copper'
+temperature_outside_pipes:
+  name: 'Temperature outside pipes (F)'
+  value_type: decimal
+temperature_inside_pipes:
+  name: 'Temperature inside pipes (F)'
+  value_type: decimal
+# refrigerator
+refrigerator_size_in_cf:
+  name: 'Refrigerator size (cu ft)'
+  value_type: decimal
+manufactured_year:
+  name: 'Manufactured year'
+  value_type: string
+  options:
+    - "< 1967"
+    - "1976 - 86"
+    - "1987 - 89"
+    - "1990 - 92"
+    - "1993 - 00"
+    - "2001 - 2010"
+energy_star_tier_of_refrigerator:
+  name: 'Energy Star Tier'
+  value_type: string
+  options:
+    - "2001 Energy Star"
+    - "2004 Energy Star"
+    - "2008 Energy Star"
+    - "CEE Tier 3"
+# furnace replacement
+year_built:
+  name: 'Year built'
+  value_type: string
+region:
+  name: 'Region'
+  value_type: string
+average_unit_size:
+  name: 'Year built'
+  value_type: decimal
+num_units:
+  name: '# of units'
+  value_type: decimal
+# duct insulation
+length_of_duct:
+  name: 'Length of duct'
+  value_type: decimal
+perimeter_of_duct_cross_section:
+  name: 'Perim. of duct cross-section'
+  value_type: decimal
+temperature_inside_duct:
+  name: 'Temperature inside duct (F)'
+  value_type: decimal
+temperature_outside_duct:
+  name: 'Temperature outside duct (F)'
+  value_type: decimal
+r_value_of_insulation:
+  name: 'R-value of insulation'
+  value_type: decimal
+air_circulating_hours_per_day:
+  name: 'Air circulating hours / day'
+  value_type: decimal
+thickness_of_duct_material:
+  name: 'Thickness of duct material'
+  value_type: decimal
+conductivity_of_duct_material:
+  name: 'Conductivity of duct material'
+  value_type: decimal
+# boiler replacement
+boiler_input_btu_per_hour:
+  name: 'DHW Input (btu/hour)'
+  value_type: decimal
+working_fluid:
+  name: 'Working fluid'
+  value_type: picker
+  options:
+    - steam
+    - water

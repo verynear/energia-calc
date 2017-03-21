@@ -1,0 +1,21 @@
+data_types:
+  - water
+
+inputs_only: true
+
+inputs:
+  - utility_rebate
+  - meter_cost
+  - abatement_system
+  - annual_water_usage_through_meter
+  - sewer_rate_per_gallon
+
+formulas:
+  retrofit_cost:
+    'meter_cost'
+
+output_formulas:
+  annual_water_savings:
+    'annual_water_usage_through_meter'
+  annual_cost_savings:
+    'annual_water_usage_through_meter * sewer_rate_per_gallon'

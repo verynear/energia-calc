@@ -1,0 +1,109 @@
+@import "pdf/variables";
+@import "pdf/placeholders";
+@import "pdf/nei/fonts";
+
+// Variables
+$nei-font-family: 'Merriweather';
+$title-font-color: #333;
+$brand-color: #B5C394;
+
+// Placeholders
+%nei-title {
+  font-family: $nei-font-family;
+  color: $title-font-color;
+  font-weight: bold;
+}
+
+.nei-pdf {
+  font-family: $nei-font-family;
+  font-size: $base-font-size;
+
+  h1, h2, h3, h4, h5, h6 {
+    @extend %nei-title;
+  }
+
+  .disclaimer {
+    font-size: $small-font-size;
+    margin-top: $base-line-height*2;
+  }
+
+  .address {
+    @extend %clearfix;
+    margin: $base-line-height 0;
+
+    &__client {
+      float: right;
+    }
+
+    &__auditor {
+      float: left;
+    }
+  }
+
+  .company-info {
+    @extend %clearfix;
+
+    &__address {
+      margin-top: $base-line-height;
+    }
+
+    &__logo {
+      img {
+        max-width: 150px;
+      }
+    }
+  }
+
+  .intro {
+    @extend %clearfix;
+    margin: $base-line-height*2 0 $base-line-height;
+  }
+
+  .report-info {
+    float: left;
+    width: 50%;
+
+    &__title {
+      font-size: $h3-size;
+      font-weight: normal;
+      font-style: italic;
+      text-align: left;
+      margin-top: $base-line-height;
+    }
+
+    &__building {
+      margin-top: $base-line-height*2.5;
+
+      &__title {
+        font-size: $h2-size - 2;
+        font-weight: bold;
+        border-bottom: 1px solid $brand-color;
+        padding-bottom: $base-line-height;
+        margin-bottom: $base-line-height;
+      }
+    }
+  }
+
+  .cover-image {
+    float: left;
+    width: 50%;
+    text-align: center;
+
+    img {
+      max-width: 80%;
+      background: #fff;
+      box-shadow: 0 0 4px rgba(#000, 0.4);
+    }
+  }
+
+  .submitted-to {
+    &__title {
+      font-weight: bold;
+    }
+  }
+
+  .footer {
+    text-align: center;
+    font-size: $small-font-size;
+  }
+}

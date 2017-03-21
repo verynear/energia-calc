@@ -1,0 +1,34 @@
+data_types:
+  - water
+
+inputs:
+  - num_occupants
+  - num_bathrooms
+  - water_cost_per_gallon
+  - rated_gallons_per_flush
+  - percent_leaking
+  - daily_leakage
+  - toilet_cost
+  - flushes_per_day
+
+defaults:
+  rated_gallons_per_flush:
+    existing: 3.50
+    proposed: 1.28
+  percent_leaking: 0
+  daily_leakage: 0
+  retrofit_lifetime: 15
+  flushes_per_day: 5
+
+formulas:
+  toilet_normal_usage:
+    'num_occupants * rated_gallons_per_flush * flushes_per_day *
+      days_per_year'
+  toilet_leakage:
+    'num_bathrooms * percent_leaking * daily_leakage * days_per_year'
+  annual_water_usage:
+    'toilet_normal_usage + toilet_leakage'
+  annual_operating_cost:
+    'annual_water_cost'
+  retrofit_cost:
+    'toilet_cost * num_bathrooms'

@@ -1,0 +1,38 @@
+inputs:
+  audit:
+    - gas_cost_per_therm
+    - water_cost_per_gallon
+    - num_occupants
+    - num_apartments
+    - num_bedrooms
+  measure:
+    - retrofit_lifetime
+    - minutes_per_occupant_daily
+    - average_shower_temperature
+    - days_used_per_year
+  domestic_hot_water_system:
+    - afue
+    - dhw_cold_water_temperature
+    - dhw_hot_water_temperature
+  showerhead:
+    - gpm
+    - showerhead_cost
+
+structures:
+  domestic_hot_water_system:
+    determining: true
+    fields:
+      afue:
+        existing_only: true
+  showerhead:
+    multiple: true
+    field_for_grouping: gpm
+    fields:
+      per_unit_cost:
+        proposed_only: true
+
+fields_mapping:
+  showerhead_cost: 'per_unit_cost'
+
+interaction_fields:
+  - afue

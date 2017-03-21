@@ -1,0 +1,70 @@
+.form-row {
+  @extend %clearfix;
+  background: $form-row-bg-color;
+  padding: 6px $form-row-horizontal-padding;
+  margin: 0;
+  border-top: solid 1px #fff;
+  border-bottom: solid 1px #e5e5e5;
+
+  &.active .form-row__help,
+  &:hover .form-row__help {
+    display: block;
+  }
+
+  [class*="span"] {
+    margin-left: 0;
+  }
+}
+
+.form-row__label,
+.form-section__label{
+  float: left;
+  line-height: $form-row-line-height;
+}
+
+.form-row__label {
+  width: 160px;
+  margin-right: 30px;
+}
+
+.form-row__label--full {
+  width: 100%;
+}
+
+.form-row__help {
+  display: none;
+  margin-left: 20px;
+  position: relative;
+  background: #fff;
+  border: 1px solid $default-border-color;
+  border-radius: 2px;
+  padding: 5px 12px 3px;
+  color: $min-legibility;
+  vertical-align: middle;
+  @include arrow-bordered(left, 7px, #fff, $grey200, 50%);
+}
+
+.form-section {
+  // Stop the fieldsets collapsing
+  display: table;
+  float: left;
+  margin-right: 20px;
+}
+
+// Legend collapses margin, so next element is responsible for spacing
+legend + .control-group {
+  margin-top: $base-line-height;
+  -webkit-margin-top-collapse: separate;
+}
+
+.form-section + .form-row__help {
+  // Let the .form-section provide the margin
+  margin-left: 0;
+}
+
+.form-section__label + input,
+input + .form-section__label,
+.form-section__label + label,
+input + button {
+  margin-left: 5px;
+}

@@ -1,5 +1,19 @@
 module Retrocalc
   class AuditJsonPresenter
+    MAPPING = {
+      'auditor_name' => 'auditor_name',
+      'auditor_email' => 'auditor_email',
+      'name' => 'contact_name',
+      'phone_number' => 'contact_phone',
+      'email_address' => 'contact_email',
+      'address' => 'contact_address',
+      'city' => 'contact_city',
+      'state' => 'contact_state',
+      'zip_code' => 'contact_zip',
+      'holding_company' => 'contact_company'
+      
+    }
+
     attr_accessor :audit,
                   :top_level_only
 
@@ -34,6 +48,7 @@ module Retrocalc
 
       field_values.each_with_object({}) do |value, hash|
         api_name = value.field.api_name
+        api_name = MAPPING[api_name] if MAPPING[api_name]
 
         hash[api_name] = value.value 
       end

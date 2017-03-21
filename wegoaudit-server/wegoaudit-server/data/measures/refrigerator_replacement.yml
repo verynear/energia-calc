@@ -1,0 +1,25 @@
+inputs:
+  audit:
+    - electric_cost_per_kwh
+  measure:
+    - retrofit_lifetime
+  refrigerator:
+    - refrigerator_size_in_cf
+    - manufactured_year
+    - energy_star_tier_of_refrigerator
+    - refrigerator_unit_cost
+
+structures:
+  refrigerator:
+    multiple: true
+    grouping_field: 'refrigerator_size_in_cf'
+    fields:
+      manufactured_year:
+        existing_only: true
+      per_unit_cost:
+        proposed_only: true
+      energy_star_tier_of_refrigerator:
+        proposed_only: true
+
+fields_mapping:
+  refrigerator_unit_cost: 'per_unit_cost'

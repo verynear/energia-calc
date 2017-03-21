@@ -1,0 +1,220 @@
+@mixin icon-font($font-name) {
+  font-family: $font-name;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+// CSS Arrows
+//------------
+@mixin arrow($direction, $color, $size){
+  display: block;
+  height: 0;
+  width: 0;
+
+  @if $direction == 'up' {
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+  }
+
+  @else if $direction == 'right' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+  }
+
+  @else if $direction == 'down' {
+    border-top: $size solid $color;
+    border-right: $size solid transparent;
+    border-left: $size solid transparent;
+  }
+
+  @else if $direction == 'left' {
+    border-top: $size solid transparent;
+    border-right: $size solid $color;
+    border-bottom: $size solid transparent;
+  }
+
+  @else if $direction == 'up-left' {
+    border-top: $size solid $color;
+    border-right: $size solid transparent;
+  }
+
+  @else if $direction == 'up-right' {
+    border-top: $size solid $color;
+    border-left: $size solid transparent;
+  }
+
+  @else if $direction == 'down-left' {
+    border-bottom: $size solid $color;
+    border-right: $size solid transparent;
+  }
+
+  @else if $direction == 'down-right' {
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+  }
+}
+
+// With border
+@mixin arrow-bordered($direction, $innerSize, $innerColor, $outerColor, $offset) {
+  $outerSize: $innerSize + 1;
+  position: relative;
+
+  &:before,
+  &:after {
+    position: absolute;
+    content: '';
+  }
+
+  @if $direction == 'up' or $direction == 'down' {
+    &:before,
+    &:after {
+      top: 0; // Override for each use case
+      left: $offset;
+    }
+
+    &:before {
+      margin-left: -$outerSize;
+    }
+
+    &:after {
+      margin-left: -$innerSize;
+    }
+  }
+
+  @if $direction == 'up' {
+    &:before {
+      @include arrow(up, $outerColor, $outerSize);
+    }
+
+    &:after {
+      @include arrow(up, $innerColor, $innerSize);
+    }
+  }
+
+  @if $direction == 'down' {
+    &:before {
+      @include arrow(down, $outerColor, $outerSize);
+    }
+
+    &:after {
+      @include arrow(down, $innerColor, $innerSize);
+    }
+  }
+
+  @if $direction == 'left' or $direction == 'right' {
+    &:before,
+    &:after {
+      top: $offset;
+    }
+
+    &:before {
+      margin-top: -$outerSize;
+    }
+
+    &:after {
+      margin-top: -$innerSize;
+    }
+  }
+
+  @if $direction == 'left' {
+    &:before {
+      @include arrow(left, $outerColor, $outerSize);
+      margin-left: -1px;
+    }
+
+    &:after {
+      @include arrow(left, $innerColor, $innerSize);
+    }
+  }
+
+  @if $direction == 'right' {
+    &:before {
+      @include arrow(right, $outerColor, $outerSize);
+    }
+
+    &:after {
+      @include arrow(right, $innerColor, $innerSize);
+    }
+  }
+}
+
+
+// CSS circle
+//-----------
+@mixin circle($size) {
+  display: inline-block;
+  width: $size;
+  height: $size;
+  line-height: $size;
+  border-radius: 100%;
+}
+
+
+// Form field states
+//-----------------------------
+@mixin form-field-state($font-color: $base-font-color, $border-color: #ccc, $bg-color: #f5f5f5) {
+  // Set the text color
+  > label {
+    color: $font-color;
+  }
+
+  // Style inputs accordingly
+  #{$all-text-inputs},
+  textarea {
+    border-color: $border-color;
+
+    &:focus {
+      border-color: darken($border-color, 10%);
+      box-shadow: 0 0 6px lighten($border-color, 20%);
+    }
+  }
+
+  #{$all-text-inputs},
+  select,
+  textarea {
+    color: $font-color;
+  }
+}
+
+// font-face
+//-----------
+@mixin font-face ($font-family, $file-name, $font-weight: normal,
+                  $font-style: normal, $font-stretch: normal) {
+  @font-face {
+    font-family: $font-family;
+    src: url("#{$asset-url}#{$font-path}/#{$file-name}.eot");
+    src: url("#{$asset-url}#{$font-path}/#{$file-name}.eot?#iefix") format('embedded-opentype'),
+         url("#{$asset-url}#{$font-path}/#{$file-name}.woff") format("woff");
+    font-weight: $font-weight;
+    font-style: $font-style;
+    font-stretch: $font-stretch;
+  }
+}
+
+// Tables
+@mixin th-width($col, $width) {
+  #{$col} {
+    width: $width;
+  }
+}
+
+@mixin table-columns($widths...) {
+  table-layout: fixed;
+  width: 100%;
+
+  $n: 1;
+  $var: "col:nth-child(" + $n + ")";
+  @each $width in $widths {
+    @include th-width($var, $width);
+    $n: $n + 1;
+    $var: "col:nth-child(" + $n + ")";
+  }
+}

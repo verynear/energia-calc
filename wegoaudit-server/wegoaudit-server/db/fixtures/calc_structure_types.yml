@@ -1,0 +1,12 @@
+cogeneration_system:
+  name: 'Cogeneration System'
+refrigerator:
+  name: 'Refrigerator'
+sewer_abatement_meter:
+  name: 'Sewer Abatement Meter'
+solar_pv:
+  name: 'Solar Potential'
+solar_thermal:
+  name: 'Solar Thermal Potential'
+ventilation_system:
+  name: 'Ventilation System'

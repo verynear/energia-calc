@@ -1,0 +1,65 @@
+.totals {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 99;
+  transform: translateY(100%);
+  transition: transform $transition-speed ease-in-out;
+
+  &__row {
+    display: flex;
+    background: $totals-bg;
+    position: relative;
+
+    &--level1 {
+      border-bottom: 1px solid $totals-border;
+    }
+  }
+
+  &__item {
+    flex: 1;
+    text-align: center;
+    color: $totals-font;
+    border-right: 1px solid $totals-border;
+    padding: 12px 0;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  &__label {
+    color: rgba($totals-font, 0.85);
+  }
+
+  &__value {
+    font-size: $base-font-size+2;
+  }
+
+  &__toggle {
+    $height: 36px;
+    position: absolute;
+    color: rgba($totals-font, 0.8);
+    right: 0;
+    top: -$height;
+    height: $height;
+    line-height: $height;
+    padding: 0 16px;
+    border-radius: $radius 0 0 0;
+    background: $totals-bg;
+
+    i {
+      margin-left: 8px;
+      transform: rotate(180deg);
+      transition: transform $transition-speed;
+
+      .is-collapsed & {
+        transform: rotate(0deg);
+      }
+    }
+
+    &:hover {
+      color: $totals-font;
+    }
+  }
+}

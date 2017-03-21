@@ -1,0 +1,12 @@
+inputs:
+  measure:
+    - retrofit_lifetime
+    - utility_rebate
+  sewer_abatement_meter:
+    - meter_cost
+    - abatement_system
+    - annual_water_usage_through_meter
+    - sewer_rate_per_gallon
+
+fields_mapping:
+  meter_cost: 'per_unit_cost'

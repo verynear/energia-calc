@@ -1,0 +1,96 @@
+data_types:
+  - electric
+
+field_definitions:
+  lamp_type:
+    options:
+      - Fluorescent
+      - CFL
+      - Incandescent
+      - Halogen
+      - LED
+      - HID
+  ballast_type:
+    options:
+      - electronic
+      - magnetic
+      - none
+  controls:
+    options:
+      - Manual Switch
+      - Bi-level occupancy
+      - occupancy sensor
+      - timer
+      - photocell
+      - sensor
+      - dimming
+      - step dimming
+      - none
+
+inputs:
+  - electric_cost_per_kwh
+  - operating_hours_per_week
+  - percentage_of_time_occupied
+  - watts_per_lamp
+  - lamps_per_fixture
+  - wattage
+  - lamp_type
+  - ballast_type
+  - controls
+  - bilevel_fixture_low_power_wattage
+  - bilevel_fixture_high_power_wattage
+  - per_fixture_cost
+
+defaults:
+  percentage_of_time_occupied: 10
+
+lookups:
+  power_factor_when_fluorescent:
+    input_name: ballast_type
+    lookup:
+      magnetic: "adjusted_wattage / 0.7"
+      electronic: "adjusted_wattage / 0.85"
+
+  power_factor_when_not_fluorescent:
+    input_name: lamp_type
+    lookup:
+      Neon: "1 * adjusted_wattage"
+      Incandescent: "1 * adjusted_wattage"
+      Halogen: "1 * adjusted_wattage"
+      LED: "1 * adjusted_wattage "
+      HID: "(1.15 * adjusted_wattage) + 9"
+      HPS: "(1.17 * adjusted_wattage) + 8.26"
+      MH: "(1.14 * adjusted_wattage) + 9.5"
+      MV: "(1.068 * adjusted_wattage) + 17.69"
+
+formulas:
+  average_bilevel_fixture_power:
+    "(bilevel_fixture_high_power_wattage * percentage_of_time_occupied/100) +
+    (bilevel_fixture_low_power_wattage * (1 - percentage_of_time_occupied/100))"
+  non_bilevel_fixture_power:
+    "IF(proposed,
+        non_bilevel_fixture_power_proposed,
+        non_bilevel_fixture_power_existing)"
+  non_bilevel_fixture_power_existing:
+    "watts_per_lamp * lamps_per_fixture"
+  non_bilevel_fixture_power_proposed:
+    "wattage"
+  adjusted_wattage:
+    "IF(
+      (controls = 'Bi-level occupancy' OR controls = 'occupancy sensor'),
+      average_bilevel_fixture_power,
+      non_bilevel_fixture_power)"
+  actual_fixture_power_factor:
+    "IF(
+      lamp_type = 'Fluorescent',
+      power_factor_when_fluorescent,
+      power_factor_when_not_fluorescent)"
+  annual_electric_usage:
+    "actual_fixture_power_factor *
+      operating_hours_per_week *
+      wh_kwh_conversion *
+      weeks_per_year"
+  annual_operating_cost:
+    "annual_electric_usage * electric_cost_per_kwh"
+  retrofit_cost:
+    "per_fixture_cost"

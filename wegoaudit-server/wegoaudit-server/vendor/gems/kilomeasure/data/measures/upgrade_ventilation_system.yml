@@ -1,0 +1,34 @@
+data_types:
+  - gas
+  - electric
+  - oil
+
+inputs_only: true
+
+inputs:
+  - gas_cost_per_therm
+  - electric_cost_per_kwh
+  - oil_cost_per_btu
+  - utility_rebate
+  - ventilation_cost
+  - input_annual_gas_savings
+  - input_annual_electric_savings
+  - input_annual_oil_savings
+  - air_volume_in_cfm_existing
+  - air_volume_in_cfm_proposed
+
+formulas:
+  retrofit_cost:
+    'ventilation_cost'
+
+output_formulas:
+  annual_cost_savings:
+    '(input_annual_gas_savings * gas_cost_per_therm) +
+      (input_annual_electric_savings * electric_cost_per_kwh) +
+      (input_annual_oil_savings * oil_cost_per_btu)'
+  annual_gas_savings:
+    'input_annual_gas_savings'
+  annual_electric_savings:
+    'input_annual_electric_savings'
+  annual_oil_savings:
+    'input_annual_oil_savings'

@@ -1,0 +1,83 @@
+.modal {
+  display: none;
+  width: 600px;
+  padding: $modal-padding;
+  box-shadow: 0 8px 12px rgba(0,0,0,0.3);
+  background-color: #fff;
+  opacity: 0;
+  transform: scale(1.1) translateY(-20px);
+  // Close it fast, open it slow(er)
+  transition: transform 0.1s $custom-bezier,
+              opacity 0.1s $custom-bezier;
+
+  form {
+    margin-bottom: 0;
+  }
+
+  .form-actions {
+    border-top: none;
+    margin-top: $base-line-height/2;
+  }
+
+  &--new-report {
+    width: 900px;
+  }
+
+  &__header {
+    margin-top: -$modal-padding;
+    margin-right: -$modal-padding;
+    margin-left: -$modal-padding;
+    background-color: $modal-header-bg;
+    padding: $modal-padding;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  &__close {
+    float: right;
+    margin-top: -12px;
+    margin-right: -10px;
+    color: lighten($base-font-color, 30%);
+    border: 1px solid $default-border-color;
+    background-color: #fff;
+    text-align: center;
+    font-size: 12px;
+    transition: color ease-in-out $transition-speed, border-color ease-in-out $transition-speed;
+    @include circle(32px);
+
+    i {
+      top: 2px;
+    }
+
+    &:hover {
+      color: $base-font-color;
+      border-color: $grey;
+    }
+  }
+
+  &__content {
+    padding-top: $base-line-height;
+  }
+
+  &__actions {
+    padding-top: $base-line-height;
+
+    a {
+      text-transform: uppercase;
+    }
+
+    &__secondary {
+      margin-right: 10px;
+    }
+  }
+}
+
+.slidein {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  transition: transform $transition-speed $custom-bezier,
+              opacity $transition-speed $custom-bezier;
+}

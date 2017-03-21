@@ -1,0 +1,61 @@
+h1,h2,h3,h4,h5,h6 {
+  @extend %title-font;
+  color: $title-font-color;
+  margin: $base-line-height 0 $base-line-height/2 0;
+}
+
+h1,h2,h3 {
+  line-height: $base-line-height*1.5;
+}
+
+h4,h5,h6 {
+  line-height: $base-line-height;
+}
+
+h1 {
+  font-size: $h1-size;
+
+  small {
+    font-size: $h1-size-small;
+  }
+}
+
+h2 {
+  font-size: $h2-size;
+}
+
+h3 {
+  font-size: $h3-size;
+
+  small {
+    font-size: $h3-size-small;
+  }
+}
+
+h4 {
+  font-size: $h4-size;
+}
+
+p {
+  margin: 0 0 $base-line-height/2 0;
+}
+
+.secondary-title {
+  @extend %secondary-title-font;
+}
+
+
+// Dates, author
+.meta {
+  color: $meta-font-color;
+  font-weight: 200;
+}
+
+.fineprint {
+  font-size: $small-font-size;
+}
+
+strong,
+b {
+  @extend %bold-font;
+}

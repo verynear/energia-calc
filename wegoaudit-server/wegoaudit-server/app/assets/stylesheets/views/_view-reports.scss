@@ -1,0 +1,17 @@
+.table--view-reports {
+  &__name {
+    width: 35%;
+  }
+
+  &__date {
+    width: 9%;
+  }
+
+  &__links {
+    width: 56%;
+
+    a:not(:first-child) {
+      margin-left: 15px;
+    }
+  }
+}

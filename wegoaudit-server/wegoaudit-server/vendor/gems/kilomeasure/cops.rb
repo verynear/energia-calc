@@ -1,0 +1,5 @@
+require './rubocop/cop/avoid_shared_context'
+require './rubocop/cop/avoid_shared_examples'
+require './rubocop/cop/implicit_memoizer'
+require './rubocop/cop/one_attr_per_line'
+require './rubocop/cop/sorted_attr_args'

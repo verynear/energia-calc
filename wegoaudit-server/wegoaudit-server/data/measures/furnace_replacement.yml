@@ -1,0 +1,23 @@
+inputs:
+  measure:
+    - average_unit_size
+    - num_units
+    - gas_cost_per_therm
+    - retrofit_lifetime
+  heating:
+    - afue
+    - year_built
+    - region
+    - furnace_cost
+
+structures:
+  heating:
+    fields:
+      per_unit_cost:
+        proposed_only: true
+
+fields_mapping:
+  furnace_cost: 'per_unit_cost'
+
+interaction_fields:
+  - afue

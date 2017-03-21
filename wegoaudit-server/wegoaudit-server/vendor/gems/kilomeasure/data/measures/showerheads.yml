@@ -1,0 +1,44 @@
+data_types:
+  - water
+  - gas
+
+inputs:
+  - gas_cost_per_therm
+  - water_cost_per_gallon
+  - num_occupants
+  - num_apartments
+  - num_bedrooms
+  - minutes_per_occupant_daily
+  - average_shower_temperature
+  - days_used_per_year
+  - afue
+  - dhw_cold_water_temperature
+  - dhw_hot_water_temperature
+  - gpm
+  - showerhead_cost
+
+defaults:
+  minutes_per_occupant_daily: 8
+  days_used_per_year: 274
+  average_shower_temperature: 105
+
+formulas:
+  num_occupants:
+    'num_apartments + num_bedrooms'
+  value_of_num_occupants:
+    'num_occupants'
+  temperature_change:
+    'dhw_hot_water_temperature - dhw_cold_water_temperature'
+  percent_hot_water:
+    '(average_shower_temperature - dhw_cold_water_temperature) /
+      (dhw_hot_water_temperature - dhw_cold_water_temperature)'
+  annual_water_usage:
+    'num_occupants * gpm * minutes_per_occupant_daily * days_used_per_year'
+  annual_gas_usage:
+    '(percent_hot_water * specific_heat_of_water * temperature_change
+      * annual_water_usage * btu_therms_conversion) / afue_existing'
+  annual_operating_cost:
+    '(annual_water_usage * water_cost_per_gallon) +
+      (annual_gas_usage * gas_cost_per_therm)'
+  retrofit_cost:
+    'showerhead_cost'

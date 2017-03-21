@@ -1,0 +1,41 @@
+.form--vertical {
+
+  .form-row {
+    margin-bottom: $base-line-height/3;
+
+    &.active .form-row__help,
+    &:hover .form-row__help {
+      display: inline;
+      //Stop it from expanding the div
+      margin-bottom: -$base-line-height/2;
+    }
+  }
+
+  .form-row__label,
+  .form-section__label {
+    width: 100%;
+    margin: 0;
+    line-height: $base-line-height;
+  }
+
+  .error__msg {
+    margin-left: 0;
+  }
+
+  fieldset:first-child {
+    .radio-block,
+    .checkbox-block {
+      margin-left: 0;
+    }
+  }
+
+  .radio,
+  .checkbox {
+    clear: both;
+  }
+
+  .radio-inline,
+  .checkbox-inline {
+    clear: none;
+  }
+}

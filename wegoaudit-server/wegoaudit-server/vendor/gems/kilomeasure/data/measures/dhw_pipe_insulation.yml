@@ -1,0 +1,248 @@
+data_types:
+  - gas
+  - water_heating
+
+field_defitions:
+  outer_pipe_diameter_in_inches:
+    options:
+      - 1.05
+      - 1.32
+      - 1.66
+      - 1.9
+      - 2.38
+      - 2.88
+      - 3.5
+      - 4
+      - 4.5
+      - 5.56
+  pipe_material:
+    options:
+      - 'cast iron'
+      - 'mild steel'
+      - 'copper'
+
+inputs:
+  - gas_cost_per_therm
+  - heating_fuel_baseload_in_therms
+  - utility_rebate
+  - number_fires_per_day
+  - number_heater_days_per_year
+  - outer_pipe_diameter_in_inches
+  - pipe_material
+  - temperature_outside_pipes
+  - temperature_inside_pipes
+  - r_value_of_pipe_insulation
+  - dhw_btu_per_hour
+  - tank_efficiency
+  - afue
+  - length_insulated_pipe
+  - length_uninsulated_pipe
+  - dhw_pipe_insulation_cost
+
+defaults:
+  number_fires_per_day: 24
+  number_heater_days_per_year: 365
+  pipe_material: 'copper'
+  temperature_outside_pipes: 50
+  temperature_inside_pipes: 130
+  r_value_of_pipe_insulation: 4.5
+  retrofit_lifetime: 25
+
+lookups:
+  inner_pipe_diameter_in_inches:
+    input_name: outer_pipe_diameter_in_inches
+    lookup:
+      1.05: 0.82
+      1.32: 1.05
+      1.66: 1.38
+      1.9: 1.61
+      2.38: 2.07
+      2.88: 2.47
+      3.5: 3.07
+      4: 3.55
+      4.5: 4.03
+      5.56: 5.05
+  density_of_pipes:
+    input_name: pipe_material
+    lookup:
+      'cast iron': 486
+      'mild steel': 490
+      'copper': 557
+  specific_heat_of_pipes:
+    input_name: pipe_material
+    lookup:
+      'cast iron': 0.11
+      'mild steel': 0.12
+      'copper': 0.09
+  thermal_resistance_of_pipes:
+    input_name: pipe_material
+    lookup:
+      'cast iron': 0.7143
+      'mild steel': 0.5
+      'copper': 0.4348
+
+formulas:
+  annual_dhw_energy_usage:
+    "(dhw_btu_per_hour_existing * number_heater_days_per_year * hours_per_day) *
+    btu_therms_conversion"
+  water_flowing_percentage:
+    "heating_fuel_baseload_in_therms / annual_dhw_energy_usage"
+  average_length_each_fire:
+    "(hours_per_day * water_flowing_percentage * minutes_per_hour) /
+    number_fires_per_day"
+  time_between_calls:
+    "(hours_per_day * minutes_per_hour / number_fires_per_day)
+     - average_length_each_fire"
+  inner_volume_uninsulated_pipes:
+    "(pi * POW(inner_pipe_diameter_in_inches  / 2, 2) * in2_ft2_conversion) *
+    length_uninsulated_pipe * ft3_gal_conversion"
+  inner_volume_insulated_pipes:
+    "(pi * POW(inner_pipe_diameter_in_inches  / 2, 2) * in2_ft2_conversion) *
+    length_insulated_pipe * ft3_gal_conversion"
+  volume_uninsulated_pipes:
+    "(pi * length_uninsulated_pipe *
+      POW( outer_pipe_diameter_in_inches / hours_per_day, 2)) -
+     (pi * length_uninsulated_pipe *
+      POW( inner_pipe_diameter_in_inches / hours_per_day, 2))"
+  volume_insulated_pipes:
+    "(pi * length_insulated_pipe *
+      POW( outer_pipe_diameter_in_inches / hours_per_day, 2)) -
+     (pi * length_insulated_pipe *
+      POW( inner_pipe_diameter_in_inches / hours_per_day, 2))"
+  weight_uninsulated_pipes:
+    "volume_uninsulated_pipes * density_of_pipes"
+  weight_insulated_pipes:
+    "volume_insulated_pipes * density_of_pipes"
+  uninsulated_pipe_surface_area:
+    "(pi* outer_pipe_diameter_in_inches * length_uninsulated_pipe) *
+      in_ft_conversion"
+  insulated_pipe_surface_area:
+    "(pi* outer_pipe_diameter_in_inches * length_insulated_pipe) *
+     in_ft_conversion"
+  real_temperature_when_dhw_fires_again_uninsulated:
+    "temperature_outside_pipes +
+    (temperature_inside_pipes - temperature_outside_pipes) *
+    POW(E,
+        (-1 *
+        (
+          length_uninsulated_pipe /
+          (
+            (
+              inner_volume_uninsulated_pipes *
+              specific_heat_of_water + weight_uninsulated_pipes *
+              specific_heat_of_pipes
+            ) * thermal_resistance_of_pipes
+          )
+        ) * time_between_calls
+        )
+    )
+    "
+  temperature_when_dhw_fires_again_uninsulated:
+    "IF(length_uninsulated_pipe = 0,
+        0,
+        real_temperature_when_dhw_fires_again_uninsulated)"
+  real_temperature_when_dhw_fires_again_insulated:
+    "temperature_outside_pipes +
+    (temperature_inside_pipes - temperature_outside_pipes) *
+    POW(E,
+        (-1 *
+        (
+          length_insulated_pipe /
+          (
+            (
+              inner_volume_insulated_pipes *
+              specific_heat_of_water + weight_insulated_pipes *
+              specific_heat_of_pipes
+            ) * thermal_resistance_of_pipes
+          )
+        ) * time_between_calls
+        )
+    )"
+  temperature_when_dhw_fires_again_insulated:
+    "IF(length_insulated_pipe = 0,
+        0,
+        real_temperature_when_dhw_fires_again_insulated)"
+  energy_lost_per_fire_uninsulated:
+    "specific_heat_of_water * inner_volume_uninsulated_pipes *
+    (temperature_inside_pipes - temperature_when_dhw_fires_again_uninsulated)"
+  energy_lost_per_fire_insulated:
+    "specific_heat_of_water * inner_volume_insulated_pipes *
+    (temperature_inside_pipes - temperature_when_dhw_fires_again_insulated)"
+  real_energy_lost_per_year_uninsulated:
+    "energy_lost_per_fire_uninsulated * number_fires_per_day *
+    number_heater_days_per_year *
+    btu_therms_conversion"
+  energy_lost_per_year_uninsulated:
+    "IF(length_uninsulated_pipe = 0, 0, real_energy_lost_per_year_uninsulated)"
+  real_energy_lost_per_year_insulated:
+    "energy_lost_per_fire_insulated * number_fires_per_day *
+    number_heater_days_per_year *
+    btu_therms_conversion"
+  energy_lost_per_year_insulated:
+    "IF(length_insulated_pipe = 0, 0, real_energy_lost_per_year_insulated)"
+  heat_loss_rate_of_uninsulated_pipes:
+    "uninsulated_pipe_surface_area *
+    (temperature_inside_pipes - temperature_outside_pipes) /
+    thermal_resistance_of_pipes"
+  heat_loss_rate_of_insulated_pipes:
+    "insulated_pipe_surface_area *
+    (temperature_inside_pipes - temperature_outside_pipes) /
+    (thermal_resistance_of_pipes + r_value_of_pipe_insulation)"
+  real_loss_from_uninsulated_pipes:
+    "heat_loss_rate_of_uninsulated_pipes * heating_fuel_baseload_in_therms /
+    dhw_btu_per_hour_existing"
+  loss_from_uninsulated_pipes:
+    "IF(length_uninsulated_pipe = 0,
+        0,
+        real_loss_from_uninsulated_pipes)"
+  real_loss_from_insulated_pipes:
+    "heat_loss_rate_of_insulated_pipes * heating_fuel_baseload_in_therms /
+    dhw_btu_per_hour_existing"
+  loss_from_insulated_pipes:
+    "IF(length_insulated_pipe = 0,
+        0,
+        real_loss_from_insulated_pipes)"
+  total_stagnant_loss:
+    "energy_lost_per_year_uninsulated + energy_lost_per_year_insulated"
+  total_flowing_loss:
+    "loss_from_uninsulated_pipes +
+      loss_from_insulated_pipes"
+  total_loss:
+    "total_stagnant_loss + total_flowing_loss"
+  total_loss_proposed:
+   " (
+      (energy_to_pipes_existing - total_flowing_loss_existing) *
+      (
+       loss_from_uninsulated_pipes +
+       loss_from_insulated_pipes
+      )
+     )
+     /
+     (
+      (afue_existing *
+       heating_fuel_baseload_in_therms *
+       tank_efficiency
+       ) - (loss_from_uninsulated_pipes +
+       loss_from_insulated_pipes
+      )
+     ) + total_stagnant_loss"
+  energy_factor:
+    "afue * tank_efficiency"
+  energy_to_pipes:
+    "heating_fuel_baseload_in_therms * energy_factor"
+  energy_to_tenants:
+    "energy_to_pipes - total_loss"
+  energy_to_pipes_proposed:
+    "energy_to_tenants_existing + total_loss"
+  heating_fuel_baseload_in_therms_proposed:
+    'energy_to_pipes_proposed / energy_factor'
+  annual_gas_usage:
+    "IF(proposed,
+        heating_fuel_baseload_in_therms_proposed,
+        heating_fuel_baseload_in_therms)"
+  distribution_efficiency_proposed:
+    "energy_to_tenants / energy_to_pipes_proposed"
+  annual_operating_cost:
+    'annual_gas_cost'
+  retrofit_cost:
+    'dhw_pipe_insulation_cost'

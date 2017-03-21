@@ -1,0 +1,42 @@
+data_types:
+  - gas
+  - electric
+
+inputs_only: true
+
+field_definitions:
+  leakage:
+    options:
+      - Connections sealed with mastic
+      - No observable leaks
+      - Some observable leaks
+      - Significant leaks
+      - Catastrophic leaks
+
+inputs:
+  - electric_cost_per_kwh
+  - gas_cost_per_therm
+  - utility_rebate
+  - percentage_within_conditioned_space
+  - duct_cost
+  - leakage
+  - r_value
+  - cooling_capacity
+  - seer_cooling_efficiency
+  - heating_capacity
+  - heating_efficiency
+  - annual_heating_savings
+  - annual_cooling_savings
+
+formulas:
+  retrofit_cost:
+    'duct_cost'
+
+output_formulas:
+  annual_gas_savings:
+    'annual_heating_savings'
+  annual_electric_savings:
+    'annual_cooling_savings'
+  annual_cost_savings:
+    'annual_cooling_savings * electric_cost_per_kwh +
+      annual_heating_savings * gas_cost_per_therm'

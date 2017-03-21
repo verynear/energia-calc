@@ -1,0 +1,31 @@
+.pane-wrapper {
+  position: relative;
+  overflow: hidden;
+
+  > div {
+    width: 100%;
+    display: none;
+    top: 0;
+    left: 0;
+    position: relative;
+    transition: opacity $transition-speed $custom-bezier;
+  }
+
+  > .active,
+  > .prev,
+  > .next {
+    display: block;
+  }
+
+  > div,
+  > .active.right,
+  > .active.left {
+    opacity: 0;
+  }
+
+  > .next.left,
+  > .prev.right,
+  > .active {
+    opacity: 1;
+  }
+}

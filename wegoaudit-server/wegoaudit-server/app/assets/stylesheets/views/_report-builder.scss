@@ -1,0 +1,60 @@
+.report-builder-actions {
+  @extend %clearfix;
+  margin-bottom: $base-line-height * 1.5;
+
+  &__export {
+    margin-right: 20px;
+
+    i {
+      top: 2px;
+    }
+  }
+
+  &__help {
+    @extend %chevron-toggle;
+
+    &:after {
+      top: 3px;
+    }
+  }
+
+  &__help-content {
+    margin-top: $base-line-height/2;
+    padding: 10px;
+    background: $grey100;
+  }
+}
+
+.markdown-editor {
+  width: $markdow-editor-width;
+  padding-right: 20px;
+  overflow-y: scroll;
+  float: left;
+
+  &__contentblock {
+    width: 95%;
+    height: 20vh;
+  }
+
+  &__input {
+    width: $markdow-editor-width;
+    height: 65vh;
+  }
+
+  .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+.markdown-preview {
+  border-left: 1px dashed;
+  padding-left: 20px;
+  width: $markdown-preview-width;
+  overflow-y: scroll;
+  float: left;
+}
+
+.shortcode {
+  margin-right: 8px;
+}

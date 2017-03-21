@@ -1,0 +1,25 @@
+inputs:
+  measure:
+    - heating_days_per_year
+    - gas_cost_per_therm
+    - retrofit_lifetime
+  distribution_system:
+    - length_of_duct
+    - perimeter_of_duct_cross_section
+    - temperature_inside_duct
+    - temperature_outside_duct
+    - thickness_of_duct_material
+    - conductivity_of_duct_material
+    - r_value_of_insulation
+    - duct_insulation_cost
+    - air_circulating_hours_per_day
+    - length_of_duct
+
+structures:
+  distribution_system:
+    fields:
+      per_unit_cost:
+        proposed_only: true
+
+fields_mapping:
+  duct_insulation_cost: 'per_unit_cost'

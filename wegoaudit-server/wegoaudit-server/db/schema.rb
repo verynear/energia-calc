@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223190558) do
+ActiveRecord::Schema.define(version: 20170224202529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "apartment_monthly_data", force: true do |t|
+    t.integer  "wegowise_id",     null: false
+    t.string   "data_type",       null: false
+    t.json     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "audit_report_id", null: false
+  end
 
   create_table "apartments", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.integer  "wegowise_id"
@@ -29,6 +38,19 @@ ActiveRecord::Schema.define(version: 20170223190558) do
     t.datetime "updated_at"
     t.boolean  "cloned",               default: true
     t.datetime "destroy_attempt_on"
+  end
+
+  create_table "audit_reports", force: true do |t|
+    t.integer  "calc_user_id"
+    t.string   "name"
+    t.json     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.uuid     "wegoaudit_id",         null: false
+    t.text     "markdown"
+    t.integer  "report_template_id"
+    t.integer  "calc_organization_id"
+    t.string   "wegoaudit_photo_id"
   end
 
   create_table "audit_types", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
@@ -52,6 +74,16 @@ ActiveRecord::Schema.define(version: 20170223190558) do
     t.uuid     "audit_type_id"
     t.datetime "destroy_attempt_on"
     t.integer  "organization_id"
+  end
+
+  create_table "building_monthly_data", force: true do |t|
+    t.integer  "wegowise_id",     null: false
+    t.string   "data_type",       null: false
+    t.json     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "audit_report_id", null: false
+    t.float    "yearly_data"
   end
 
   create_table "buildings", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
@@ -148,6 +180,98 @@ ActiveRecord::Schema.define(version: 20170223190558) do
     t.datetime "destroy_attempt_on"
   end
 
+  create_table "calc_field_values", force: true do |t|
+    t.string   "value",          default: "", null: false
+    t.string   "field_api_name",              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "parent_id"
+    t.string   "parent_type"
+  end
+
+  add_index "calc_field_values", ["parent_id", "parent_type"], name: "index_calc_field_values_on_parent_id_and_parent_type", using: :btree
+
+  create_table "calc_fields", force: true do |t|
+    t.string "name",                             null: false
+    t.string "api_name",                         null: false
+    t.string "value_type",                       null: false
+    t.string "level",      default: "structure"
+    t.string "options",    default: [],                       array: true
+  end
+
+  add_index "calc_fields", ["api_name"], name: "index_calc_fields_on_api_name", unique: true, using: :btree
+
+  create_table "calc_measures", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "api_name",   null: false
+  end
+
+  add_index "calc_measures", ["api_name"], name: "index_calc_measures_on_api_name", unique: true, using: :btree
+
+  create_table "calc_organizations", force: true do |t|
+    t.string   "name"
+    t.integer  "wegowise_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "calc_structure_types", force: true do |t|
+    t.string "name",            null: false
+    t.string "api_name",        null: false
+    t.string "parent_api_name"
+    t.string "genus_api_name",  null: false
+  end
+
+  add_index "calc_structure_types", ["api_name"], name: "index_calc_structure_types_on_api_name", unique: true, using: :btree
+
+  create_table "calc_structures", force: true do |t|
+    t.string   "name"
+    t.boolean  "proposed"
+    t.integer  "structure_change_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "quantity"
+  end
+
+  create_table "calc_users", force: true do |t|
+    t.integer  "wegowise_id",            default: 1234
+    t.string   "username"
+    t.string   "provider",               default: "wegowise", null: false
+    t.string   "token"
+    t.string   "secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email",                  default: "",         null: false
+    t.integer  "calc_organization_id",   default: 2
+    t.string   "encrypted_password",     default: "",         null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.integer  "sign_in_count",          default: 0,          null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+  end
+
+  add_index "calc_users", ["confirmation_token"], name: "index_calc_users_on_confirmation_token", unique: true, using: :btree
+  add_index "calc_users", ["email"], name: "index_calc_users_on_email", unique: true, using: :btree
+  add_index "calc_users", ["reset_password_token"], name: "index_calc_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "content_blocks", force: true do |t|
+    t.integer  "audit_report_id"
+    t.string   "name"
+    t.text     "markdown"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "field_enumerations", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.uuid     "field_id"
     t.string   "value",                null: false
@@ -197,6 +321,29 @@ ActiveRecord::Schema.define(version: 20170223190558) do
     t.datetime "upload_attempt_on"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "hourly_temperatures", force: true do |t|
+    t.string  "location"
+    t.string  "state_code"
+    t.date    "date"
+    t.integer "hour",        limit: 2
+    t.float   "temperature"
+  end
+
+  add_index "hourly_temperatures", ["location", "date", "hour"], name: "index_hourly_temperatures_on_location_and_date_and_hour", unique: true, using: :btree
+
+  create_table "measure_selections", force: true do |t|
+    t.integer  "audit_report_id",                   null: false
+    t.integer  "calc_measure_id",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "notes"
+    t.integer  "calculate_order"
+    t.text     "description"
+    t.boolean  "enabled",            default: true
+    t.string   "wegoaudit_photo_id"
+    t.string   "recommendation"
   end
 
   create_table "measure_values", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
@@ -274,6 +421,24 @@ ActiveRecord::Schema.define(version: 20170223190558) do
     t.datetime "updated_at"
   end
 
+  create_table "original_structure_field_values", force: true do |t|
+    t.integer "audit_report_id"
+    t.string  "structure_wegoaudit_id"
+    t.string  "value"
+    t.string  "field_api_name"
+  end
+
+  add_index "original_structure_field_values", ["structure_wegoaudit_id", "field_api_name", "audit_report_id"], name: "original_structure_field_values_unique_index", unique: true, using: :btree
+
+  create_table "report_templates", force: true do |t|
+    t.string   "name"
+    t.text     "markdown"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "layout",               null: false
+    t.integer  "calc_organization_id"
+  end
+
   create_table "sample_groups", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.uuid     "parent_structure_id",  null: false
     t.uuid     "structure_type_id",    null: false
@@ -285,6 +450,14 @@ ActiveRecord::Schema.define(version: 20170223190558) do
     t.datetime "destroy_attempt_on"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "structure_changes", force: true do |t|
+    t.uuid     "structure_wegoaudit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "calc_structure_type_id"
+    t.integer  "measure_selection_id",   null: false
   end
 
   create_table "structure_images", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
@@ -342,6 +515,13 @@ ActiveRecord::Schema.define(version: 20170223190558) do
     t.datetime "updated_at"
   end
 
+  create_table "temperature_locations", force: true do |t|
+    t.string "state_code", null: false
+    t.string "location",   null: false
+  end
+
+  add_index "temperature_locations", ["location", "state_code"], name: "index_temperature_locations_on_location_and_state_code", unique: true, using: :btree
+
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "username"
     t.string   "provider",               default: "wegowise"
@@ -373,7 +553,24 @@ ActiveRecord::Schema.define(version: 20170223190558) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "apartment_monthly_data", "audit_reports", name: "apartment_monthly_data_audit_report_id_fk"
+
+  add_foreign_key "audit_reports", "calc_users", name: "audit_reports_calc_user_id_fk"
+
   add_foreign_key "audits", "audit_types", name: "audits_audit_type_id_fk"
   add_foreign_key "audits", "users", name: "audits_locked_by_fk", column: "locked_by"
+
+  add_foreign_key "building_monthly_data", "audit_reports", name: "building_monthly_data_audit_report_id_fk"
+
+  add_foreign_key "calc_field_values", "calc_fields", name: "calc_field_values_field_api_name_fk", column: "field_api_name", primary_key: "api_name"
+
+  add_foreign_key "calc_structures", "structure_changes", name: "calc_structures_structure_change_id_fk"
+
+  add_foreign_key "measure_selections", "audit_reports", name: "measure_selections_audit_report_id_fk"
+  add_foreign_key "measure_selections", "calc_measures", name: "measure_selections_calc_measure_id_fk"
+
+  add_foreign_key "original_structure_field_values", "audit_reports", name: "original_structure_field_values_audit_report_id_fk"
+
+  add_foreign_key "structure_changes", "measure_selections", name: "structure_changes_measure_selection_id_fk"
 
 end

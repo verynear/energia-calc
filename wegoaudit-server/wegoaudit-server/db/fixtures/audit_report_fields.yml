@@ -1,0 +1,129 @@
+audit_date:
+  name: 'Audit date'
+  value_type: date
+auditor_name:
+  name: 'Auditor name'
+  value_type: string
+auditor_email:
+  name: 'Auditor email'
+  value_type: string
+contact_name:
+  name: 'Contact name'
+  value_type: string
+contact_phone:
+  name: 'Contact phone'
+  value_type: string
+contact_email:
+  name: 'Contact email'
+  value_type: string
+contact_address:
+  name: 'Contact address'
+  value_type: string
+contact_city:
+  name: 'Contact city'
+  value_type: string
+contact_state:
+  name: 'Contact state'
+  value_type: string
+contact_zip:
+  name: 'Contact zip'
+  value_type: string
+contact_company:
+  name: 'Contact company'
+  value_type: string
+# temperature data
+heating_season_start_month:
+  name: 'Heating season start month'
+  value_type: string
+heating_season_end_month:
+  name: 'Heating season end month'
+  value_type: string
+location_for_temperatures:
+  name: 'Location for temperatures'
+  value_type: picker
+average_indoor_temperature:
+  name: 'Average indoor temperature (F)'
+  value_type: decimal
+# utility costs
+electric_cost_per_kwh:
+  name: 'Utility electric cost ($/kwh)'
+  value_type: decimal
+gas_cost_per_therm:
+  name: 'Utility gas cost ($/thm)'
+  value_type: decimal
+oil_cost_per_btu:
+  name: 'Utility oil cost ($/btu)'
+  value_type: decimal
+water_cost_per_gallon:
+  name: 'Utility water cost ($/gal)'
+  value_type: decimal
+# building characteristics
+building_name:
+  name: 'Building name'
+  value_type: string
+building_address:
+  name: 'Building address'
+  value_type: string
+building_city:
+  name: 'Building city'
+  value_type: string
+building_state:
+  name: 'Building state'
+  value_type: string
+building_zip:
+  name: 'Building zip'
+  value_type: string
+building_sqft:
+  name: 'Building sqft'
+  value_type: decimal
+num_apartments:
+  name: 'Number of apartments'
+  value_type: decimal
+num_occupants:
+  name: 'Number of occupants'
+  value_type: decimal
+num_bathrooms:
+  name: 'Number of bathrooms'
+  value_type: decimal
+num_bedrooms:
+  name: 'Number of bedrooms'
+  value_type: decimal
+num_stories:
+  name: 'Number of stories'
+  value_type: decimal
+# building energy usage
+heating_fuel_baseload_in_therms:
+  name: 'Heating fuel baseload (thm)'
+  value_type: decimal
+heating_degree_days:
+  name: 'Heating degree days'
+  value_type: decimal
+# usage from wegowise
+electric_usage_in_kwh:
+  name: 'Electric usage (kwh)'
+  value_type: decimal
+gas_usage_in_therms:
+  name: 'Gas usage (thm)'
+  value_type: decimal
+oil_usage_in_btu:
+  name: 'Oil usage (btu)'
+  value_type: decimal
+water_usage_in_gallons:
+  name: 'Water usage (gal)'
+  value_type: decimal
+heating_usage_in_therms:
+  name: 'Heating usage (thm)'
+  value_type: decimal
+cooling_usage_in_therms:
+  name: 'Cooling usage (thm)'
+  value_type: decimal
+# savings investment ratio
+interest_rate:
+  name: 'Nominal interest rate'
+  value_type: decimal
+inflation_rate:
+  name: 'Inflation rate'
+  value_type: decimal
+escalation_rate:
+  name: 'Nominal escalation rate'
+  value_type: decimal

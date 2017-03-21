@@ -1,0 +1,21 @@
+inputs:
+  audit:
+    - electric_cost_per_kwh
+    - gas_cost_per_therm
+  measure:
+    - retrofit_lifetime
+    - utility_rebate
+  distribution_system:
+    - percentage_within_conditioned_space
+    - duct_cost
+    - leakage
+    - r_value
+    - cooling_capacity
+    - seer_cooling_efficiency
+    - heating_capacity
+    - heating_efficiency
+    - annual_heating_savings
+    - annual_cooling_savings
+
+fields_mapping:
+  duct_cost: 'per_unit_cost'

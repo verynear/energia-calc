@@ -1,0 +1,16 @@
+utility_rebate:
+  name: 'Potential utility rebate'
+  value_type: decimal
+retrofit_lifetime:
+  name: 'Retrofit lifetime (years)'
+  value_type: decimal
+annual_maintenance_cost_savings:
+  name: 'Annual maintenance cost savings'
+  value_type: decimal
+degradation_rate:
+  name: 'Degradation rate'
+  value_type: decimal
+heating_days_per_year:
+  name: 'Heating days per year'
+  value_type: decimal
+

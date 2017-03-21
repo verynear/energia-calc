@@ -1,0 +1,10 @@
+// Styles should mimic appearance of FLI
+.data {
+  // +1 for border
+  padding: $fli-padding + 1;
+
+  &__label {
+    font-size: $fli-label-font-size;
+    color: $fli-label-color;
+  }
+}

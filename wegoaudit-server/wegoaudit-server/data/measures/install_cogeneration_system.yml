@@ -1,0 +1,14 @@
+inputs:
+  audit:
+    - gas_cost_per_therm
+    - electric_cost_per_kwh
+    - oil_cost_per_btu
+  measure:
+    - retrofit_lifetime
+    - utility_rebate
+  cogeneration_system:
+    - implementation_cost
+    - annual_maintenance_cost
+    - input_annual_gas_savings
+    - input_annual_electric_savings
+    - input_annual_oil_savings

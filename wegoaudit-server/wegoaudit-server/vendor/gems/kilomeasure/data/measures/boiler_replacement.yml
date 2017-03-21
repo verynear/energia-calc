@@ -1,0 +1,246 @@
+data_types:
+  - gas
+
+field_definitions:
+  working_fluid:
+    options:
+      - steam
+      - water
+  outer_pipe_diameter_in_inches:
+    options:
+      - 1.05
+      - 1.32
+      - 1.66
+      - 1.9
+      - 2.38
+      - 2.88
+      - 3.5
+      - 4
+      - 4.5
+      - 5.56
+  pipe_material:
+    options:
+      - 'cast iron'
+      - 'mild steel'
+      - 'copper'
+
+defaults:
+  heating_days_per_year: 240
+  temperature_outside_pipes: 50
+  r_value_of_pipe_insulation: 6
+  # TODO ideally the proposed length of insulated and uninsulated pipe
+  # should default to the existing values
+
+inputs:
+  - heating_usage_in_therms
+  - gas_cost_per_therm
+  - utility_rebate
+  - heating_days_per_year
+  - outer_pipe_diameter_in_inches
+  - pipe_material
+  - length_insulated_pipe
+  - length_uninsulated_pipe
+  - temperature_outside_pipes
+  - r_value_of_pipe_insulation
+  - boiler_input_btu_per_hour
+  - afue
+  - boiler_cost
+  - working_fluid
+
+lookups:
+  steam_pressure_in_psi:
+    input_name: working_fluid
+    lookup:
+      water: 17
+      steam: 2
+  temp_inside_pipes_in_f:
+    input_name: working_fluid
+    lookup:
+      water: 180
+      steam: 220
+  pipe_inner_diameter_in_inches:
+    input_name: outer_pipe_diameter_in_inches
+    lookup:
+      1.05: 0.82
+      1.32: 1.05
+      1.66: 1.38
+      1.9: 1.61
+      2.38: 2.07
+      2.88: 2.47
+      3.5: 3.07
+      4: 3.55
+      4.5: 4.03
+      5.56: 5.05
+  pipe_density:
+    input_name: pipe_material
+    lookup:
+      'cast iron': 486
+      'mild steel': 490
+      'copper': 557
+  specific_heat_of_pipe:
+    input_name: pipe_material
+    lookup:
+      'cast iron': 0.11
+      'mild steel': 0.12
+      'copper': 0.09
+  specific_heat_of_fluid:
+    input_name: working_fluid
+    lookup:
+      water: 8.1
+      steam: 0.0029
+  pipe_thermal_resistance:
+    input_name: working_fluid
+    lookup:
+      water: water_thermal_resistance
+      steam: steam_thermal_resistance
+  water_thermal_resistance:
+    input_name: pipe_material
+    lookup:
+      'cast iron': 0.50
+      'mild steel': 0.40
+      'copper': 0.3333
+  steam_thermal_resistance:
+    input_name: pipe_material
+    lookup:
+      'cast iron': 0.7143
+      'mild steel': 0.50
+      'copper': 0.4348
+
+formulas:
+  water_flowing:
+    '(heating_usage_in_therms * therms_btu_conversion) /
+      (boiler_input_btu_per_hour * heating_days_per_year * hours_per_day)'
+  fire_length_in_min:
+    '(water_flowing * hours_per_day * minutes_per_hour) /
+      boiler_fires_per_day'
+  time_between_calls:
+    '(hours_per_day * minutes_per_hour / boiler_fires_per_day) -
+      fire_length_in_min'
+  temp_inside_pipes_in_k:
+    '((temp_inside_pipes_in_f - 32) * 5/9) + 273'
+  steam_pressure_in_kpa:
+    'steam_pressure_in_psi * psi_kpa_conversion'
+  inner_volume_uninsulated:
+    'pi * POW(pipe_inner_diameter_in_inches / 2, 2) *
+      length_uninsulated_pipe *
+      in2_ft2_conversion * ft3_gal_conversion'
+  pipe_volume_uninsulated:
+    'pi * length_uninsulated_pipe *
+      (POW(outer_pipe_diameter_in_inches / (2 * ft_in_conversion), 2) -
+      POW(pipe_inner_diameter_in_inches / (2 * ft_in_conversion), 2))'
+  pipe_weight_uninsulated:
+    'pipe_volume_uninsulated * pipe_density'
+  pipe_surface_area_uninsulated:
+    'pi * outer_pipe_diameter_in_inches * length_uninsulated_pipe *
+      in_ft_conversion'
+  inner_volume_insulated:
+    'pi * POW(pipe_inner_diameter_in_inches / 2, 2) *
+      length_insulated_pipe *
+      in2_ft2_conversion * ft3_gal_conversion'
+  pipe_volume_insulated:
+    'pi * length_insulated_pipe *
+      (POW(outer_pipe_diameter_in_inches / (2 * ft_in_conversion), 2) -
+      POW(pipe_inner_diameter_in_inches / (2 * ft_in_conversion), 2))'
+  pipe_weight_insulated:
+    'pipe_volume_insulated * pipe_density'
+  pipe_surface_area_insulated:
+    'pi * outer_pipe_diameter_in_inches * length_insulated_pipe *
+      in_ft_conversion'
+  volume_steam_uninsulated:
+    'inner_volume_uninsulated * gal_liter_conversion'
+  moles_steam_uninsulated:
+    '(steam_pressure_in_kpa * volume_steam_uninsulated) /
+      (temp_inside_pipes_in_k * ideal_gas_constant)'
+  weight_steam_uninsulated:
+    'moles_steam_uninsulated * mol_lb_conversion_for_water'
+  condensation_energy_loss_uninsulated:
+    'water_heat_of_vaporization * weight_steam_uninsulated'
+  volume_steam_insulated:
+    'inner_volume_insulated * gal_liter_conversion'
+  moles_steam_insulated:
+    '(steam_pressure_in_kpa * volume_steam_insulated) /
+      (temp_inside_pipes_in_k * ideal_gas_constant)'
+  weight_steam_insulated:
+    'moles_steam_insulated * mol_lb_conversion_for_water'
+  condensation_energy_loss_insulated:
+    'water_heat_of_vaporization * weight_steam_insulated'
+  temp_boiler_refire_uninsulated:
+    'IF(length_uninsulated_pipe = 0,
+      0,
+      temperature_outside_pipes + ((temp_inside_pipes_in_f - temperature_outside_pipes) / E) *
+        pipe_surface_area_uninsulated /
+        ((inner_volume_uninsulated * specific_heat_of_fluid +
+          pipe_weight_uninsulated * specific_heat_of_pipe) *
+         pipe_thermal_resistance * time_between_calls))'
+  energy_loss_per_fire_uninsulated:
+    'specific_heat_of_fluid * inner_volume_uninsulated *
+      (temp_inside_pipes_in_f - temp_boiler_refire_uninsulated)'
+  energy_loss_per_year_uninsulated:
+    'energy_loss_per_fire_uninsulated * boiler_fires_per_day * heating_days_per_year /
+      therms_btu_conversion'
+  pipe_heat_loss_rate_uninsulated:
+    'pipe_surface_area_uninsulated *
+      (temp_inside_pipes_in_f - temperature_outside_pipes) / pipe_thermal_resistance'
+  stagnant_loss_uninsulated:
+    "IF(working_fluid = 'steam' AND temp_boiler_refire_uninsulated < 212,
+      energy_loss_per_year_uninsulated + condensation_energy_loss_uninsulated,
+      energy_loss_per_year_uninsulated)"
+  flowing_loss_uninsulated:
+    'pipe_heat_loss_rate_uninsulated * heating_usage_in_therms /
+      boiler_input_btu_per_hour'
+  temp_boiler_refire_insulated:
+    'IF(length_insulated_pipe = 0,
+      0,
+      temperature_outside_pipes + ((temp_inside_pipes_in_f - temperature_outside_pipes) / E) *
+        pipe_surface_area_insulated /
+        ((inner_volume_insulated * specific_heat_of_fluid +
+          pipe_weight_insulated * specific_heat_of_pipe) *
+         (pipe_thermal_resistance + r_value_of_pipe_insulation) *
+         time_between_calls))'
+  energy_loss_per_fire_insulated:
+    'specific_heat_of_fluid * inner_volume_insulated *
+      (temp_inside_pipes_in_f - temp_boiler_refire_insulated)'
+  energy_loss_per_year_insulated:
+    'energy_loss_per_fire_insulated * boiler_fires_per_day * heating_days_per_year /
+      therms_btu_conversion'
+  pipe_heat_loss_rate_insulated:
+    'pipe_surface_area_insulated *
+      (temp_inside_pipes_in_f - temperature_outside_pipes) /
+      (pipe_thermal_resistance + r_value_of_pipe_insulation)'
+  stagnant_loss_insulated:
+    "IF(working_fluid = 'steam' AND temp_boiler_refire_insulated < 212,
+      energy_loss_per_year_insulated + condensation_energy_loss_insulated,
+      energy_loss_per_year_insulated)"
+  flowing_loss_insulated:
+    'pipe_heat_loss_rate_insulated * heating_usage_in_therms /
+      boiler_input_btu_per_hour'
+  stagnant_loss_total:
+    'stagnant_loss_uninsulated + stagnant_loss_insulated'
+  flowing_loss_total:
+    'flowing_loss_uninsulated + flowing_loss_insulated'
+  pipe_loss_total:
+    'IF(proposed,
+      (energy_to_pipes_existing - flowing_loss_total_existing) *
+        (pipe_heat_loss_rate_uninsulated + pipe_heat_loss_rate_insulated) /
+        (afue * boiler_input_btu_per_hour -
+          (pipe_heat_loss_rate_uninsulated + pipe_heat_loss_rate_insulated)) +
+        stagnant_loss_total,
+      stagnant_loss_total + flowing_loss_total)'
+  energy_to_pipes:
+    'IF(proposed,
+      energy_to_tenants + pipe_loss_total,
+      heating_usage_in_therms * afue)'
+  energy_to_tenants:
+    'energy_to_pipes_existing - pipe_loss_total_existing'
+  distribution_efficiency:
+    'energy_to_tenants / energy_to_pipes'
+  annual_gas_usage_existing:
+    'heating_usage_in_therms'
+  annual_gas_usage_proposed:
+    'energy_to_pipes / afue'
+  annual_operating_cost:
+    'annual_gas_cost'
+  annual_gas_usage:
+    'IF(proposed, annual_gas_usage_proposed, annual_gas_usage_existing)'
+  retrofit_cost:
+    'boiler_cost'

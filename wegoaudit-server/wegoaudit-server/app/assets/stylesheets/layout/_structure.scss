@@ -1,0 +1,14 @@
+.container {
+  width: $site-width;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.content {
+  @extend %clearfix;
+  margin-top: $base-line-height;
+}
+
+.row {
+  @extend %clearfix;
+}

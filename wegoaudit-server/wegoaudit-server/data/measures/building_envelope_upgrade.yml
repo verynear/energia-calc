@@ -1,0 +1,37 @@
+inputs:
+  audit:
+    - heating_usage_in_therms
+    - heating_degree_days
+    - number_of_heating_season_hours
+  measure:
+    - ventilation_heating_usage_in_therms
+  wall_layer:
+    - stud_material
+    - stud_space_in_inches
+    - stud_depth_in_inches
+    - cavity_insulation_material
+    - cavity_insulation_depth_in_inches
+    - cavity_insulation_install_quality
+    - wall_area_1
+    - wall_area_2
+    - wall_area_3
+    - wall_area_4
+    - wall_type
+    - masonry_wall_r_value
+  windows:
+    - window_area_1
+    - window_area_2
+    - window_area_3
+    - window_area_4
+    - window_r_value
+  roof:
+    - roof_r_value
+    - roof_area
+  substructure:
+    - basement_r_value
+    - basement_wall_area_above_grade
+    - basement_wall_area_below_grade
+    - basement_floor_area
+    - basement_r_value_added
+    - basement_r_value
+    - basement_ground_temperature_difference

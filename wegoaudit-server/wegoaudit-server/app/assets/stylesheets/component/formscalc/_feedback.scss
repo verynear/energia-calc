@@ -1,0 +1,83 @@
+// FOCUS AND DISABLED STATE
+// -------------------------
+#{$all-text-inputs},
+textarea {
+  &:focus {
+    border-color: $input-border-color-focus;
+    box-shadow: $input-shadow-focus;
+    outline: 0;
+    outline: thin dotted \9; /* IE6-9 */
+  }
+}
+
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus,
+select:focus {
+  @extend %tab-focus;
+  box-shadow: none;
+}
+
+// Disabled and read-only inputs
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly],
+select[readonly],
+textarea[readonly] {
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+
+// ERRORS
+// -------
+.form-row.error {
+  @include form-field-state($danger-font-color, $danger-border-color, $danger-bg-color);
+
+  select {
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      background: $danger-bg-color;
+    }
+  }
+
+  .help-inline {
+    color: #999999;
+    margin-top: 5px;
+
+    span {
+      display: inline-block;
+      margin-top: 5px
+    }
+  }
+}
+
+.error__msg {
+  color: $danger-font-color;
+  display: block;
+  clear: both;
+  padding-top: 5px;
+  margin: 5px 0 0 ($form-row-label-width+$form-row-label-spacing);
+}
+
+// List of errors
+.error-block {
+  border-radius: 0;
+  margin: 10px 0 0 0;
+  padding: 5px 10px;
+  list-style: none;
+}
+
+// HTML5 invalid states
+// Shares styles with the .control-group.error above
+input:invalid,
+textarea:invalid,
+select:invalid {
+  color: $danger-font-color;
+  border-color: $danger-border-color;
+
+  &:focus {
+    border-color: darken($danger-border-color, 10%);
+    box-shadow: 0 0 6px lighten($danger-border-color, 20%);
+  }
+}

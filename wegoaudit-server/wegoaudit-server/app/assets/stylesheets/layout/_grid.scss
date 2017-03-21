@@ -1,0 +1,24 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: $base-line-height/4;
+  margin-right: -$grid-spacing;
+  margin-left: -$grid-spacing;
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    flex-basis: (100% / 12 * $i);
+    max-width: (100% / 12 * $i);
+  }
+}
+
+.col-auto {
+  flex: 1;
+}
+
+[class*='col-'] {
+  padding-right: $grid-spacing;
+  padding-left: $grid-spacing;
+}

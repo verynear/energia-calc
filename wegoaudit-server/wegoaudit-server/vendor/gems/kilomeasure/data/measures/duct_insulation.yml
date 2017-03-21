@@ -1,0 +1,56 @@
+data_types:
+  - gas
+
+inputs:
+  - heating_days_per_year
+  - gas_cost_per_therm
+  - length_of_duct
+  - perimeter_of_duct_cross_section
+  - temperature_inside_duct
+  - temperature_outside_duct
+  - thickness_of_duct_material
+  - conductivity_of_duct_material
+  - r_value_of_insulation
+  - duct_insulation_cost
+  - air_circulating_hours_per_day
+  - length_of_duct
+
+defaults:
+  perimeter_of_duct_cross_section: 5
+  temperature_inside_duct: 100
+  temperature_outside_duct: 50
+  thickness_of_duct_material: 0.25
+  conductivity_of_duct_material: 1
+  r_value_of_insulation: 8
+  retrofit_lifetime: 15
+  air_circulating_hours_per_day: 3
+  heating_days_per_year: 150
+
+formulas:
+  surface_area: "length_of_duct * perimeter_of_duct_cross_section"
+  temperature_change: "temperature_inside_duct - temperature_outside_duct"
+  u_factor_of_duct_material:
+    "conductivity_of_duct_material / thickness_of_duct_material"
+  btu_loss_per_hour:
+    "surface_area * temperature_change * u_factor_of_duct_material"
+  therms_loss_per_hour:
+    "btu_loss_per_hour * btu_therms_conversion"
+  therms_loss_per_day:
+    "therms_loss_per_hour * air_circulating_hours_per_day"
+  current_therms_loss_per_year:
+    "therms_loss_per_day * heating_days_per_year"
+  new_therms_loss_per_year:
+    "surface_area *
+      temperature_change *
+      (1 / r_value_of_insulation) *
+      air_circulating_hours_per_day *
+      heating_days_per_year *
+      btu_therms_conversion"
+  annual_gas_usage:
+    "IF(proposed,
+        new_therms_loss_per_year,
+        current_therms_loss_per_year)"
+  annual_operating_cost:
+    "annual_gas_cost"
+  retrofit_cost:
+    "duct_insulation_cost"

@@ -1,0 +1,59 @@
+data_types:
+  - electric
+
+inputs_only: true
+
+field_definitions:
+  module_type:
+    options:
+      - standard
+      - premium
+      - thin film
+  array_type:
+    options:
+      - fixed (open rack)
+      - fixed (roof mount)
+      - 1-axis tracking
+      - 1-axis backtracking
+      - 2-axis tracking
+  system_type:
+    options:
+      - residential
+      - commercial
+
+inputs:
+  - electric_cost_per_kwh
+  - utility_rebate
+  # inputs to pvwatts (http://pvwatts.nrel.gov/), not used in calculations
+  - weather_data_location
+  - dc_system_size
+  - module_type
+  - array_type
+  - system_loss
+  - tilt
+  - azimuth
+  - system_type
+  # outputs from pvwatts
+  - initial_cost
+  - potential_incentives
+  - annual_electric_output
+  - annual_solar_radiation
+  - energy_value
+
+defaults:
+  module_type: standard
+  array_type: fixed (roof mount)
+  system_loss: 14
+  tilt: 20
+  azimuth: 180
+  system_type: residential
+
+formulas:
+  retrofit_cost:
+    'initial_cost - potential_incentives'
+
+output_formulas:
+  annual_cost_savings:
+    'energy_value'
+  annual_electric_savings:
+    'annual_electric_output'

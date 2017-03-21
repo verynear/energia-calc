@@ -1,0 +1,40 @@
+inputs:
+  audit:
+    - gas_cost_per_therm
+    - heating_fuel_baseload_in_therms
+  measure:
+    - retrofit_lifetime
+    - utility_rebate
+    - number_fires_per_day
+    - number_heater_days_per_year
+    - outer_pipe_diameter_in_inches
+    - pipe_material
+    - temperature_outside_pipes
+    - temperature_inside_pipes
+    - r_value_of_pipe_insulation
+  domestic_hot_water_system:
+    - dhw_btu_per_hour
+    - tank_efficiency
+    - afue
+  distribution_system:
+    - length_insulated_pipe
+    - length_uninsulated_pipe
+    - dhw_pipe_insulation_cost
+
+structures:
+  domestic_hot_water_system:
+    determining: true
+    fields:
+      dhw_btu_per_hour:
+        existing_only: true
+  distribution_system:
+    fields:
+      per_unit_cost:
+        proposed_only: true
+
+fields_mapping:
+  dhw_pipe_insulation_cost: 'per_unit_cost'
+
+interaction_fields:
+  - afue
+  - tank_efficiency

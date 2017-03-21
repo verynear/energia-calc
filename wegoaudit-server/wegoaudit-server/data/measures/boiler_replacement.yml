@@ -1,0 +1,33 @@
+inputs:
+  audit:
+    - heating_usage_in_therms
+    - gas_cost_per_therm
+  measure:
+    - retrofit_lifetime
+    - utility_rebate
+    - heating_days_per_year
+  distribution_system:
+    - outer_pipe_diameter_in_inches
+    - pipe_material
+    - length_insulated_pipe
+    - length_uninsulated_pipe
+    - temperature_outside_pipes
+    - r_value_of_pipe_insulation
+  heating_system:
+    - boiler_input_btu_per_hour
+    - afue
+    - boiler_cost
+    - working_fluid
+
+structures:
+  heating_system:
+    determining: true
+    fields:
+      per_unit_cost:
+        proposed_only: true
+
+fields_mapping:
+  boiler_cost: 'per_unit_cost'
+
+interaction_fields:
+  - afue

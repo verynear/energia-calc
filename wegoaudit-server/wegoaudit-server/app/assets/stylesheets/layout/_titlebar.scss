@@ -1,0 +1,100 @@
+.titlebar {
+  @extend %clearfix;
+  background: $titlebar;
+  color: #fff;
+  padding: $base-line-height*2 0 $base-line-height*2;
+
+  &__title {
+    @extend %secondary-title-font;
+    color: #fff;
+    margin: 0;
+    float: left;
+  }
+
+  &__action-icon {
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    margin: -2px 0 0 20px;
+    background: $titlebar-darker;
+    @include circle(40px);
+    display: block;
+    float: left;
+
+    &:hover {
+      color: #fff;
+      background: $titlebar-darkest;
+      transform: scale(1.05);
+    }
+
+    i {
+      top: 4px;
+    }
+  }
+
+  &__nav {
+    $link-spacing: 15px;
+    @extend %clearfix;
+    font-size: ($base-font-size + 2px);
+    margin: 30px 0 -20px 0;
+    display: block;
+    float: left;
+    clear: both;
+
+    a {
+      color: #fff;
+      position: relative;
+
+      &:hover {
+        color: #fff;
+      }
+
+      &:not(.btn) {
+        padding-bottom: 8px;
+        border-bottom: 1px solid transparent;
+
+        &:before,
+        &:after {
+          content: '';
+          background: mix($titlebar, #fff, 20%);
+          display: block;
+          height: 1px;
+          position: absolute;
+          bottom: 0;
+          width: 0;
+          transition: width 0.15s ease-in-out;
+        }
+
+        &:hover {
+          &:before,
+          &:after {
+            width: 50%;
+          }
+
+          &:before {
+            left: 50%;
+          }
+
+          &:after {
+            right: 50%;
+          }
+        }
+      }
+
+      + a {
+        margin-left: 30px;
+      }
+    }
+
+    &__btn {
+      background: $titlebar-darker;
+      color: #fff;
+      font-size: 14px;
+
+      &:hover {
+        background: $titlebar-darkest;
+        color: #fff;
+      }
+    }
+  }
+}

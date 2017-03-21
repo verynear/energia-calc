@@ -1,0 +1,26 @@
+data_types:
+  - gas
+  - electric
+
+inputs_only: true
+
+inputs:
+  - gas_cost_per_therm
+  - electric_cost_per_kwh
+  - utility_rebate
+  - solar_thermal_cost
+  - input_annual_gas_savings
+  - input_annual_electric_savings
+
+formulas:
+  retrofit_cost:
+    'solar_thermal_cost'
+
+output_formulas:
+  annual_cost_savings:
+    '(input_annual_gas_savings * gas_cost_per_therm) +
+      (input_annual_electric_savings * electric_cost_per_kwh)'
+  annual_gas_savings:
+    'input_annual_gas_savings'
+  annual_electric_savings:
+    'input_annual_electric_savings'

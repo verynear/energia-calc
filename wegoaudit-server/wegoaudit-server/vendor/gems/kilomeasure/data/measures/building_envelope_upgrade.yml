@@ -1,0 +1,251 @@
+data_types:
+  - gas
+
+field_definitions:
+  stud_material:
+    options:
+      - metal
+      - wood
+  stud_space_in_inches:
+    options:
+      - 16
+      - 24
+  stud_depth_in_inches:
+    options:
+      - 3.5
+      - 5.5
+  cavity_insulation_material:
+    options:
+      - "Fiberglass batt"
+      - "Blown fiberglass"
+      - "Blown cellulose"
+      - "Dense-packed cellulose"
+      - "Rockwool"
+      - "none"
+      - "2 lb closed cell foam"
+      - "0.5 lb open cell foam"
+  cavity_insulation_depth_in_inches:
+    options:
+      - 4
+      - 6
+  cavity_insulation_install_quality:
+    options:
+      - I
+      - II
+      - III
+  facade_material:
+    options:
+      - brick
+      - vinyl
+      - aluminum
+      - wood
+  wall_type:
+    options:
+      - masonry
+      - stud frame
+
+inputs:
+  - heating_usage_in_therms
+  - heating_degree_days
+  - number_of_heating_season_hours
+  - ventilation_heating_usage_in_therms
+  - stud_material
+  - stud_space_in_inches
+  - stud_depth_in_inches
+  - cavity_insulation_material
+  - cavity_insulation_depth_in_inches
+  - cavity_insulation_install_quality
+  - wall_area_1
+  - wall_area_2
+  - wall_area_3
+  - wall_area_4
+  - wall_type
+  - masonry_wall_r_value
+  - window_area_1
+  - window_area_2
+  - window_area_3
+  - window_area_4
+  - window_r_value
+  - roof_r_value
+  - roof_area
+  - basement_r_value
+  - basement_wall_area_above_grade
+  - basement_wall_area_below_grade
+  - basement_floor_area
+  - basement_r_value_added
+  - basement_r_value
+  - basement_ground_temperature_difference
+
+defaults:
+  outdoor_airfilm_r_value: 0.17
+  indoor_airfilm_r_value: 0.68
+  gypsum_wallboard_r_value: 0.45
+  uninsulated_wall_r_value: 1
+  wall_studs_r_value_per_inch: 1.25
+  roof_heat_loss_factor: 1.15
+  basement_above_grade_factor: 0.67
+  basement_below_grade_factor: 0.06
+  basement_floor_factor: 0.04
+
+lookups:
+  facade_r_value:
+    input_name: facade_material
+    lookup:
+      brick: 0
+      vinyl: 0.82
+      aluminum: 0
+      wood: 0
+  cavity_insulation_r_value_per_inch:
+    input_name: cavity_insulation_material
+    lookup:
+      'Fiberglass batt': 3.4
+      'Blown fiberglass': 3.6
+      'Blown cellulose': 3.6
+      'Dense-packed cellulose': 3.6
+      'Rockwool': 3.4
+
+formulas:
+  smaller_stud_space_correction_factor:
+    "IF(stud_depth = 3.5, 0.5, 0.4)"
+  larger_stud_space_correction_factor:
+    "IF(stud_depth = 3.5, 0.6, 0.45)"
+  metal_stud_correction_factor:
+    "IF(stud_space > 16 OR NOT(stud_space),
+        smaller_stud_space_correction_factor,
+        IF(stud_space = 24, larger_stud_space_correction_factor, 'finally')
+        )"
+  uninsulated_cavity_fraction:
+    "IF(cavity_insulation_install_quality = 'III' OR NOT(cavity_insulation_install_quality),
+        0.05,
+        IF(cavity_insulation_install_quality = 'II', 0.02, 0)
+        )
+    "
+  metal_stud_cavity_r_value:
+    "metal_stud_correction_factor / (uninsulated_cavity_fraction +
+    ( 1 - uninsulated_cavity_fraction ) *
+      cavity_insulation_r_value_per_inch *
+      stud_depth)"
+  wood_stud_wall_framing_factor:
+    "IF(stud_space = 16, 0.25, 0.22)"
+  wood_stud_cavity_r_value:
+    "wood_stud_wall_framing_factor /
+     (uninsulated_cavity_fraction + (1 - uninsulated_cavity_fraction) *
+     cavity_insulation_r_value_per_inch * stud_depth) +
+     (1 - wood_stud_wall_framing_factor) /
+     (wall_studs_r_value_per_inch * stud_depth)"
+  cavity_r_value:
+    "IF(stud_material = 'wood',
+        wood_stud_cavity_r_value,
+        metal_stud_cavity_r_value)"
+  stud_frame_wall_r_value:
+    "cavity_r_value +
+     outdoor_airfilm_r_value +
+     facade_r_value +
+     gypsum_wallboard_r_value +
+     indoor_airfilm_r_value"
+  wall_r_value:
+    "IF(wall_type = 'stud frame',
+       stud_frame_wall_r_value,
+       masonry_wall_r_value)"
+
+  wall_1_heat_lost:
+    "(wall_area_1 * heating_degree_days * hours_per_day * btu_therms_conversion) /
+      wall_r_value"
+  wall_2_heat_lost:
+    "(wall_area_2 * heating_degree_days * hours_per_day * btu_therms_conversion) /
+      wall_r_value"
+  wall_3_heat_lost:
+    "(wall_area_3 * heating_degree_days * hours_per_day * btu_therms_conversion) /
+      wall_r_value"
+  wall_4_heat_lost:
+    "(wall_area_4 * heating_degree_days * hours_per_day * btu_therms_conversion) /
+      wall_r_value"
+  total_wall_heat_loss:
+    "wall_1_heat_loss + wall_2_heat_loss + wall_3_heat_loss + wall_4_heat_loss"
+
+  roof_heat_loss:
+    "(roof_heat_loss_factor *
+      roof_area *
+      heating_degree_days *
+      hours_per_day *
+      btu_therms_conversion) /
+      roof_r_value"
+
+  window_area_1_heat_loss:
+    "(glazing_area_1 *
+      heating_degree_days *
+      hours_per_day *
+      btu_therms_conversion) /
+      window_r_value"
+  window_area_2_heat_loss:
+    "(glazing_area_2 *
+      heating_degree_days *
+      hours_per_day *
+      btu_therms_conversion) /
+      window_r_value"
+  window_area_3_heat_loss:
+    "(glazing_area_3 *
+      heating_degree_days *
+      hours_per_day *
+      btu_therms_conversion) /
+      window_r_value"
+  window_area_4_heat_loss:
+    "(glazing_area_4 *
+      heating_degree_days *
+      hours_per_day *
+      btu_therms_conversion) /
+      window_r_value"
+  total_window_heat_loss:
+    "window_area_1_heat_loss +
+     window_area_2_heat_loss +
+     window_area_3_heat_loss +
+     window_area_4_heat_loss"
+
+  basement_heat_loss:
+    "(
+      ((basement_above_grade_factor *
+        basement_wall_area_above_grade *
+        heating_degree_days *
+        hours_per_day) / basement_r_value) +
+      ((basement_below_grade_factor *
+        basement_wall_area_below_grade *
+        basement_ground_temperature_difference *
+        number_of_heating_season_hours) / basement_r_value)
+     )"
+  total_heat_loss:
+    "basement_heat_loss +
+     window_glazing_heat_loss +
+     roof_heat_loss +
+     total_wall_heat_loss"
+  wall_heat_loss_percentage:
+    "total_wall_heat_loss / total_heat_loss"
+  roof_heat_loss_percentage:
+    "total_roof_heat_loss / total_heat_loss"
+  window_heat_loss_percentage:
+    "total_window_heat_loss / total_heat_loss"
+  basement_heat_loss_percentage:
+    "total_basement_heat_loss / total_heat_loss"
+
+output_formulas:
+  wall_upgrade_savings_percentage:
+    "(total_wall_heat_loss_existing - total_wall_heat_loss_proposed) /
+      total_heat_loss_existing"
+  roof_upgrade_savings_percentage:
+    "(total_roof_heat_loss_existing - total_roof_heat_loss_proposed) /
+      total_heat_loss_existing"
+  window_glazing_savings_percentage:
+    "(total_window_glazing_loss_existing - total_window_glazing_loss_proposed) /
+      total_heat_loss_existing"
+  basement_savings_percentage:
+    "(total_basement_loss_existing - total_basement_loss_proposed) /
+      total_heat_loss_existing"
+  heat_load:
+    "heating_usage_in_therms - ventilation_heating_usage_in_therms"
+  wall_savings:
+    "wall_upgrade_savings_percentage * heat_load"
+  roof_savings:
+    "roof_savings_percentage * heat_load"
+  window_glazing_savings:
+    "window_glazing_savings_percentage * heat_load"
+  basement_savings:
+    "basement_savings_percentage * heat_load"

@@ -1,0 +1,133 @@
+.fli {
+  position: relative;
+  height: 48px;
+  border: 1px solid $default-border-color;
+  padding: $fli-padding $fli-padding 0 $fli-padding;
+  transition: all $transition-speed;
+  background: #fff;
+  overflow: hidden;
+
+  &.is-active {
+    border-color: darken($default-border-color, 15%);
+    box-shadow: 0 1px 2px rgba(#000, 0.2);
+  }
+
+  &.is-disabled,
+  &.is-disabled.is-completed {
+    background: $grey100;
+    border-color: $default-border-color;
+    box-shadow: none;
+
+    * {
+      color: $grey500;
+    }
+  }
+
+  &.is-disabled:hover,
+  &.is-disabled *:hover {
+    cursor: not-allowed;
+  }
+
+  &__input {
+    font-size: $base-font-size;
+    position: relative;
+    background: transparent;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 11px 0 3px;
+
+    .error & {
+      color: $danger-font-color;
+    }
+  }
+
+  &__label {
+    display: block;
+    height: 10px;
+    transform: translateY(10px);
+    color: $fli-label-color;
+    transition: all $transition-speed;
+    white-space: nowrap;
+
+    .error & {
+      color: $danger-font-color;
+    }
+
+    .is-completed & {
+      font-size: $fli-label-font-size;
+      transform: translateY(0);
+    }
+  }
+
+  &__append,
+  &__prepend {
+    position: absolute;
+    bottom: 1px;
+    color: $fli-label-color;
+    visibility: hidden;
+    opacity: 0;
+    transition: all $transition-speed;
+
+    .is-active &,
+    .is-completed & {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .error & {
+      color: $danger-font-color;
+    }
+  }
+
+  &__prepend {
+    left: 3px;
+  }
+
+  &__append {
+    text-align: right;
+    right: 3px;
+  }
+
+  &__reset {
+    display: none;
+    color: $fli-label-color;
+    transition: color $transition-speed;
+    bottom: 2px;
+
+    &:hover {
+      color: $link-color-hover !important;
+      transform: scale(1.2);
+    }
+
+    .is-active &,
+    .is-compete & {
+
+    }
+
+    .error & {
+      color: $danger-font-color;
+    }
+  }
+
+  &.error {
+    border-color: $danger-border-color;
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &--has-select {
+    .fli__label {
+      font-size: $fli-label-font-size;
+      transform: translateY(0);
+    }
+
+    .fli__input {
+      top: 5px;
+    }
+  }
+}

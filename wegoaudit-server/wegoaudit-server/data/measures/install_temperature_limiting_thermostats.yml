@@ -1,0 +1,15 @@
+inputs:
+  audit:
+    - average_indoor_temperature
+    - average_outdoor_temperature
+    - building_sqft
+    - heating_usage_in_therms
+    - heating_degree_days
+    - gas_cost_per_therm
+  measure:
+    - warm_weather_shutdown_temperature
+    - energy_source
+  controls:
+    - temperature_limit
+    - per_unit_cost
+

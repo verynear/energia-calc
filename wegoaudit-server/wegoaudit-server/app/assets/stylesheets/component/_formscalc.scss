@@ -1,0 +1,15 @@
+// Forms.scss
+// Base styles for various input types, form layouts, and states
+// -------------------------------------------------------------
+
+@import "forms/base"; // General - styling the HTML elements
+@import "forms/checkbox_radio"; // Style checkboxes and radios only
+@import "forms/feedback"; // Focus, disabled and error states
+@import "forms/actions"; // Form actions: submit/cancel
+@import "forms/pend"; // Prepend and append inputs
+@import "forms/date_picker"; // Date picker
+@import "forms/structure"; // Rows, sections, fieldsets
+@import "forms/bare"; // Bare/plain forms, rows have no bg color
+@import "forms/stacked"; // Vertical/stacked forms (default is inline)
+@import "forms/large";
+@import "forms/grid"; // Form specific grid

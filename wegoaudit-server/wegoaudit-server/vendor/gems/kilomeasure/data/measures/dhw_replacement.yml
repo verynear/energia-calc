@@ -1,0 +1,32 @@
+data_types:
+  - water_heating
+  - gas
+
+inputs:
+  - gas_cost_per_therm
+  - heating_fuel_baseload_in_therms
+  - utility_rebate
+  - afue
+  - tank_efficiency
+  - dhw_unit_cost
+
+defaults:
+  retrofit_lifetime: 20
+
+formulas:
+  energy_factor:
+    "afue * tank_efficiency"
+  energy_factor_existing:
+    "afue_existing * tank_efficiency_existing"
+  energy_to_pipes_existing:
+    "heating_fuel_baseload_in_therms * energy_factor_existing"
+  annual_gas_usage_existing:
+    'heating_fuel_baseload_in_therms'
+  annual_gas_usage_proposed:
+    "energy_to_pipes_existing / energy_factor"
+  annual_gas_usage:
+    "IF(proposed, annual_gas_usage_proposed, annual_gas_usage_existing)"
+  annual_operating_cost:
+    "annual_gas_cost"
+  retrofit_cost:
+    "dhw_unit_cost"

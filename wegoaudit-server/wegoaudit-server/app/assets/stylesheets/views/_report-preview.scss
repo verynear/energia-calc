@@ -1,0 +1,50 @@
+.report {
+  h1 {
+    @extend %secondary-title-font;
+    margin-bottom: $base-line-height;
+  }
+}
+
+.table--recommendations {
+  table-layout: fixed;
+
+  th {
+    font-size: ($base-font-size - 2px);
+  }
+
+  td {
+    @extend %ellipsis-overflow;
+  }
+
+  &__recommendation {
+    width: auto;
+  }
+
+  &__estimated-cost {
+    width: 15%;
+  }
+
+  &__dollar-savings {
+    width: 19%;
+  }
+
+  &__usage-reductions {
+    width: 19%;
+  }
+
+  &__years-payback {
+    width: 9%;
+  }
+
+  &__upgrade-lifetime {
+    width: 8%;
+  }
+
+  &__sir {
+    width: 6%;
+  }
+
+  &__potential-rebate {
+    width: 7%;
+  }
+}

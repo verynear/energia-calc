@@ -1,0 +1,76 @@
+data_types:
+  - electric
+
+field_definitions:
+  manufactured_year:
+    options:
+      - "< 1967"
+      - "1976 - 86"
+      - "1987 - 89"
+      - "1990 - 92"
+      - "1993 - 00"
+      - "2001 - 2010"
+  energy_star_tier_of_refrigerator:
+    options:
+      - "2001 Energy Star"
+      - "2004 Energy Star"
+      - "2008 Energy Star"
+      - "CEE Tier 3"
+
+inputs:
+  - electric_cost_per_kwh
+  - refrigerator_size_in_cf
+  - manufactured_year
+  - energy_star_tier_of_refrigerator
+  - refrigerator_unit_cost
+
+formulas:
+  default_to_actual:
+    "refrigerator_size_in_cf - 22"
+  annual_electric_usage_existing:
+    "kwh_per_year + (default_to_actual * usage_factor)"
+  annual_electric_usage_proposed:
+    "new_refrigerator_kwh_per_year +
+      (default_to_actual * new_refrigerator_usage_factor)"
+  annual_electric_usage:
+    "IF(proposed,
+        annual_electric_usage_proposed,
+        annual_electric_usage_existing)"
+  annual_operating_cost:
+    "annual_electric_cost"
+  retrofit_cost:
+    "refrigerator_unit_cost"
+
+lookups:
+  kwh_per_year:
+    input_name: manufactured_year
+    lookup:
+      "< 1967": 2200
+      "1976 - 86": 1700
+      "1987 - 89": 1150
+      "1990 - 92": 1100
+      "1993 - 00": 850
+      "2001 - 2010": 600
+  usage_factor:
+    input_name: manufactured_year
+    lookup:
+      "< 1967": 100
+      "1976 - 86": 75
+      "1987 - 89": 55
+      "1990 - 92": 50
+      "1993 - 00": 40
+      "2001 - 2010": 35
+  new_refrigerator_kwh_per_year:
+    input_name: energy_star_tier_of_refrigerator
+    lookup:
+      "2001 Energy Star": 550
+      "2004 Energy Star": 525
+      "2008 Energy Star": 500
+      "CEE Tier 3": 425
+  new_refrigerator_usage_factor:
+    input_name: energy_star_tier_of_refrigerator
+    lookup:
+      "2001 Energy Star": 30
+      "2004 Energy Star": 25
+      "2008 Energy Star": 20
+      "CEE Tier 3": 20

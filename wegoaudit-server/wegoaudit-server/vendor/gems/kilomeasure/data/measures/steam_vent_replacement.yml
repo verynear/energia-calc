@@ -1,0 +1,20 @@
+data_types:
+  - gas
+
+inputs_only: true
+
+inputs:
+  - gas_cost_per_therm
+  - utility_rebate
+  - vent_cost
+  - input_annual_gas_savings
+
+formulas:
+  retrofit_cost:
+    'vent_cost'
+
+output_formulas:
+  annual_cost_savings:
+    'input_annual_gas_savings * gas_cost_per_therm'
+  annual_gas_savings:
+    'input_annual_gas_savings'

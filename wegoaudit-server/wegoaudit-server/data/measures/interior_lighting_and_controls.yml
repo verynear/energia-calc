@@ -1,0 +1,34 @@
+inputs:
+  audit:
+    - electric_cost_per_kwh
+  measure:
+    - operating_hours_per_week
+    - percentage_of_time_occupied
+    - retrofit_lifetime
+  lighting:
+    - watts_per_lamp
+    - lamps_per_fixture
+    - wattage
+    - lamp_type
+    - ballast_type
+    - controls
+    - bilevel_fixture_low_power_wattage
+    - bilevel_fixture_high_power_wattage
+    - per_fixture_cost
+
+structures:
+  lighting:
+    multiple: true
+    field_for_grouping: wattage
+    fields:
+      lamps_per_fixture:
+        existing_only: true
+      watts_per_lamp:
+        existing_only: true
+      wattage:
+        proposed_only: true
+      per_unit_cost:
+        proposed_only: true
+
+fields_mapping:
+  controls: 'lighting_controls'

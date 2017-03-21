@@ -1,0 +1,68 @@
+.measure-overview {
+  @extend %clearfix;
+  background: $grey100;
+  border: 1px solid $default-border-color;
+  margin-bottom: 2px;
+  padding: $measure-v-spacing 0;
+  transition: opacity $transition-speed ease-in-out;
+
+  &__title {
+    font-size: $base-font-size+2;
+  }
+
+  &__actions {
+    float: right;
+
+    a {
+      color: $base-font-color;
+      padding: ($measure-v-spacing + 2) 10px ($measure-v-spacing - 2);
+      margin: -$measure-v-spacing 0;
+      transition: none;
+      text-align: center;
+      display: block;
+      float: left;
+      border-right: 1px solid $default-border-color;
+
+      &:hover {
+        color: $link-color-hover;
+      }
+    }
+
+    i {
+      top: 3px;
+      margin-left: 3px;
+    }
+  }
+
+  &__grippy {
+    display: block;
+    float: left;
+    top: 4px;
+    padding: 0 $measure-h-spacing;
+    color: $min-legibility;
+
+    &:hover {
+      cursor: move;
+      cursor: -moz-grab;
+      cursor: -webkit-grab;
+    }
+  }
+
+  &__enable {
+    display: inline-block;
+    min-width: 95px;
+    padding-left: 10px;
+    color: $min-legibility;
+    margin-top: 2px;
+
+    input[type=checkbox] {
+      position: relative;
+      float: none;
+      margin: 0 ($measure-h-spacing*2) 0 $measure-h-spacing;
+    }
+  }
+
+  &--disabled {
+    opacity: 0.6;
+  }
+}

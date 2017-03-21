@@ -1,0 +1,29 @@
+table {
+  $table-border-color: #E0E0E0;
+  font-size: $base-font-size - 1;
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  width: 100%;
+  margin: $base-line-height 0 $base-line-height*2;
+  page-break-inside: avoid;
+  break-inside: avoid;
+
+  th,
+  td {
+    text-align: left;
+    padding: 6px 4px;
+  }
+
+  th {
+    vertical-align: bottom;
+    border-bottom: 1px solid darken($table-border-color, 8%);
+    font-weight: bold;
+  }
+
+  td {
+    vertical-align: top;
+    border-bottom: 1px solid $table-border-color;
+    background-color: #fff;
+  }
+}

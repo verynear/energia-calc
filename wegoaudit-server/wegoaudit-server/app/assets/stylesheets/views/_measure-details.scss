@@ -1,0 +1,189 @@
+.measures-tabs {
+  position: relative;
+  z-index: 9;
+  margin: 0;
+  padding: 0;
+  float: left;
+  width: $measures-tabs-width;
+  margin-right: -1px;
+
+  li {
+    list-style: none;
+
+    &.active {
+      a {
+        background: #fff;
+        border-color: $measure-active-border;
+        border-right-color: transparent;
+      }
+    }
+
+    &.excluded {
+      a {
+        color: rgba($base-font-color, 0.5);
+      }
+    }
+
+    &:not(:last-child):not(.active) {
+      a {
+        border-bottom: none;
+      }
+    }
+
+    &.sortable-ghost {
+      opacity: 0.7;
+      background: #fff;
+    }
+  }
+
+  a {
+    display: block;
+    height: $base-line-height*2;
+    line-height: $base-line-height*2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 8px;
+    color: $base-font-color;
+    background: $grey50;
+    border: 1px solid $default-border-color;
+    border-right-color: $measure-active-border;
+    transition: color $transition-speed ease-in-out;
+
+    &:hover {
+      background: #fff;
+    }
+  }
+
+  &__grippy {
+    @extend %draggable;
+    margin: 0 3px 0 -6px;
+    top: 2px;
+  }
+}
+
+.measure-wrapper {
+  border: 1px solid $measure-active-border;
+  position: relative;
+  z-index: 8;
+  overflow: hidden;
+}
+
+.measure {
+  @extend %clearfix;
+  padding: 0 $measure-details-spacing $measure-details-spacing;
+
+  &__actions {
+    @extend %clearfix;
+  }
+
+  &__action {
+    font-size: $base-font-size+2;
+    display: block;
+    float: right;
+    margin: $measure-details-spacing $measure-details-spacing/2;
+
+    &:link {
+      color: $base-font-color;
+
+      &:hover {
+        color: $link-color-hover;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  &__summary {
+    &__title {
+      @extend %title-font;
+      padding-bottom: $measure-details-spacing;
+    }
+
+    &__section-title {
+      @extend %title-font;
+      padding-bottom: $measure-details-spacing;
+      font-size: 12px;
+    }
+  }
+
+  &__empty {
+    @extend %secondary-title-font;
+    font-size: 18px;
+    text-align: center;
+    height: 100px;
+    line-height: 70px;
+  }
+}
+
+.structure-change-set {
+  @extend %clearfix;
+}
+
+.structure {
+  @extend %clearfix;
+  $structure-width: $structure-change-set-width;
+  width: $structure-width;
+  padding-bottom: $base-line-height;
+  margin-bottom: $base-line-height;
+  border-bottom: 1px dashed $default-border-color;
+
+  &__title {
+    @extend %title-font;
+    padding: $measure-details-spacing 0;
+  }
+
+  &__column {
+    width: ($structure-width/2) - ($measure-details-spacing/2);
+    float: left;
+
+    &__title {
+      @extend %secondary-title-font;
+      font-size: $base-font-size+2;
+    }
+
+    &--original {
+      margin-right: $measure-details-spacing;
+    }
+  }
+
+  &__change {
+    position: relative;
+
+    &__delete {
+      position: absolute;
+      top: 10px;
+      right: -6px;
+      color: $base-font-color;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  &__card {
+    padding: $measure-details-spacing;
+    background: $panel-bg;
+    border: 1px solid $panel-border;
+    margin: $base-line-height/2 0;
+    position: relative;
+  }
+
+  &__details {
+    display: block;
+    font-size: $small-font-size;
+    padding: $base-line-height/2 0 0 1px;
+
+    &:after {
+      @extend %icon-font;
+      content: "\E003";
+      top: 2px;
+    }
+
+    &.active {
+      &:after {
+        content: "\E001";
+      }
+    }
+  }
+}

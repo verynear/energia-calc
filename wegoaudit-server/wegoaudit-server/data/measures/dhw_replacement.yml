@@ -1,0 +1,24 @@
+inputs:
+  audit:
+    - gas_cost_per_therm
+    - heating_fuel_baseload_in_therms
+  measure:
+    - retrofit_lifetime
+    - utility_rebate
+  domestic_hot_water_system:
+    - afue
+    - tank_efficiency
+    - dhw_unit_cost
+
+structures:
+  domestic_hot_water_system:
+    fields:
+      per_unit_cost:
+        proposed_only: true
+
+fields_mapping:
+  dhw_unit_cost: 'per_unit_cost'
+
+interaction_fields:
+  - afue
+  - tank_efficiency

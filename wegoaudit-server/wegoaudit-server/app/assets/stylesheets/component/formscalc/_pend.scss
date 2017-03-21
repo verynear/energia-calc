@@ -1,0 +1,79 @@
+.input-has-prepend,
+.input-has-prepend {
+  border-radius: 0 $radius $radius 0;
+}
+
+.input-has-prepend,
+.input-has-prepend,
+.input-has-append {
+  &:focus {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+// Let .btn inherit its normal styles
+.addon {
+  @extend %form-input-vertical-alignment;
+  display: block;
+  width: auto;
+  padding: 4px 10px;
+  font-weight: normal;
+  box-shadow: none;
+  line-height: 20px;
+
+  &:not(.btn) {
+    color: $grey;
+    background-color: darken($form-row-bg-color,2%);
+  }
+
+  &:not(.btn-primary):not(.btn-secondary) {
+    border: 1px solid $input-border-color;
+  }
+
+  &.btn {
+    margin-bottom: 0;
+  }
+}
+
+.addon-prepend,
+.input-has-append {
+  border-radius: $radius 0 0 $radius;
+  margin-right: -1px;
+}
+
+.input-has-append.active,
+.input-has-prepend.active {
+  background-color: $success-bg-color;
+  border-color: $success-border-color;
+}
+
+.input-has-append.uneditable-input {
+  border-left-color: #eee;
+  border-right-color: #ccc;
+}
+
+.addon-append {
+  margin-right: 0;
+  border-radius: 0 $radius $radius 0;
+}
+
+.addon-append {
+  .cal-icon {
+    float: left;
+    top: 7px;
+  }
+}
+
+.addon.btn {
+  text-shadow: none;
+}
+
+button.add-on {
+  height: auto;
+
+  &.btn-success {
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+  }
+}

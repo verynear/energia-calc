@@ -1,0 +1,18 @@
+inputs:
+  audit:
+    - gas_cost_per_therm
+    - electric_cost_per_kwh
+    - oil_cost_per_btu
+  measure:
+    - retrofit_lifetime
+    - utility_rebate
+  ventilation_system:
+    - ventilation_cost
+    - input_annual_gas_savings
+    - input_annual_electric_savings
+    - input_annual_oil_savings
+    - air_volume_in_cfm_existing
+    - air_volume_in_cfm_proposed
+
+fields_mapping:
+  ventilation_cost: 'per_unit_cost'

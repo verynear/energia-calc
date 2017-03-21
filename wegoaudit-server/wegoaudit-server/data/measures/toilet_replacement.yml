@@ -1,0 +1,23 @@
+inputs:
+  audit:
+    - num_occupants
+    - num_bathrooms
+    - water_cost_per_gallon
+  measure:
+    - retrofit_lifetime
+  toilet:
+    - rated_gallons_per_flush
+    - percent_leaking
+    - daily_leakage
+    - toilet_cost
+    - flushes_per_day
+
+structures:
+  domestic_hot_water_system:
+    field_for_grouping: rated_gallons_per_flush
+    fields:
+      per_unit_cost:
+        proposed_only: true
+
+fields_mapping:
+  toilet_cost: 'per_unit_cost'

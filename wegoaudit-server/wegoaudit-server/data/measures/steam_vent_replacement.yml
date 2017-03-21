@@ -1,0 +1,12 @@
+inputs:
+  audit:
+    - gas_cost_per_therm
+  measure:
+    - retrofit_lifetime
+    - utility_rebate
+  distribution_system:
+    - vent_cost
+    - input_annual_gas_savings
+
+fields_mapping:
+  vent_cost: 'per_unit_cost'

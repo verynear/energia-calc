@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "field_definition": {
+      "type": "object",
+      "properties": {
+        "options": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "number" }
+            ]
+          }
+        }
+      }
+    },
+    "default": {
+      "anyOf": [
+        { "type": "string" },
+        { "type": "number" },
+        { "type": "object",
+          "properties": {
+            "existing": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "number" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "lookup": {
+      "type": "object",
+      "required": ["input_name", "lookup"],
+      "properties": {
+        "input_name": { "type": "string" },
+        "lookup": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "number" }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "required": ["inputs", "formulas"],
+    "field_definitions": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/field_definition" }
+    },
+    "inputs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "defaults": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/default" }
+    },
+    "lookups": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/lookup" }
+    },
+    "formulas": {
+      "type": "object",
+      "required": [
+        "retrofit_cost"
+      ],
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}

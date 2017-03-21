@@ -1,0 +1,34 @@
+data_types:
+  - gas
+  - electric
+  - oil
+
+inputs_only: true
+
+inputs:
+  - gas_cost_per_therm
+  - electric_cost_per_kwh
+  - oil_cost_per_btu
+  - retrofit_lifetime
+  - utility_rebate
+  - implementation_cost
+  - annual_maintenance_cost
+  - input_annual_gas_savings
+  - input_annual_electric_savings
+  - input_annual_oil_savings
+
+formulas:
+  retrofit_cost:
+    'implementation_cost + (annual_maintenance_cost * retrofit_lifetime)'
+
+output_formulas:
+  annual_cost_savings:
+    '(input_annual_gas_savings * gas_cost_per_therm) +
+      (input_annual_electric_savings * electric_cost_per_kwh) +
+      (input_annual_oil_savings * oil_cost_per_btu)'
+  annual_gas_savings:
+    'input_annual_gas_savings'
+  annual_electric_savings:
+    'input_annual_electric_savings'
+  annual_oil_savings:
+    'input_annual_oil_savings'
