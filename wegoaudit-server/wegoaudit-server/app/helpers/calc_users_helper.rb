@@ -1,4 +1,4 @@
-module UsersHelper
+module CalcUsersHelper
   def wegowise_account_url
     "#{wegowise_url}/users/#{current_user.username}/edit"
   end
