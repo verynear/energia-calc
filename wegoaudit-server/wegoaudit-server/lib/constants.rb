@@ -6,9 +6,7 @@ module WegoAudit
     when 'development' then "http://#{ENV['WEGOAUDIT_LOCAL_IP']}:9292"
     when 'test' then "http://#{ENV['WEGOAUDIT_LOCAL_IP']}:9292"
     end
-end
 
-module Retrocalc
   BUILDING_USAGE_FIELDS_MAPPING = {
     heating_fuel_baseload_in_therms: :annual_gas_savings,
     heating_usage_in_therms: :annual_gas_savings,

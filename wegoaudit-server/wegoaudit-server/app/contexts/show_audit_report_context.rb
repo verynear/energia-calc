@@ -14,6 +14,6 @@ class ShowAuditReportContext < BaseContext
   end
 
   def measure_modal_url
-    url_helpers.new_audit_report_measure_selection_path(audit_report)
+    url_helpers.new_calc_audit_report_measure_selection_path(audit_report)
   end
 end

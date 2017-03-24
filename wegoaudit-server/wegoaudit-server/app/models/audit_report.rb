@@ -30,7 +30,7 @@ class AuditReport < ActiveRecord::Base
   end
 
   def building_name
-    field_values.find_by(field_api_name: 'building_name').value
+    calc_field_values.find_by(field_api_name: 'building_name').value
   end
 
   def data

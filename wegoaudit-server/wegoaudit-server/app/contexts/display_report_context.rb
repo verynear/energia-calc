@@ -56,8 +56,8 @@ class DisplayReportContext < BaseContext
     {
       pdf: filename,
       page_size: 'Letter',
-      layout: 'layouts/pdf.html',
-      template: "layouts/pdf/#{layout}/body",
+      layout: 'calc/layouts/pdf.html',
+      template: "calc/layouts/pdf/#{layout}/body",
       disable_smart_shrinking: true,
       locals: { context: self },
       margin: {
@@ -69,14 +69,14 @@ class DisplayReportContext < BaseContext
       header: {
         html: {
           locals: { context: self },
-          template: "layouts/pdf/#{layout}/header"
+          template: "calc/layouts/pdf/#{layout}/header"
         }
       },
       footer: {
         locals: { report: audit_report },
         html: {
           locals: { context: self },
-          template: "layouts/pdf/#{layout}/footer"
+          template: "calc/layouts/pdf/#{layout}/footer"
         }
       },
       disposition: 'inline'
@@ -84,7 +84,7 @@ class DisplayReportContext < BaseContext
   end
 
   def pdf_path
-    url_helpers.audit_report_display_path(audit_report)
+    url_helpers.calc_audit_report_display_path(audit_report)
   end
 
   def preview_html
@@ -111,6 +111,6 @@ class DisplayReportContext < BaseContext
   end
 
   def preview_report_url
-    url_helpers.preview_audit_report_display_path(audit_report)
+    url_helpers.preview_calc_audit_report_display_path(audit_report)
   end
 end

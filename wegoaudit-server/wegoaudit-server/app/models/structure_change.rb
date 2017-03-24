@@ -13,19 +13,19 @@ class StructureChange < ActiveRecord::Base
   end
 
   def fields
-    @fields ||= measure_selection.fields_for_structure_type(structure_type)
+    @calc_fields ||= measure_selection.fields_for_structure_type(structure_type)
   end
 
   def grouped_structures
     @grouped_structures ||= begin
       available_structures =
-        measure_selection.audit_report.all_structures.select do |structure|
-          structure.structure_type.api_name == structure_type.api_name ||
-            structure.structure_type.genus_api_name == structure_type.api_name
+        measure_selection.audit_report.all_structures.select do |calc_structure|
+          calc_structure.calc_structure_type.api_name == calc_structure_type.api_name ||
+            calc_structure.calc_structure_type.genus_api_name == calc_structure_type.api_name
         end
 
       StructureListGrouper.new(
-        measure_selection, structure_type, available_structures)
+        measure_selection, calc_structure_type, available_structures)
         .grouped_structures
     end
   end
@@ -42,11 +42,11 @@ class StructureChange < ActiveRecord::Base
   end
 
   def original_structure
-    @original_structure ||= structures.find { |structure| !structure.proposed? }
+    @original_structure ||= calc_structures.find { |structure| !calc_structure.proposed? }
   end
 
   def proposed_structure
-    @proposed_structure ||= structures.find(&:proposed)
+    @proposed_structure ||= calc_structures.find(&:proposed)
   end
 
   def structure_type_definition
@@ -54,14 +54,14 @@ class StructureChange < ActiveRecord::Base
   end
 
   def wegoaudit_field_values
-    wegoaudit_structure.field_values
+    wegoaudit_structure.calc_field_values
   end
 
   def wegoaudit_structure
     return non_wegoaudit_structure unless structure_wegoaudit_id
 
-    struct = grouped_structures.find do |structure|
-      structure.id == structure_wegoaudit_id
+    struct = grouped_structures.find do |calc_structure|
+      calc_structure.id == structure_wegoaudit_id
     end
 
     struct || non_wegoaudit_structure

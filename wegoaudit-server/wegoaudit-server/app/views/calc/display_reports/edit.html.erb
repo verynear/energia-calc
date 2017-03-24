@@ -1,0 +1,41 @@
+<% content_for(:title_links) do %>
+  <nav class="titlebar__nav">
+    <%= link_to 'Back: Edit measures'.html_safe,
+          calc_audit_report_path(@audit_report),
+          class: 'btn titlebar__nav__btn' %>
+  </nav>
+<% end %>
+
+
+<div class='markdown-editor js-markdown-editor'>
+  <%= form_for(
+        @context.audit_report,
+        url: calc_audit_report_display_path(@context.audit_report)) do |f| %>
+    <div class='row'>
+      <%= f.label :report_template_id, 'Select template' %>
+      <%= f.select :report_template_id,
+            @report_templates.order(:name).pluck(:name, :id),
+            {},
+            { class: 'js-template-select' } %>
+    </div>
+    <div class='js-template-form'>
+    </div>
+    <button type="submit" name="commit" class="btn">Save</button>
+    <%= link_to 'View PDF report',
+        @context.pdf_path,
+        class: 'btn btn--primary btn--view-pdf' %>
+  <% end %>
+</div>
+<div class='markdown-preview report js-markdown-preview <%= @context.layout%>-pdf'>
+  <%= @context.preview_html %>
+</div>
+
+<script>
+var options = <%= @context.to_json.html_safe %>;
+new DisplayReports.generate(
+    _(options).extend(
+      { markdownEditorEl: $('.js-markdown-editor'),
+        markdownPreviewEl: $('.js-markdown-preview') }
+    )
+)
+</script>

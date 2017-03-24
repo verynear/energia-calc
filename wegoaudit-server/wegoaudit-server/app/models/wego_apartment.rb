@@ -1,5 +1,5 @@
 class WegoApartment
-  include WegowiseClient
+  # include WegowiseClient
 
   attr_accessor :user
 

@@ -37,9 +37,9 @@ namespace :data do
 
     require Rails.root.join('db', 'seeds')
 
-    api_names = Field.pluck('api_name')
+    api_names = CalcField.pluck('api_name')
 
-    field_values = FieldValue.where.not(field_api_name: api_names)
-    field_values.destroy_all
+    calc_field_values = CalcFieldValue.where.not(field_api_name: api_names)
+    calc_field_values.destroy_all
   end
 end

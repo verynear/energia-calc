@@ -1,0 +1,36 @@
+<% content_for(:title_links) do %>
+  <%= link_to('<i class="icon-plus"></i>'.html_safe,
+              new_report_template_path,
+              class: 'titlebar__action-icon js-new-template-button') %>
+<% end %>
+
+<table class="table">
+  <colgroup>
+    <col>
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Last edit</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @templates.each do |template| %>
+      <tr id="report_template_<%= template.id %>">
+        <td><%= template.name %></td>
+        <td><%= template.updated_at.strftime('%m/%d/%Y') %></td>
+        <td>
+          <%= link_to 'Edit template', edit_calc_report_template_path(template) %>
+        </td>
+        <td>
+          <%= link_to 'Delete template',
+                calc_report_template_path(template),
+                method: :delete,
+                data: { confirm: 'Are you sure you want to delete this template?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

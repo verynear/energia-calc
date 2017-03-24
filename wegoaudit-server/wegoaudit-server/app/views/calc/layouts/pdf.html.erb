@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function number_pages() {
+        var vars={};
+        var x=document.location.search.substring(1).split('&');
+        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = decodeURIComponent(z[1]);}
+        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+        for(var i in x) {
+          var y = document.getElementsByClassName(x[i]);
+          for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+        }
+      }
+    </script>
+
+    <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+    <%= wicked_pdf_stylesheet_link_tag "#{@context.layout}_pdf" -%>
+  </head>
+
+  <body onload='number_pages()' class='<%= @context.layout %>-pdf'>
+    <%= yield %>
+  </body>
+</html>

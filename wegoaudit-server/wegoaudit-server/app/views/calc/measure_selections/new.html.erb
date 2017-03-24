@@ -1,0 +1,21 @@
+<div class="modal__header">
+  <a href="#" class="modal__close js-modal-close">
+    <i class="icon-close"></i>
+  </a>
+  <h2 class="modal__title">Add a new measure to this report</h2>
+</div>
+<div class="modal__content">
+  <%= form_for :measure_selection,
+               url: calc_audit_report_measure_selections_path(@audit_report),
+               html: { class: 'js-add-measure-form' } do |form| %>
+    <div class='form-row'>
+        <%= form.select :measure_id, options_for_measures(@measures)  %>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn js-add-measure-submit">
+        Add measure
+      </button>
+    </div>
+  <% end %>
+</div>

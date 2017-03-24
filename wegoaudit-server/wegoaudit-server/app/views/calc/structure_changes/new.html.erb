@@ -1,0 +1,31 @@
+<div class="modal__header">
+  <a href="#" class="modal__close js-modal-close">
+    <i class="icon-close"></i>
+  </a>
+  <h2 class="modal__title">Choose structure to replace</h2>
+</div>
+<div class="modal__content">
+  <div>Measure: <%= @context.measure_name %></div>
+
+  <% if @context.available_structure_types.empty? %>
+    No remaining available structures for this measure.
+  <% else %>
+    <%= form_for(
+          :structure_changes,
+           url: calc_measure_selection_structure_changes_path(@measure_selection),
+           html: { class: 'js-select-structure-form' }) do |form| %>
+
+      <% @context.available_structure_types.each do |structure_type| %>
+        <%= render "/calc/structure_changes/structure_select",
+                   structure_type: structure_type
+        %>
+      <% end %>
+
+      <div class="form-actions">
+        <button type="submit" class="btn js-select-structure-submit">
+          Next
+        </button>
+      </div>
+  <% end %>
+  <% end %>
+</div>

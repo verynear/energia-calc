@@ -13,7 +13,7 @@ class StructureCombiner < Generic::Strict
 
     structures.first.tap do |structure|
       structure.n_structures = n_structures_sum
-      structure.field_values = combined_field_values
+      structure.calc_field_values = combined_field_values
     end
   end
 

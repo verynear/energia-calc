@@ -47,8 +47,8 @@ class AuditReportCalculator < Generic::Strict
     [:annual_water_usage_existing,
      :annual_electric_usage_existing,
      :annual_gas_usage_existing,
-     :annual_oil_usage_existing].each do |field|
-       summary_hash[field] = audit_report.public_send(field)
+     :annual_oil_usage_existing].each do |calc_field|
+       summary_hash[field] = audit_report.public_send(calc_field)
      end
 
     summary_hash.each do |key, value|
@@ -103,7 +103,7 @@ class AuditReportCalculator < Generic::Strict
   end
 
   def decrement_usage_values(calculator, usage_values)
-    Retrocalc::BUILDING_USAGE_FIELDS_MAPPING.each do |usage_field, result_field|
+    WegoAudit::BUILDING_USAGE_FIELDS_MAPPING.each do |usage_field, result_field|
       new_value = usage_values[usage_field] -
         (calculator.public_send(result_field) || 0.0)
       usage_values[usage_field] = new_value

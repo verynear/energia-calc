@@ -1,5 +1,5 @@
 class WegoUser
-  include WegowiseClient
+  # include WegowiseClient
 
   attr_accessor :user
 

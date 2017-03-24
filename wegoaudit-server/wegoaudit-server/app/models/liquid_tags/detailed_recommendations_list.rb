@@ -95,7 +95,7 @@ module LiquidTags
           hash[field] = value
         end
 
-        summary[:name] = measure_selection.measure_name
+        summary[:name] = measure_selection.calc_measure_name
         description = if measure_selection.description.present?
                         measure_selection.description
                       else

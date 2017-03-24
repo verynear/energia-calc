@@ -103,4 +103,44 @@ Rails.application.routes.draw do
 
   root to: 'visitors#index'
   mount Sidekiq::Web => 'sidekiq'
+
+  namespace :calc do
+    resources :audit_reports do
+      get 'download_usage', on: :member
+
+      resource :display,
+             only: [:edit, :update, :show],
+             controller: 'display_reports' do
+        collection do
+          put :change_template
+          put :preview
+        end
+      end
+
+      resources :field_values, only: [:update]
+      resources :original_structure_field_values, only: [:update]
+    end
+
+    scope 'audit_reports/:audit_report_id', as: 'audit_report' do
+      resources :measure_selections, only: [:new, :create, :update, :destroy]
+    end
+
+    resources :users, only: [:edit, :update]
+
+    scope 'measure_selections/:measure_selection_id', as: 'measure_selection' do
+      resources :structure_changes, only: [:new, :create, :destroy]
+      resources :field_values, only: [:update]
+    end
+
+    resources :report_templates, except: [:show] do
+      put :preview, on: :collection
+    end
+
+    scope 'structures/:structure_id', as: 'structure' do
+      resources :field_values, only: [:update]
+    end
+
+    resources :structures, only: [:update]
+
+  end
 end

@@ -1,0 +1,17 @@
+<div class="modal__header">
+  <a href="#" class="modal__close js-modal-close">
+    <i class="icon-close"></i>
+  </a>
+  <h2 class="modal__title">Create report</h2>
+</div>
+<div class="modal__content">
+  Choose audit
+
+  <% if @error %>
+    <%= render 'calc/audit_reports/select_audit_error' %>
+  <% elsif @audits.empty? %>
+    <%= render 'calc/audit_reports/no_audits_message' %>
+  <% else %>
+    <%= render 'calc/audit_reports/select_audit' %>
+  <% end %>
+</div>

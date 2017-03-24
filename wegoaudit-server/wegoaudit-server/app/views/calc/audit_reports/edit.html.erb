@@ -1,0 +1,15 @@
+<% content_for(:title_links) do %>
+  <nav class="titlebar__nav">
+    <%= link_to('Edit measures', calc_audit_report_path(@audit_report)) %>
+    <%= link_to 'Delete report',
+          calc_audit_report_path(@audit_report),
+          method: :delete,
+          data: { confirm: 'Are you sure you want to delete this report?' } %>
+  </nav>
+<% end %>
+
+<script>
+options = <%= @context.audit_report_as_json.to_json.html_safe %>;
+AuditReports.generate(_(options).extend(
+  { page: 'edit_audit_report' }));
+</script>

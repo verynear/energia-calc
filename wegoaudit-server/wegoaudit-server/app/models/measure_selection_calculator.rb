@@ -176,7 +176,7 @@ class MeasureSelectionCalculator < Generic::Strict
   memoize :calculated_inputs
 
   def decrement_usage_values(results)
-    Retrocalc::BUILDING_USAGE_FIELDS_MAPPING.each do |usage_field, result_field|
+    WegoAudit::BUILDING_USAGE_FIELDS_MAPPING.each do |usage_field, result_field|
       value = (results[result_field] || 0)
       usage_values[usage_field] -= value
     end

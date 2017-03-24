@@ -1,0 +1,39 @@
+<%= form_for :audit_report,
+             url: calc_audit_reports_path,
+             html: { class: 'js-select-audit-form' } do |form| %>
+  <div style='height: 300px; overflow: auto'>
+    <table class="table table--choose-audit js-row-selector">
+      <tbody>
+        <% @audits.each do |audit| %>
+          <tr>
+            <td><%= form.radio_button(
+                      :id,
+                      audit.id,
+                      class: 'js-select-audit-radio-button') %>
+            </td>
+            <td><%= form.label(
+                    :id,
+                    audit.name,
+                    value: audit.id) %></td>
+            <td><%= audit.formatted_date %></td>
+            <td><%= audit.audit_type %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class='error__msg hide js-select-audit-error-msg'>
+    Select an audit.
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn--primary js-select-audit-submit">
+      Next
+    </button>
+  </div>
+<% end %>
+
+<script>
+  rowSelector()
+</script>

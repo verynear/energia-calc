@@ -1,10 +1,10 @@
 class EditAuditReportContext < BaseContext
   attr_accessor :audit_report,
-                :user
+                :calc_user
 
   def audit_report_as_json
     { audit_report: audit_report_json,
-      fields: fields }
+      calc_fields: fields }
   end
 
   private
@@ -13,7 +13,7 @@ class EditAuditReportContext < BaseContext
     {
       id: audit_report.id,
       audit_report_summary: audit_report_summary_json,
-      field_values: field_values_as_json,
+      calc_field_values: field_values_as_json,
       audit_report_name_field_value: {
         id: audit_report.id,
         name: 'Report name',
@@ -33,25 +33,25 @@ class EditAuditReportContext < BaseContext
   end
 
   def field_values_as_json
-    fields = [
+    calc_fields = [
       :id,
       :value,
       :field_api_name
     ]
-    audit_report.field_values.pluck_to_hash(*fields).map do |row|
-      field = Field.by_api_name!(row[:field_api_name])
+    audit_report.calc_field_values.pluck_to_hash(*fields).map do |row|
+      calc_field = CalcField.by_api_name!(row[:field_api_name])
 
       if row[:field_api_name] == 'location_for_temperatures'
         field_options = location_for_temperature_options
       else
-        field_options = field.options
+        field_options = calc_field.options
       end
 
       {
         id: row[:id],
         name: field.name,
         value: row[:value],
-        value_type: field.value_type,
+        value_type: calc_field.value_type,
         original_value: nil,
         from_audit: false,
         api_name: row[:field_api_name],

@@ -20,7 +20,7 @@ class CalcFieldValue < ActiveRecord::Base
   def original_value
     return nil unless parent.is_a?(Structure)
 
-    parent.wegoaudit_structure.field_values
+    parent.wegoaudit_structure.calc_field_values
       .fetch(field_api_name, value)
   end
 

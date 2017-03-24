@@ -1,0 +1,8 @@
+<%= fields_for("structure_changes[#{calc_structure_type.api_name}]",
+               StructureChange.new) do |subform| %>
+  <div class='form-row'>
+    Choose a <strong><%= calc_structure_type.name %></strong>:
+    <%= subform.select :structure_wegoaudit_id,
+                    @context.grouped_structures_options(calc_structure_type) %>
+  </div>
+<% end %>

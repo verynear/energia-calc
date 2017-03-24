@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+  <%= link_to 'All reports', calc_audit_reports_path %>
+  <%= link_to 'Manage templates', calc_report_templates_path %>
+  <%= link_to 'My account', '/edit' %>
+  <%= link_to 'Logout', '/signout', :method => :delete %>
+<% else %>
+  <%= link_to 'Login', '/signin' %>
+<% end %>

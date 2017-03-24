@@ -38,7 +38,7 @@ class ReportTemplateContext < BaseContext
 
   def build_field_values(options)
     options.map do |key, value|
-      FieldValue.new(field_api_name: key, value: value)
+      CalcFieldValue.new(field_api_name: key, value: value)
     end
   end
 
@@ -75,6 +75,6 @@ class ReportTemplateContext < BaseContext
   end
 
   def preview_template_url
-    url_helpers.preview_report_templates_path
+    url_helpers.preview_calc_report_templates_path
   end
 end

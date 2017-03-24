@@ -1,5 +1,5 @@
 class WegoOrganization
-  include WegowiseClient
+  # include WegowiseClient
 
   attr_accessor :organization_id, :owner, :user
 

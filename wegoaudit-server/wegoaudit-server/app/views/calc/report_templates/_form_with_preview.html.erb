@@ -1,0 +1,35 @@
+<div class='markdown-editor js-markdown-editor'>
+  <%= form_for @template do |f| %>
+    <div class='row'>
+      <%= f.text_field :name, placeholder: 'Template name' %>
+    </div>
+    <div class='row'>
+      <%= f.label :layout, 'Layout: ' %>
+      <%= f.select :layout,
+           ['default', 'elevate', 'nei'],
+           selected: @context.layout
+      %>
+    </div>
+    <div class='row'>
+      <%= f.text_area :markdown,
+                      rows: 20,
+                      class: 'markdown-editor__input'
+      %>
+    </div>
+
+    <button type="submit" name="commit" class="btn btn--primary">Save</button>
+  <% end %>
+</div>
+<div class='markdown-preview js-markdown-preview <%= @context.layout%>-pdf'>
+  <%= @context.preview_html %>
+</div>
+
+<script>
+var options = <%= @context.to_json.html_safe %>;
+new DisplayReports.generate(
+    _(options).extend(
+      { markdownEditorEl: $('.js-markdown-editor'),
+        markdownPreviewEl: $('.js-markdown-preview') }
+    )
+)
+</script>

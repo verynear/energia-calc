@@ -13,7 +13,7 @@ class MeasureSelection < ActiveRecord::Base
   has_many :calc_structures, through: :structure_changes
 
   delegate :audit, to: :audit_report
-  delegate :calc_structure_types, to: :calc_measure
+  delegate :structure_types, to: :calc_measure
   delegate :fields_for_structure_type, to: :calc_measure
   delegate :grouping_field_api_name, to: :calc_measure
   delegate :name, to: :calc_measure, prefix: true
@@ -36,7 +36,7 @@ class MeasureSelection < ActiveRecord::Base
   end
 
   def degradation_rate
-    field_value('degradation_rate')
+    calc_field_value('degradation_rate')
   end
 
   def has_structure_change_for(structure_type)
@@ -74,18 +74,18 @@ class MeasureSelection < ActiveRecord::Base
   end
 
   def retrofit_lifetime
-    value = field_value('retrofit_lifetime')
+    value = calc_field_value('retrofit_lifetime')
     return value if value.present?
 
     defaults[:retrofit_lifetime]
   end
 
   def utility_rebate
-    field_value('utility_rebate')
+    calc_field_value('utility_rebate')
   end
 
   def warm_weather_shutdown_temperature
-    field_value('warm_weather_shutdown_temperature')
+    calc_field_value('warm_weather_shutdown_temperature')
   end
 
   private

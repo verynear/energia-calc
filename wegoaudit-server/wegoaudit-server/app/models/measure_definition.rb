@@ -87,7 +87,7 @@ class MeasureDefinition < Generic::Strict
   def structure_types
     structure_type_definitions.map(&:calc_structure_type)
   end
-  memoize :calc_structure_types
+  memoize :structure_types
 
   private
 

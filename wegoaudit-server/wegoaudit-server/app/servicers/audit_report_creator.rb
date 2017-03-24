@@ -1,14 +1,14 @@
 class AuditReportCreator < Generic::Strict
   attr_accessor :data,
                 :report_template,
-                :user,
+                :calc_user,
                 :wegoaudit_id
 
   attr_reader :audit_report
 
   def initialize(*)
     super
-    self.report_template ||= user.organization.report_templates
+    self.report_template ||= user.calc_organization.report_templates
       .first_or_create(layout: 'default', name: 'Base Template')
   end
 
@@ -27,7 +27,7 @@ class AuditReportCreator < Generic::Strict
 
   def associate_measures
     data['measures'].each do |wegoaudit_measure|
-      measure = Measure.by_api_name!(wegoaudit_measure['api_name'])
+      measure = CalcMeasure.by_api_name!(wegoaudit_measure['api_name'])
       MeasureSelectionCreator.new(
         audit_report: audit_report,
         measure: measure,
@@ -40,7 +40,7 @@ class AuditReportCreator < Generic::Strict
     @audit_report = AuditReport.create!(
       name: data['name'],
       user_id: user.id,
-      organization_id: user.organization_id,
+      organization_id: calc_user.calc_organization_id,
       data: data,
       report_template: report_template,
       wegoaudit_id: wegoaudit_id)
@@ -51,15 +51,15 @@ class AuditReportCreator < Generic::Strict
   end
 
   def create_field_values
-    Field.where(level: 'audit_report').each do |field|
+    CalcField.where(level: 'audit_report').each do |calc_field|
       options = { field_api_name: field.api_name }
-      if field.api_name == 'audit_date'
+      if calc_field.api_name == 'audit_date'
         options[:value] = audit_report.audit.date
-      elsif audit_report.audit.field_values[field.api_name] != nil
-        options[:value] = audit_report.audit.field_values[field.api_name]
+      elsif audit_report.audit.field_values[calc_field.api_name] != nil
+        options[:value] = audit_report.audit.field_values[calc_field.api_name]
       end
 
-      audit_report.field_values.create!(options)
+      audit_report.calc_field_values.create!(options)
     end
   end
 

@@ -1,0 +1,18 @@
+<% content_for(:title_links) do %>
+  <nav class="titlebar__nav">
+    <%= link_to('Add measure', '#', class: 'js-add-measure-link') %>
+    <%= link_to 'Delete report',
+          calc_audit_report_path(@context.audit_report),
+          method: :delete,
+          data: { confirm: 'Are you sure you want to delete this report?' } %>
+    <%= link_to('Edit report data', edit_calc_audit_report_path(@audit_report)) %>
+    <%= link_to 'Next: Edit PDF report <i class="icon-chevron-right"></i>'.html_safe,
+          edit_calc_audit_report_display_path(@audit_report),
+          class: 'btn titlebar__nav__btn' %>
+  </nav>
+<% end %>
+
+<script>
+options = <%= @context.audit_report_as_json.to_json.html_safe %>;
+AuditReports.generate(options);
+</script>
