@@ -1,5 +1,5 @@
-class AuditReports.Views.EffectiveStructureField extends Backbone.View
-  className: 'js-effective-structure-field'
+class AuditReports.Views.EffectiveCalcStructureCalcField extends Backbone.View
+  className: 'js-effective-calc-structure-calc-field'
 
   template: _.template """
     <div class="fli is-completed">

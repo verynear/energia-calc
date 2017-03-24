@@ -18,6 +18,10 @@
     border-top: none;
     margin-top: $base-line-height/2;
   }
+
+    &--new-report {
+    width: 900px;
+  }
 }
 
 .modal__header {

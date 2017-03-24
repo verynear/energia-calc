@@ -16,4 +16,25 @@
 //= require jquery.fancybox
 //= require sco.panes
 //= require sco.tab
+//= require sco.collapse-edited
+//= require sco.tooltip
+//= require jquery.fn.sortable
+//= require underscore
+//= require backbone
+//= require backbone-relational
 //= require app
+//= require modal
+//= require audit_reports/init
+//= require audit_reports/generator
+//= require_tree ./audit_reports/models
+//= require_tree ./audit_reports/collections
+//= require audit_reports/views/calc_field
+//= require audit_reports/views/name_calc_field
+//= require audit_reports/views/totals_bar
+//= require_tree ./audit_reports/views
+//
+//= require display_reports/init
+//= require display_reports/generator
+//= require_tree ./display_reports/collections
+//= require_tree ./display_reports/models
+//= require_tree ./display_reports/views

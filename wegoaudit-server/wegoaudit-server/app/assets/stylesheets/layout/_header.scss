@@ -5,6 +5,19 @@
   padding: 20px 0 12px;
 }
 
+.logo {
+  color: #fff;
+  font-size: 17px;
+  line-height: 1;
+  padding: 15px 0;
+  display: inline-block;
+
+  &:hover {
+    transform: scale(1.05);
+    color: #fff;
+  }
+}
+
 .wego-logo {
   float: left;
 }
@@ -14,5 +27,12 @@
 
   a {
     color: #fff;
+    padding: 15px 10px;
+    display: inline-block;
+
+    &:hover {
+      color: #fff;
+      background: #1565C0;
+    }
   }
 }

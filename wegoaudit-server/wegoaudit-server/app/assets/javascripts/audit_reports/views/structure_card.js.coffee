@@ -28,44 +28,44 @@ class AuditReports.Views.StructureCard extends Backbone.View
     )
     @$el.html(html)
 
-    @_addNameField()
-    @_addQuantityField() if @model.get('multiple')
+    @_addNameCalcField()
+    @_addQuantityCalcField() if @model.get('multiple')
 
-    @$fieldsSection = @$('.js-fields-section')
+    @$fieldsSection = @$('.js-calc-fields-section')
     @_renderOriginalStructureFields()
-    @_renderFields()
+    @_renderCalcFields()
     @$el
 
-  _addNameField: ->
-    nameField = new AuditReports.Views.NameField(
-      model: @model.get('name_field_value'))
-    @$('.js-name-row').append(nameField.render())
+  _addNameCalcField: ->
+    nameCalcField = new AuditReports.Views.NameCalcField(
+      model: @model.get('name_calc_field_value'))
+    @$('.js-name-row').append(nameCalcField.render())
 
-  _addQuantityField: ->
-    quantityField = new AuditReports.Views.QuantityField(
+  _addQuantityCalcField: ->
+    quantityCalcField = new AuditReports.Views.QuantityCalcField(
       original: @original
-      model: @model.get('quantity_field_value'))
-    @$('.js-name-row').append(quantityField.render())
+      model: @model.get('quantity_calc_field_value'))
+    @$('.js-name-row').append(quantityCalcField.render())
 
-  _renderFields: ->
+  _renderCalcFields: ->
     $row = null
     count = 0
-    @model.get('field_values').each (fieldValue, index) =>
-      field = new AuditReports.Views.Field(model: fieldValue)
+    @model.get('calc_field_values').each (calcFieldValue, index) =>
+      calc_field = new AuditReports.Views.CalcField(model: calcFieldValue)
       if count % 2 == 0
         $row = $("<div class='row'></div>")
         @$fieldsSection.append($row)
-      $row.append(field.render())
+      $row.append(calc_field.render())
       count += 1
 
   _renderOriginalStructureFields: ->
-    @model.get('original_structure_field_values').each (fieldValue) =>
+    @model.get('original_structure_field_values').each (calcFieldValue) =>
       $row = $("<div class='row'></div>")
       @$fieldsSection.append($row)
-      field = new AuditReports.Views.OriginalStructureField(model: fieldValue)
-      $row.append(field.render())
-      staticField = new AuditReports.Views.EffectiveStructureField(
-        model: fieldValue,
-        name: "Effective #{fieldValue.get('name')}"
+      calc_field = new AuditReports.Views.OriginalStructureField(model: calcFieldValue)
+      $row.append(calc_field.render())
+      staticCalcField = new AuditReports.Views.EffectiveStructureCalcField(
+        model: calcFieldValue,
+        name: "Effective #{calcFieldValue.get('name')}"
       )
-      $row.append(staticField.render())
+      $row.append(staticCalcField.render())

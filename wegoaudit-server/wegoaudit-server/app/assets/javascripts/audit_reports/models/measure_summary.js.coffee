@@ -1,8 +1,8 @@
 class AuditReports.Models.MeasureSummary extends Backbone.RelationalModel
   relations: [{
     type: Backbone.HasMany,
-    key: 'field_values',
-    relatedModel: 'AuditReports.Models.FieldValue',
+    key: 'calc_field_values',
+    relatedModel: 'AuditReports.Models.CalcFieldValue',
     reverseRelation: {
       key: 'measure_summary'
     }

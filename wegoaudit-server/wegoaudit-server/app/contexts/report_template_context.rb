@@ -36,7 +36,7 @@ class ReportTemplateContext < BaseContext
   end
   memoize :audit_report_calculator
 
-  def build_field_values(options)
+  def build_calc_field_values(options)
     options.map do |key, value|
       CalcFieldValue.new(field_api_name: key, value: value)
     end
@@ -44,11 +44,11 @@ class ReportTemplateContext < BaseContext
 
   def default_audit_report
     AuditReport.new(
-      user: user,
+      user: calc_user,
       name: 'Sample Report',
       created_at: 10.days.ago,
       updated_at: 5.minutes.ago,
-      field_values: build_field_values(
+      calc_field_values: build_calc_field_values(
         audit_date: 15.days.ago,
         contact_name: 'Crandle Berry',
         contact_company: 'Pumpkin Investment Partners',

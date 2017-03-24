@@ -1,7 +1,7 @@
-class AuditReports.Views.RecommendationField extends AuditReports.Views.Field
+class AuditReports.Views.RecommendationCalcField extends AuditReports.Views.CalcField
   className: 'col-6'
 
-  inputClass: "js-recommendation-field"
+  inputClass: "js-recommendation-calc-field"
 
   template: _.template """
     <div class="fli js-fli">
@@ -15,16 +15,16 @@ class AuditReports.Views.RecommendationField extends AuditReports.Views.Field
       value: @model.get('recommendation')
     )
 
-  syncFieldValue: ->
+  syncCalcFieldValue: ->
     $.ajax(
       method: 'PUT'
-      url: "/audit_reports/#{@model.get('report_id')}/" +
+      url: "/calc/audit_reports/#{@model.get('report_id')}/" +
            "measure_selections/#{@model.get('id')}"
       data:
         measure_selection:
           recommendation: @$input.val()
-      success: @_afterSyncFieldValue
+      success: @_afterSyncCalcFieldValue
     )
 
-  _afterSyncFieldValue: (data) ->
+  _afterSyncCalcFieldValue: (data) ->
     # noop

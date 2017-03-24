@@ -117,7 +117,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :field_values, only: [:update]
+      resources :calc_field_values, only: [:update]
       resources :original_structure_field_values, only: [:update]
     end
 
@@ -129,18 +129,18 @@ Rails.application.routes.draw do
 
     scope 'measure_selections/:measure_selection_id', as: 'measure_selection' do
       resources :structure_changes, only: [:new, :create, :destroy]
-      resources :field_values, only: [:update]
+      resources :calc_field_values, only: [:update]
     end
 
     resources :report_templates, except: [:show] do
       put :preview, on: :collection
     end
 
-    scope 'structures/:structure_id', as: 'structure' do
-      resources :field_values, only: [:update]
+    scope 'calc_structures/:calc_structure_id', as: 'structure' do
+      resources :calc_field_values, only: [:update]
     end
 
-    resources :structures, only: [:update]
+    resources :calc_structures, only: [:update]
 
   end
 end

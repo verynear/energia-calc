@@ -1,7 +1,7 @@
 class DisplayReportContext < BaseContext
   attr_accessor :audit_report,
                 :for_pdf,
-                :user
+                :calc_user
 
   def initialize(*)
     super
@@ -56,8 +56,8 @@ class DisplayReportContext < BaseContext
     {
       pdf: filename,
       page_size: 'Letter',
-      layout: 'calc/layouts/pdf.html',
-      template: "calc/layouts/pdf/#{layout}/body",
+      layout: 'calc/layouts/pdf.html.erb',
+      template: "calc/layouts/pdf/#{layout}/body.html.erb",
       disable_smart_shrinking: true,
       locals: { context: self },
       margin: {
@@ -69,14 +69,14 @@ class DisplayReportContext < BaseContext
       header: {
         html: {
           locals: { context: self },
-          template: "calc/layouts/pdf/#{layout}/header"
+          template: "calc/layouts/pdf/#{layout}/header.html.erb"
         }
       },
       footer: {
         locals: { report: audit_report },
         html: {
           locals: { context: self },
-          template: "calc/layouts/pdf/#{layout}/footer"
+          template: "calc/layouts/pdf/#{layout}/footer.html.erb"
         }
       },
       disposition: 'inline'

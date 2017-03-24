@@ -10,19 +10,58 @@
 }
 
 .btn-primary {
+  color: $btn-primary-color;
+  background-color: $btn-primary-bg;
+
+  &:hover {
+    color: $btn-primary-color-hover;
+    background-color: $btn-primary-bg-hover;
+  }
+
   &:active {
     background: $primary-color-dark;
   }
 }
 
-.btn-outline {
-  border: 1px solid $base-font-color;
-  color: $base-font-color;
-  background: none;
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+button {
+  border: 0;
+}
+
+// Default
+.btn {
+  color: $btn-color;
+  text-transform: uppercase;
+  letter-spacing: $cta-letter-spacing;
+  background-color: $btn-bg;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.71em 1.5em;
+  position: relative;
+  text-align: center;
+  display: inline-block;
 
   &:hover {
-    border-color: $primary-color-dark;
-    color: $link-color-hover;
-    background: none;
+    color: $btn-color-hover;
+    background-color: $btn-bg-hover;
+    cursor: pointer;
+    text-decoration: none;
   }
+
+  span {
+    vertical-align: -3px;
+  }
+}
+
+.btn-small {
+  font-size: 0.85em;
+}
+
+.btn-large {
+  font-size: 1.3em;
 }

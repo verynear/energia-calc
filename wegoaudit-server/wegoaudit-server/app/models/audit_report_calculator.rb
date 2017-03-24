@@ -48,7 +48,7 @@ class AuditReportCalculator < Generic::Strict
      :annual_electric_usage_existing,
      :annual_gas_usage_existing,
      :annual_oil_usage_existing].each do |calc_field|
-       summary_hash[field] = audit_report.public_send(calc_field)
+       summary_hash[calc_field] = audit_report.public_send(calc_field)
      end
 
     summary_hash.each do |key, value|

@@ -32,13 +32,13 @@ class DisplayReportBuilder < Generic::Strict
   private
 
   def build_locals
-    locals = audit_report.field_values.each_with_object({}) do |field_value, hash|
-      if field_value.value.present?
-        value = field_value.value
+    locals = audit_report.calc_field_values.each_with_object({}) do |calc_field_value, hash|
+      if calc_field_value.value.present?
+        value = calc_field_value.value
       else
-        value = "<strong>[#{field_value.field_api_name}]</strong>"
+        value = "<strong>[#{calc_field_value.field_api_name}]</strong>"
       end
-      hash[field_value.field_api_name] = value
+      hash[calc_field_value.field_api_name] = value
     end
     locals['user_name'] = audit_report.user.name
     locals

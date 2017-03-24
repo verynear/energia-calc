@@ -21,8 +21,8 @@ class Calc::CalcFieldValuesController < SecuredController
     if params[:measure_selection_id]
       @parent = MeasureSelection.find(params[:measure_selection_id])
       @audit_report = @parent.audit_report
-    elsif params[:structure_id]
-      @parent = CalcStructure.find(params[:structure_id])
+    elsif params[:calc_structure_id]
+      @parent = CalcStructure.find(params[:calc_structure_id])
       @audit_report = @parent.measure_selection.audit_report
     elsif params[:audit_report_id]
       @audit_report = @parent = AuditReport.find(params[:audit_report_id])

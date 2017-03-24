@@ -6,7 +6,7 @@ class AuditReports.Views.MeasureSummary extends Backbone.View
       Measure Summary
     </div>
 
-    <div class="js-measure-fields">
+    <div class="js-measure-calc-fields">
     </div>
 
     <div class="measure__summary__section-title">
@@ -24,25 +24,25 @@ class AuditReports.Views.MeasureSummary extends Backbone.View
   render: =>
     @$el.html(@template())
     @$usageValues = @$('.js-usage-values')
-    @$measureFieldsRow = @$('.js-measure-fields')
+    @$measureCalcFieldsRow = @$('.js-measure-calc-fields')
 
-    @_renderMeasureFields()
+    @_renderMeasureCalcFields()
     @_renderUsageValues()
     @_renderCalculatedValues()
 
     $row = $("<div class='row'></div>")
     @$el.append($row)
 
-    descriptionField =
-      new AuditReports.Views.DescriptionField(
+    descriptionCalcField =
+      new AuditReports.Views.DescriptionCalcField(
         model: @model,
       )
-    $row.append(descriptionField.render())
-    recommendationField =
-      new AuditReports.Views.RecommendationField(
+    $row.append(descriptionCalcField.render())
+    recommendationCalcField =
+      new AuditReports.Views.RecommendationCalcField(
         model: @model,
       )
-    $row.append(recommendationField.render())
+    $row.append(recommendationCalcField.render())
     @$el
 
   _renderCalculatedValues: ->
@@ -50,15 +50,15 @@ class AuditReports.Views.MeasureSummary extends Backbone.View
       new AuditReports.Views.MeasureSummaryCalculatedValues(model: @model)
     @$el.append(calculatedValues.render())
 
-  _renderMeasureFields: ->
+  _renderMeasureCalcFields: ->
     $row = null
     count = 0
-    @model.get('field_values').each (fieldValue) =>
+    @model.get('calc_field_values').each (calcFieldValue) =>
       if count % 4 == 0
         $row = $("<div class='row'></div>")
-        @$measureFieldsRow.append($row)
-      measureField = new AuditReports.Views.MeasureField(model: fieldValue)
-      $row.append(measureField.render())
+        @$measureCalcFieldsRow.append($row)
+      measureCalcField = new AuditReports.Views.MeasureCalcField(model: calcFieldValue)
+      $row.append(measureCalcField.render())
       count += 1
 
   _renderUsageValues: ->
@@ -68,9 +68,9 @@ class AuditReports.Views.MeasureSummary extends Backbone.View
       if count % 4 == 0
         $row = $("<div class='row'></div>")
         @$usageValues.append($row)
-      staticField = new AuditReports.Views.StaticField(
+      staticCalcField = new AuditReports.Views.StaticCalcField(
         name: options.title,
         value: options.value
       ).render()
-      $row.append(staticField)
+      $row.append(staticCalcField)
       count += 1

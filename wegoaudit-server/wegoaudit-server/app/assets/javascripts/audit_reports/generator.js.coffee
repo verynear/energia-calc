@@ -6,7 +6,7 @@ class AuditReports.Generator
       page = new AuditReports.Views.EditAuditReportPage(
         el: $('body')
         model: auditReport
-        fields: params.fields
+        fields: params.calc_fields
       )
     else
       page = new AuditReports.Views.ManageMeasuresPage(

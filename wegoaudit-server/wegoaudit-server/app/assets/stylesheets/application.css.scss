@@ -31,12 +31,21 @@ $link-color: $primary-color-darker;
 @import "vendor/fancybox";
 @import "utility/variables";
 @import "utility/animations";
+@import "utility/placeholders";
+@import "utility/mixins";
 //-- Base
 @import "base/icons";
 @import "base/general";
+@import "base/normalize";
+@import "base/fonts";
+@import "base/icons";
+@import "base/type";
 //-- Layout
 @import "layout/footer";
 @import "layout/header";
+@import "layout/grid";
+@import "layout/structure";
+@import "layout/titlebar";
 //-- Components
 @import "component/btn";
 @import "component/crumbs";
@@ -51,8 +60,22 @@ $link-color: $primary-color-darker;
 @import "component/table";
 @import "component/tooltips";
 @import "component/titlebar";
+@import "component/data";
+@import "component/fli";
+@import "component/gallery";
+@import "component/tablecalc";
 //-- Views
 @import "view/gallery";
 @import "view/login";
 @import "view/measures";
 @import "view/sub-structures";
+@import "views/measure-overview";
+@import "views/measure-details";
+@import "views/report-builder";
+@import "views/report-preview";
+@import "views/view-reports";
+
+
+.hide {
+  display: none;
+}

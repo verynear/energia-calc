@@ -37,7 +37,7 @@ class AuditReports.Views.MeasureTab extends Backbone.View
   measureSelectionUrl: () ->
     report_id = @model.get('report_id')
     id = @model.get('id')
-    "/audit_reports/#{report_id}/measure_selections/#{id}"
+    "/calc/audit_reports/#{report_id}/measure_selections/#{id}"
 
   onClick: (event) ->
     event.preventDefault()

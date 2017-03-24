@@ -30,7 +30,7 @@ class AuditReports.Views.MeasurePhoto extends Backbone.View
     measureSelection = @model.get('measure_selection')
     reportId = measureSelection.get('report_id')
     id = measureSelection.get('id')
-    "/audit_reports/#{reportId}/measure_selections/#{id}"
+    "/calc/audit_reports/#{reportId}/measure_selections/#{id}"
 
   onChangeSelectImage: (event) ->
     @model.collection.setSelected(@model)

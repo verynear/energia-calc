@@ -4,7 +4,7 @@ class EditAuditReportContext < BaseContext
 
   def audit_report_as_json
     { audit_report: audit_report_json,
-      calc_fields: fields }
+      calc_fields: calc_fields }
   end
 
   private
@@ -38,7 +38,7 @@ class EditAuditReportContext < BaseContext
       :value,
       :field_api_name
     ]
-    audit_report.calc_field_values.pluck_to_hash(*fields).map do |row|
+    audit_report.calc_field_values.pluck_to_hash(*calc_fields).map do |row|
       calc_field = CalcField.by_api_name!(row[:field_api_name])
 
       if row[:field_api_name] == 'location_for_temperatures'
@@ -49,7 +49,7 @@ class EditAuditReportContext < BaseContext
 
       {
         id: row[:id],
-        name: field.name,
+        name: calc_field.name,
         value: row[:value],
         value_type: calc_field.value_type,
         original_value: nil,
@@ -60,7 +60,7 @@ class EditAuditReportContext < BaseContext
     end
   end
 
-  def fields
+  def calc_fields
     [
       {
         title: 'Basic',

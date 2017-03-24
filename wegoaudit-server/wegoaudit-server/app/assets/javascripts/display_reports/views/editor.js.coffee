@@ -21,7 +21,7 @@ class DisplayReports.Views.Editor extends Backbone.View
 
   updateForm: ->
     $.ajax(
-      url: "/audit_reports/#{@model.get('id')}/display/change_template"
+      url: "/calc/audit_reports/#{@model.get('id')}/display/change_template"
       data:
         audit_report:
           report_template_id: $('.js-template-select').val()

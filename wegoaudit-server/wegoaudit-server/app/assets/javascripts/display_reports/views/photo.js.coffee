@@ -29,7 +29,7 @@ class DisplayReports.Views.Photo extends Backbone.View
   auditReportUrl: () ->
     displayReport = @model.get('display_report')
     reportId = displayReport.get('id')
-    "/audit_reports/#{reportId}"
+    "/calc/audit_reports/#{reportId}"
 
   onChangeSelectImage: (event) ->
     @model.collection.setSelected(@model)

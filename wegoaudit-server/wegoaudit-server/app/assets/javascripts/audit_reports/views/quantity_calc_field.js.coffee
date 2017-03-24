@@ -1,7 +1,7 @@
-class AuditReports.Views.QuantityField extends AuditReports.Views.Field
+class AuditReports.Views.QuantityCalcField extends AuditReports.Views.CalcField
   className: 'col-2 end-row'
 
-  inputClass: "js-structure-quantity-field"
+  inputClass: "js-structure-quantity-calc-field"
 
   originalTemplate: _.template """
     <div class="fli js-fli">
@@ -38,12 +38,12 @@ class AuditReports.Views.QuantityField extends AuditReports.Views.Field
     else
       super
 
-  syncFieldValue: ->
+  syncCalcFieldValue: ->
     $.ajax(
       method: 'PUT'
-      url: "/structures/#{@model.get('id')}"
+      url: "/calc/calc_structures/#{@model.get('id')}"
       data:
         structure:
           quantity: @$input.val()
-      success: @_afterSyncFieldValue
+      success: @_afterSyncCalcFieldValue
     )

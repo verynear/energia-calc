@@ -31,41 +31,13 @@ See "icon-font-generator repo for details"
   @extend %icon-font;  
 }
 
-.icon-chevron-down-small:before {
-  content: "\E001"
-}
-.icon-chevron-down:before {
-  content: "\E002"
-}
-.icon-chevron-right-small:before {
-  content: "\E003"
-}
-.icon-chevron-right:before {
-  content: "\E004"
-}
-.icon-chevron-up-small:before {
-  content: "\E005"
-}
-.icon-close-solid:before {
-  content: "\E006"
-}
+
+
 .icon-close:before {
   content: "\E007"
 }
-.icon-grippy:before {
-  content: "\E008"
-}
-.icon-pdf:before {
-  content: "\E009"
-}
-.icon-plus-solid:before {
-  content: "\E00A"
-}
 .icon-plus:before {
   content: "\E00B"
-}
-.icon-reset:before {
-  content: "\E00C"
 }
 .icon-trash:before {
   content: "\E00D"

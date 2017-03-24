@@ -21,7 +21,7 @@ class AuditReports.Views.MeasureContent extends Backbone.View
         <i class="icon-trash"></i>
       <a>
       <a href="#"
-        class='measure__action js-add-structure-link'
+        class='measure__action js-add-calc-structure-link'
         data-trigger='tooltip'
         data-content='Add a new structure to this measure'>
         <i class="icon-plus"></i>
@@ -33,15 +33,15 @@ class AuditReports.Views.MeasureContent extends Backbone.View
     <p>Notes: <%= notes %></p>
   """
 
-  noStructuresTemplate: _.template """
+  noCalcStructuresTemplate: _.template """
     <div class="measure__empty">
-      <a href='#' class='js-add-structure-link'>Add a structure</a> to get
+      <a href='#' class='js-add-calc-structure-link'>Add a structure</a> to get
       started.
     </div>
   """
 
   events:
-    'click .js-add-structure-link': 'onClickAddStructure'
+    'click .js-add-calc-structure-link': 'onClickAddCalcStructure'
     'click .js-delete-measure-link': 'onClickDeleteMeasure'
     'change .js-enable-measure-checkbox': 'onChangeEnableMeasure'
 
@@ -56,7 +56,7 @@ class AuditReports.Views.MeasureContent extends Backbone.View
     )
 
     if @model.get('structure_changes').isEmpty()
-      @$el.append @noStructuresTemplate()
+      @$el.append @noCalcStructuresTemplate()
     else
       @_renderStructureChanges()
       @_renderMeasureSummary()
@@ -75,11 +75,11 @@ class AuditReports.Views.MeasureContent extends Backbone.View
   measureSelectionUrl: () ->
     report_id = @model.get('report_id')
     id = @model.get('id')
-    "/audit_reports/#{report_id}/measure_selections/#{id}"
+    "/calc/audit_reports/#{report_id}/measure_selections/#{id}"
 
-  onClickAddStructure: (event) ->
+  onClickAddCalcStructure: (event) ->
     event.preventDefault()
-    url = "/measure_selections/#{@model.get('id')}/structure_changes/new"
+    url = "/calc/measure_selections/#{@model.get('id')}/structure_changes/new"
     modal = new AuditReports.Views.AddStructureChangeModal(
       collection: @model.get('structure_changes')
       model: @model
