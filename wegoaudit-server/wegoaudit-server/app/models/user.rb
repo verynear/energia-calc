@@ -3,10 +3,22 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :rememberable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable
+  VALID_EMAIL_REGEXP = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  
   has_many :audits
   has_many :memberships
   has_many :organizations, through: :memberships
   has_many :buildings, through: :organizations
+
+  has_many :audit_reports
+  has_many :measure_selections, through: :audit_reports
+
+  belongs_to :calc_organization
+
+  validates :email,
+            format: { with: VALID_EMAIL_REGEXP },
+            allow_blank: true
+
 
   def active_audits
     Audit.where(organization_id: organization_id)
@@ -41,5 +53,17 @@ class User < ActiveRecord::Base
       auth_token: token,
       email: email,
       organization_id: organization_id }
+  end
+
+  def available_reports
+    calc_organization.audit_reports
+  end
+
+  def available_templates
+    calc_organization.report_templates
+  end
+
+  def organization
+    super || NullOrganization.new
   end
 end

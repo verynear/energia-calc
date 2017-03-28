@@ -14,7 +14,7 @@ class WegoauditClient
 
   def initialize(organization_id: nil, wegoaudit_url: nil)
     self.organization_id = organization_id
-    wegoaudit_url ||= Retrocalc::WEGOAUDIT_URL
+    wegoaudit_url ||= "http://#{ENV['WEGOAUDIT_LOCAL_IP']}:9292"
     self.base_uri = wegoaudit_url
   end
 
@@ -89,7 +89,7 @@ class WegoauditClient
       faraday.headers['Content-Type'] = 'application/json'
       faraday.options.timeout = 600
       faraday.adapter Faraday.default_adapter
-      basic_auth = DoorStop.authify(Retrocalc::DOORSTOP_SHARED_SECRET)
+      basic_auth = DoorStop.authify(WegoAudit::DOORSTOP_SHARED_SECRET)
       faraday.basic_auth(basic_auth[:username], basic_auth[:password])
       faraday.response :oj
     end

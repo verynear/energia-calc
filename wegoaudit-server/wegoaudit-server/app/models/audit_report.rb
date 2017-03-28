@@ -5,7 +5,7 @@ class AuditReport < ActiveRecord::Base
   validates :name, presence: true
   validates :wegoaudit_id, presence: true
 
-  belongs_to :calc_user
+  belongs_to :user
   belongs_to :calc_organization
   belongs_to :report_template
 

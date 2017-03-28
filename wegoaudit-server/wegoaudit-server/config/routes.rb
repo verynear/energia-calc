@@ -101,12 +101,9 @@ Rails.application.routes.draw do
     resources :fields, only: [:index]
   end
 
-  root to: 'visitors#index'
-  mount Sidekiq::Web => 'sidekiq'
-
   namespace :calc do
     resources :audit_reports do
-      get 'download_usage', on: :member
+        get 'download_usage', on: :member
 
       resource :display,
              only: [:edit, :update, :show],
@@ -125,8 +122,6 @@ Rails.application.routes.draw do
       resources :measure_selections, only: [:new, :create, :update, :destroy]
     end
 
-    resources :users, only: [:edit, :update]
-
     scope 'measure_selections/:measure_selection_id', as: 'measure_selection' do
       resources :structure_changes, only: [:new, :create, :destroy]
       resources :calc_field_values, only: [:update]
@@ -141,6 +136,8 @@ Rails.application.routes.draw do
     end
 
     resources :calc_structures, only: [:update]
-
   end
+
+  root to: 'visitors#index'
+  mount Sidekiq::Web => 'sidekiq'
 end

@@ -9,7 +9,7 @@
                url: calc_audit_report_measure_selections_path(@audit_report),
                html: { class: 'js-add-measure-form' } do |form| %>
     <div class='form-row'>
-        <%= form.select :measure_id, options_for_measures(@measures)  %>
+        <%= form.select :measure_id, options_for_measures(@calc_measures)  %>
     </div>
 
     <div class="form-actions">

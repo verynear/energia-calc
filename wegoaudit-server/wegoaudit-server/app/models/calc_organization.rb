@@ -1,7 +1,7 @@
 class CalcOrganization < ActiveRecord::Base
   has_many :audit_reports
   has_many :report_templates
-  has_many :calc_users
+  has_many :users
 
   validates :name, presence: true
 

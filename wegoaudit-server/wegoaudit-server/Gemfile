@@ -31,7 +31,8 @@ gem 'sidekiq', '~> 3.4.0'
 gem 'sinatra', '>= 1.3.0', require: false
 gem 'uglifier'
 gem 'whenever', require: false
-gem 'wicked_pdf', git: 'https://github.com/mileszs/wicked_pdf.git'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'   # needed for wicked-pdf
 gem 'kilomeasure', path: 'vendor/gems/kilomeasure'
 gem 'liquid'
 

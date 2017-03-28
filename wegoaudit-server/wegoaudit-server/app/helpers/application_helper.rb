@@ -12,7 +12,7 @@ module ApplicationHelper
     content_for(:page_title) { text }
   end
 
-  def page_title
-    @page_title
-  end
+  # def page_title
+  #   @page_title
+  # end
 end

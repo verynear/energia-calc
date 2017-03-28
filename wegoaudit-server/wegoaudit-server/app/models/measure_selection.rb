@@ -90,7 +90,7 @@ class MeasureSelection < ActiveRecord::Base
 
   private
 
-  def field_value(api_name)
+  def calc_field_value(api_name)
     calc_field_values.find_by(field_api_name: api_name).value
   end
 end

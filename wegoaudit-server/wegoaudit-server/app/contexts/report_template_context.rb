@@ -44,7 +44,7 @@ class ReportTemplateContext < BaseContext
 
   def default_audit_report
     AuditReport.new(
-      user: calc_user,
+      user: current_user,
       name: 'Sample Report',
       created_at: 10.days.ago,
       updated_at: 5.minutes.ago,

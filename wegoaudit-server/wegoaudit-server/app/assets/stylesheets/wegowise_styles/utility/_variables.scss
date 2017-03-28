@@ -21,7 +21,6 @@ $secondary-color: #354d67 !default;
 //------------------
 $grey-lightest: #f5f5f5 !default;
 $grey-light: #e8e8e8 !default;
-$grey: #bababa !default;
 $grey-dark: #757575 !default;
 $grey-darker: #444 !default;
 $grey-darkest: #333 !default;
@@ -43,17 +42,83 @@ $impact: #273a4d !default;
 $placeholder-color: $grey-dark !default;
 
 
+//--header
+$wego-logo-height: 30px;
+$wego-logo-width: 113px;
+
+//--Footer
+$footer-bg: #fff !default;
+$footer-color: $base-font-color !default;
+$footer-link-color: lighten($grey-dark,8%) !default;
+$footer-link-color-hover: #000 !default;
+$footer-line-height: $base-line-height !default;
+
+$section-v-spacing: $base-line-height*2 !default; //Vertical padding on the <section> element
+$site-width: 1160px !default;
+
+// Component
+//-- Subheader
+$subheader-height: $base-line-height*6 !default;
+$subheader-bg-color: #3185eb !default;
+$subheader-color: #fff !default;
+
+// Structure
+//-----------
+$site-inner-width: $site-width - 40; // 20px padding each side
+$measures-tabs-width: 200px;
+$measures-content-width: $site-inner-width - $measures-tabs-width;
+$markdown-preview-width: 600px;
+$markdow-editor-width: $site-inner-width - $markdown-preview-width;
+
+
+// Colours
+//---------
+$accent: #D84315; // Deep orange 800
+$accent900: #BF360C;
+
+$primary50: #E3F2FD;
+$primary100: #BBDEFB;
+$primary: #2196F3; //500
+$primary700: #1976D2;
+$primary800: #1565C0;
+$primary900: #0D47A1;
+
+$link-color: $primary700;
+$link-color-hover: $primary800;
+
+
+// Shades of grey
+//------------------
+$grey50: #FAFAFA;
+$grey100: #F5F5F5;
+$grey200: #EEEEEE;
+$grey300: #E0E0E0;
+$grey400: #BDBDBD;
+$grey500: #9E9E9E;
+$grey: #9E9E9E !default; //500
+$grey600: #757575;
+$grey700: #616161;
+$grey800: #424242;
+$grey900: #212121;
+
+$placeholder-color: #757575 !default;
+$min-legibility: $grey;
+$default-border-color: $grey300;
+$panel-bg: $grey50;
+$panel-border: $default-border-color;
+
 // States and alerts
 //------------------------
+
+//-- Danger
+$danger-font-color: #B71C1C;
+$danger-bg-color: lighten(#FFEBEE, 2%);
+$danger-border-color: #EF9A9A;
+
 // Warning
 $warning-font-color: #8a6d3b !default;
 $warning-bg-color: #fcf8e3 !default;
 $warning-border-color: #fcf8e3 !default;
-
-// Danger
-$danger-font-color: #a94442 !default;
-$danger-bg-color: #f2dede !default;
-$danger-border-color: #ebccd1 !default;
 
 // Success
 $success-font-color: #3c763d !default;
@@ -65,8 +130,6 @@ $info-font-color: #31708f !default;
 $info-bg-color: #d9edf7 !default;
 $info-border-color: #bce8f1 !default;
 
-
-
 // Typography
 //------------
 // Font families
@@ -76,11 +139,12 @@ $title-font-family: 'OpenSansBold', 'Helvetica Neue', Helvetica, Arial, sans-ser
 $secondary-title-font-family: 'OpenSansLight', 'HelveticaNeue-Light', 'Helvetica Neue Light', Arial, sans-serif !default;
 $fixed-font-family: 'inconsolata-1','inconsolata-2', Monaco, 'Courier New', monospace;
 
-// Colors
-$base-font-color: $grey-darkest !default;
-$bold-font-color: $grey-darkest !default;
-$title-font-color: $grey-darker !default;
-$meta-font-color: $grey !default;
+
+//-- Colors
+$base-font-color: #212121;
+$bold-font-color: $base-font-color;
+$title-font-color: $base-font-color;
+$meta-font-color: $min-legibility;
 
 // Sizes
 $base-font-size: 16px !default;
@@ -98,6 +162,17 @@ $h3-size: 23px !default;
 $h3-size-small: 16px !default;
 $h4-size: 19px !default;
 
+
+$cta-letter-spacing: 1px;
+
+// Grid
+//------
+$grid-spacing: 3px;
+
+// Transitions
+//-------------
+$transition-speed: 0.3s;
+$custom-bezier: cubic-bezier(0.465, 0.183, 0.153, 0.946);
 
 // Buttons
 //---------
@@ -156,6 +231,57 @@ $radius: 2px !default;
 $checkmark-size: 50px !default; // Used on thank you pages
 
 
+// Tables
+//--------
+$table-bg-color: darken(#fff,2%);
+$table-border-color: darken(#fff,7%);
+$table-active-row: $grey100;
+
+
+// Tooltips
+//---------
+$tooltip-bg-color: #323232;
+$tooltip-color: #ecf0f1;
+$tooltip-arrow-size: 6px;
+
+
+// Modals
+//---------
+$modal-padding: 20px;
+$modal-header-bg: $grey100;
+
+
+// Titlebar
+//---------
+$titlebar: $primary;
+$titlebar-darker: $primary700;
+$titlebar-darkest: $primary800;
+$titlebar-nav-highlight: $primary100;
+
+
+// FLI
+//-----
+$fli-padding: 4px;
+$fli-label-font-size: 13px;
+$fli-label-color: $grey600;
+
+
+// Measures
+//---------
+$measure-v-spacing: 4px;
+$measure-h-spacing: 6px;
+$measure-active-border: $grey400;
+$measure-details-spacing: $base-line-height/2;
+
+// Structure Change Set
+//---------
+$structure-change-set-width: $measures-content-width - ($measure-details-spacing*2) - 10;
+
+// Totals
+$totals-border: rgba(#fff,0.1);
+$totals-font: $grey50;
+$totals-bg: #333;
+
 // Forms
 //-------
 $form-row-horizontal-padding: 10px;
@@ -190,31 +316,3 @@ $unquoted-inputs-list: ();
   $unquoted-inputs-list: append($unquoted-inputs-list, unquote($input-type), comma);
 }
 $all-text-inputs: $unquoted-inputs-list;
-
-// Tables
-//--------
-$table-bg-color: darken(#fff,2%);
-$table-border-color: darken(#fff,7%);
-
-// Structure
-//-----------
-
-//--header
-$wego-logo-height: 30px;
-$wego-logo-width: 113px;
-
-//--Footer
-$footer-bg: #fff !default;
-$footer-color: $base-font-color !default;
-$footer-link-color: lighten($grey-dark,8%) !default;
-$footer-link-color-hover: #000 !default;
-$footer-line-height: $base-line-height !default;
-
-$section-v-spacing: $base-line-height*2 !default; //Vertical padding on the <section> element
-$site-width: 1100px !default;
-
-// Component
-//-- Subheader
-$subheader-height: $base-line-height*6 !default;
-$subheader-bg-color: #3185eb !default;
-$subheader-color: #fff !default;

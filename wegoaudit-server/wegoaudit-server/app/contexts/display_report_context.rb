@@ -1,7 +1,7 @@
 class DisplayReportContext < BaseContext
   attr_accessor :audit_report,
                 :for_pdf,
-                :calc_user
+                :user
 
   def initialize(*)
     super

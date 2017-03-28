@@ -6,7 +6,7 @@ def load_fields_from_yaml(type, level)
     # the duplicate api_name. This is on purpose to avoid a namespace collision
     # with Wegoaudit.
     #
-    field = CalcField.find_or_initialize_by(
+    field = Field.find_or_initialize_by(
       api_name: api_name,
       value_type: options['value_type'])
     field.attributes = options.merge(level: level)

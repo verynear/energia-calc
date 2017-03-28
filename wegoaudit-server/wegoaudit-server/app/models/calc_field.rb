@@ -7,7 +7,7 @@ class CalcField < ActiveRecord::Base
   validates :api_name, uniqueness: true, presence: true
   validates :value_type, presence: true
 
-  def convert_value(val)
+  def calc_convert_value(val)
     return if val == '' || val.nil?
 
     case value_type

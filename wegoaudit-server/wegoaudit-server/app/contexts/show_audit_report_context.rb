@@ -1,6 +1,6 @@
 class ShowAuditReportContext < BaseContext
   attr_accessor :audit_report,
-                :calc_user
+                :user
 
   def audit_report_as_json
     { measureModalUrl: measure_modal_url,

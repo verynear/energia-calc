@@ -1,6 +1,6 @@
 class EditAuditReportContext < BaseContext
   attr_accessor :audit_report,
-                :calc_user
+                :user
 
   def audit_report_as_json
     { audit_report: audit_report_json,

@@ -1,12 +1,12 @@
 require_relative 'seeds_support'
 
-load_fields_from_yaml(:calc_structure, 'structure')
+load_fields_from_yaml(:structure, 'structure')
 
 structure_types = YAML.load_file(
   Rails.root.join('db', 'fixtures', 'structure_types.yml'))
 
 structure_types.each do |api_name, options|
-  structure_type = CalcStructureType.find_or_initialize_by(
+  structure_type = StructureType.find_or_initialize_by(
     api_name: api_name,
     name: options['name'],
     genus_api_name: api_name)
@@ -40,7 +40,7 @@ measures = {
 }
 
 measures.each do |api_name, measure_name|
-  measure = CalcMeasure.find_or_initialize_by(api_name: api_name)
+  measure = Measure.find_or_initialize_by(api_name: api_name)
   measure.name = measure_name
   measure.save!
 end

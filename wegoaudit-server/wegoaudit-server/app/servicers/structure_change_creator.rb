@@ -39,7 +39,7 @@ class StructureChangeCreator < Generic::Strict
   end
 
   def create_structure(**options)
-    creator = StructureCreator.new(
+    creator = CalcStructureCreator.new(
       { calc_measure: measure_selection.calc_measure,
         structure_change: structure_change }.merge(options)
     )

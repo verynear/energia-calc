@@ -1,7 +1,7 @@
 class AuditReportCreator < Generic::Strict
   attr_accessor :data,
                 :report_template,
-                :calc_user,
+                :user,
                 :wegoaudit_id
 
   attr_reader :audit_report
@@ -40,7 +40,7 @@ class AuditReportCreator < Generic::Strict
     @audit_report = AuditReport.create!(
       name: data['name'],
       user_id: user.id,
-      organization_id: calc_user.calc_organization_id,
+      organization_id: user.organization_id,
       data: data,
       report_template: report_template,
       wegoaudit_id: wegoaudit_id)
@@ -52,11 +52,11 @@ class AuditReportCreator < Generic::Strict
 
   def create_field_values
     CalcField.where(level: 'audit_report').each do |calc_field|
-      options = { field_api_name: field.api_name }
+      options = { field_api_name: calc_field.api_name }
       if calc_field.api_name == 'audit_date'
         options[:value] = audit_report.audit.date
-      elsif audit_report.audit.field_values[calc_field.api_name] != nil
-        options[:value] = audit_report.audit.field_values[calc_field.api_name]
+      elsif audit_report.audit.calc_field_values[calc_field.api_name] != nil
+        options[:value] = audit_report.audit.calc_field_values[calc_field.api_name]
       end
 
       audit_report.calc_field_values.create!(options)

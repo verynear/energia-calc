@@ -1,7 +1,7 @@
 class Calc::ReportTemplatesController < SecuredController
   def create
     create_params = report_template_params.merge(
-      organization_id: current_user.calc_organization.id
+      organization_id: current_user.organization_id
     )
     @template = ReportTemplate.new(create_params)
 

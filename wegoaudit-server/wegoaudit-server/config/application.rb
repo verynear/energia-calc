@@ -16,23 +16,17 @@ require 'sprockets/railtie'
 Bundler.require(*Rails.groups)
 Dotenv::Railtie.load if defined?(Dotenv)
 
-require File.expand_path('../../lib/utils', __FILE__)
 require File.expand_path('../../lib/constants', __FILE__)
 
 module Wegosurvey
   class Application < Rails::Application
 
     config.autoload_paths += %W[
-      #{config.root}/lib
-      #{config.root}/app/servicers
-      #{config.root}/app/contexts
-      #{config.root}/app/presenters
-      #{config.root}/app/presenters/serializers
       #{config.root}/app/controllers/concerns
       #{config.root}/app/models/concerns
+      #{config.root}/lib
     ]
 
-    config.active_record.raise_in_transactional_callbacks = true
 
     config.generators do |g|
       g.test_framework :rspec,
@@ -49,18 +43,9 @@ module Wegosurvey
       storage: :filesystem,
     }
 
-    if ENV['USE_BASIC_AUTH']
-      config.middleware.use '::Rack::Auth::Basic' do |u, p|
-        [u, p] == [ENV['BASIC_AUTH_USERNAME'], ENV['BASIC_AUTH_PASSWORD']]
-      end
-    end
+  
 
-    config.after_initialize do
-      require Rails.root.join('lib', 'ext', 'active_record')
-    end
-
-    config.assets.precompile += %w[ pdf.css elevate_pdf.css nei_pdf.css]
-
+  
 
 
     # Settings in config/environments/* take precedence over those specified here.

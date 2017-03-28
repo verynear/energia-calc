@@ -1,9 +1,3 @@
-GIT
-  remote: https://github.com/mileszs/wicked_pdf.git
-  revision: b58adccb166e55d3d7a85c89b6c696ca2d33eb90
-  specs:
-    wicked_pdf (1.1.0)
-
 PATH
   remote: vendor/gems/door_stop
   specs:
@@ -424,6 +418,8 @@ GEM
     websocket (1.2.4)
     whenever (0.9.7)
       chronic (>= 0.6.3)
+    wicked_pdf (1.1.0)
+    wkhtmltopdf-binary (0.12.3.1)
     wkhtmltopdf-binary-edge (0.12.4.0)
     wkhtmltopdf-heroku (2.12.3.0)
     xpath (2.0.0)
@@ -500,7 +496,8 @@ DEPENDENCIES
   uglifier
   webmock
   whenever
-  wicked_pdf!
+  wicked_pdf
+  wkhtmltopdf-binary
   wkhtmltopdf-binary-edge
   wkhtmltopdf-heroku
 

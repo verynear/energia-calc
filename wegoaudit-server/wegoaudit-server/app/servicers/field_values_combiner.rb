@@ -11,7 +11,7 @@ class FieldValuesCombiner < Generic::Strict
 
   def combined_field_values
     composite_fields = field_keys.each_with_object({}) do |field_key, composite|
-      field_values = field_values_for_key(field_key)
+      calc_field_values = field_values_for_key(field_key)
 
       unless can_average?(calc_field_values) && calc_field_values.length > 1
         composite[field_key] = calc_field_values.first
