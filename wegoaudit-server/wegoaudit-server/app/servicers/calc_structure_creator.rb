@@ -28,7 +28,7 @@ class CalcStructureCreator < Generic::Strict
 
   private
 
-  def attributes_for_field(calc_field)
+  def attributes_for_calc_field(calc_field)
     api_name = calc_field.api_name
     values_from_audit = structure_change.wegoaudit_field_values[api_name]
     if values_from_audit
@@ -38,8 +38,8 @@ class CalcStructureCreator < Generic::Strict
     end
   end
 
-  def create_field_value(calc_structure, calc_field)
-    attributes = attributes_for_field(calc_field)
+  def create_calc_field_value(calc_structure, calc_field)
+    attributes = attributes_for_calc_field(calc_field)
     # There's an ordering issue where you have to set field_api_name before you
     # can set value
     calc_field_value = CalcFieldValue.new(
@@ -49,7 +49,7 @@ class CalcStructureCreator < Generic::Strict
     calc_field_value.save!
   end
 
-  def create_field_values_for(calc_structure)
+  def create_calc_field_values_for(calc_structure)
     structure_change.calc_fields.map do |calc_field|
       proposed_only = structure_type_definition.proposed_only_field?(calc_field)
       existing_only = structure_type_definition.existing_only_field?(calc_field)
@@ -59,7 +59,7 @@ class CalcStructureCreator < Generic::Strict
       next if proposed && existing_only
       next if !proposed && structure_change.interaction_fields.include?(calc_field)
 
-      create_field_value(calc_structure, calc_field)
+      create_calc_field_value(calc_structure, calc_field)
     end
   end
 

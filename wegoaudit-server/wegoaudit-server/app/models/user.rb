@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
     calc_organization.report_templates
   end
 
-  def organization
+  def calc_organization
     super || NullOrganization.new
   end
 end

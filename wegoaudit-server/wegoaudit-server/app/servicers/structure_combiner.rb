@@ -25,6 +25,6 @@ class StructureCombiner < Generic::Strict
   end
 
   def n_structures_sum
-    structures.map(&:n_structures).reduce(0.0) { |sum, n| sum + n }.round
+    calc_structures.map(&:n_structures).reduce(0.0) { |sum, n| sum + n }.round
   end
 end

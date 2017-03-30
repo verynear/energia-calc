@@ -34,13 +34,8 @@ class UserOrganizationUpdater < Generic::Strict
     }
   end
 
-  def organizations
-    WegowiseClient.new(user: user).organizations
-  end
-  memoize :organizations
-
-  def remove_user_from_organization
-    user.update!(calc_organization: nil)
+  def remove_calc_user_from_organization
+    calc_user.update!(calc_organization: nil)
   end
 
   def wegowise_org

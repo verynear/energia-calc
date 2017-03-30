@@ -2,7 +2,7 @@ class Calc::CalcStructuresController < SecuredController
   before_action :set_structure
 
   def update
-    @calc_structure.update!(structure_params)
+    @calc_structure.update!(calc_structure_params)
 
     json = {
       audit_report_summary: AuditReportSummarySerializer.new(
@@ -28,7 +28,7 @@ class Calc::CalcStructuresController < SecuredController
 
   private
 
-  def structure_params
+  def calc_structure_params
     params.require(:calc_structure).permit(:name, :quantity)
   end
 end

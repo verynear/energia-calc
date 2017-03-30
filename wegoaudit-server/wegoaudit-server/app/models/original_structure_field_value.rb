@@ -5,7 +5,7 @@ class OriginalStructureFieldValue < ActiveRecord::Base
   delegate :value_type, to: :calc_field
   delegate :name, to: :calc_field, prefix: true
 
-  def field
+  def calc_field
     CalcField.by_api_name!(field_api_name)
   end
 

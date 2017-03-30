@@ -12,7 +12,7 @@ class StructureTypeDefinition < Generic::Strict
     field_definitions.fetch(calc_field.api_name.to_sym, {})[:existing_only]
   end
 
-  def field_definitions
+  def calc_field_definitions
     definition.fetch(:calc_fields, {})
   end
 
@@ -25,6 +25,6 @@ class StructureTypeDefinition < Generic::Strict
   end
 
   def proposed_only_field?(calc_field)
-    field_definitions.fetch(calc_field.api_name.to_sym, {})[:proposed_only]
+    calc_field_definitions.fetch(calc_field.api_name.to_sym, {})[:proposed_only]
   end
 end

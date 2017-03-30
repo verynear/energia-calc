@@ -19,8 +19,8 @@ class StructureChangeCreator < Generic::Strict
 
       create_original_structure_field_values
 
-      create_structure(proposed: false)
-      create_structure(proposed: true)
+      create_calc_structure(proposed: false)
+      create_calc_structure(proposed: true)
     end
   end
 
@@ -38,7 +38,7 @@ class StructureChangeCreator < Generic::Strict
       end
   end
 
-  def create_structure(**options)
+  def create_calc_structure(**options)
     creator = CalcStructureCreator.new(
       { calc_measure: measure_selection.calc_measure,
         structure_change: structure_change }.merge(options)

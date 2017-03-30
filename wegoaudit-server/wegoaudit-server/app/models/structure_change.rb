@@ -12,7 +12,7 @@ class StructureChange < ActiveRecord::Base
     structure_type_definition.determining?
   end
 
-  def fields
+  def calc_fields
     @calc_fields ||= measure_selection.fields_for_structure_type(structure_type)
   end
 

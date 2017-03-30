@@ -20,11 +20,11 @@ class MeasureDefinition < Generic::Strict
     MeasureDefinitionsRegistry.get(api_name)
   end
 
-  def fields_for_structure_type(structure_type)
-    structure_type_definition = structure_type_definition_for(structure_type)
-    return [] unless structure_type_definition
+  def fields_for_structure_type(calc_structure_type)
+    calc_structure_type_definition = calc_structure_type_definition_for(calc_structure_type)
+    return [] unless calc_structure_type_definition
 
-    structure_type_definition.fields
+    calc_structure_type_definition.calc_fields
   end
   memoize :fields_for_structure_type
 
@@ -55,18 +55,18 @@ class MeasureDefinition < Generic::Strict
   end
   memoize :measure_fields
 
-  def structure_type_definition_for(structure_type)
-    structure_type_definitions.find do |structure_type_definition|
-      structure_type_definition.structure_type == structure_type
+  def structure_type_definition_for(calc_structure_type)
+    calc_structure_type_definitions.find do |calc_structure_type_definition|
+      calc_structure_type_definition.calc_structure_type == calc_structure_type
     end
   end
   memoize :structure_type_definition_for
 
   def structure_type_definitions
-    inputs_hash.map do |st_api_name, field_names|
+    inputs_hash.map do |st_api_name, calc_field_names|
       next if [:calc_measure, :audit].include?(st_api_name)
 
-      fields = field_names.map do |api_name|
+      fields = calc_field_names.map do |api_name|
         get_field(api_name)
       end
 
