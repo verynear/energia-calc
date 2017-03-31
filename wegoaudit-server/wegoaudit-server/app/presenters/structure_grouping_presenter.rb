@@ -18,7 +18,7 @@ class StructureGroupingPresenter
           if field_values.empty?
             StructureFieldPresenter.new(structure, field, collection)
           else
-            StructureFieldPresenter.new(structure, field, collection, field_values[field.id]['string_value'])
+            StructureFieldPresenter.new(structure, field, collection, field_values)
           end
         end
       end
