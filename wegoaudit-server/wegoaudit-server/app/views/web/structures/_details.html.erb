@@ -30,7 +30,8 @@
       <%- grouping.fields.each do |field| %>
         <%= form_for [current_audit, field],
               method: :put,
-              remote: true do |f| %>
+              remote: true,
+              url: audit_field_path(current_audit.id, field) do |f| %>
           <%= hidden_field_tag :structure_id, structure.id %>
           <div class="form-row">
             <%= label_tag field.name.parameterize,

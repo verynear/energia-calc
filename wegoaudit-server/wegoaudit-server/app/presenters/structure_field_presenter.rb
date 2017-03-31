@@ -1,4 +1,8 @@
 class StructureFieldPresenter
+
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
+
   VALUE_TYPE_PARTIALS = {
     'currency' => 'text_input',
     'date' => 'date_select',
@@ -42,7 +46,9 @@ class StructureFieldPresenter
     end
   end
 
-  
+  def persisted?
+    false
+  end
 
   def initialize(structure, field, field_value = nil, string_value = nil)
     @structure = structure
