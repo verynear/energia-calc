@@ -1,7 +1,7 @@
 class OriginalStructureFieldValue < ActiveRecord::Base
   belongs_to :audit_report
 
-  delegate :convert_value, to: :calc_field
+  delegate :calc_convert_value, to: :calc_field
   delegate :value_type, to: :calc_field
   delegate :name, to: :calc_field, prefix: true
 
@@ -14,7 +14,7 @@ class OriginalStructureFieldValue < ActiveRecord::Base
   end
 
   def non_wegoaudit_structure
-    Wegoaudit::Structure.new(
+    Retrocalc::Structure.new(
       id: SecureRandom.uuid,
       audit: audit,
       n_structures: 1,
@@ -25,12 +25,12 @@ class OriginalStructureFieldValue < ActiveRecord::Base
   end
 
   def original_value
-    wegoaudit_structure.field_values
+    wegoaudit_structure.calc_field_values
       .fetch(field_api_name, value)
   end
 
   def value
-    convert_value(self[:value])
+    calc_convert_value(self[:value])
   end
 
   def wegoaudit_structure

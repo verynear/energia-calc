@@ -167,7 +167,7 @@ class MeasureSelectionCalculator < Generic::Strict
 
   def calculated_inputs
     inputs = {}
-    if measure_selection.measure.api_name ==
+    if measure_selection.calc_measure.api_name ==
         'install_temperature_limiting_thermostats'
       inputs[:average_outdoor_temperature] = average_outdoor_temperature
     end
@@ -236,7 +236,7 @@ class MeasureSelectionCalculator < Generic::Strict
     after_inputs = remap_inputs(after_inputs)
     before_inputs = remap_inputs(before_inputs)
 
-    measure_selection.measure_definition
+    measure_selection.calc_measure_definition
       .run_retrofit_calculations(
         before_inputs: before_inputs,
         after_inputs: after_inputs,
@@ -246,7 +246,7 @@ class MeasureSelectionCalculator < Generic::Strict
 
   def remap_inputs(inputs)
     inputs.each_with_object({}) do |(key, value), hash|
-      mapping = measure_selection.measure_definition.fields_mapping.invert[key.to_s]
+      mapping = measure_selection.calc_measure_definition.fields_mapping.invert[key.to_s]
       if mapping
         hash[mapping.to_sym] = value
       else
@@ -272,7 +272,7 @@ class MeasureSelectionCalculator < Generic::Strict
       return unless results_hash # rubocop:disable Lint/NonLocalExitFromIterator
 
       results_hash.each do |key, value|
-        next unless value.is_a?(Numeric)
+        # next unless value.is_a?(Numeric)
 
         summary_hash[key] ||= 0
         summary_hash[key] += value

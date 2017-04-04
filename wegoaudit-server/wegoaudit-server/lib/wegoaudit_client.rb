@@ -1,98 +1,58 @@
 class WegoauditClient
-  attr_accessor :base_uri,
-                :wegowise_id,
+  attr_accessor :wegowise_id,
                 :organization_id
 
-  class ApiError < StandardError
-    attr_reader :code
-
-    def initialize(message, code = nil)
-      @code = code
-      super(message)
-    end
-  end
-
-  def initialize(organization_id: nil, wegoaudit_url: nil)
-    self.organization_id = organization_id
-    wegoaudit_url ||= "http://#{ENV['WEGOAUDIT_LOCAL_IP']}:9292"
-    self.base_uri = wegoaudit_url
+  def initialize(organization_id: nil)
+    self.organization_id = @user.organization_id
   end
 
   def audit(audit_id)
     raise ArgumentError unless audit_id.present?
 
-    response = get("/audits/#{audit_id}", query: { organization_id: organization_id })
+    audit = @user.active_audits.find(id: audit_id)
 
-    error = response.body['error']
+    response = AuditJsonPresenter.new(audit)
 
-    if error
-      raise WegoauditClient::ApiError.new(error['message'], error['code'])
-    else
-      response.body['audit']
-    end
+    return response
   end
 
   def audits_list
-    response = get('/audits', query: { organization_id: organization_id })
-
-    error = response.body['error']
-
-    if error && error['code'] == 'user_not_found'
-      []
-    elsif error
-      raise WegoauditClient::ApiError.new(error['message'], error['code'])
-    else
-      response.body['audits']
+    response = @user.active_audits.map do |audit|
+      AuditJsonPresenter.new(audit, top_level_only: true)
     end
+
+    return response
   end
 
   def fields_list
-    response = get('/fields')
-
-    error = response.body['error']
-
-    if error
-      raise WegoauditClient::ApiError.new(error['message'], error['code'])
-    else
-      response.body['fields']
+    response = Field.uniq(:api_name).order(:id).map do |field|
+      options = field.field_enumerations.order(:display_order).pluck(:value)
+      { name: field.name,
+        value_type: field.value_type,
+        api_name: field.api_name,
+        options: options
+      }
     end
+
+    return response
   end
 
   def measures_list
-    response = get('/measures')
-
-    error = response.body['error']
-
-    if error
-      raise WegoauditClient::ApiError.new(error['message'], error['code'])
-    else
-      response.body['measures']
+    response = Measure.all.map do |measure|
+      { name: measure.name,
+        api_name: measure.api_name }
     end
+
+    return response
   end
 
   def structure_types_list
-    response = get('/structure_types')
+    response = StructureType.uniq(:api_name).order(:id).map do |structure_type|
+      next if structure_type.api_name == 'audit'
+      StructureTypeJsonPresenter.new(structure_type).as_json
+    end.compact
 
-    error = response.body['error']
-
-    if error
-      raise WegoauditClient::ApiError.new(error['message'], error['code'])
-    else
-      response.body['structure_types']
-    end
+    return response
   end
 
-  private
-
-  def get(path, options = {})
-    connection = Faraday.new(url: base_uri) do |faraday|
-      faraday.headers['Content-Type'] = 'application/json'
-      faraday.options.timeout = 600
-      faraday.adapter Faraday.default_adapter
-      basic_auth = DoorStop.authify(WegoAudit::DOORSTOP_SHARED_SECRET)
-      faraday.basic_auth(basic_auth[:username], basic_auth[:password])
-      faraday.response :oj
-    end
-    connection.get("/retrocalc#{path}", options[:query])
-  end
 end

@@ -62,14 +62,14 @@ class FullAuditReport < Generic::Strict
         field_api_name = row[:field_api_name]
         value = row[:value]
         hash[structure_wegoaudit_id] ||= {}
-        value = CalcField.by_api_name!(field_api_name).convert_value(value)
+        value = CalcField.by_api_name!(field_api_name).calc_convert_value(value)
         hash[structure_wegoaudit_id][field_api_name] = value
       end
   end
   memoize :original_structure_values
 
   def usage_values
-    field_values_hash.slice(*Retrocalc::BUILDING_USAGE_FIELDS)
+    field_values_hash.slice(*WegoAudit::BUILDING_USAGE_FIELDS)
       .each_with_object({}) do |(key, value), hash|
       hash[key] ||= value
       hash[key] ||= 0
@@ -97,7 +97,7 @@ class FullAuditReport < Generic::Strict
   def field_values_for_object(object)
     object.calc_field_values.pluck(:field_api_name, :value)
       .each_with_object({}) do |(field_api_name, value), hash|
-      value = CalcField.by_api_name!(field_api_name).convert_value(value)
+      value = CalcField.by_api_name!(field_api_name).calc_convert_value(value)
       hash[field_api_name] = value
     end.symbolize_keys
   end

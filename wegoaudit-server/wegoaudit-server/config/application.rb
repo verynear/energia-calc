@@ -25,6 +25,10 @@ module Wegosurvey
       #{config.root}/app/controllers/concerns
       #{config.root}/app/models/concerns
       #{config.root}/lib
+      #{config.root}/app/servicers
+      #{config.root}/app/contexts
+      #{config.root}/app/presenters
+      #{config.root}/app/presenters/serializers
     ]
 
 
@@ -43,7 +47,9 @@ module Wegosurvey
       storage: :filesystem,
     }
 
-  
+    config.after_initialize do
+      require Rails.root.join('lib', 'ext', 'active_record')
+    end
 
   
 

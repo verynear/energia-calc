@@ -12,8 +12,8 @@ class StructureChange < ActiveRecord::Base
     structure_type_definition.determining?
   end
 
-  def calc_fields
-    @calc_fields ||= measure_selection.fields_for_structure_type(structure_type)
+  def fields
+    @fields ||= measure_selection.fields_for_structure_type(calc_structure_type)
   end
 
   def grouped_structures
@@ -33,7 +33,7 @@ class StructureChange < ActiveRecord::Base
   def interaction_field_values
     @interaction_fields ||= measure_selection.audit_report
       .original_structure_field_values.where(
-        structure_wegoaudit_id: structure_wegoaudit_id
+        calc_structure_wegoaudit_id: calc_structure_wegoaudit_id
       )
   end
 
@@ -42,7 +42,7 @@ class StructureChange < ActiveRecord::Base
   end
 
   def original_structure
-    @original_structure ||= calc_structures.find { |structure| !calc_structure.proposed? }
+    @original_structure ||= calc_structures.find { |calc_structure| !calc_structure.proposed? }
   end
 
   def proposed_structure
@@ -50,7 +50,7 @@ class StructureChange < ActiveRecord::Base
   end
 
   def structure_type_definition
-    measure_selection.structure_type_definition_for(structure_type)
+    measure_selection.structure_type_definition_for(calc_structure_type)
   end
 
   def wegoaudit_field_values
@@ -61,7 +61,7 @@ class StructureChange < ActiveRecord::Base
     return non_wegoaudit_structure unless structure_wegoaudit_id
 
     struct = grouped_structures.find do |calc_structure|
-      calc_structure.id == structure_wegoaudit_id
+      calc_structure.id == calc_structure_wegoaudit_id
     end
 
     struct || non_wegoaudit_structure
@@ -70,13 +70,13 @@ class StructureChange < ActiveRecord::Base
   private
 
   def non_wegoaudit_structure
-    Wegoaudit::Structure.new(
+    Retrocalc::Structure.new(
       id: SecureRandom.uuid,
       audit: audit,
       n_structures: 1,
       name: 'Unnamed',
       field_values: {},
-      structure_type: { 'api_name' => structure_type.api_name }
+      calc_structure_type: { 'api_name' => calc_structure_type.api_name }
     )
   end
 end

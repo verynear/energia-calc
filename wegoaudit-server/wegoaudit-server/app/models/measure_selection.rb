@@ -2,7 +2,7 @@ class MeasureSelection < ActiveRecord::Base
   include RankedModel
   ranks :calculate_order, with_same: :audit_report_id
 
-  validates :measure_id, presence: true
+  validates :calc_measure_id, presence: true
   validates :audit_report_id, presence: true
 
   belongs_to :calc_measure
@@ -13,7 +13,7 @@ class MeasureSelection < ActiveRecord::Base
   has_many :calc_structures, through: :structure_changes
 
   delegate :audit, to: :audit_report
-  delegate :structure_types, to: :calc_measure
+  delegate :calc_structure_types, to: :calc_measure
   delegate :fields_for_structure_type, to: :calc_measure
   delegate :grouping_field_api_name, to: :calc_measure
   delegate :name, to: :calc_measure, prefix: true
@@ -29,7 +29,7 @@ class MeasureSelection < ActiveRecord::Base
            :for_electric?,
            :for_gas?,
            :for_oil?,
-           to: :measure_definition
+           to: :calc_measure_definition
 
   def belongs_to_user?(user)
     audit_report.user == user
@@ -39,8 +39,8 @@ class MeasureSelection < ActiveRecord::Base
     calc_field_value('degradation_rate')
   end
 
-  def has_structure_change_for(structure_type)
-    structure_changes.where(calc_structure_type: structure_type.id).exists?
+  def has_structure_change_for(calc_structure_type)
+    structure_changes.where(calc_structure_type_id: calc_structure_type.id).exists?
   end
 
   def relevant_calculations

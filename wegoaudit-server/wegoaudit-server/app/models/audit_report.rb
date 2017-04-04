@@ -22,7 +22,7 @@ class AuditReport < ActiveRecord::Base
   end
 
   def audit
-    @audit ||= Wegoaudit::Audit.new(data)
+    @audit ||= Retrocalc::Audit.new(data)
   end
 
   def belongs_to_user?(other_user)

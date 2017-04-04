@@ -2,10 +2,10 @@ class Calc::MeasureSelectionsController < SecuredController
   before_action :set_audit_report
 
   def create
-    measure = CalcMeasure.find(params[:measure_selection][:measure_id])
+    calc_measure = CalcMeasure.find(params[:measure_selection][:measure_id])
 
     selection = MeasureSelectionCreator.new(
-      measure: measure,
+      calc_measure: calc_measure,
       audit_report: @audit_report).create
 
     calculator = AuditReportCalculator.new(audit_report: @audit_report)
