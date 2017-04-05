@@ -1,7 +1,7 @@
-class AuditReports.Views.AuditReportNameCalcField extends AuditReports.Views.CalcField
+class AuditReports.Views.AuditReportNameField extends AuditReports.Views.Field
   className: 'col-3'
 
-  inputClass: "js-audit-report-name-calc-field"
+  inputClass: "js-audit-report-name-field"
 
   syncFieldValue: ->
     $.ajax(

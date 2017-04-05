@@ -1,7 +1,7 @@
 module Retrocalc
   class ApiController < ApplicationController
     def load_user
-      @user = User.find_by(organization_id: organization_id)
+      @user = current_user
     end
 
     def organization_id

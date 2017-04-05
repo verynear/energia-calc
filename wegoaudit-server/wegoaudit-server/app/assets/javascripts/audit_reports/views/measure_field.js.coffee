@@ -1,6 +1,6 @@
-class AuditReports.Views.MeasureCalcField extends AuditReports.Views.CalcField
+class AuditReports.Views.MeasureField extends AuditReports.Views.Field
   className: 'col-3'
-  inputClass: "js-measure-selection-calc-field"
+  inputClass: "js-measure-selection-field"
 
   syncUrl: ->
     "/calc/measure_selections/#{@model.get('measure_summary').get('id')}/" +

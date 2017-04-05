@@ -1,18 +1,18 @@
-class AuditReports.Views.RecommendationCalcField extends AuditReports.Views.CalcField
+class AuditReports.Views.DescriptionField extends AuditReports.Views.Field
   className: 'col-6'
 
-  inputClass: "js-recommendation-calc-field"
+  inputClass: "js-description-field"
 
   template: _.template """
     <div class="fli js-fli">
-      <div class="fli__label">Recommendation</div>
+      <div class="fli__label">Description</div>
       <textarea class="fli__input js-fli-input"><%= value %></textarea>
     </div>
   """
 
   setHtml: ->
     @template(
-      value: @model.get('recommendation')
+      value: @model.get('description')
     )
 
   syncCalcFieldValue: ->
@@ -22,9 +22,9 @@ class AuditReports.Views.RecommendationCalcField extends AuditReports.Views.Calc
            "measure_selections/#{@model.get('id')}"
       data:
         measure_selection:
-          recommendation: @$input.val()
-      success: @_afterSyncCalcFieldValue
+          description: @$input.val()
+      success: @_afterSyncFieldValue
     )
 
-  _afterSyncCalcFieldValue: (data) ->
+  _afterSyncFieldValue: (data) ->
     # noop

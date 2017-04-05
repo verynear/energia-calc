@@ -1,4 +1,4 @@
-class AuditReports.Views.AuditReportCalcField extends AuditReports.Views.CalcField
+class AuditReports.Views.AuditReportField extends AuditReports.Views.Field
   className: 'col-3'
   inputClass: "js-measure-selection-field"
 

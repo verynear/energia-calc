@@ -1,4 +1,4 @@
-class AuditReports.Views.StaticCalcField extends Backbone.View
+class AuditReports.Views.StaticField extends Backbone.View
   className: "col-3"
 
   template: _.template """

@@ -1,13 +1,13 @@
 class AuditReports.Views.EditAuditReportPage extends Backbone.View
   initialize: (options = {}) ->
-    { @measureModalUrl, @calcFields } = options
+    { @measureModalUrl, @Fields } = options
 
   render: ->
     @$('.content > .container')
       .html("<div class='js-edit-audit-report'></div>")
     $editAuditReport = $('.js-edit-audit-report')
-    @calc_fields.forEach (section) =>
-      row = new AuditReports.Views.AuditReportCalcFieldsRow(
+    @fields.forEach (section) =>
+      row = new AuditReports.Views.AuditReportFieldsRow(
         model: @model
         section: section)
       $editAuditReport.append(row.render())

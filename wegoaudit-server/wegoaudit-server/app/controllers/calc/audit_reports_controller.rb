@@ -1,16 +1,12 @@
 class Calc::AuditReportsController < SecuredController
   def create
-    data = wegoaudit_client.audit(params[:audit_report][:id])
+    data = audit_digest.new_audit(params[:audit_report][:id])
     audit_report = AuditReportCreator.new(
       data: data,
       user: current_user,
       wegoaudit_id: params[:audit_report][:id]).create
 
     redirect_to calc_audit_report_path(audit_report.id)
-
-  rescue WegoauditClient::ApiError => e
-    flash[:alert] = "Error importing audit: #{e.message}"
-    redirect_to calc_audit_reports_path
   end
 
   def destroy
@@ -35,7 +31,7 @@ class Calc::AuditReportsController < SecuredController
 
   def edit
     @audit_report = audit_report
-    @page_title = "Edit data for \"#{@audit_report.audit_name}\""
+    @page_title = "Edit data for \"#{@audit_report.name}\""
 
     @context = EditAuditReportContext.new(
       user: current_user,
@@ -49,18 +45,15 @@ class Calc::AuditReportsController < SecuredController
 
   def new
     @page_title = 'Create report'
-    @audits = wegoaudit_client.audits_list.map do |hash|
-      Wegoaudit::Audit.new(hash)
+    @audits = audit_digest.audits_list.map do |hash|
+      TempAudit.new(hash)
     end
-    render layout: false
-  rescue WegoauditClient::ApiError
-    @error = 'Error retrieving list of audits from WegoAudit'
     render layout: false
   end
 
   def show
     @audit_report = audit_report
-    @page_title = "Report based on \"#{@audit_report.audit_name}\""
+    @page_title = "Report based on \"#{@audit_report.name}\""
 
     @context = ShowAuditReportContext.new(
       user: current_user,
@@ -89,7 +82,7 @@ class Calc::AuditReportsController < SecuredController
     params.require(:audit_report).permit(:name, :wegoaudit_photo_id)
   end
 
-  def wegoaudit_client
-    @client ||= WegoauditClient.new(organization_id: current_user.organization_id)
+  def audit_digest
+    @audit_digest ||= AuditDigest.new(organization_id: current_user.organization_id)
   end
 end

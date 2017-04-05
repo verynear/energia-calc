@@ -14,9 +14,9 @@ class OriginalStructureFieldValue < ActiveRecord::Base
   end
 
   def non_wegoaudit_structure
-    Retrocalc::Structure.new(
+    TempStructure.new(
       id: SecureRandom.uuid,
-      audit: audit,
+      audit: temp_audit,
       n_structures: 1,
       name: 'Unnamed',
       field_values: {},

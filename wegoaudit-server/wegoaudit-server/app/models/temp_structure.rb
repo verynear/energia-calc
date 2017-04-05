@@ -1,6 +1,5 @@
-module Retrocalc
-  class Structure < Generic::Strict
-    attr_accessor :audit,
+class Structure < Generic::Strict
+    attr_accessor :temp_audit,
                   :id,
                   :n_structures,
                   :name,
@@ -65,7 +64,7 @@ module Retrocalc
     def sample_group
       return unless sample_group_id
 
-      sample_groups = audit.sample_groups.map do |group|
+      sample_groups = temp_audit.sample_groups.map do |group|
         HashWithIndifferentAccess.new(group)
       end
       sample_groups.find { |group| group[:id] == sample_group_id }
@@ -80,4 +79,3 @@ module Retrocalc
       @structure_type = CalcStructureType.by_api_name!(hash['api_name'])
     end
   end
-end

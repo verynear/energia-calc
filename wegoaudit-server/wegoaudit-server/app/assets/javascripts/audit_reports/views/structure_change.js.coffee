@@ -3,11 +3,11 @@ class AuditReports.Views.StructureChange extends Backbone.View
     'click .js-delete-structure-change': 'deleteStructureChange'
 
   tagName: 'div'
-  className: 'calc_structure'
+  className: 'structure'
   template: _.template """
     <div class='structure__change'>
       <div class='structure__title'>
-        <%= index %> - <%= calcStructureTypeName  %>
+        <%= index %> - <%= structureTypeName  %>
       </div>
       <a href="#"
          class="structure__change__delete
@@ -49,7 +49,7 @@ class AuditReports.Views.StructureChange extends Backbone.View
   render: ->
     html = @template(
       index: @index + 1
-      calcStructureTypeName: @model.get('calc_structure_type_name')
+      structureTypeName: @model.get('calc_structure_type_name')
     )
     @$el.html(html)
     @$originalStructuresColumn = @$('.js-original-structures-column')

@@ -1,4 +1,4 @@
-class AuditReports.Models.CalcFieldValue extends Backbone.RelationalModel
+class AuditReports.Models.FieldValue extends Backbone.RelationalModel
   defaults:
     id: ''
     name: ''
@@ -16,4 +16,4 @@ class AuditReports.Models.CalcFieldValue extends Backbone.RelationalModel
     else
       value.existing
 
-AuditReports.Models.CalcFieldValue.setup()
+AuditReports.Models.FieldValue.setup()

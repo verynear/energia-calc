@@ -2,7 +2,7 @@ class StructureChange < ActiveRecord::Base
   belongs_to :measure_selection
   belongs_to :calc_structure_type
 
-  delegate :audit, to: :measure_selection
+  delegate :temp_audit, to: :measure_selection
   delegate :api_name, to: :calc_structure_type, prefix: true
 
   has_many :calc_field_values
@@ -60,8 +60,8 @@ class StructureChange < ActiveRecord::Base
   def wegoaudit_structure
     return non_wegoaudit_structure unless structure_wegoaudit_id
 
-    struct = grouped_structures.find do |calc_structure|
-      calc_structure.id == calc_structure_wegoaudit_id
+    struct = grouped_structures.find do |structure|
+      structure.id == structure_wegoaudit_id
     end
 
     struct || non_wegoaudit_structure
@@ -70,9 +70,9 @@ class StructureChange < ActiveRecord::Base
   private
 
   def non_wegoaudit_structure
-    Retrocalc::Structure.new(
+    TempStructure.new(
       id: SecureRandom.uuid,
-      audit: audit,
+      audit: temp_audit,
       n_structures: 1,
       name: 'Unnamed',
       field_values: {},

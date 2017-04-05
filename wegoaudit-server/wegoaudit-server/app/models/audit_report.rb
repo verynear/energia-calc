@@ -1,5 +1,4 @@
 class AuditReport < ActiveRecord::Base
-  delegate :name, to: :audit, prefix: true
   delegate :default_report_template, to: :calc_organization
 
   validates :name, presence: true
@@ -22,7 +21,7 @@ class AuditReport < ActiveRecord::Base
   end
 
   def audit
-    @audit ||= Retrocalc::Audit.new(data)
+    @audit ||= TempAudit.new(data)
   end
 
   def belongs_to_user?(other_user)

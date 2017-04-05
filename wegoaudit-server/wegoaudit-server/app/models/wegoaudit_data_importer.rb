@@ -5,7 +5,7 @@ class WegoauditDataImporter
 
   def import_entities(type)
     begin
-      client = WegoauditClient.new(organization_id: nil)
+      client = AuditDigest.new(organization_id: nil)
       entities = client.public_send("#{type}_list")
     rescue Errno::ECONNREFUSED
       puts 'You need to run a corresponding Wegoaudit instance' # rubocop:disable Rails/Output

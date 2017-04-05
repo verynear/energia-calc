@@ -1,9 +1,9 @@
-class AuditReports.Views.NameCalcField extends AuditReports.Views.CalcField
+class AuditReports.Views.NameField extends AuditReports.Views.Field
   className: 'col-auto'
 
-  inputClass: "js-structure-name-calc-field"
+  inputClass: "js-structure-name-field"
 
-  syncCalcFieldValue: ->
+  syncFieldValue: ->
     $.ajax(
       method: 'PUT'
       url: "/calc/calc_structures/#{@model.get('id')}"

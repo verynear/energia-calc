@@ -1,8 +1,8 @@
-class AuditReports.Views.CalcField extends Backbone.View
+class AuditReports.Views.Field extends Backbone.View
   tagName: 'div'
   className: 'col-6'
 
-  inputClass: "js-calc-structure-calc-field"
+  inputClass: "js-structure-field"
 
   events:
     'click .js-reset-value': '_onClickResetLink'
@@ -10,7 +10,7 @@ class AuditReports.Views.CalcField extends Backbone.View
     'change': '_onChangeInputValue'
     'focus .js-fli-input': '_onFocusInput'
 
-  inputCalcFieldTemplate: _.template """
+  inputFieldTemplate: _.template """
     <div class="fli js-fli">
       <label class="fli__label"><%= name %></label>
       <input data-api-name='<%= apiName %>'
@@ -22,7 +22,7 @@ class AuditReports.Views.CalcField extends Backbone.View
     </div>
   """
 
-  selectCalcFieldTemplate: _.template """
+  selectFieldTemplate: _.template """
     <div class="fli fli--has-select js-fli">
       <label class="fli__label"><%= name %></label>
       <select data-api-name='<%= apiName %>'
@@ -74,13 +74,13 @@ class AuditReports.Views.CalcField extends Backbone.View
         else
           selected = if option == @model.get('value') then 'selected' else ''
           "<option #{selected} value='#{option}'>#{option}</option>"
-      @selectCalcFieldTemplate(
+      @selectFieldTemplate(
         name: @model.get('name')
         apiName: @model.get('api_name')
         value: @model.get('value')
         options: options.join(''))
     else
-      @inputCalcFieldTemplate(
+      @inputFieldTemplate(
         name: @title(),
         apiName: @model.get('api_name')
         value: @model.get('value')
@@ -104,7 +104,7 @@ class AuditReports.Views.CalcField extends Backbone.View
 
   _onChangeInputValue: (event) ->
     @model.set(value: @$input.val())
-    @syncCalcFieldValue()
+    @syncFieldValue()
 
   _onClickFliDiv: (event) ->
     event.preventDefault()
@@ -136,15 +136,15 @@ class AuditReports.Views.CalcField extends Backbone.View
     "/calc/calc_structures/#{@model.get('structure').get('id')}" +
       "/calc_field_values/#{@model.get('id')}"
 
-  syncCalcFieldValue: ->
+  syncFieldValue: ->
     $.ajax(
       method: 'PUT'
       url: @syncUrl()
       data: { value: @$input.val() }
-      success: @_afterSyncCalcFieldValue
+      success: @_afterSyncFieldValue
     )
 
-  _afterSyncCalcFieldValue: (data) ->
+  _afterSyncFieldValue: (data) ->
     triggerAuditReportSummary(data)
 
   _validationPattern: ->

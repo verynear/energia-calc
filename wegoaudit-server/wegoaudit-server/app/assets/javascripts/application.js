@@ -28,8 +28,8 @@
 //= require audit_reports/generator
 //= require_tree ./audit_reports/models
 //= require_tree ./audit_reports/collections
-//= require audit_reports/views/calc_field
-//= require audit_reports/views/name_calc_field
+//= require audit_reports/views/field
+//= require audit_reports/views/name_field
 //= require audit_reports/views/totals_bar
 //= require_tree ./audit_reports/views
 //

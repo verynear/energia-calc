@@ -1,16 +1,14 @@
-module Retrocalc
-  class Audit < Generic::Strict
+class TempAudit < Generic::Strict
     attr_reader :date,
                 :structures
 
     attr_accessor :audit_type,
+                  :date,
                   :id,
                   :measures,
-                  :field_values,
                   :name,
                   :photos,
-                  :sample_groups,
-                  :organization_id
+                  :sample_groups
 
     def initialize(*)
       super
@@ -24,12 +22,8 @@ module Retrocalc
 
     def flattened_structures
       structures.each_with_object([]) do |structure, array|
-        append_structures_to_array(array, calc_structure)
+        append_structures_to_array(array, structure)
       end
-    end
-
-    def calc_field_values
-      @calc_field_values
     end
 
     def formatted_date
@@ -52,7 +46,7 @@ module Retrocalc
     def build_structures(json_structures, parent_structure = nil)
       json_structures.map do |json_structure|
         substructures_json = json_structure.delete('substructures') || []
-        structure = Retrocalc::Structure.new(
+        structure = TempStructure.new(
           json_structure.merge(
             parent_structure: parent_structure,
             audit: self))
@@ -62,4 +56,3 @@ module Retrocalc
       end
     end
   end
-end

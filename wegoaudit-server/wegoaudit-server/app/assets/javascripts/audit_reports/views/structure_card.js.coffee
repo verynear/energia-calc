@@ -31,41 +31,41 @@ class AuditReports.Views.StructureCard extends Backbone.View
     @_addNameCalcField()
     @_addQuantityCalcField() if @model.get('multiple')
 
-    @$fieldsSection = @$('.js-calc-fields-section')
+    @$fieldsSection = @$('.js-fields-section')
     @_renderOriginalStructureFields()
-    @_renderCalcFields()
+    @_renderFields()
     @$el
 
-  _addNameCalcField: ->
-    nameCalcField = new AuditReports.Views.NameCalcField(
+  _addNameField: ->
+    nameField = new AuditReports.Views.NameField(
       model: @model.get('name_calc_field_value'))
-    @$('.js-name-row').append(nameCalcField.render())
+    @$('.js-name-row').append(nameField.render())
 
-  _addQuantityCalcField: ->
-    quantityCalcField = new AuditReports.Views.QuantityCalcField(
+  _addQuantityField: ->
+    quantityField = new AuditReports.Views.QuantityField(
       original: @original
       model: @model.get('quantity_calc_field_value'))
-    @$('.js-name-row').append(quantityCalcField.render())
+    @$('.js-name-row').append(quantityField.render())
 
-  _renderCalcFields: ->
+  _renderFields: ->
     $row = null
     count = 0
-    @model.get('calc_field_values').each (calcFieldValue, index) =>
-      calc_field = new AuditReports.Views.CalcField(model: calcFieldValue)
+    @model.get('calc_field_values').each (fieldValue, index) =>
+      field = new AuditReports.Views.Field(model: calcFieldValue)
       if count % 2 == 0
         $row = $("<div class='row'></div>")
         @$fieldsSection.append($row)
-      $row.append(calc_field.render())
+      $row.append(field.render())
       count += 1
 
   _renderOriginalStructureFields: ->
-    @model.get('original_structure_field_values').each (calcFieldValue) =>
+    @model.get('original_structure_field_values').each (fieldValue) =>
       $row = $("<div class='row'></div>")
       @$fieldsSection.append($row)
-      calc_field = new AuditReports.Views.OriginalStructureField(model: calcFieldValue)
-      $row.append(calc_field.render())
-      staticCalcField = new AuditReports.Views.EffectiveStructureCalcField(
+      field = new AuditReports.Views.OriginalStructureField(model: calcFieldValue)
+      $row.append(field.render())
+      staticField = new AuditReports.Views.EffectiveStructureField(
         model: calcFieldValue,
-        name: "Effective #{calcFieldValue.get('name')}"
+        name: "Effective #{fieldValue.get('name')}"
       )
-      $row.append(staticCalcField.render())
+      $row.append(staticField.render())

@@ -1,36 +1,38 @@
-class WegoauditClient
+class AuditDigest
 
-  extend ActiveModel::Naming
-  include ActiveModel::Conversion
+  attr_reader :audit,
+              :audit_report,
+			        :field,
+			        :measure,
+			        :structure_type,
+              :user
 
-  attr_accessor :wegowise_id,
-                :organization_id
-                :audit
+  
 
   def initialize(organization_id: nil)
-    self.organization_id = organization_id
+    @organization_id = organization_id
   end
 
-  def persisted?
-    false
+  def load_user
+  	@user = current_user
+  end
+
+  def active_audits
+    @active_audits = Audit.where(organization_id: @organization_id)
   end
 
   def audit(audit_id)
     raise ArgumentError unless audit_id.present?
 
-    audit = Audit.where(organization_id: organization_id).find(id: audit_id)
+    audit = @active_audits.find(id: audit_id)
 
-    response = Retrocalc::AuditJsonPresenter.new(audit)
-
-    return response
+    Retrocalc::AuditJsonPresenter.new(audit)
   end
 
   def audits_list
-    response = Audit.where(organization_id: organization_id) do |audit|
+    Audit.all.map do |audit|
       Retrocalc::AuditJsonPresenter.new(audit, top_level_only: true)
     end
-
-    return response
   end
 
   def fields_list
@@ -63,5 +65,6 @@ class WegoauditClient
 
     return response
   end
+
 
 end
