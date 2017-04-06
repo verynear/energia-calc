@@ -15,7 +15,7 @@ class AuditReports.Views.DescriptionField extends AuditReports.Views.Field
       value: @model.get('description')
     )
 
-  syncCalcFieldValue: ->
+  syncFieldValue: ->
     $.ajax(
       method: 'PUT'
       url: "/calc/audit_reports/#{@model.get('report_id')}/" +

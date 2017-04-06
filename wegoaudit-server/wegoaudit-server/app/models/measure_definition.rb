@@ -55,9 +55,9 @@ class MeasureDefinition < Generic::Strict
   end
   memoize :measure_fields
 
-  def structure_type_definition_for(calc_structure_type)
+  def structure_type_definition_for(structure_type)
     structure_type_definitions.find do |structure_type_definition|
-      structure_type_definition.calc_structure_type == calc_structure_type
+      structure_type_definition.calc_structure_type == structure_type
     end
   end
   memoize :structure_type_definition_for

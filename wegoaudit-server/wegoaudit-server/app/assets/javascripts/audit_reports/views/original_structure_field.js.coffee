@@ -1,4 +1,4 @@
-class AuditReports.Views.OriginalStructureField extends AuditReports.Views.CalcField
+class AuditReports.Views.OriginalStructureField extends AuditReports.Views.Field
   syncUrl: ->
     "/calc/audit_reports/#{@model.get('audit_report_id')}/" +
       "original_structure_field_values/#{@model.get('real_id')}"
@@ -9,7 +9,7 @@ class AuditReports.Views.OriginalStructureField extends AuditReports.Views.CalcF
   initialize: (options) ->
     @listenTo(@model, 'change:value', @render)
 
-  _afterSyncCalcFieldValue: (data) =>
+  _afterSyncFieldValue: (data) =>
     super(data)
     AuditReports.EventBus.trigger(
       "channel:original_structure_field_value:#{@model.get('real_id')}",

@@ -1,4 +1,5 @@
 class MeasureSelection < ActiveRecord::Base
+  include WegoauditObjectLookup
   include RankedModel
   ranks :calculate_order, with_same: :audit_report_id
 
@@ -12,12 +13,11 @@ class MeasureSelection < ActiveRecord::Base
   has_many :structure_changes
   has_many :calc_structures, through: :structure_changes
 
+  attr_accessor :measure_definition
+
   delegate :temp_audit, to: :audit_report
-  delegate :calc_structure_types, to: :calc_measure
-  delegate :fields_for_structure_type, to: :calc_measure
-  delegate :grouping_field_api_name, to: :calc_measure
   delegate :name, to: :calc_measure, prefix: true
-  delegate :definition, to: :calc_measure, prefix: true
+  delegate :api_name, to: :calc_measure
   delegate :data_types,
            :defaults,
            :interaction_fields,
@@ -29,7 +29,17 @@ class MeasureSelection < ActiveRecord::Base
            :for_electric?,
            :for_gas?,
            :for_oil?,
-           to: :calc_measure_definition
+           :structure_types,
+           :fields_for_structure_type,
+           :grouping_field_api_name,
+           :structure_type_definition_for,
+           :inputs_only?,
+           to: :definition
+
+  def definition
+    MeasureDefinition.get(api_name)
+  end
+  memoize :definition
 
   def belongs_to_user?(user)
     audit_report.user == user
@@ -39,8 +49,8 @@ class MeasureSelection < ActiveRecord::Base
     calc_field_value('degradation_rate')
   end
 
-  def has_structure_change_for(calc_structure_type)
-    structure_changes.where(calc_structure_type_id: calc_structure_type.id).exists?
+  def has_structure_change_for(structure_type)
+    structure_changes.where(calc_structure_type_id: structure_type.id).exists?
   end
 
   def relevant_calculations

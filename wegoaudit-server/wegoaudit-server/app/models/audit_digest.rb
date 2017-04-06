@@ -8,20 +8,15 @@ class AuditDigest
               :user
 
   
-
   def initialize(organization_id: nil)
     @organization_id = organization_id
-  end
-
-  def load_user
-  	@user = current_user
   end
 
   def active_audits
     @active_audits = Audit.where(organization_id: @organization_id)
   end
 
-  def audit(audit_id)
+  def new_audit(audit_id)
     raise ArgumentError unless audit_id.present?
 
     audit = @active_audits.find(id: audit_id)

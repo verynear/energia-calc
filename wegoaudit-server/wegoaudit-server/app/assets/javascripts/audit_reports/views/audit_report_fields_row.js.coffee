@@ -11,13 +11,13 @@ class AuditReports.Views.AuditReportFieldsRow extends Backbone.View
       row.forEach (apiName) =>
         if apiName == 'report_name'
           fieldValue = @model.get('audit_report_name_field_value')
-          Field = new AuditReports.Views.AuditReportNameField(model: calcfieldValue)
+          field = new AuditReports.Views.AuditReportNameField(model: fieldValue)
         else
-          fieldValue = @model.get('calc_field_values').find(
+          fieldValue = @model.get('field_values').find(
             (item) ->
               item.get('api_name') == apiName
           )
-          field = new AuditReports.Views.AuditReportField(model: calcfieldValue)
+          field = new AuditReports.Views.AuditReportField(model: fieldValue)
         $row.append(field.render())
       @$el.append($row)
     @$el

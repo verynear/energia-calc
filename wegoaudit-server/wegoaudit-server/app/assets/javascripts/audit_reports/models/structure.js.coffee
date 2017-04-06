@@ -4,7 +4,7 @@ class AuditReports.Models.Structure extends Backbone.RelationalModel
     key: 'field_values',
     relatedModel: 'AuditReports.Models.FieldValue',
     reverseRelation: {
-      key: 'calc_structure'
+      key: 'structure'
     }
   },
   {

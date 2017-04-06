@@ -25,31 +25,31 @@ class AuditReports.Views.MeasuresManager extends Backbone.View
     @setFirstMeasureActive()
     @$el
 
-  addMeasure: (calc_measure) =>
-    measureContent = new AuditReports.Views.MeasureContent(model: calc_measure)
+  addMeasure: (measure) =>
+    measureContent = new AuditReports.Views.MeasureContent(model: measure)
     @measureContents.push(measureContent)
     $measureContent = measureContent.render()
     @$activeContent.append($measureContent)
 
-    measureTab = new AuditReports.Views.MeasureTab(model: calc_measure)
+    measureTab = new AuditReports.Views.MeasureTab(model: measure)
     @measureTabs.push(measureTab)
     $measureTab = measureTab.render()
     @$sidebarNav.append($measureTab)
     @$sidebarNav.sortable()
 
-  addAndSelectMeasure: (calc_measure) ->
-    @addMeasure(calc_measure)
-    @collection.setActive(calc_measure)
+  addAndSelectMeasure: (measure) ->
+    @addMeasure(measure)
+    @collection.setActive(measure)
 
-  removeMeasure: (calc_measure) ->
+  removeMeasure: (measure) ->
     measureContent = _(@measureContents).find (content) ->
-      content.model.id == calc_measure.id
+      content.model.id == measure.id
     @measureContents = _(@measureContents).reject (content) ->
       content == measureContent
     measureContent.remove()
 
     measureTab = _(@measureTabs).find (tab) ->
-      tab.model.id == calc_measure.id
+      tab.model.id == measure.id
     @measureTabs = _(@measureTabs).reject (tab) ->
       tab == measureTab
     measureTab.remove()

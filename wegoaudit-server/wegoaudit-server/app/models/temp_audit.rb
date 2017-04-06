@@ -6,6 +6,7 @@ class TempAudit < Generic::Strict
                   :date,
                   :id,
                   :measures,
+                  :field_values,
                   :name,
                   :photos,
                   :sample_groups

@@ -1,4 +1,4 @@
-class Structure < Generic::Strict
+class TempStructure < Generic::Strict
     attr_accessor :temp_audit,
                   :id,
                   :n_structures,

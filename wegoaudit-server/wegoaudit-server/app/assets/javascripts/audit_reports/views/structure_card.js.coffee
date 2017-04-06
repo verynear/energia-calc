@@ -28,8 +28,8 @@ class AuditReports.Views.StructureCard extends Backbone.View
     )
     @$el.html(html)
 
-    @_addNameCalcField()
-    @_addQuantityCalcField() if @model.get('multiple')
+    @_addNameField()
+    @_addQuantityField() if @model.get('multiple')
 
     @$fieldsSection = @$('.js-fields-section')
     @_renderOriginalStructureFields()
@@ -38,20 +38,20 @@ class AuditReports.Views.StructureCard extends Backbone.View
 
   _addNameField: ->
     nameField = new AuditReports.Views.NameField(
-      model: @model.get('name_calc_field_value'))
+      model: @model.get('name_field_value'))
     @$('.js-name-row').append(nameField.render())
 
   _addQuantityField: ->
     quantityField = new AuditReports.Views.QuantityField(
       original: @original
-      model: @model.get('quantity_calc_field_value'))
+      model: @model.get('quantity_field_value'))
     @$('.js-name-row').append(quantityField.render())
 
   _renderFields: ->
     $row = null
     count = 0
-    @model.get('calc_field_values').each (fieldValue, index) =>
-      field = new AuditReports.Views.Field(model: calcFieldValue)
+    @model.get('field_values').each (fieldValue, index) =>
+      field = new AuditReports.Views.Field(model: fieldValue)
       if count % 2 == 0
         $row = $("<div class='row'></div>")
         @$fieldsSection.append($row)
@@ -62,10 +62,10 @@ class AuditReports.Views.StructureCard extends Backbone.View
     @model.get('original_structure_field_values').each (fieldValue) =>
       $row = $("<div class='row'></div>")
       @$fieldsSection.append($row)
-      field = new AuditReports.Views.OriginalStructureField(model: calcFieldValue)
+      field = new AuditReports.Views.OriginalStructureField(model: fieldValue)
       $row.append(field.render())
       staticField = new AuditReports.Views.EffectiveStructureField(
-        model: calcFieldValue,
+        model: fieldValue,
         name: "Effective #{fieldValue.get('name')}"
       )
       $row.append(staticField.render())

@@ -1,6 +1,8 @@
 class Calc::AuditReportsController < SecuredController
+  before_filter :audit_digest
+
   def create
-    data = audit_digest.new_audit(params[:audit_report][:id])
+    data = @audit_digest.new_audit(params[:audit_report][:id])
     audit_report = AuditReportCreator.new(
       data: data,
       user: current_user,
@@ -45,7 +47,7 @@ class Calc::AuditReportsController < SecuredController
 
   def new
     @page_title = 'Create report'
-    @audits = audit_digest.audits_list.map do |hash|
+    @audits = @audit_digest.audits_list.map do |hash|
       TempAudit.new(hash)
     end
     render layout: false

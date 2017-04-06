@@ -11,15 +11,15 @@ class AuditUsageDataPresenter < WegoBase
   def data
     all_data = []
 
-    structure_data('apartment').each do |wegowise_id, calc_structure_name|
+    structure_data('apartment').each do |wegowise_id, structure_name|
       find_data(wegowise_id, 'apartment').all.each do |datum|
-        all_data << [datum, calc_structure_name]
+        all_data << [datum, structure_name]
       end
     end
 
-    structure_data('building').each do |wegowise_id, calc_structure_name|
+    structure_data('building').each do |wegowise_id, structure_name|
       find_data(wegowise_id, 'building').all.each do |datum|
-        all_data << [datum, calc_structure_name]
+        all_data << [datum, structure_name]
       end
     end
 
@@ -28,8 +28,8 @@ class AuditUsageDataPresenter < WegoBase
 
   private
 
-  def find_data(wegowise_id, calc_structure_type)
-    klass = "#{calc_structure_type.capitalize}MonthlyDatum".constantize
+  def find_data(wegowise_id, structure_type)
+    klass = "#{structure_type.capitalize}MonthlyDatum".constantize
     klass.where(wegowise_id: wegowise_id)
   end
 
@@ -39,9 +39,9 @@ class AuditUsageDataPresenter < WegoBase
   end
   memoize :monthly_data
 
-  def structure_data(calc_structure_type)
-    ids = monthly_data[calc_structure_type][:ids]
-    names = monthly_data[calc_structure_type][:names]
+  def structure_data(structure_type)
+    ids = monthly_data[structure_type][:ids]
+    names = monthly_data[structure_type][:names]
     ids.zip(names)
   end
 end

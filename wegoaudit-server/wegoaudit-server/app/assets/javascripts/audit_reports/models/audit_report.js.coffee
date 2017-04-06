@@ -10,8 +10,8 @@ class AuditReports.Models.AuditReport extends Backbone.RelationalModel
   },
   {
     type: Backbone.HasMany,
-    key: 'calc_field_values',
-    relatedModel: 'AuditReports.Models.CalcFieldValue',
+    key: 'field_values',
+    relatedModel: 'AuditReports.Models.FieldValue',
     reverseRelation: {
       key: 'audit_report'
     }
@@ -24,10 +24,10 @@ class AuditReports.Models.AuditReport extends Backbone.RelationalModel
   },
   {
     type: Backbone.HasOne,
-    key: 'audit_report_name_calc_field_value',
-    relatedModel: 'AuditReports.Models.AuditReportNameCalcFieldValue',
+    key: 'audit_report_name_field_value',
+    relatedModel: 'AuditReports.Models.AuditReportNameFieldValue',
     reverseRelation: {
-      key: 'calc_structure'
+      key: 'structure'
     }
   }
 

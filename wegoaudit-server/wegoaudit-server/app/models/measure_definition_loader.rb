@@ -1,4 +1,7 @@
+require 'fattr'
+
 class MeasureDefinitionLoader < Generic::Strict
+
   fattrs :data_path,
          :name
 
@@ -26,7 +29,7 @@ class MeasureDefinitionLoader < Generic::Strict
 
   def load_from_file(name)
     @data = measure_file_contents(name)
-    load_from_data(name, data)
+    load_from_data(name, @data)
   end
 
   private

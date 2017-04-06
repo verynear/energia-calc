@@ -13,15 +13,15 @@ class StructureChange < ActiveRecord::Base
   end
 
   def fields
-    @fields ||= measure_selection.fields_for_structure_type(calc_structure_type)
+    @fields ||= measure_selection.fields_for_structure_type(structure_type)
   end
 
   def grouped_structures
     @grouped_structures ||= begin
       available_structures =
-        measure_selection.audit_report.all_structures.select do |calc_structure|
-          calc_structure.calc_structure_type.api_name == calc_structure_type.api_name ||
-            calc_structure.calc_structure_type.genus_api_name == calc_structure_type.api_name
+        measure_selection.audit_report.all_structures.select do |structure|
+          structure.calc_structure_type.api_name == calc_structure_type.api_name ||
+            structure.calc_structure_type.genus_api_name == calc_structure_type.api_name
         end
 
       StructureListGrouper.new(
@@ -33,7 +33,7 @@ class StructureChange < ActiveRecord::Base
   def interaction_field_values
     @interaction_fields ||= measure_selection.audit_report
       .original_structure_field_values.where(
-        calc_structure_wegoaudit_id: calc_structure_wegoaudit_id
+        structure_wegoaudit_id: structure_wegoaudit_id
       )
   end
 
@@ -42,7 +42,7 @@ class StructureChange < ActiveRecord::Base
   end
 
   def original_structure
-    @original_structure ||= calc_structures.find { |calc_structure| !calc_structure.proposed? }
+    @original_structure ||= calc_structures.find { |structure| !structure.proposed? }
   end
 
   def proposed_structure

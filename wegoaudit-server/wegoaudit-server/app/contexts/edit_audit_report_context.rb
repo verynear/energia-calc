@@ -19,7 +19,7 @@ class EditAuditReportContext < BaseContext
         name: 'Report name',
         value: audit_report.name,
         value_type: 'string',
-        original_value: audit_report.audit.name,
+        original_value: audit_report.temp_audit.name,
         from_audit: true
       }
     }

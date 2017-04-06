@@ -49,7 +49,7 @@ class AuditReports.Views.StructureChange extends Backbone.View
   render: ->
     html = @template(
       index: @index + 1
-      structureTypeName: @model.get('calc_structure_type_name')
+      structureTypeName: @model.get('structure_type_name')
     )
     @$el.html(html)
     @$originalStructuresColumn = @$('.js-original-structures-column')

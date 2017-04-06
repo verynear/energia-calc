@@ -53,7 +53,7 @@ class StructureSerializer < Generic::Strict
   def original_structure_field_values_as_json
     return [] if calc_structure.proposed?
 
-    structure_change.interaction_field_values.map do |field_value|
+    structure_change.interaction_field_values.map do |calc_field_value|
       # TODO: the amount of work to get this value here is a code smell
       effective_value =
         effective_structure_values[calc_field_value.field_api_name] ||

@@ -1,4 +1,5 @@
 class AuditReport < ActiveRecord::Base
+
   delegate :default_report_template, to: :calc_organization
 
   validates :name, presence: true
@@ -20,8 +21,8 @@ class AuditReport < ActiveRecord::Base
     audit.flattened_structures
   end
 
-  def audit
-    @audit ||= TempAudit.new(data)
+  def temp_audit
+    @temp_audit ||= TempAudit.new(data)
   end
 
   def belongs_to_user?(other_user)

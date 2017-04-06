@@ -35,13 +35,13 @@ class AuditReports.Views.MeasureContent extends Backbone.View
 
   noCalcStructuresTemplate: _.template """
     <div class="measure__empty">
-      <a href='#' class='js-add-calc-structure-link'>Add a structure</a> to get
+      <a href='#' class='js-add-structure-link'>Add a structure</a> to get
       started.
     </div>
   """
 
   events:
-    'click .js-add-calc-structure-link': 'onClickAddCalcStructure'
+    'click .js-add-structure-link': 'onClickAddStructure'
     'click .js-delete-measure-link': 'onClickDeleteMeasure'
     'change .js-enable-measure-checkbox': 'onChangeEnableMeasure'
 
@@ -56,7 +56,7 @@ class AuditReports.Views.MeasureContent extends Backbone.View
     )
 
     if @model.get('structure_changes').isEmpty()
-      @$el.append @noCalcStructuresTemplate()
+      @$el.append @noStructuresTemplate()
     else
       @_renderStructureChanges()
       @_renderMeasureSummary()
@@ -77,7 +77,7 @@ class AuditReports.Views.MeasureContent extends Backbone.View
     id = @model.get('id')
     "/calc/audit_reports/#{report_id}/measure_selections/#{id}"
 
-  onClickAddCalcStructure: (event) ->
+  onClickAddStructure: (event) ->
     event.preventDefault()
     url = "/calc/measure_selections/#{@model.get('id')}/structure_changes/new"
     modal = new AuditReports.Views.AddStructureChangeModal(

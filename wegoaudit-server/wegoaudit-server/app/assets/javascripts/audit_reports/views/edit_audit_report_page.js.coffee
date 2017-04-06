@@ -1,6 +1,6 @@
 class AuditReports.Views.EditAuditReportPage extends Backbone.View
   initialize: (options = {}) ->
-    { @measureModalUrl, @Fields } = options
+    { @measureModalUrl, @fields } = options
 
   render: ->
     @$('.content > .container')

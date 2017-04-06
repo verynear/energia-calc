@@ -92,7 +92,7 @@ class AuditReports.Views.Field extends Backbone.View
   _onClickResetLink: (event) ->
     event.preventDefault()
     @$input.val(@model.get('original_value'))
-    @syncCalcFieldValue()
+    @syncFieldValue()
 
   _onBlurInput: (event) =>
     @$fli.removeClass('is-active')
