@@ -72,11 +72,7 @@
                     { "type": "null" }]
         },
         "field_values": {
-          "anyOf": [{ "type": "string" },
-                    { "type": "integer" },
-                    { "type": "float" },
-                    { "type": "decimal" },
-                    { "type": "array" }],
+          "type": "object",
           "additionalProperties": { "$ref": "#/definitions/field_value" }
         },
         "substructures":  {
@@ -100,14 +96,6 @@
         "name": { "type": "string" },
         "date": { "type": "string" },
         "audit_type": { "type": "string" },
-        "field_values": {
-          "anyOf": [{ "type": "string" },
-                    { "type": "integer" },
-                    { "type": "float" },
-                    { "type": "decimal" },
-                    { "type": "array" }],
-          "additionalProperties": { "$ref": "#/definitions/field_value" }
-        },
         "structures": {
           "type": "array",
           "items": { "$ref": "#/definitions/structure" }

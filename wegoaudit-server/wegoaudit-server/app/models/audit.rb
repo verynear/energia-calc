@@ -30,6 +30,10 @@ class Audit < ActiveRecord::Base
     !locked_by.nil?
   end
 
+  # def audit_type
+  #   AuditType.where(id: @audit.audit_type_id)
+  # end
+
   def field_values
     FieldValue.where(structure_id: self.structure_id)
   end

@@ -7,19 +7,11 @@ class AuditDigest
 			        :structure_type,
               :user
 
-  
-  def initialize(organization_id: nil)
-    @organization_id = organization_id
-  end
-
-  def active_audits
-    @active_audits = Audit.where(organization_id: @organization_id)
-  end
 
   def new_audit(audit_id)
     raise ArgumentError unless audit_id.present?
 
-    audit = @active_audits.find(id: audit_id)
+    audit = Audit.find(audit_id)
 
     Retrocalc::AuditJsonPresenter.new(audit)
   end

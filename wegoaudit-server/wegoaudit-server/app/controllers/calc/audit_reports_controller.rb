@@ -46,10 +46,9 @@ class Calc::AuditReportsController < SecuredController
   end
 
   def new
+    @user_org = current_user.organization_id
     @page_title = 'Create report'
-    @audits = @audit_digest.audits_list.map do |hash|
-      TempAudit.new(hash)
-    end
+    @audits = Audit.where(organization_id: @user_org)
     render layout: false
   end
 
@@ -85,6 +84,6 @@ class Calc::AuditReportsController < SecuredController
   end
 
   def audit_digest
-    @audit_digest ||= AuditDigest.new(organization_id: current_user.organization_id)
+    @audit_digest ||= AuditDigest.new
   end
 end

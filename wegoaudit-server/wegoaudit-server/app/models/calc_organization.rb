@@ -8,4 +8,5 @@ class CalcOrganization < ActiveRecord::Base
   def default_report_template
     report_templates.first
   end
+
 end
