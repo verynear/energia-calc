@@ -2,7 +2,8 @@ class Calc::AuditReportsController < SecuredController
   before_filter :audit_digest
 
   def create
-    data = @audit_digest.new_audit(params[:audit_report][:id])
+    data_hash = @audit_digest.new_audit(params[:audit_report][:id]).as_json
+    data = HashWithIndifferentAccess.new(data_hash)
     audit_report = AuditReportCreator.new(
       data: data,
       user: current_user,

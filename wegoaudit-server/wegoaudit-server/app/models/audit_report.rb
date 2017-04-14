@@ -18,7 +18,7 @@ class AuditReport < ActiveRecord::Base
   has_many :calc_field_values, as: :parent
 
   def all_structures
-    audit.flattened_structures
+    temp_audit.flattened_structures
   end
 
   def temp_audit

@@ -32,7 +32,7 @@ class AuditReportCreator < Generic::Strict
       measure = CalcMeasure.by_api_name!(wegoaudit_measure['api_name'])
       MeasureSelectionCreator.new(
         audit_report: audit_report,
-        measure: measure,
+        calc_measure: measure,
         notes: wegoaudit_measure['notes']
       ).create
     end
@@ -41,10 +41,10 @@ class AuditReportCreator < Generic::Strict
   def create_audit_report
     @calc_user = CalcUser.find_by(wegowise_id: user.wegowise_id)
     @audit_report = AuditReport.create!(
-      name: data.audit['name'],
+      name: data['name'],
       calc_user_id: @calc_user.id,
       calc_organization_id: user.organization_id,
-      data: data.audit.attributes,
+      data: data,
       report_template: report_template,
       wegoaudit_id: wegoaudit_id)
 
@@ -58,8 +58,6 @@ class AuditReportCreator < Generic::Strict
       options = { field_api_name: calc_field.api_name }
       if calc_field.api_name == 'audit_date'
         options[:value] = audit_report.temp_audit.date
-      elsif audit_report.temp_audit.field_values[calc_field.api_name] != nil
-        options[:value] = audit_report.temp_audit.field_values[calc_field.api_name]
       end
 
       audit_report.calc_field_values.create!(options)

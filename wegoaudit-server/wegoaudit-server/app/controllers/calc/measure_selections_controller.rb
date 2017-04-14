@@ -2,7 +2,7 @@ class Calc::MeasureSelectionsController < SecuredController
   before_action :set_audit_report
 
   def create
-    calc_measure = CalcMeasure.find(params[:measure_selection][:calc_measure_id])
+    calc_measure = CalcMeasure.find(params[:measure_selection][:measure_id])
 
     selection = MeasureSelectionCreator.new(
       calc_measure: calc_measure,

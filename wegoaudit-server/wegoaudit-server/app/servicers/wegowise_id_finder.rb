@@ -5,8 +5,8 @@ class WegowiseIdFinder < Generic::Strict
   attr_accessor :calc_structures,
                 :wegowise_ids
 
-  def initialize(structures)
-    @structures = structures
+  def initialize(calc_structures)
+    @calc_structures = calc_structures
   end
 
   def find_ids
@@ -15,7 +15,7 @@ class WegowiseIdFinder < Generic::Strict
       'apartment' => { ids: [] },
       'meter' => { ids: [] }
     }
-    extract_wegowise_ids(structures, wegowise_ids)
+    extract_wegowise_ids(calc_structures, wegowise_ids)
     wegowise_ids
   end
 
@@ -25,27 +25,27 @@ class WegowiseIdFinder < Generic::Strict
       'apartment' => { ids: [], names: [] },
       'meter' => { ids: [], names: [] }
     }
-    extract_wegowise_ids(structures, wegowise_ids, true)
+    extract_wegowise_ids(calc_structures, wegowise_ids, true)
     wegowise_ids
   end
 
   private
 
-  def extract_wegowise_ids(structures, wegowise_ids, include_names = false)
-    structures.each do |structure|
-      wegowise_id = structure['wegowise_id']
+  def extract_wegowise_ids(calc_structures, wegowise_ids, include_names = false)
+    calc_structures.each do |calc_structure|
+      wegowise_id = calc_structure['wegowise_id']
 
       if wegowise_id.present? && wegowise_id != 0
-        structure_type = structure['structure_type']['api_name']
-        structure_type = 'apartment' if structure_type == 'apartments_units'
+        calc_structure_type = calc_structure['calc_structure_type']['api_name']
+        calc_structure_type = 'apartment' if calc_structure_type == 'apartments_units'
 
-        wegowise_ids[structure_type][:ids] << wegowise_id
+        wegowise_ids[calc_structure_type][:ids] << wegowise_id
         if include_names
-          wegowise_ids[structure_type][:names] << structure['name']
+          wegowise_ids[calc_structure_type][:names] << calc_structure['name']
         end
       end
 
-      substructures = structure['substructures'] || []
+      substructures = calc_structure['substructures'] || []
       extract_wegowise_ids(substructures, wegowise_ids, include_names)
     end
   end

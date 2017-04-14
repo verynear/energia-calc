@@ -46,7 +46,7 @@ class TempStructure < Generic::Strict
     end
 
     def has_field?(api_name)
-      field_values.keys.include?(api_name)
+      @field_values.keys.include?(api_name)
     end
 
     def location

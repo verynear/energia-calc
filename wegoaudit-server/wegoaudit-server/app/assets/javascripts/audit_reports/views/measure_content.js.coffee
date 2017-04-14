@@ -21,7 +21,7 @@ class AuditReports.Views.MeasureContent extends Backbone.View
         <i class="icon-trash"></i>
       <a>
       <a href="#"
-        class='measure__action js-add-calc-structure-link'
+        class='measure__action js-add-structure-link'
         data-trigger='tooltip'
         data-content='Add a new structure to this measure'>
         <i class="icon-plus"></i>
@@ -33,7 +33,7 @@ class AuditReports.Views.MeasureContent extends Backbone.View
     <p>Notes: <%= notes %></p>
   """
 
-  noCalcStructuresTemplate: _.template """
+  noStructuresTemplate: _.template """
     <div class="measure__empty">
       <a href='#' class='js-add-structure-link'>Add a structure</a> to get
       started.
@@ -75,11 +75,11 @@ class AuditReports.Views.MeasureContent extends Backbone.View
   measureSelectionUrl: () ->
     report_id = @model.get('report_id')
     id = @model.get('id')
-    "/calc/audit_reports/#{report_id}/measure_selections/#{id}"
+    "/audit_reports/#{report_id}/measure_selections/#{id}"
 
   onClickAddStructure: (event) ->
     event.preventDefault()
-    url = "/calc/measure_selections/#{@model.get('id')}/structure_changes/new"
+    url = "/measure_selections/#{@model.get('id')}/structure_changes/new"
     modal = new AuditReports.Views.AddStructureChangeModal(
       collection: @model.get('structure_changes')
       model: @model

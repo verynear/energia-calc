@@ -41,8 +41,7 @@ module Retrocalc
 
     def exportable_substructures
       substructures.select do |substructure|
-        substructure.physical_structure_type != 'Building' ||
-          substructure.physical_structure.wegowise_id != 0
+        substructure.physical_structure_type != 'Building'
       end
     end
 

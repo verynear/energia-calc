@@ -34,7 +34,7 @@ class MeasureDefinitionsRegistry
   end
 
   def self.reset_data_path
-    @data_path = @default_data_path
+    data_path = @default_data_path
     instance.loader.data_path = data_path
   end
 

@@ -13,14 +13,14 @@ class StructureChange < ActiveRecord::Base
   end
 
   def fields
-    @fields ||= measure_selection.fields_for_structure_type(structure_type)
+    @fields ||= measure_selection.fields_for_structure_type(calc_structure_type)
   end
 
   def grouped_structures
     @grouped_structures ||= begin
       available_structures =
         measure_selection.audit_report.all_structures.select do |structure|
-          structure.calc_structure_type.api_name == calc_structure_type.api_name ||
+          structure.structure_type.api_name == calc_structure_type.api_name ||
             structure.calc_structure_type.genus_api_name == calc_structure_type.api_name
         end
 
@@ -42,7 +42,7 @@ class StructureChange < ActiveRecord::Base
   end
 
   def original_structure
-    @original_structure ||= calc_structures.find { |structure| !structure.proposed? }
+    @original_structure ||= calc_structures.find { |calc_structure| !calc_structure.proposed? }
   end
 
   def proposed_structure

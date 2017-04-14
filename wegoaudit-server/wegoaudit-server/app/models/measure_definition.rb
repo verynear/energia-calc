@@ -24,7 +24,7 @@ class MeasureDefinition < Generic::Strict
     structure_type_definition = structure_type_definition_for(calc_structure_type)
     return [] unless structure_type_definition
 
-    structure_type_definition.calc_fields
+    structure_type_definition.fields
   end
   memoize :fields_for_structure_type
 
@@ -55,9 +55,9 @@ class MeasureDefinition < Generic::Strict
   end
   memoize :measure_fields
 
-  def structure_type_definition_for(structure_type)
+  def structure_type_definition_for(calc_structure_type)
     structure_type_definitions.find do |structure_type_definition|
-      structure_type_definition.calc_structure_type == structure_type
+      structure_type_definition.structure_type == calc_structure_type
     end
   end
   memoize :structure_type_definition_for
@@ -77,15 +77,15 @@ class MeasureDefinition < Generic::Strict
       StructureTypeDefinition.new(
         name: st_api_name,
         definition: definition_hash,
-        calc_fields: fields,
-        calc_structure_type: calc_structure_type
+        fields: fields,
+        structure_type: calc_structure_type
       )
     end.compact
   end
   memoize :structure_type_definitions
 
   def structure_types
-    structure_type_definitions.map(&:calc_structure_type)
+    structure_type_definitions.map(&:structure_type)
   end
   memoize :structure_types
 

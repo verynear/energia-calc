@@ -49,8 +49,8 @@ class MeasureSelection < ActiveRecord::Base
     calc_field_value('degradation_rate')
   end
 
-  def has_structure_change_for(structure_type)
-    structure_changes.where(calc_structure_type_id: structure_type.id).exists?
+  def has_structure_change_for(calc_structure_type)
+    structure_changes.where(calc_structure_type_id: calc_structure_type.id).exists?
   end
 
   def relevant_calculations
