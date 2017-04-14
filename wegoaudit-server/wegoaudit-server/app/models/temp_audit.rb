@@ -1,20 +1,19 @@
-class TempAudit < Generic::Strict
+class TempAudit
     attr_reader :date,
-                :structures
+                :calc_structures
 
     attr_accessor :audit_type,
                   :date,
                   :id,
-                  :measures,
-                  :field_values,
+                  :calc_measures,
+                  :calc_field_values,
                   :name,
                   :photos,
                   :sample_groups
 
     def initialize(*)
-      super
-      self.structures ||= []
-      self.measures ||= []
+      self.calc_structures ||= []
+      self.calc_measures ||= []
     end
 
     def date=(string_or_date)
@@ -31,8 +30,8 @@ class TempAudit < Generic::Strict
       date.strftime('%m/%d/%Y')
     end
 
-    def structures=(json_structures)
-      @structures = build_structures(json_structures)
+    def calc_structures=(json_structures)
+      @calc_structures = build_structures(json_structures)
     end
 
     private

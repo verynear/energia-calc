@@ -4,7 +4,7 @@
 class StructureCombiner < Generic::Strict
   attr_accessor :calc_structures
 
-  def initialize(structures)
+  def initialize(calc_structures)
     @calc_structures = calc_structures
   end
 

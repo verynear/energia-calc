@@ -1,5 +1,7 @@
 <% if user_signed_in? %>
   <li><%= link_to 'Audits', audits_path %></li>
+  <li><%= link_to 'All Audit reports', calc_audit_reports_path %></li>
+  <li><%= link_to 'Manage Report Templates', calc_report_templates_path %></li>
   <li><%= link_to 'Organizations', organizations_path %></li>
   <li><%= link_to 'Buildings', buildings_path %></li>
   <li><%= link_to "Edit #{current_user.username} Profile", '/edit' %></li>

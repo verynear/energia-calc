@@ -16,11 +16,11 @@ class OriginalStructureFieldValue < ActiveRecord::Base
   def non_wegoaudit_structure
     TempStructure.new(
       id: SecureRandom.uuid,
-      audit: temp_audit,
+      temp_audit: temp_audit,
       n_structures: 1,
       name: 'Unnamed',
-      field_values: {},
-      structure_type: {}
+      calc_field_values: {},
+      calc_structure_type: {}
     )
   end
 
@@ -34,8 +34,8 @@ class OriginalStructureFieldValue < ActiveRecord::Base
   end
 
   def wegoaudit_structure
-    audit_report.all_structures.find do |structure|
-      structure.id == structure_wegoaudit_id
+    audit_report.all_structures.find do |calc_structure|
+      calc_structure.id == structure_wegoaudit_id
     end || non_wegoaudit_structure
   end
 end

@@ -97,17 +97,17 @@ class MeasureSummarySerializer < Generic::Strict
   end
 
   def field_values_as_json
-    measure_selection.calc_field_values.map do |field_value|
+    measure_selection.calc_field_values.map do |calc_field_value|
       {
-        id: field_value.id,
-        name: field_value.calc_field_name,
-        value: field_value.value,
-        value_type: field_value.value_type,
-        original_value: field_value.original_value,
-        from_audit: field_value.from_audit,
-        api_name: field_value.field_api_name,
-        options: field_value.calc_field_options,
-        default: measure_selection.defaults[field_value.field_api_name.to_sym]
+        id: calc_field_value.id,
+        name: calc_field_value.calc_field_name,
+        value: calc_field_value.value,
+        value_type: calc_field_value.value_type,
+        original_value: calc_field_value.original_value,
+        from_audit: calc_field_value.from_audit,
+        api_name: calc_field_value.field_api_name,
+        options: calc_field_value.calc_field_options,
+        default: measure_selection.defaults[calc_field_value.field_api_name.to_sym]
       }
     end
   end

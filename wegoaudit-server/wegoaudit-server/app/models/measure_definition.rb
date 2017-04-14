@@ -20,8 +20,8 @@ class MeasureDefinition < Generic::Strict
     MeasureDefinitionsRegistry.get(api_name)
   end
 
-  def fields_for_structure_type(calc_structure_type)
-    structure_type_definition = structure_type_definition_for(calc_structure_type)
+  def fields_for_structure_type(structure_type)
+    structure_type_definition = structure_type_definition_for(structure_type)
     return [] unless structure_type_definition
 
     structure_type_definition.fields
@@ -41,8 +41,8 @@ class MeasureDefinition < Generic::Strict
     local_definition[:interaction_fields] || []
   end
 
-  def interaction_fields_for(calc_structure_type)
-    fields_for_structure_type(calc_structure_type).map(&:api_name) &
+  def interaction_fields_for(structure_type)
+    fields_for_structure_type(structure_type).map(&:api_name) &
       interaction_fields
   end
 
@@ -55,9 +55,9 @@ class MeasureDefinition < Generic::Strict
   end
   memoize :measure_fields
 
-  def structure_type_definition_for(calc_structure_type)
+  def structure_type_definition_for(structure_type)
     structure_type_definitions.find do |structure_type_definition|
-      structure_type_definition.structure_type == calc_structure_type
+      structure_type_definition.structure_type == structure_type
     end
   end
   memoize :structure_type_definition_for
@@ -73,21 +73,21 @@ class MeasureDefinition < Generic::Strict
       definition_hash = local_definition.fetch(:structures, {})
         .fetch(st_api_name.to_sym, {})
 
-      calc_structure_type = CalcStructureType.by_api_name!(st_api_name)
+      structure_type = CalcStructureType.by_api_name!(st_api_name)
       StructureTypeDefinition.new(
         name: st_api_name,
         definition: definition_hash,
         fields: fields,
-        structure_type: calc_structure_type
+        structure_type: structure_type
       )
     end.compact
   end
   memoize :structure_type_definitions
 
-  def structure_types
+  def calc_structure_types
     structure_type_definitions.map(&:structure_type)
   end
-  memoize :structure_types
+  memoize :calc_structure_types
 
   private
 

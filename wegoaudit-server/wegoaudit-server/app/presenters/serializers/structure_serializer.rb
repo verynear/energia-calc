@@ -7,8 +7,8 @@ class StructureSerializer < Generic::Strict
   def as_json
     {
       id: calc_structure.id,
-      api_name: structure_change.structure_type_api_name,
-      field_values: field_values_as_json,
+      api_name: structure_change.calc_structure_type_api_name,
+      calc_field_values: field_values_as_json,
       original_structure_field_values: original_structure_field_values_as_json,
       name_field_value: {
         id: calc_structure.id,

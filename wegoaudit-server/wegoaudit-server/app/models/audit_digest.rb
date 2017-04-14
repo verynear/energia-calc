@@ -1,11 +1,11 @@
 class AuditDigest
 
-  attr_reader :audit,
-              :audit_report,
-			        :field,
-			        :measure,
-			        :structure_type,
-              :user
+  attr_accessor :audit,
+                :audit_report,
+			          :field,
+			          :measure,
+			          :structure_type,
+                :user
 
 
   def new_audit(audit_id)
@@ -23,7 +23,7 @@ class AuditDigest
   end
 
   def fields_list
-    response = Field.uniq(:api_name).order(:id).map do |field|
+    fields_json = Field.uniq(:api_name).order(:id).map do |field|
       options = field.field_enumerations.order(:display_order).pluck(:value)
       { name: field.name,
         value_type: field.value_type,
@@ -32,7 +32,7 @@ class AuditDigest
       }
     end
 
-    return response
+    render json: { fields: fields_json }
   end
 
   def measures_list

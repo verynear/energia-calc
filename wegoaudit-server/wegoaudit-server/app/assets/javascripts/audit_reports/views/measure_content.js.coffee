@@ -75,11 +75,11 @@ class AuditReports.Views.MeasureContent extends Backbone.View
   measureSelectionUrl: () ->
     report_id = @model.get('report_id')
     id = @model.get('id')
-    "/audit_reports/#{report_id}/measure_selections/#{id}"
+    "/calc/audit_reports/#{report_id}/measure_selections/#{id}"
 
   onClickAddStructure: (event) ->
     event.preventDefault()
-    url = "/measure_selections/#{@model.get('id')}/structure_changes/new"
+    url = "/calc/measure_selections/#{@model.get('id')}/structure_changes/new"
     modal = new AuditReports.Views.AddStructureChangeModal(
       collection: @model.get('structure_changes')
       model: @model

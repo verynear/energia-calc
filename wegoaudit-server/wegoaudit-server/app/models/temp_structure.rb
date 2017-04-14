@@ -37,8 +37,8 @@ class TempStructure < Generic::Strict
       end
     end
 
-    def field_values=(hash)
-      @field_values = HashWithIndifferentAccess.new(hash)
+    def calc_field_values=(hash)
+      @calc_field_values = HashWithIndifferentAccess.new(hash)
     end
 
     def genus_structure_type_name
@@ -46,7 +46,7 @@ class TempStructure < Generic::Strict
     end
 
     def has_field?(api_name)
-      @field_values.keys.include?(api_name)
+      @calc_field_values.keys.include?(api_name)
     end
 
     def location
@@ -76,6 +76,6 @@ class TempStructure < Generic::Strict
 
     def structure_type=(hash)
       hash = hash.stringify_keys
-      @structure_type = CalcStructureType.by_api_name!(hash['api_name'])
+      @calc_structure_type = CalcStructureType.by_api_name!(hash['api_name'])
     end
   end

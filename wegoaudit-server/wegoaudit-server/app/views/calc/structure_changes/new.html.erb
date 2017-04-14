@@ -5,7 +5,7 @@
   <h2 class="modal__title">Choose structure to replace</h2>
 </div>
 <div class="modal__content">
-  <div>Measure: <%= @context.measure_name %></div>
+  <div>Measure: <%= @context.calc_measure_name %></div>
 
   <% if @context.available_structure_types.empty? %>
     No remaining available structures for this measure.

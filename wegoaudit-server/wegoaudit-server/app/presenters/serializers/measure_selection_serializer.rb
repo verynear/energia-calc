@@ -23,7 +23,9 @@ class MeasureSelectionSerializer < Generic::Strict
   end
 
   def photos_as_json
-    audit_photos_json + structure_photos_json
+    if audit_photos_json && structure_photos_json
+      audit_photos_json + structure_photos_json
+    end
   end
 
   def structure_changes_as_json

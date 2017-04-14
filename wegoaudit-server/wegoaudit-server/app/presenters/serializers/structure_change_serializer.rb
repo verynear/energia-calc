@@ -14,7 +14,7 @@ class StructureChangeSerializer < Generic::Strict
 
   private
 
-  def structure_as_json(structure)
+  def structure_as_json(calc_structure)
     effective_structure_values = measure_summary
       .effective_structure_values.fetch(
         structure_change.structure_wegoaudit_id,

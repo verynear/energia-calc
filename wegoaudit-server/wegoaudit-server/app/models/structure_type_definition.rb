@@ -8,8 +8,8 @@ class StructureTypeDefinition < Generic::Strict
     definition.fetch(:determining, false)
   end
 
-  def existing_only_field?(field)
-    field_definitions.fetch(field.api_name.to_sym, {})[:existing_only]
+  def existing_only_field?(calc_field)
+    field_definitions.fetch(calc_field.api_name.to_sym, {})[:existing_only]
   end
 
   def field_definitions
