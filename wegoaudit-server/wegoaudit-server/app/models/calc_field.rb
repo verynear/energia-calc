@@ -1,13 +1,11 @@
 class CalcField < ActiveRecord::Base
   include WegoauditObjectLookup
 
-  has_many :calc_field_values
-
   validates :name, presence: true
   validates :api_name, uniqueness: true, presence: true
   validates :value_type, presence: true
 
-  def calc_convert_value(val)
+  def convert_value(val)
     return if val == '' || val.nil?
 
     case value_type

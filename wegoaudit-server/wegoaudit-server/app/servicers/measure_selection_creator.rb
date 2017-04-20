@@ -21,7 +21,7 @@ class MeasureSelectionCreator < Generic::Strict
   private
 
   def create_field_values
-    measure_selection.definition.measure_fields.each do |field|
+    measure_selection.calc_measure_definition.measure_fields.each do |field|
       measure_selection.calc_field_values.create!(field_api_name: field.api_name)
     end
   end

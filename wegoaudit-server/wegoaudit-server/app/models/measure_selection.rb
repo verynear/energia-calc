@@ -1,5 +1,4 @@
 class MeasureSelection < ActiveRecord::Base
-  include WegoauditObjectLookup
   include RankedModel
   ranks :calculate_order, with_same: :audit_report_id
 
@@ -13,11 +12,12 @@ class MeasureSelection < ActiveRecord::Base
   has_many :structure_changes
   has_many :calc_structures, through: :structure_changes
 
-  attr_accessor :measure_definition
-
   delegate :temp_audit, to: :audit_report
+  delegate :structure_types, to: :calc_measure
+  delegate :fields_for_structure_type, to: :calc_measure
+  delegate :grouping_field_api_name, to: :calc_measure
   delegate :name, to: :calc_measure, prefix: true
-  delegate :api_name, to: :calc_measure
+  delegate :definition, to: :calc_measure, prefix: true
   delegate :data_types,
            :defaults,
            :interaction_fields,
@@ -29,17 +29,7 @@ class MeasureSelection < ActiveRecord::Base
            :for_electric?,
            :for_gas?,
            :for_oil?,
-           :structure_types,
-           :fields_for_structure_type,
-           :grouping_field_api_name,
-           :structure_type_definition_for,
-           :inputs_only?,
-           to: :definition
-
-  def definition
-    MeasureDefinition.get(api_name)
-  end
-  memoize :definition
+           to: :calc_measure_definition
 
   def belongs_to_user?(user)
     audit_report.user == user

@@ -11,22 +11,22 @@ class FieldValuesCombiner < Generic::Strict
 
   def combined_field_values
     composite_fields = field_keys.each_with_object({}) do |field_key, composite|
-      calc_field_values = field_values_for_key(field_key)
+      field_values = field_values_for_key(field_key)
 
-      unless can_average?(calc_field_values) && calc_field_values.length > 1
-        composite[field_key] = calc_field_values.first
+      unless can_average?(field_values) && field_values.length > 1
+        composite[field_key] = field_values.first
         next
       end
 
-      average_value = average(converted_values(calc_field_values))
-      if value_type(calc_field_values) == 'integer'
+      average_value = average(converted_values(field_values))
+      if value_type(field_values) == 'integer'
         average_value = average_value.to_i
       end
 
-      calc_field_value = calc_field_values.first
-      calc_field_value['value'] = average_value
+      field_value = field_values.first
+      field_value['value'] = average_value
 
-      composite[field_key] = calc_field_value
+      composite[field_key] = field_value
     end
 
     HashWithIndifferentAccess.new(composite_fields)
@@ -39,13 +39,13 @@ class FieldValuesCombiner < Generic::Strict
     values_sum / values.length.to_f
   end
 
-  def can_average?(calc_field_values)
-    %w[decimal integer].include?(value_type(calc_field_values))
+  def can_average?(field_values)
+    %w[decimal integer].include?(value_type(field_values))
   end
 
-  def converted_values(calc_field_values)
-    type = calc_field_values.first['value_type']
-    raw_values = calc_field_values.map { |calc_field_value| calc_field_value['value'] }
+  def converted_values(field_values)
+    type = field_values.first['value_type']
+    raw_values = field_values.map { |field_value| field_value['value'] }
 
     if type == 'decimal'
       raw_values.map(&:to_f)
@@ -61,11 +61,11 @@ class FieldValuesCombiner < Generic::Strict
   end
 
   def field_values_for_key(key)
-    calc_fields = structure_field_values.map { |sfv| sfv[key] }
-    calc_fields.compact
+    fields = structure_field_values.map { |sfv| sfv[key] }
+    fields.compact
   end
 
-  def value_type(calc_field_values)
-    calc_field_values.first['value_type']
+  def value_type(field_values)
+    field_values.first['value_type']
   end
 end

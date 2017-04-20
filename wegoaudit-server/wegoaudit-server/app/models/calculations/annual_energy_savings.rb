@@ -12,9 +12,9 @@ module Calculations
         annual_gas_savings ||
         annual_oil_savings
 
-      electric_savings = annual_electric_savings.to_f * WegoAudit::KWH_TO_BTU_COEFFICIENT
+      electric_savings = annual_electric_savings.to_f * 3412.14163312794
 
-      gas_savings = annual_gas_savings.to_f * WegoAudit::THERMS_TO_BTU_COEFFICIENT
+      gas_savings = annual_gas_savings.to_f * 100000
 
       oil_savings = annual_oil_savings.to_f
 

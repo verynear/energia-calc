@@ -19,9 +19,9 @@ class StructureChange < ActiveRecord::Base
   def grouped_structures
     @grouped_structures ||= begin
       available_structures =
-        measure_selection.audit_report.all_structures.select do |calc_structure|
-          calc_structure.calc_structure_type.api_name == calc_structure_type.api_name ||
-            calc_structure.calc_structure_type.genus_api_name == calc_structure_type.api_name
+        measure_selection.audit_report.all_structures.select do |structure|
+          structure.calc_structure_type.api_name == calc_structure_type.api_name ||
+            structure.calc_structure_type.genus_api_name == calc_structure_type.api_name
         end
 
       StructureListGrouper.new(
@@ -54,14 +54,14 @@ class StructureChange < ActiveRecord::Base
   end
 
   def wegoaudit_field_values
-    wegoaudit_structure.calc_field_values
+    wegoaudit_structure.field_values
   end
 
   def wegoaudit_structure
     return non_wegoaudit_structure unless structure_wegoaudit_id
 
-    struct = grouped_structures.find do |calc_structure|
-      calc_structure.id == structure_wegoaudit_id
+    struct = grouped_structures.find do |structure|
+      structure.id == structure_wegoaudit_id
     end
 
     struct || non_wegoaudit_structure

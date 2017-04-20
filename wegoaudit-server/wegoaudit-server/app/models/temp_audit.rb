@@ -1,19 +1,19 @@
 class TempAudit
     attr_reader :date,
-                :calc_structures
+                :structures
 
     attr_accessor :audit_type,
                   :date,
                   :id,
-                  :calc_measures,
-                  :calc_field_values,
+                  :measures,
+                  :field_values,
                   :name,
                   :photos,
                   :sample_groups
 
     def initialize(*)
-      self.calc_structures ||= []
-      self.calc_measures ||= []
+      self.structures ||= []
+      self.measures ||= []
     end
 
     def date=(string_or_date)
@@ -30,8 +30,8 @@ class TempAudit
       date.strftime('%m/%d/%Y')
     end
 
-    def calc_structures=(json_structures)
-      @calc_structures = build_structures(json_structures)
+    def structures=(json_structures)
+      @structures = build_structures(json_structures)
     end
 
     private

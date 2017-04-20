@@ -6,7 +6,7 @@ class StructureChangeSerializer < Generic::Strict
   def as_json
     {
       id: structure_change.id,
-      calc_structure_type_name: calc_structure_type_name,
+      structure_type_name: structure_type_name,
       original_structure: structure_as_json(structure_change.original_structure),
       proposed_structure: structure_as_json(structure_change.proposed_structure)
     }

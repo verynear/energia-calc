@@ -24,7 +24,7 @@ class StructureTypeDefinition < Generic::Strict
     definition.fetch(:multiple, false)
   end
 
-  def proposed_only_field?(field)
-    field_definitions.fetch(field.api_name.to_sym, {})[:proposed_only]
+  def proposed_only_field?(calc_field)
+    field_definitions.fetch(calc_field.api_name.to_sym, {})[:proposed_only]
   end
 end
