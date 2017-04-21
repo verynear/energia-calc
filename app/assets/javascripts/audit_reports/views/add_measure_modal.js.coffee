@@ -1,12 +1,15 @@
 class AuditReports.Views.AddMeasureModal extends Modal
+  events:
+    'click .js-add-measure-submit': 'onClickAddMeasureSubmit'
+    'click .js-modal-close': 'onClickClose'
+  
   afterLoad: ->
     @$form = @$('form')
 
-  submitForm: (event) ->
+  onClickAddMeasureSubmit: (event) ->
     event.preventDefault()
-
     $.ajax(
-      url: @$form.attr('action'),
+      url: @measureSelectionUrl(),
       data: @$form.serialize(),
       method: 'POST',
       success: (data) =>
@@ -14,3 +17,7 @@ class AuditReports.Views.AddMeasureModal extends Modal
         triggerAuditReportSummary(data)
         @$el.trigger('closeModal')
     )
+
+  measureSelectionUrl: ->
+    id = @model.get('id')
+    "/calc/audit_reports/#{id}/measure_selections"
