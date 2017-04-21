@@ -41,7 +41,6 @@ class Calc::AuditReportsController < SecuredController
   def show
     @audit_report = audit_report
     @page_title = "Report based on \"#{@audit_report.name}\""
-
     @context = ShowAuditReportContext.new(
       user: current_user,
       audit_report: @audit_report)

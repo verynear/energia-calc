@@ -1,6 +1,8 @@
 class StructureGroupingPresenter
   attr_reader :grouping,
-              :structure
+              :structure,
+              :field,
+              :field_value
 
   delegate :name,
            to: :grouping

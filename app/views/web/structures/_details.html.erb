@@ -38,9 +38,15 @@
                   field.name,
                   class: 'form-row__label' %>
             <% if field.value_type != 'picker' %>
-              <%= render "web/fields/#{field.partial}",
-                    name: field.name.parameterize,
-                    value: field.field_value_value %>
+              <% if field.value_type == 'string' || field.value_type == 'text' %>
+                <%= render "web/fields/#{field.partial}",
+                      name: field.name.parameterize,
+                      value: field.field_value.try(:[], 'string_value') %>
+              <% else %>
+                <%= render "web/fields/#{field.partial}",
+                      name: field.name.parameterize,
+                      value: field.field_value_value %>
+              <% end %>
             <% else %>
               <%= render "web/fields/#{field.partial}",
                     name: field.name.parameterize,

@@ -25,13 +25,9 @@ class FieldValue < ActiveRecord::Base
     @structure ||= Structure.where(id: structure_id)
   end
 
-  def string_value
-    @string_value = FieldValue.where(structure_id: structure_id).where.not(string_value: nil)
-  end
-
-  def fvvalue
-    @fvvalue = Field.where(id: field_id).first.storage_type
-  end
+  # def string_value
+  #   @string_value = FieldValue.where(structure_id: structure_id).where.not(string_value: nil)
+  # end
 
   private
 

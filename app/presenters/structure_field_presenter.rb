@@ -26,6 +26,7 @@ class StructureFieldPresenter
   delegate :name,
            :to_param,
            :to_key,
+           :value_type,
            :storage_type,
            to: :field
 
@@ -55,10 +56,6 @@ class StructureFieldPresenter
 
   def string_value
     @string_value
-  end
-
-  def field_value
-    @field_value
   end
 
   def partial
