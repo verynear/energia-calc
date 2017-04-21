@@ -10,7 +10,6 @@
   font-size: 17px;
   line-height: 1;
   padding: 15px 0;
-  display: inline-block;
 
   &:hover {
     transform: scale(1.05);
@@ -24,15 +23,20 @@
 
 .global-menu {
   float: right;
+  display: inline;
 
   a {
     color: #fff;
-    padding: 15px 10px;
-    display: inline-block;
+    padding: 2px 2px;
 
     &:hover {
       color: #fff;
       background: #1565C0;
     }
+  }
+
+  li {
+    display: inline-block;
+    padding: 5px 5px;
   }
 }
