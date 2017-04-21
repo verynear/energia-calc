@@ -20,8 +20,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'dentaku', '~> 2.0.4', '>= 2.0'
-  spec.add_dependency 'memoizer', '~> 1.0.2', '>= 1.0'
+  spec.add_dependency 'dentaku', '~> 2.0.9', '>= 2.0'
+  spec.add_dependency 'memoizer', '~> 1.0.3', '>= 1.0'
   spec.add_dependency 'activesupport', '~> 4.2.0', '>= 4.2'
   spec.add_dependency 'fattr', '~> 2.2', '>= 2.2.2'
 

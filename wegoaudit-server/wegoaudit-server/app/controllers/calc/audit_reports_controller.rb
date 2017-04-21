@@ -2,7 +2,7 @@ class Calc::AuditReportsController < SecuredController
   before_filter :audit_digest
 
   def create
-    data_hash = @audit_digest.new_audit(params[:audit_report][:id]).as_json
+    data_hash = @audit_digest.new_audit(params[:audit_report][:id])
     data = HashWithIndifferentAccess.new(data_hash)
     audit_report = AuditReportCreator.new(
       data: data,
@@ -15,21 +15,6 @@ class Calc::AuditReportsController < SecuredController
   def destroy
     audit_report.destroy
     redirect_to calc_audit_reports_path
-  end
-
-  def download_usage
-    archive = AuditUsageDataArchive.new(audit_report)
-    archive.build
-
-    if archive.entries.blank?
-      flash[:alert] = 'No data available to download.'
-      redirect_to calc_audit_reports_path
-    else
-      content = archive.to_s
-      send_data(content, filename: archive.basename)
-    end
-
-    archive.delete
   end
 
   def edit

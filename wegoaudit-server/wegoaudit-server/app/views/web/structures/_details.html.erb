@@ -40,7 +40,7 @@
             <% if field.value_type != 'picker' %>
               <%= render "web/fields/#{field.partial}",
                     name: field.name.parameterize,
-                    value: field.field_value_value %>
+                    value: field.try(field_value[field.to_key]) %>
             <% else %>
               <%= render "web/fields/#{field.partial}",
                     name: field.name.parameterize,

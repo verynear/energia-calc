@@ -13,16 +13,14 @@ module Retrocalc
         id: audit.id,
         name: audit.name,
         date: audit.performed_on,
-        audit_type: audit.audit_type.try(:name),
-        structures: structures_json,
-        measures: measures_json(audit)
+        audit_type: audit.audit_type.try(:name)
       }
 
       return top_level if top_level_only
 
       top_level[:structures] = structures_json
       top_level[:sample_groups] = sample_groups_json
-      top_level[:measures] = measures_json(audit)
+      top_level[:measures] = measures_json(audit.measure_values)
       top_level[:photos] = photos_json
 
       top_level
@@ -30,7 +28,7 @@ module Retrocalc
 
     private
 
-    def measures_json(audit)
+    def measures_json(measure_values)
       audit.measure_values.map do |measure_value|
         { name: measure_value.measure_name,
           api_name: measure_value.measure.api_name,

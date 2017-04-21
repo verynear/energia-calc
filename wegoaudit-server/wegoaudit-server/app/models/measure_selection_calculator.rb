@@ -236,7 +236,7 @@ class MeasureSelectionCalculator < Generic::Strict
     after_inputs = remap_inputs(after_inputs)
     before_inputs = remap_inputs(before_inputs)
 
-    measure_selection.definition
+    measure_selection.calc_measure_definition
       .run_retrofit_calculations(
         before_inputs: before_inputs,
         after_inputs: after_inputs,
@@ -246,7 +246,7 @@ class MeasureSelectionCalculator < Generic::Strict
 
   def remap_inputs(inputs)
     inputs.each_with_object({}) do |(key, value), hash|
-      mapping = measure_selection.definition.fields_mapping.invert[key.to_s]
+      mapping = measure_selection.calc_measure_definition.fields_mapping.invert[key.to_s]
       if mapping
         hash[mapping.to_sym] = value
       else

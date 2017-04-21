@@ -4,6 +4,9 @@ class AuditDigest
                 :audit_report,
 			          :field,
 			          :measure,
+                :measure_value,
+                :sample_group,
+                :structure,
 			          :structure_type,
                 :user
 
@@ -13,13 +16,13 @@ class AuditDigest
 
     audit = Audit.find(audit_id)
 
-    Retrocalc::AuditJsonPresenter.new(audit)
+    Retrocalc::AuditJsonPresenter.new(audit).as_json
   end
 
   def audits_list
     Audit.all.map do |audit|
       Retrocalc::AuditJsonPresenter.new(audit, top_level_only: true)
-    end
+    end.as_json
   end
 
   def fields_list

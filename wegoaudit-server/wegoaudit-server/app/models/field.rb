@@ -14,7 +14,9 @@ class Field < ActiveRecord::Base
 
   validate :validate_unchanged_api_name
 
-  # scope :sort_display_order, order(:display_order)
+  # scope :sort_display_order, -> {
+  #  order(:display_order)
+  # }
 
   STRING_TYPES = ['text', 'string', 'phone', 'email', 'picker', 'state']
   FLOAT_TYPES = ['float']
@@ -35,9 +37,9 @@ class Field < ActiveRecord::Base
   def date?
     value_type == 'date'
   end
-
+  
   def field_enumerations
-    return nil unless picker?
+     return nil unless picker?
     @field_enumeration = FieldEnumeration.where(field_id: field.id)
   end
 

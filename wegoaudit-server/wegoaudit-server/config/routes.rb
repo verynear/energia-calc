@@ -92,15 +92,6 @@ Rails.application.routes.draw do
   end
   resources :substructure_types, only: [:index]
 
-  # Routes that Retrocalc depends on.
-  #
-  namespace :retrocalc do
-    resources :audits, only: [:index, :show]
-    resources :measures, only: [:index]
-    resources :structure_types, only: [:index]
-    resources :fields, only: [:index]
-  end
-
   namespace :calc do
     resources :audit_reports do
         get 'download_usage', on: :member
@@ -139,5 +130,4 @@ Rails.application.routes.draw do
   end
 
   root to: 'visitors#index'
-  mount Sidekiq::Web => 'sidekiq'
 end

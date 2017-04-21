@@ -13,12 +13,12 @@ class StructureGroupingPresenter
   def fields
       grouping.fields.order(:display_order).map do |field|
         if field.value_type != 'picker'
-          StructureFieldPresenter.new(structure, field, field_values[field.id])
+           StructureFieldPresenter.new(structure, field, field_values[field.id])
         else
           if field_values.empty?
             StructureFieldPresenter.new(structure, field, collection)
           else
-            StructureFieldPresenter.new(structure, field, collection, field_values)
+            StructureFieldPresenter.new(structure, field, collection, field_values[field.id]['string_value'])
           end
         end
       end
@@ -26,6 +26,7 @@ class StructureGroupingPresenter
 
   private
 
+    
     def field_values
       @field_values ||= structure.field_values.map do |field_value|
         [field_value.field_id, field_value]

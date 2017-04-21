@@ -74,7 +74,7 @@ class TempStructure < Generic::Strict
       sample_group.present?
     end
 
-    def structure_type=(hash)
+    def calc_structure_type=(hash)
       hash = hash.stringify_keys
       @calc_structure_type = CalcStructureType.by_api_name!(hash['api_name'])
     end
