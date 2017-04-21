@@ -1,0 +1,48 @@
+I"#(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Models.AuditReport = (function(superClass) {
+    extend(AuditReport, superClass);
+
+    function AuditReport() {
+      return AuditReport.__super__.constructor.apply(this, arguments);
+    }
+
+    AuditReport.prototype.relations = [
+      {
+        type: Backbone.HasMany,
+        key: 'measure_selections',
+        relatedModel: 'AuditReports.Models.MeasureSelection',
+        collectionType: 'AuditReports.Collections.MeasureSelections',
+        reverseRelation: {
+          key: 'audit_report'
+        }
+      }, {
+        type: Backbone.HasMany,
+        key: 'calc_field_values',
+        relatedModel: 'AuditReports.Models.CalcFieldValue',
+        reverseRelation: {
+          key: 'audit_report'
+        }
+      }, {
+        type: Backbone.HasOne,
+        key: 'audit_report_summary',
+        relatedModel: 'AuditReports.Models.AuditReportSummary',
+        reverseRelation: Backbone.HasOne
+      }, {
+        type: Backbone.HasOne,
+        key: 'audit_report_name_calc_field_value',
+        relatedModel: 'AuditReports.Models.AuditReportNameCalcFieldValue',
+        reverseRelation: {
+          key: 'calc_structure'
+        }
+      }
+    ];
+
+    return AuditReport;
+
+  })(Backbone.RelationalModel);
+
+}).call(this);
+:ET

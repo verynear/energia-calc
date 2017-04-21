@@ -1,0 +1,13 @@
+I"ú(function() {
+  window.DisplayReports = {
+    Views: {},
+    Models: {},
+    EventBus: _.extend({}, Backbone.Events),
+    Collections: {},
+    generate: function(params) {
+      return new DisplayReports.Generator(params);
+    }
+  };
+
+}).call(this);
+:ET

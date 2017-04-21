@@ -1,0 +1,33 @@
+I"g(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Views.AuditReportNameCalcField = (function(superClass) {
+    extend(AuditReportNameCalcField, superClass);
+
+    function AuditReportNameCalcField() {
+      return AuditReportNameCalcField.__super__.constructor.apply(this, arguments);
+    }
+
+    AuditReportNameCalcField.prototype.className = 'col-3';
+
+    AuditReportNameCalcField.prototype.inputClass = "js-audit-report-name-calc-field";
+
+    AuditReportNameCalcField.prototype.syncFieldValue = function() {
+      return $.ajax({
+        method: 'PUT',
+        url: "/calc/audit_reports/" + (this.model.get('id')),
+        data: {
+          audit_report: {
+            name: this.$input.val()
+          }
+        }
+      });
+    };
+
+    return AuditReportNameCalcField;
+
+  })(AuditReports.Views.CalcField);
+
+}).call(this);
+:ET

@@ -1,0 +1,109 @@
+I"z(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  DisplayReports.Views.Editor = (function(superClass) {
+    extend(Editor, superClass);
+
+    function Editor() {
+      this._resizeEditor = bind(this._resizeEditor, this);
+      this._processQueue = bind(this._processQueue, this);
+      return Editor.__super__.constructor.apply(this, arguments);
+    }
+
+    Editor.prototype.events = {
+      'keyup textarea': 'updatePreview',
+      'change textarea': 'updatePreview',
+      'change .js-template-select': 'updateForm'
+    };
+
+    Editor.prototype.initialize = function(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.formHtml = options.formHtml;
+      this.previewUrl = options.previewUrl;
+      this.changeQueue = [];
+      return $(window).on('load resize', this._resizeEditor);
+    };
+
+    Editor.prototype.render = function() {
+      var photos;
+      this.$form = this.$('form');
+      this.$templateForm = this.$('.js-template-form');
+      photos = new DisplayReports.Views.Photos({
+        collection: this.model.get('photos')
+      });
+      this.$templateForm.append(photos.render());
+      this.$templateForm.append(this.formHtml);
+      this._resizeEditor();
+      return this.$el;
+    };
+
+    Editor.prototype.updateForm = function() {
+      return $.ajax({
+        url: "/calc/audit_reports/" + (this.model.get('id')) + "/display/change_template",
+        data: {
+          audit_report: {
+            report_template_id: $('.js-template-select').val()
+          }
+        },
+        method: 'PUT',
+        success: function(data) {
+          $('.js-template-form').html(data.form);
+          return $('.js-markdown-preview').html(data.preview);
+        }
+      });
+    };
+
+    Editor.prototype.updatePreview = function() {
+      this.changeQueue.push(this.$form.serialize());
+      if (!this.processing) {
+        return this._processQueue(true);
+      }
+    };
+
+    Editor.prototype._processQueue = function(firstTime) {
+      var change;
+      if (!firstTime && this.changeQueue.length === 0) {
+        this.processing = false;
+        return;
+      } else {
+        this.processing = true;
+      }
+      _(this.changeQueue.length - 1).times((function(_this) {
+        return function() {
+          return _this.changeQueue.shift();
+        };
+      })(this));
+      change = this.changeQueue.pop();
+      return $.ajax({
+        url: this.previewUrl,
+        data: change,
+        method: 'PUT'
+      }).always((function(_this) {
+        return function() {
+          if (_this.changeQueue.length === 0 && !firstTime) {
+            return _this.processing = false;
+          } else {
+            return setTimeout(_this._processQueue, 400, false);
+          }
+        };
+      })(this)).done((function(_this) {
+        return function(data) {
+          return _this.model.set('rendered_html', data);
+        };
+      })(this));
+    };
+
+    Editor.prototype._resizeEditor = function() {
+      return this.$el.height($(window).height() - this.$el.offset().top);
+    };
+
+    return Editor;
+
+  })(Backbone.View);
+
+}).call(this);
+:ET

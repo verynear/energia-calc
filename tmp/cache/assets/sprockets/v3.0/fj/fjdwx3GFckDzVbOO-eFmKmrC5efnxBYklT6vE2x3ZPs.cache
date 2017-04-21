@@ -1,0 +1,67 @@
+I"D(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  window.Modal = (function(superClass) {
+    extend(Modal, superClass);
+
+    function Modal() {
+      return Modal.__super__.constructor.apply(this, arguments);
+    }
+
+    Modal.prototype.events = {
+      'click .js-modal-close': 'onClickClose',
+      'submit form': 'submitForm'
+    };
+
+    Modal.prototype.template = _.template("<div class='js-modal modal'>\n</div>");
+
+    Modal.prototype.initialize = function(options) {
+      if (options == null) {
+        options = {};
+      }
+      return this.url = options.url;
+    };
+
+    Modal.prototype.render = function() {
+      if ($('.js-modal').length !== 0) {
+        this.setElement($('.js-modal'));
+        this.$el.html('');
+      } else {
+        this.setElement(this.template());
+        $('body').append(this.$el);
+      }
+      this.$el.easyModal({
+        overlay: 0.2,
+        transitionIn: 'slidein',
+        transitionOut: 'slideout',
+        autoOpen: true
+      });
+      return $.ajax({
+        url: this.url,
+        method: 'GET',
+        success: (function(_this) {
+          return function(data) {
+            _this.$el.html(data);
+            _this.$el.trigger('openModal');
+            return _this.afterLoad();
+          };
+        })(this)
+      });
+    };
+
+    Modal.prototype.afterLoad = function() {};
+
+    Modal.prototype.submitForm = function(event) {};
+
+    Modal.prototype.onClickClose = function() {
+      event.preventDefault();
+      return this.$el.trigger('closeModal');
+    };
+
+    return Modal;
+
+  })(Backbone.View);
+
+}).call(this);
+:ET

@@ -1,0 +1,93 @@
+I"I(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Views.MeasureSummary = (function(superClass) {
+    extend(MeasureSummary, superClass);
+
+    function MeasureSummary() {
+      this.render = bind(this.render, this);
+      return MeasureSummary.__super__.constructor.apply(this, arguments);
+    }
+
+    MeasureSummary.prototype.className = "js-measure-summary measure__summary";
+
+    MeasureSummary.prototype.template = _.template("<div class=\"measure__summary__title\">\n  Measure Summary\n</div>\n\n<div class=\"js-measure-calc-fields\">\n</div>\n\n<div class=\"measure__summary__section-title\">\n  Overall usage values (before measure)\n</div>\n\n<div class=\"js-usage-values\">\n</div>\n\n<div class=\"measure__summary__section-title\">\n  Calculation results\n</div>");
+
+    MeasureSummary.prototype.render = function() {
+      var $row, descriptionCalcField, recommendationCalcField;
+      this.$el.html(this.template());
+      this.$usageValues = this.$('.js-usage-values');
+      this.$measureCalcFieldsRow = this.$('.js-measure-calc-fields');
+      this._renderMeasureCalcFields();
+      this._renderUsageValues();
+      this._renderCalculatedValues();
+      $row = $("<div class='row'></div>");
+      this.$el.append($row);
+      descriptionCalcField = new AuditReports.Views.DescriptionCalcField({
+        model: this.model
+      });
+      $row.append(descriptionCalcField.render());
+      recommendationCalcField = new AuditReports.Views.RecommendationCalcField({
+        model: this.model
+      });
+      $row.append(recommendationCalcField.render());
+      return this.$el;
+    };
+
+    MeasureSummary.prototype._renderCalculatedValues = function() {
+      var calculatedValues;
+      calculatedValues = new AuditReports.Views.MeasureSummaryCalculatedValues({
+        model: this.model
+      });
+      return this.$el.append(calculatedValues.render());
+    };
+
+    MeasureSummary.prototype._renderMeasureCalcFields = function() {
+      var $row, count;
+      $row = null;
+      count = 0;
+      return this.model.get('calc_field_values').each((function(_this) {
+        return function(calcFieldValue) {
+          var measureCalcField;
+          if (count % 4 === 0) {
+            $row = $("<div class='row'></div>");
+            _this.$measureCalcFieldsRow.append($row);
+          }
+          measureCalcField = new AuditReports.Views.MeasureCalcField({
+            model: calcFieldValue
+          });
+          $row.append(measureCalcField.render());
+          return count += 1;
+        };
+      })(this));
+    };
+
+    MeasureSummary.prototype._renderUsageValues = function() {
+      var $row, count;
+      $row = null;
+      count = 0;
+      return _(this.model.get('before_usage_values')).each((function(_this) {
+        return function(options, key) {
+          var staticCalcField;
+          if (count % 4 === 0) {
+            $row = $("<div class='row'></div>");
+            _this.$usageValues.append($row);
+          }
+          staticCalcField = new AuditReports.Views.StaticCalcField({
+            name: options.title,
+            value: options.value
+          }).render();
+          $row.append(staticCalcField);
+          return count += 1;
+        };
+      })(this));
+    };
+
+    return MeasureSummary;
+
+  })(Backbone.View);
+
+}).call(this);
+:ET

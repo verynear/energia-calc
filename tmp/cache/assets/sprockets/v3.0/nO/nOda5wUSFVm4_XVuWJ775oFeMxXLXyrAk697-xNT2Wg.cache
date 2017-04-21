@@ -1,0 +1,56 @@
+I"˜(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Models.CalcStructure = (function(superClass) {
+    extend(CalcStructure, superClass);
+
+    function CalcStructure() {
+      return CalcStructure.__super__.constructor.apply(this, arguments);
+    }
+
+    CalcStructure.prototype.relations = [
+      {
+        type: Backbone.HasMany,
+        key: 'calc_field_values',
+        relatedModel: 'AuditReports.Models.CalcFieldValue',
+        reverseRelation: {
+          key: 'calc_structure'
+        }
+      }, {
+        type: Backbone.HasMany,
+        key: 'original_structure_field_values',
+        relatedModel: 'AuditReports.Models.OriginalStructureFieldValue',
+        reverseRelation: {
+          key: 'calc_structure'
+        }
+      }, {
+        type: Backbone.HasOne,
+        key: 'name_calc_field_value',
+        relatedModel: 'AuditReports.Models.NameCalcFieldValue',
+        reverseRelation: {
+          key: 'calc_structure'
+        }
+      }, {
+        type: Backbone.HasOne,
+        key: 'quantity_calc_field_value',
+        relatedModel: 'AuditReports.Models.QuantityCalcFieldValue',
+        reverseRelation: {
+          key: 'calc_structure'
+        }
+      }
+    ];
+
+    CalcStructure.prototype.defaults = {
+      name: '',
+      field_values: []
+    };
+
+    return CalcStructure;
+
+  })(Backbone.RelationalModel);
+
+  AuditReports.Models.CalcStructure.setup();
+
+}).call(this);
+:ET

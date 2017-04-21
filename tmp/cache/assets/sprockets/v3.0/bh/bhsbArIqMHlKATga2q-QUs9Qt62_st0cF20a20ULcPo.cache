@@ -1,0 +1,92 @@
+I"o(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Views.MeasuresManager = (function(superClass) {
+    extend(MeasuresManager, superClass);
+
+    function MeasuresManager() {
+      this.addMeasure = bind(this.addMeasure, this);
+      return MeasuresManager.__super__.constructor.apply(this, arguments);
+    }
+
+    MeasuresManager.prototype.events = {};
+
+    MeasuresManager.prototype.template = _.template("<ul class='measures-tabs js-sidebar-nav'>\n</ul>\n<div class=\"measure-wrapper js-active-content\">\n</div>");
+
+    MeasuresManager.prototype.initialize = function(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.collection = this.model.get('measure_selections');
+      this.listenTo(this.collection, 'add', this.addAndSelectMeasure);
+      this.listenTo(this.collection, 'remove', this.removeMeasure);
+      this.measureContents = [];
+      return this.measureTabs = [];
+    };
+
+    MeasuresManager.prototype.render = function() {
+      this.$el.html(this.template());
+      this.$sidebarNav = this.$('.js-sidebar-nav');
+      this.$activeContent = this.$('.js-active-content');
+      this.collection.each(this.addMeasure);
+      this.setFirstMeasureActive();
+      return this.$el;
+    };
+
+    MeasuresManager.prototype.addMeasure = function(measure) {
+      var $measureContent, $measureTab, measureContent, measureTab;
+      measureContent = new AuditReports.Views.MeasureContent({
+        model: measure
+      });
+      this.measureContents.push(measureContent);
+      $measureContent = measureContent.render();
+      this.$activeContent.append($measureContent);
+      measureTab = new AuditReports.Views.MeasureTab({
+        model: measure
+      });
+      this.measureTabs.push(measureTab);
+      $measureTab = measureTab.render();
+      this.$sidebarNav.append($measureTab);
+      return this.$sidebarNav.sortable();
+    };
+
+    MeasuresManager.prototype.addAndSelectMeasure = function(measure) {
+      this.addMeasure(measure);
+      return this.collection.setActive(measure);
+    };
+
+    MeasuresManager.prototype.removeMeasure = function(measure) {
+      var measureContent, measureTab;
+      measureContent = _(this.measureContents).find(function(content) {
+        return content.model.id === measure.id;
+      });
+      this.measureContents = _(this.measureContents).reject(function(content) {
+        return content === measureContent;
+      });
+      measureContent.remove();
+      measureTab = _(this.measureTabs).find(function(tab) {
+        return tab.model.id === measure.id;
+      });
+      this.measureTabs = _(this.measureTabs).reject(function(tab) {
+        return tab === measureTab;
+      });
+      measureTab.remove();
+      return this.setFirstMeasureActive();
+    };
+
+    MeasuresManager.prototype.setFirstMeasureActive = function() {
+      var firstMeasure;
+      if (this.collection.length !== 0) {
+        firstMeasure = this.collection.at(0);
+        return this.collection.setActive(firstMeasure);
+      }
+    };
+
+    return MeasuresManager;
+
+  })(Backbone.View);
+
+}).call(this);
+:ET

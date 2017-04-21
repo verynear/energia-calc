@@ -1,0 +1,59 @@
+I"W(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  DisplayReports.Views.Page = (function(superClass) {
+    extend(Page, superClass);
+
+    function Page() {
+      return Page.__super__.constructor.apply(this, arguments);
+    }
+
+    Page.prototype.events = {
+      'focus .js-contentblock-textarea': '_focusPreview'
+    };
+
+    Page.prototype.initialize = function(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.$markdownEditorEl = $(options.markdownEditorEl);
+      this.$markdownPreviewEl = $(options.markdownPreviewEl);
+      this.photos = options.photos;
+      this.previewUrl = options.preview_url;
+      return this.formHtml = options.formHtml;
+    };
+
+    Page.prototype.render = function() {
+      var editor, preview;
+      editor = new DisplayReports.Views.Editor({
+        model: this.model,
+        el: this.$markdownEditorEl,
+        previewUrl: this.previewUrl,
+        photos: this.photos,
+        formHtml: this.formHtml
+      });
+      editor.render();
+      preview = new DisplayReports.Views.Preview({
+        model: this.model,
+        el: this.$markdownPreviewEl
+      });
+      preview.render();
+      return this.$el;
+    };
+
+    Page.prototype._focusPreview = function(event) {
+      var contentblock, contentblockName;
+      contentblockName = $(event.currentTarget).data('contentblock-name');
+      contentblock = $("span[data-contentblock-name='" + contentblockName + "']")[0];
+      if (contentblock) {
+        return $(contentblock).get(0).scrollIntoView();
+      }
+    };
+
+    return Page;
+
+  })(Backbone.View);
+
+}).call(this);
+:ET

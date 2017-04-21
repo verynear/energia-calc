@@ -1,0 +1,26 @@
+I"(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Models.MeasurePhoto = (function(superClass) {
+    extend(MeasurePhoto, superClass);
+
+    function MeasurePhoto() {
+      return MeasurePhoto.__super__.constructor.apply(this, arguments);
+    }
+
+    MeasurePhoto.prototype.defaults = {
+      id: '',
+      medium_url: '',
+      thumb_url: '',
+      selected: false
+    };
+
+    return MeasurePhoto;
+
+  })(Backbone.RelationalModel);
+
+  AuditReports.Models.MeasurePhoto.setup();
+
+}).call(this);
+:ET

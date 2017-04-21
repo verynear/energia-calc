@@ -1,0 +1,43 @@
+I"(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Models.StructureChange = (function(superClass) {
+    extend(StructureChange, superClass);
+
+    function StructureChange() {
+      return StructureChange.__super__.constructor.apply(this, arguments);
+    }
+
+    StructureChange.prototype.defaults = {
+      original_structure: null,
+      proposed_structure: null
+    };
+
+    StructureChange.prototype.relations = [
+      {
+        type: Backbone.HasOne,
+        key: 'original_structure',
+        relatedModel: 'AuditReports.Models.Structure',
+        reverseRelation: {
+          key: 'structure_change'
+        },
+        reverseRelation: Backbone.HasOne
+      }, {
+        type: Backbone.HasOne,
+        key: 'proposed_structure',
+        relatedModel: 'AuditReports.Models.Structure',
+        reverseRelation: {
+          key: 'structure_change'
+        }
+      }
+    ];
+
+    return StructureChange;
+
+  })(Backbone.RelationalModel);
+
+  AuditReports.Models.StructureChange.setup();
+
+}).call(this);
+:ET

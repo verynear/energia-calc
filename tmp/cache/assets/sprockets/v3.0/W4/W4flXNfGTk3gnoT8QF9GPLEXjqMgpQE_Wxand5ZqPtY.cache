@@ -1,0 +1,55 @@
+I"ð(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Views.AuditReportCalcFieldsRow = (function(superClass) {
+    extend(AuditReportCalcFieldsRow, superClass);
+
+    function AuditReportCalcFieldsRow() {
+      return AuditReportCalcFieldsRow.__super__.constructor.apply(this, arguments);
+    }
+
+    AuditReportCalcFieldsRow.prototype.tagName = 'div';
+
+    AuditReportCalcFieldsRow.prototype.initialize = function(options) {
+      if (options == null) {
+        options = {};
+      }
+      return this.section = options.section, options;
+    };
+
+    AuditReportCalcFieldsRow.prototype.render = function() {
+      this.$el.append("<h3>" + this.section.title + "</h3>");
+      this.section.rows.forEach((function(_this) {
+        return function(row) {
+          var $row;
+          $row = $("<div class='row'></div>");
+          row.forEach(function(apiName) {
+            var calcField, calcfieldValue, field;
+            if (apiName === 'report_name') {
+              calcfieldValue = _this.model.get('audit_report_name_calc_field_value');
+              calcField = new AuditReports.Views.AuditReportNameCalcField({
+                model: calcfieldValue
+              });
+            } else {
+              calcfieldValue = _this.model.get('calc_field_values').find(function(item) {
+                return item.get('api_name') === apiName;
+              });
+              field = new AuditReports.Views.AuditReportCalcField({
+                model: calcfieldValue
+              });
+            }
+            return $row.append(field.render());
+          });
+          return _this.$el.append($row);
+        };
+      })(this));
+      return this.$el;
+    };
+
+    return AuditReportCalcFieldsRow;
+
+  })(Backbone.View);
+
+}).call(this);
+:ET

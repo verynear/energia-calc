@@ -1,0 +1,44 @@
+I"n(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Views.RecommendationField = (function(superClass) {
+    extend(RecommendationField, superClass);
+
+    function RecommendationField() {
+      return RecommendationField.__super__.constructor.apply(this, arguments);
+    }
+
+    RecommendationField.prototype.className = 'col-6';
+
+    RecommendationField.prototype.inputClass = "js-recommendation-field";
+
+    RecommendationField.prototype.template = _.template("<div class=\"fli js-fli\">\n  <div class=\"fli__label\">Recommendation</div>\n  <textarea class=\"fli__input js-fli-input\"><%= value %></textarea>\n</div>");
+
+    RecommendationField.prototype.setHtml = function() {
+      return this.template({
+        value: this.model.get('recommendation')
+      });
+    };
+
+    RecommendationField.prototype.syncFieldValue = function() {
+      return $.ajax({
+        method: 'PUT',
+        url: ("/calc/audit_reports/" + (this.model.get('report_id')) + "/") + ("measure_selections/" + (this.model.get('id'))),
+        data: {
+          measure_selection: {
+            recommendation: this.$input.val()
+          }
+        },
+        success: this._afterSyncFieldValue
+      });
+    };
+
+    RecommendationField.prototype._afterSyncFieldValue = function(data) {};
+
+    return RecommendationField;
+
+  })(AuditReports.Views.Field);
+
+}).call(this);
+:ET

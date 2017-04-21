@@ -1,0 +1,18 @@
+I"[(function() {
+  window.AuditReports = {
+    Views: {},
+    Models: {},
+    EventBus: _.extend({}, Backbone.Events),
+    Collections: {},
+    generate: function(params) {
+      return new AuditReports.Generator(params);
+    }
+  };
+
+  window.triggerAuditReportSummary = function(data) {
+    AuditReports.EventBus.trigger("channel:effective_structure_field_values", ['change', data.audit_report_summary.effective_structure_values_lookup]);
+    return AuditReports.EventBus.trigger("channel:audit_report_summary:" + data.audit_report_summary.id, ['change', data.audit_report_summary]);
+  };
+
+}).call(this);
+:ET

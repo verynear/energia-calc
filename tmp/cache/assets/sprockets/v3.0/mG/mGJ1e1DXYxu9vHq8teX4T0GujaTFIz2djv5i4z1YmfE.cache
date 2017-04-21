@@ -1,0 +1,30 @@
+I"(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Collections.MeasureSelections = (function(superClass) {
+    extend(MeasureSelections, superClass);
+
+    function MeasureSelections() {
+      return MeasureSelections.__super__.constructor.apply(this, arguments);
+    }
+
+    MeasureSelections.prototype.model = AuditReports.Models.MeasureSelection;
+
+    MeasureSelections.prototype.comparator = 'calculate_order';
+
+    MeasureSelections.prototype.setActive = function(activeMeasure) {
+      activeMeasure.set('active', true);
+      return this.each(function(model) {
+        if (model !== activeMeasure) {
+          return model.set('active', false);
+        }
+      });
+    };
+
+    return MeasureSelections;
+
+  })(Backbone.Collection);
+
+}).call(this);
+:ET

@@ -1,0 +1,28 @@
+I"À(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Views.AddReportModal = (function(superClass) {
+    extend(AddReportModal, superClass);
+
+    function AddReportModal() {
+      return AddReportModal.__super__.constructor.apply(this, arguments);
+    }
+
+    AddReportModal.prototype.afterLoad = function() {
+      return this.$form = this.$('form');
+    };
+
+    AddReportModal.prototype.submitForm = function(event) {
+      if (!this.$('.js-select-audit-radio-button').is(':checked')) {
+        $('.js-select-audit-error-msg').removeClass('hide');
+        return event.preventDefault();
+      }
+    };
+
+    return AddReportModal;
+
+  })(Modal);
+
+}).call(this);
+:ET

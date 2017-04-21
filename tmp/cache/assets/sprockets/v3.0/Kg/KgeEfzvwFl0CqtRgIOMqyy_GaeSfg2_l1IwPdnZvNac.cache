@@ -1,0 +1,43 @@
+I"*(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Models.FieldValue = (function(superClass) {
+    extend(FieldValue, superClass);
+
+    function FieldValue() {
+      this.get_default_value = bind(this.get_default_value, this);
+      return FieldValue.__super__.constructor.apply(this, arguments);
+    }
+
+    FieldValue.prototype.defaults = {
+      id: '',
+      name: '',
+      api_name: '',
+      value: '',
+      value_type: '',
+      from_audit: false
+    };
+
+    FieldValue.prototype.get_default_value = function() {
+      var ref, value;
+      value = this.get('default');
+      if ((ref = typeof value) === 'number' || ref === 'string') {
+        return value;
+      }
+      if (this.get('structure').get('proposed')) {
+        return value.proposed;
+      } else {
+        return value.existing;
+      }
+    };
+
+    return FieldValue;
+
+  })(Backbone.RelationalModel);
+
+  AuditReports.Models.FieldValue.setup();
+
+}).call(this);
+:ET

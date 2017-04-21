@@ -1,0 +1,251 @@
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:48:01 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (1.4ms)
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:48:02 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (0.0ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 7228ms (Views: 7210.5ms | ActiveRecord: 0.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 6815ms (Views: 6814.4ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:48:09 -0600
+Started GET "/assets/logo-white.svg" for 10.2.20.31 at 2017-02-07 12:48:09 -0600
+Started GET "/signin" for 10.2.20.31 at 2017-02-07 12:48:11 -0600
+Processing by SessionsController#new as HTML
+Redirected to http://10.2.20.31:9292/auth/wegowise
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:48:11 -0600
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:49:58 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (0.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:49:59 -0600
+Started GET "/signin" for 10.2.20.31 at 2017-02-07 12:50:01 -0600
+Processing by SessionsController#new as HTML
+Redirected to http://10.2.20.31:9292/auth/wegowise
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:50:01 -0600
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:50:29 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (4.7ms)
+  Rendered layouts/_messages.html.erb (4.7ms)
+Completed 200 OK in 63ms (Views: 43.3ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:50:30 -0600
+Started GET "/signin" for 10.2.20.31 at 2017-02-07 12:50:32 -0600
+Processing by SessionsController#new as HTML
+Redirected to http://10.2.20.31:9292/auth/wegowise
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:50:32 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:50:32 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:50:32 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:50:32 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:50:32 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:50:32 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:50:36 -0600
+(wegowise) Request phase initiated.
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:50:39 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (0.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:50:39 -0600
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:50:40 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (0.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:50:40 -0600
+Started GET "/audits" for 10.2.20.31 at 2017-02-07 12:50:47 -0600
+Processing by AuditsController#index as HTML
+Redirected to http://10.2.20.31:9292/
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:50:47 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (0.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:50:47 -0600
+Started GET "/signin" for 10.2.20.31 at 2017-02-07 12:50:52 -0600
+Processing by SessionsController#new as HTML
+Redirected to http://10.2.20.31:9292/auth/wegowise
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:50:52 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:50:52 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:50:52 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:50:57 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:51:27 -0600
+(wegowise) Request phase initiated.
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:51:46 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (0.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:51:46 -0600
+Started GET "/assets/logo-white.svg" for 10.2.20.31 at 2017-02-07 12:51:46 -0600
+Started GET "/signin" for 10.2.20.31 at 2017-02-07 12:51:48 -0600
+Processing by SessionsController#new as HTML
+Redirected to http://10.2.20.31:9292/auth/wegowise
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:51:48 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:51:48 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:51:48 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:51:48 -0600
+(wegowise) Request phase initiated.
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:54:03 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (1.4ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 67ms (Views: 44.7ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:54:03 -0600
+Started GET "/assets/logo-white.svg" for 10.2.20.31 at 2017-02-07 12:54:03 -0600
+Started GET "/signin" for 10.2.20.31 at 2017-02-07 12:54:05 -0600
+Processing by SessionsController#new as HTML
+Redirected to http://10.2.20.31:9292/auth/wegowise
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:05 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:05 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:05 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:05 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:06 -0600
+(wegowise) Request phase initiated.
+Started GET "/signin" for 10.2.20.31 at 2017-02-07 12:54:10 -0600
+Processing by SessionsController#new as HTML
+Redirected to http://10.2.20.31:9292/auth/wegowise
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:10 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:10 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:10 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:10 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:10 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:10 -0600
+(wegowise) Request phase initiated.
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:54:33 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (0.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:54:33 -0600
+Started GET "/assets/logo-white.svg" for 10.2.20.31 at 2017-02-07 12:54:33 -0600
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:54:35 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (0.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:54:35 -0600
+Started GET "/assets/logo-white.svg" for 10.2.20.31 at 2017-02-07 12:54:35 -0600
+Started GET "/audits" for 10.2.20.31 at 2017-02-07 12:54:42 -0600
+Processing by AuditsController#index as HTML
+Redirected to http://10.2.20.31:9292/
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:54:42 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (0.1ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:54:42 -0600
+Started GET "/assets/logo-white.svg" for 10.2.20.31 at 2017-02-07 12:54:42 -0600
+Started GET "/audits" for 10.2.20.31 at 2017-02-07 12:54:46 -0600
+Processing by AuditsController#index as HTML
+Redirected to http://10.2.20.31:9292/
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:54:46 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (0.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:54:46 -0600
+Started GET "/assets/logo-white.svg" for 10.2.20.31 at 2017-02-07 12:54:46 -0600
+Started GET "/signin" for 10.2.20.31 at 2017-02-07 12:54:49 -0600
+Processing by SessionsController#new as HTML
+Redirected to http://10.2.20.31:9292/auth/wegowise
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:49 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:49 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:49 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:49 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:54:49 -0600
+(wegowise) Request phase initiated.
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:57:31 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (5.5ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 65ms (Views: 46.6ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:57:32 -0600
+Started GET "/assets/logo-white.svg" for 10.2.20.31 at 2017-02-07 12:57:32 -0600
+Started GET "/" for 10.2.20.31 at 2017-02-07 12:57:37 -0600
+Processing by VisitorsController#index as HTML
+  Rendered visitors/index.html.erb within layouts/public (0.1ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 10.2.20.31 at 2017-02-07 12:57:37 -0600
+Started GET "/assets/logo-white.svg" for 10.2.20.31 at 2017-02-07 12:57:37 -0600
+Started GET "/signin" for 10.2.20.31 at 2017-02-07 12:57:39 -0600
+Processing by SessionsController#new as HTML
+Redirected to http://10.2.20.31:9292/auth/wegowise
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:39 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:39 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:39 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:39 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:39 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:39 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:39 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:44 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:45 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:45 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:45 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:45 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:45 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:45 -0600
+(wegowise) Request phase initiated.
+Started GET "/signin" for 10.2.20.31 at 2017-02-07 12:57:49 -0600
+Processing by SessionsController#new as HTML
+Redirected to http://10.2.20.31:9292/auth/wegowise
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:49 -0600
+(wegowise) Request phase initiated.
+Started GET "/auth/wegowise" for 10.2.20.31 at 2017-02-07 12:57:49 -0600
+(wegowise) Request phase initiated.

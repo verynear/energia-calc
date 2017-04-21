@@ -1,0 +1,62 @@
+I"(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  AuditReports.Models.MeasureSelection = (function(superClass) {
+    extend(MeasureSelection, superClass);
+
+    function MeasureSelection() {
+      return MeasureSelection.__super__.constructor.apply(this, arguments);
+    }
+
+    MeasureSelection.prototype.relations = [
+      {
+        type: Backbone.HasMany,
+        key: 'structure_changes',
+        relatedModel: 'AuditReports.Models.StructureChange',
+        reverseRelation: {
+          key: 'measure_selection'
+        }
+      }, {
+        type: Backbone.HasMany,
+        key: 'photos',
+        relatedModel: 'AuditReports.Models.MeasurePhoto',
+        collectionType: 'AuditReports.Collections.MeasurePhotos',
+        reverseRelation: {
+          key: 'measure_selection'
+        }
+      }, {
+        type: Backbone.HasOne,
+        key: 'measure_summary',
+        relatedModel: 'AuditReports.Models.MeasureSummary',
+        reverseRelation: Backbone.HasOne
+      }
+    ];
+
+    MeasureSelection.prototype.defaults = {
+      active: false,
+      calculate_order: '',
+      enabled: true,
+      id: '',
+      name: '',
+      notes: '',
+      photos: [],
+      report_id: '',
+      selected_photo_id: '',
+      structure_changes: []
+    };
+
+    MeasureSelection.prototype.toggleEnabled = function() {
+      return this.set({
+        enabled: !this.get('enabled')
+      });
+    };
+
+    return MeasureSelection;
+
+  })(Backbone.RelationalModel);
+
+  AuditReports.Models.MeasureSelection.setup();
+
+}).call(this);
+:ET
