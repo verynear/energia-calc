@@ -89,6 +89,11 @@ class MeasureDefinition < Generic::Strict
   end
   memoize :calc_structure_types
 
+  def meas_structure_types
+    structure_type_definitions.map(&:calc_structure_type)
+  end
+  memoize :meas_structure_types
+
   private
 
   def default_measure_fields

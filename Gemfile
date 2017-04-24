@@ -1,3 +1,4 @@
+ruby "2.3.3"
 source 'https://rubygems.org'
 ruby '2.3.3'
 
@@ -10,7 +11,6 @@ gem 'devise', '~> 4.2'
 # gem 'door_stop', path: 'vendor/gems/door_stop'
 gem 'faraday'
 gem 'faraday_middleware-parse_oj'
-gem 'foreigner'
 gem 'ice_nine'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'

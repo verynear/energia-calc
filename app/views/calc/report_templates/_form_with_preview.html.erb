@@ -1,5 +1,5 @@
 <div class='markdown-editor js-markdown-editor'>
-  <%= form_for @template do |f| %>
+  <%= form_for @template, url: calc_report_template_path(@template) do |f| %>
     <div class='row'>
       <%= f.text_field :name, placeholder: 'Template name' %>
     </div>
