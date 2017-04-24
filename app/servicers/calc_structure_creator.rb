@@ -1,5 +1,5 @@
 class CalcStructureCreator < Generic::Strict
-  attr_accessor :calc_measure,
+  attr_accessor :measure,
                 :proposed,
                 :structure_change
 
@@ -8,7 +8,7 @@ class CalcStructureCreator < Generic::Strict
   def initialize(*)
     super
     self.proposed ||= false
-    raise ArgumentError, 'measure' unless calc_measure
+    raise ArgumentError, 'measure' unless measure
     raise ArgumentError, 'structure_change' unless structure_change
   end
 
@@ -54,7 +54,7 @@ class CalcStructureCreator < Generic::Strict
       proposed_only = structure_type_definition.proposed_only_field?(calc_field)
       existing_only = structure_type_definition.existing_only_field?(calc_field)
 
-      next if !proposed && calc_measure.inputs_only?
+      next if !proposed && measure.inputs_only?
       next if !proposed && proposed_only
       next if proposed && existing_only
       next if !proposed && structure_change.interaction_fields.include?(calc_field)
@@ -64,6 +64,6 @@ class CalcStructureCreator < Generic::Strict
   end
 
   def structure_type_definition
-    calc_measure.structure_type_definition_for(structure_change.calc_structure_type)
+    measure.structure_type_definition_for(structure_change.calc_structure_type)
   end
 end

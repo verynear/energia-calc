@@ -29,10 +29,10 @@ class AuditReportCreator < Generic::Strict
 
   def associate_measures
     data['measures'].each do |wegoaudit_measure|
-      measure = CalcMeasure.by_api_name!(wegoaudit_measure['api_name'])
+      measure = Measure.by_api_name!(wegoaudit_measure['api_name'])
       MeasureSelectionCreator.new(
         audit_report: audit_report,
-        calc_measure: measure,
+        measure: measure,
         notes: wegoaudit_measure['notes']
       ).create
     end

@@ -2,10 +2,10 @@ class MeasureSelection < ActiveRecord::Base
   include RankedModel
   ranks :calculate_order, with_same: :audit_report_id
 
-  validates :calc_measure_id, presence: true
+  validates :measure_id, presence: true
   validates :audit_report_id, presence: true
 
-  belongs_to :calc_measure
+  belongs_to :measure
   belongs_to :audit_report
   has_many :calc_field_values, as: :parent
 
@@ -13,11 +13,11 @@ class MeasureSelection < ActiveRecord::Base
   has_many :calc_structures, through: :structure_changes
 
   delegate :temp_audit, to: :audit_report
-  delegate :structure_types, to: :calc_measure
-  delegate :fields_for_structure_type, to: :calc_measure
-  delegate :grouping_field_api_name, to: :calc_measure
-  delegate :name, to: :calc_measure, prefix: true
-  delegate :definition, to: :calc_measure, prefix: true
+  delegate :structure_types, to: :measure
+  delegate :fields_for_structure_type, to: :measure
+  delegate :grouping_field_api_name, to: :measure
+  delegate :name, to: :measure, prefix: true
+  delegate :definition, to: :measure, prefix: true
   delegate :data_types,
            :defaults,
            :interaction_fields,

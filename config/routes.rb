@@ -70,8 +70,8 @@ Rails.application.routes.draw do
   resources :field_values, only: [:index, :create, :update]
   resources :fields, only: [:index]
   resources :groupings, only: [:index]
-  resources :measure_values, only: [:index, :create, :update, :show]
-  resources :measures, only: [:index]
+  resources :audit_measure_values, only: [:index, :create, :update, :show]
+  resources :audit_measures, only: [:index]
   resources :meters, only: [:create, :update]
   resources :organizations, only: [:index, :show] do
     member do

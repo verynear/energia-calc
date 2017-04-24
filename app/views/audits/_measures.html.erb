@@ -1,19 +1,19 @@
 <div class="active-content__measures">
-  <% AuditMeasuresPresenter.new(current_audit).measures.each do |measure| %>
+  <% AuditMeasuresPresenter.new(current_audit).audit_measures.each do |audit_measure| %>
     <div class="form-row">
-      <%= form_tag [current_audit, measure.measure],
+      <%= form_tag [current_audit, audit_measure.audit_measure],
             method: :put,
             remote: true do %>
-        <%= label_tag :measure, class: 'checkbox checkbox-inline' do %>
+        <%= label_tag :audit_measure, class: 'checkbox checkbox-inline' do %>
           <%= hidden_field_tag :value, false %>
           <%= check_box_tag :value,
                 true,
-                measure.value,
+                audit_measure.value,
                 class: 'notes-toggler',
                 disabled: !can_edit? %>
-          <%= measure.name %>
+          <%= audit_measure.name %>
           <%= text_area_tag :notes,
-                measure.notes,
+                audit_measure.notes,
                 class: 'measure-notes',
                 disabled: !can_edit? %>
         <%- end %>

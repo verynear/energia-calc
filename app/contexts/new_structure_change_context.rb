@@ -2,14 +2,14 @@ class NewStructureChangeContext < BaseContext
   attr_accessor :audit_report,
                 :measure_selection
 
-  delegate :calc_measure,
-           :calc_measure_name,
+  delegate :measure,
+           :measure_name,
            to: :measure_selection
 
   def available_structure_types
-    calc_measure.meas_structure_types.select do |calc_structure_type|
+    measure.meas_structure_types.select do |calc_structure_type|
       structure_type_definition =
-        calc_measure.structure_type_definition_for(calc_structure_type)
+        measure.structure_type_definition_for(calc_structure_type)
       if !structure_type_definition.multiple? &&
           measure_selection.has_structure_change_for(calc_structure_type)
         false

@@ -12,7 +12,7 @@ class Audit < ActiveRecord::Base
   belongs_to :locked_by_user, foreign_key: :locked_by, class_name: 'User'
 
   has_many :field_values, through: :structure
-  has_many :measure_values
+  has_many :audit_measure_values
 
   delegate :structure_type,
            :value_for_field,
@@ -30,8 +30,8 @@ class Audit < ActiveRecord::Base
     !locked_by.nil?
   end
   
-  def measure_value(measure)
-    measure_value.find_by(measure_id: measure.id)
+  def audit_measure_value(audit_measure)
+    audit_measure_value.find_by(audit_measure_id: audit_measure.id)
   end
 
   def parent_object

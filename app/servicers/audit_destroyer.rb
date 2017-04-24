@@ -3,7 +3,7 @@ class AuditDestroyer < BaseServicer
 
   def execute!
     StructureDestroyer.execute(structure: @audit.structure)
-    audit.measure_values.destroy_all
+    audit.audit_measure_values.destroy_all
     audit.destroy
   end
 end

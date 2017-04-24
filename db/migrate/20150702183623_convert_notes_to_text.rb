@@ -1,9 +1,9 @@
 class ConvertNotesToText < ActiveRecord::Migration
   def up
-    change_column :measure_values, :notes, :text
+    change_column :audit_measure_values, :notes, :text
   end
 
   def down
-    change_column :measure_values, :notes, :string
+    change_column :audit_measure_values, :notes, :string
   end
 end

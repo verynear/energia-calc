@@ -12,7 +12,7 @@ class AuditReport < ActiveRecord::Base
   has_many :apartment_monthly_data
   has_many :building_monthly_data
   has_many :measure_selections
-  has_many :calc_measures, through: :measure_selections
+  has_many :measures, through: :measure_selections
   has_many :original_structure_field_values
 
   has_many :calc_field_values, as: :parent

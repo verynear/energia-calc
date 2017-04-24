@@ -3,8 +3,8 @@ class AuditDigest
   attr_accessor :audit,
                 :audit_report,
 			          :field,
-			          :measure,
-                :measure_value,
+			          :audit_measure,
+                :audit_measure_value,
                 :sample_group,
                 :structure,
 			          :structure_type,
@@ -38,10 +38,10 @@ class AuditDigest
     render json: { fields: fields_json }
   end
 
-  def measures_list
-    response = Measure.all.map do |measure|
-      { name: measure.name,
-        api_name: measure.api_name }
+  def audit_measures_list
+    response = AuditMeasure.all.map do |audit_measure|
+      { name: audit_measure.name,
+        api_name: audit_measure.api_name }
     end
 
     return response
