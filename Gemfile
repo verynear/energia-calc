@@ -1,5 +1,6 @@
 ruby "2.3.3"
 source 'https://rubygems.org'
+ruby '2.3.3'
 
 # gem 'aws-sdk'
 gem 'activerecord-import'

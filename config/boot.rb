@@ -9,17 +9,19 @@ ENV['WEGOAUDIT_LOCAL_IP'] ||= begin
   ip.ip_address if ip
 end
 
+'''
 module DefaultServerPort
   def default_options
     super.merge!(:Port => 9292,
-                 :Host => ENV['WEGOAUDIT_LOCAL_IP'])
+                 :Host => ENV[''WEGOAUDIT_LOCAL_IP''])
   end
 end
+'''
 
 require 'rails/commands/server'
 
 module Rails
   class Server
-    prepend DefaultServerPort
+    #prepend DefaultServerPort
   end
 end
