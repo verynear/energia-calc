@@ -5,7 +5,6 @@ threads Integer(ENV['MIN_THREADS'] || 1),
 preload_app!
 
 rackup DefaultRackup
-bind 'unix:///apps/wegoaudit/shared/tmp/sockets/puma.sock'
 environment ENV['RACK_ENV'] || 'development'
 
 on_worker_boot do
