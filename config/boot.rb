@@ -22,6 +22,6 @@ require 'rails/commands/server'
 
 module Rails
   class Server
-    prepend DefaultServerPort
+    #prepend DefaultServerPort
   end
 end
