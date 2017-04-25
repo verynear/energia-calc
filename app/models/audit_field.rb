@@ -14,9 +14,9 @@ class AuditField < ActiveRecord::Base
 
   validate :validate_unchanged_api_name
 
-  # scope :sort_display_order, -> {
-  #  order(:display_order)
-  # }
+  scope :sort_display_order, -> {
+    order(:display_order)
+   }
 
   STRING_TYPES = ['text', 'string', 'phone', 'email', 'picker', 'state']
   FLOAT_TYPES = ['float']
