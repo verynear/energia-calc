@@ -1,7 +1,7 @@
 class CalcStructure < ActiveRecord::Base
   belongs_to :structure_change
-  has_many :calc_field_values, as: :parent
-  has_many :calc_fields, through: :calc_field_values
+  has_many :field_values, as: :parent
+  has_many :fields, through: :field_values
 
   delegate :wegoaudit_structure, to: :structure_change
   delegate :measure_selection, to: :structure_change

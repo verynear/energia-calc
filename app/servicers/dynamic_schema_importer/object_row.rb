@@ -43,28 +43,28 @@ class DynamicSchemaImporter
       @row = row
     end
 
-    def fields
-      if field_type == 'multi-picklist'
+    def audit_fields
+      if audit_field_type == 'multi-picklist'
         multi_picklist_options.map do |option|
           { name: option, value_type: 'check' }
         end
       else
-        [{ name: field_name, value_type: field_type }]
+        [{ name: audit_field_name, value_type: field_type }]
       end
     end
-    def field_name
+    def audit_field_name
       parse_string_field('Data Field')
     end
 
-    def field_type
-      @field_type ||= VALID_FIELD_TYPES.find do |i|
+    def audit_field_type
+      @audit_field_type ||= VALID_FIELD_TYPES.find do |i|
         i == parse_string_field('Field Type').downcase
       end
     end
 
     def grouping_name
-      if field_type == 'multi-picklist'
-        field_name
+      if audit_field_type == 'multi-picklist'
+        audit_field_name
       elsif row['Details Category'].present?
         parse_string_field('Details Category')
       else
@@ -72,8 +72,8 @@ class DynamicSchemaImporter
       end
     end
 
-    def field_valid?
-      field_name.present? && field_type.present?
+    def audit_field_valid?
+      audit_field_name.present? && audit_field_type.present?
     end
 
     def has_child_types?
@@ -81,7 +81,7 @@ class DynamicSchemaImporter
     end
 
     def multi_picklist_options
-      return [] if field_type != 'multi-picklist'
+      return [] if audit_field_type != 'multi-picklist'
       valid_field_options
     end
 
@@ -106,7 +106,7 @@ class DynamicSchemaImporter
     end
 
     def picker_options
-      return [] if field_type != 'picker'
+      return [] if audit_field_type != 'picker'
       valid_field_options
     end
 

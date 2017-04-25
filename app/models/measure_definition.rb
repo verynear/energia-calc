@@ -24,7 +24,7 @@ class MeasureDefinition < Generic::Strict
     structure_type_definition = structure_type_definition_for(calc_structure_type)
     return [] unless structure_type_definition
 
-    structure_type_definition.calc_fields
+    structure_type_definition.fields
   end
   memoize :fields_for_structure_type
 
@@ -77,7 +77,7 @@ class MeasureDefinition < Generic::Strict
       StructureTypeDefinition.new(
         name: st_api_name,
         definition: definition_hash,
-        calc_fields: fields,
+        fields: fields,
         calc_structure_type: structure_type
       )
     end.compact
@@ -98,12 +98,12 @@ class MeasureDefinition < Generic::Strict
 
   def default_measure_fields
     [:utility_rebate, :retrofit_lifetime].map do |api_name|
-      CalcField.by_api_name!(api_name)
+      Field.by_api_name!(api_name)
     end
   end
 
   def get_field(name)
     api_name = fields_mapping[name.to_sym] || name
-    CalcField.by_api_name!(api_name)
+    Field.by_api_name!(api_name)
   end
 end

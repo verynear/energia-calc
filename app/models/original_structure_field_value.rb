@@ -1,12 +1,12 @@
 class OriginalStructureFieldValue < ActiveRecord::Base
   belongs_to :audit_report
 
-  delegate :convert_value, to: :calc_field
-  delegate :value_type, to: :calc_field
-  delegate :name, to: :calc_field, prefix: true
+  delegate :convert_value, to: :field
+  delegate :value_type, to: :field
+  delegate :name, to: :field, prefix: true
 
   def field
-    CalcField.by_api_name!(field_api_name)
+    Field.by_api_name!(field_api_name)
   end
 
   def from_audit
@@ -19,7 +19,7 @@ class OriginalStructureFieldValue < ActiveRecord::Base
       temp_audit: temp_audit,
       n_structures: 1,
       name: 'Unnamed',
-      calc_field_values: {},
+      field_values: {},
       calc_structure_type: {}
     )
   end

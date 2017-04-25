@@ -38,20 +38,20 @@ class EditAuditReportContext < BaseContext
       :value,
       :field_api_name
     ]
-    audit_report.calc_field_values.pluck_to_hash(*fields).map do |row|
-      calc_field = CalcField.by_api_name!(row[:field_api_name])
+    audit_report.field_values.pluck_to_hash(*fields).map do |row|
+      field = Field.by_api_name!(row[:field_api_name])
 
       if row[:field_api_name] == 'location_for_temperatures'
         field_options = location_for_temperature_options
       else
-        field_options = calc_field.options
+        field_options = field.options
       end
 
       {
         id: row[:id],
-        name: calc_field.name,
+        name: field.name,
         value: row[:value],
-        value_type: calc_field.value_type,
+        value_type: field.value_type,
         original_value: nil,
         from_audit: false,
         api_name: row[:field_api_name],

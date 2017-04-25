@@ -1,29 +1,29 @@
-class FieldValuesController < SecuredController
+class AuditFieldValuesController < SecuredController
   include RemoteObjectProcessing
 
-  before_filter :load_field_value, only: [:show]
+  before_filter :load_audit_field_value, only: [:show]
 
   def index
   end
 
   def create
-    render json: process_object(FieldValue, field_value_params)
+    render json: process_object(AuditFieldValue, audit_field_value_params)
   end
 
   def update
-    render json: process_object(FieldValue, field_value_params)
+    render json: process_object(AuditFieldValue, audit_field_value_params)
   end
 
   def show
-    render json: @field_value
+    render json: @audit_field_value
   end
 
   private
 
-  def field_value_params
-    params.require(:field_value).permit(:id,
+  def audit_field_value_params
+    params.require(:audit_field_value).permit(:id,
                                         :destroy_attempt_on,
-                                        :field_id,
+                                        :audit_field_id,
                                         :structure_id,
                                         :string_value,
                                         :float_value,
@@ -37,7 +37,7 @@ class FieldValuesController < SecuredController
                                         :updated_at)
   end
 
-  def load_field_value
-    @field_value = FieldValue.find(params[:id]) if params[:id]
+  def load_audit_field_value
+    @audit_field_value = AuditFieldValue.find(params[:id]) if params[:id]
   end
 end

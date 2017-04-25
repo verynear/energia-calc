@@ -1,6 +1,6 @@
-class CreateFields < ActiveRecord::Migration
+class CreateAuditFields < ActiveRecord::Migration
   def change
-    create_table :fields, id: :uuid do |t|
+    create_table :audit_fields, id: :uuid do |t|
       t.string :name, null: false
       t.string :placeholder
       t.string :value_type, null: false

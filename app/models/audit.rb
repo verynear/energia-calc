@@ -11,7 +11,7 @@ class Audit < ActiveRecord::Base
   belongs_to :structure
   belongs_to :locked_by_user, foreign_key: :locked_by, class_name: 'User'
 
-  has_many :field_values, through: :structure
+  has_many :audit_field_values, through: :structure
   has_many :audit_measure_values
 
   delegate :structure_type,

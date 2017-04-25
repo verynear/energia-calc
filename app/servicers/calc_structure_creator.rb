@@ -28,8 +28,8 @@ class CalcStructureCreator < Generic::Strict
 
   private
 
-  def attributes_for_calc_field(calc_field)
-    api_name = calc_field.api_name
+  def attributes_for_field(field)
+    api_name = field.api_name
     values_from_audit = structure_change.wegoaudit_field_values[api_name]
     if values_from_audit
       values_from_audit.except('name', 'value_type', 'picker_value')
@@ -38,28 +38,28 @@ class CalcStructureCreator < Generic::Strict
     end
   end
 
-  def create_calc_field_value(calc_structure, calc_field)
-    attributes = attributes_for_calc_field(calc_field)
+  def create_field_value(calc_structure, field)
+    attributes = attributes_for_field(field)
     # There's an ordering issue where you have to set field_api_name before you
     # can set value
-    calc_field_value = CalcFieldValue.new(
-      field_api_name: calc_field.api_name,
+    field_value = FieldValue.new(
+      field_api_name: field.api_name,
       parent: calc_structure)
-    calc_field_value.attributes = attributes
-    calc_field_value.save!
+    field_value.attributes = attributes
+    field_value.save!
   end
 
-  def create_calc_field_values_for(calc_structure)
-    structure_change.calc_fields.map do |calc_field|
-      proposed_only = structure_type_definition.proposed_only_field?(calc_field)
-      existing_only = structure_type_definition.existing_only_field?(calc_field)
+  def create_field_values_for(calc_structure)
+    structure_change.fields.map do |field|
+      proposed_only = structure_type_definition.proposed_only_field?(field)
+      existing_only = structure_type_definition.existing_only_field?(field)
 
       next if !proposed && measure.inputs_only?
       next if !proposed && proposed_only
       next if proposed && existing_only
-      next if !proposed && structure_change.interaction_fields.include?(calc_field)
+      next if !proposed && structure_change.interaction_fields.include?(field)
 
-      create_calc_field_value(calc_structure, calc_field)
+      create_field_value(calc_structure, field)
     end
   end
 

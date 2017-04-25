@@ -134,7 +134,7 @@ class AuditReports.Views.Field extends Backbone.View
 
   syncUrl: ->
     "/calc/calc_structures/#{@model.get('structure').get('id')}" +
-      "/calc_field_values/#{@model.get('id')}"
+      "/field_values/#{@model.get('id')}"
 
   syncFieldValue: ->
     $.ajax(

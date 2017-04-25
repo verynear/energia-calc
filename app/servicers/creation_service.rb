@@ -38,7 +38,7 @@ class CreationService < ObjectServicer
 
   def subobject_type(sub_object_params)
     return Structure if sub_object_params.has_key?('physical_structure_id')
-    return FieldValue if sub_object_params.has_key?('field_id')
+    return AuditFieldValue if sub_object_params.has_key?('audit_field_id')
     return MeasureValue if sub_object_params.has_key?('measure_id')
     Module.const_get(@object.physical_structure_type)
   end

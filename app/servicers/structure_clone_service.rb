@@ -16,8 +16,8 @@ class StructureCloneService < BaseServicer
   private
 
   def clone_field_values
-    structure.field_values.each do |field_value|
-      field_value.create_clone(structure_id: cloned_structure.id)
+    structure.audit_field_values.each do |audit_field_value|
+      audit_field_value.create_clone(structure_id: cloned_structure.id)
     end
   end
 

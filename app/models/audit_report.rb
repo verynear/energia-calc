@@ -15,7 +15,7 @@ class AuditReport < ActiveRecord::Base
   has_many :measures, through: :measure_selections
   has_many :original_structure_field_values
 
-  has_many :calc_field_values, as: :parent
+  has_many :field_values, as: :parent
 
   def all_structures
     temp_audit.flattened_structures
@@ -30,7 +30,7 @@ class AuditReport < ActiveRecord::Base
   end
 
   def building_name
-    calc_field_values.find_by(field_api_name: 'building_name').value
+    field_values.find_by(field_api_name: 'building_name').value
   end
 
   def data

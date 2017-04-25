@@ -11,7 +11,7 @@ class Structure < ActiveRecord::Base
   has_many :structure_images
   has_many :substructures, foreign_key: :parent_structure_id,
                            class_name: 'Structure'
-  has_many :field_values
+  has_many :audit_field_values
   has_many :field_enumerations
   belongs_to :physical_structure, polymorphic: true
 
@@ -36,11 +36,11 @@ class Structure < ActiveRecord::Base
     "#{structure_type.name} - #{name}"
   end
 
-  def value_for_field(field)
-      field_values.where(structure_id: structure.id).where(field_id: field.id)
+  def value_for_field(audit_field)
+      audit_field_values.where(structure_id: structure.id).where(audit_field_id: audit_field.id)
   end
 
-  def value_for_picker_field(field)
-      field_enumerations.where(field_id: field.id)
+  def value_for_picker_field(audit_field)
+      field_enumerations.where(audit_field_id: audit_field.id)
   end
 end

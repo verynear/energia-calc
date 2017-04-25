@@ -7,7 +7,7 @@ class MeasureSelection < ActiveRecord::Base
 
   belongs_to :measure
   belongs_to :audit_report
-  has_many :calc_field_values, as: :parent
+  has_many :field_values, as: :parent
 
   has_many :structure_changes
   has_many :calc_structures, through: :structure_changes
@@ -29,14 +29,14 @@ class MeasureSelection < ActiveRecord::Base
            :for_electric?,
            :for_gas?,
            :for_oil?,
-           to: :calc_measure_definition
+           to: :measure_definition
 
   def belongs_to_user?(user)
     audit_report.user == user
   end
 
   def degradation_rate
-    calc_field_value('degradation_rate')
+    field_value('degradation_rate')
   end
 
   def has_structure_change_for(calc_structure_type)
@@ -74,23 +74,23 @@ class MeasureSelection < ActiveRecord::Base
   end
 
   def retrofit_lifetime
-    value = calc_field_value('retrofit_lifetime')
+    value = field_value('retrofit_lifetime')
     return value if value.present?
 
     defaults[:retrofit_lifetime]
   end
 
   def utility_rebate
-    calc_field_value('utility_rebate')
+    field_value('utility_rebate')
   end
 
   def warm_weather_shutdown_temperature
-    calc_field_value('warm_weather_shutdown_temperature')
+    field_value('warm_weather_shutdown_temperature')
   end
 
   private
 
-  def calc_field_value(api_name)
-    calc_field_values.find_by(field_api_name: api_name).value
+  def field_value(api_name)
+    field_values.find_by(field_api_name: api_name).value
   end
 end
