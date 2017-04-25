@@ -154,7 +154,7 @@ $(function contentMinHeight() {
 // Animate page notice in/out
 //----------------------------
 $(function fadeNotice() {
-  $('.js-flash-notice').fadeIn().delay(3000).slideUp();
+  $('.js-flash-notice').fadeIn().delay(1000).slideUp();
 });
 
 $('.js-gallery').fancybox();
