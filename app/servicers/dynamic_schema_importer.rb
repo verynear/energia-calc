@@ -35,19 +35,19 @@ class DynamicSchemaImporter < BaseServicer
       grouping.update(display_order: structure_type.groupings.count + 1)
     end
 
-    row.fields.each do |field_options|
-      field = grouping.fields.find_or_create_by(name: field_options[:name])
+    row.audit_fields.each do |field_options|
+      audit_field = grouping.audit_fields.find_or_create_by(name: field_options[:name])
 
-      if field.display_order.nil?
-        field_options[:display_order] = grouping.fields.count + 1
+      if audit_field.display_order.nil?
+        field_options[:display_order] = grouping.audit_fields.count + 1
       end
 
-      field.update!(field_options)
+      audit_field.update!(field_options)
 
       row.picker_options.each do |option|
-        field_enum = field.field_enumerations.find_or_create_by(value: option)
+        field_enum = audit_field.field_enumerations.find_or_create_by(value: option)
         if field_enum.display_order.nil?
-          field_enum.update(display_order: field.field_enumerations.count + 1)
+          field_enum.update(display_order: audit_field.field_enumerations.count + 1)
         end
       end
     end

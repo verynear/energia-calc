@@ -29,8 +29,8 @@ Rails.application.routes.draw do
         post :search
       end
     end
-    resources :fields, only: [:update]
-    resources :measures, only: [:update]
+    resources :audit_fields, only: [:update]
+    resources :audit_measures, only: [:update]
     resources :photos, only: [:create, :destroy] do
       member do
         get ':style.jpg' => 'photos#download', as: :download
@@ -67,11 +67,11 @@ Rails.application.routes.draw do
     end
   end
   resources :field_enumerations, only: [:index]
-  resources :field_values, only: [:index, :create, :update]
-  resources :fields, only: [:index]
+  resources :audit_field_values, only: [:index, :create, :update]
+  resources :audit_fields, only: [:index]
   resources :groupings, only: [:index]
-  resources :measure_values, only: [:index, :create, :update, :show]
-  resources :measures, only: [:index]
+  resources :audit_measure_values, only: [:index, :create, :update, :show]
+  resources :audit_measures, only: [:index]
   resources :meters, only: [:create, :update]
   resources :organizations, only: [:index, :show] do
     member do
@@ -105,7 +105,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :calc_field_values, only: [:update]
+      resources :field_values, only: [:update]
       resources :original_structure_field_values, only: [:update]
     end
 
@@ -115,7 +115,7 @@ Rails.application.routes.draw do
 
     scope 'measure_selections/:measure_selection_id', as: 'measure_selection' do
       resources :structure_changes, only: [:new, :create, :destroy]
-      resources :calc_field_values, only: [:update]
+      resources :field_values, only: [:update]
     end
 
     resources :report_templates, except: [:show] do
@@ -123,7 +123,7 @@ Rails.application.routes.draw do
     end
 
     scope 'calc_structures/:calc_structure_id', as: 'structure' do
-      resources :calc_field_values, only: [:update]
+      resources :field_values, only: [:update]
     end
 
     resources :calc_structures, only: [:update]

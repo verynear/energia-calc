@@ -1,18 +1,18 @@
 class MeasurePresenter
-  attr_reader :measure,
-              :measure_value
+  attr_reader :audit_measure,
+              :audit_measure_value
 
   delegate :id,
            :name,
-           to: :measure
+           to: :audit_measure
 
   delegate :notes,
            :value,
-           to: :measure_value,
+           to: :audit_measure_value,
            allow_nil: true
 
-  def initialize(measure, measure_value = nil)
-    @measure = measure
-    @measure_value = measure_value
+  def initialize(audit_measure, audit_measure_value = nil)
+    @audit_measure = audit_measure
+    @audit_measure_value = audit_measure_value
   end
 end

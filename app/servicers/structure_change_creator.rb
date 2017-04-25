@@ -1,5 +1,5 @@
 class StructureChangeCreator < Generic::Strict
-  attr_accessor :calc_measure,
+  attr_accessor :measure,
                 :measure_selection,
                 :calc_structure_type,
                 :structure_wegoaudit_id
@@ -40,7 +40,7 @@ class StructureChangeCreator < Generic::Strict
 
   def create_calc_structure(**options)
     creator = CalcStructureCreator.new(
-      { calc_measure: measure_selection.calc_measure,
+      { measure: measure_selection.measure,
         structure_change: structure_change }.merge(options)
     )
     creator.create

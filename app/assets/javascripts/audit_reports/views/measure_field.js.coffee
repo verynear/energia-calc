@@ -4,4 +4,4 @@ class AuditReports.Views.MeasureField extends AuditReports.Views.Field
 
   syncUrl: ->
     "/calc/measure_selections/#{@model.get('measure_summary').get('id')}/" +
-      "calc_field_values/#{@model.get('id')}"
+      "field_values/#{@model.get('id')}"

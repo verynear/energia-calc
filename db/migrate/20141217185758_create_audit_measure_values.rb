@@ -1,7 +1,7 @@
-class CreateMeasureValues < ActiveRecord::Migration
+class CreateAuditMeasureValues < ActiveRecord::Migration
   def change
-    create_table :measure_values, id: :uuid do |t|
-      t.uuid :measure_id, null: false, index: true
+    create_table :audit_measure_values, id: :uuid do |t|
+      t.uuid :audit_measure_id, null: false, index: true
       t.uuid :audit_id, null: false, index: true
       t.boolean :value, default: false
       t.string :notes

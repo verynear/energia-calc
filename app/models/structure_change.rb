@@ -5,15 +5,15 @@ class StructureChange < ActiveRecord::Base
   delegate :temp_audit, to: :measure_selection
   delegate :api_name, to: :calc_structure_type, prefix: true
 
-  has_many :calc_field_values
+  has_many :field_values
   has_many :calc_structures
 
   def determining_structure?
     structure_type_definition.determining?
   end
 
-  def calc_fields
-    @calc_fields ||= measure_selection.fields_for_structure_type(calc_structure_type)
+  def fields
+    @fields ||= measure_selection.fields_for_structure_type(calc_structure_type)
   end
 
   def grouped_structures
@@ -75,7 +75,7 @@ class StructureChange < ActiveRecord::Base
       temp_audit: temp_audit,
       n_structures: 1,
       name: 'Unnamed',
-      calc_field_values: {},
+      field_values: {},
       calc_structure_type: { 'api_name' => calc_structure_type.api_name }
     )
   end

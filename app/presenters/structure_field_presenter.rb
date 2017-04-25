@@ -18,8 +18,8 @@ class StructureFieldPresenter
     'text' => 'textarea'
   }
 
-  attr_reader :field,
-              :field_value,
+  attr_reader :audit_field,
+              :audit_field_value,
               :field_enumeration,
               :structure
 
@@ -28,10 +28,10 @@ class StructureFieldPresenter
            :to_key,
            :value_type,
            :storage_type,
-           to: :field
+           to: :audit_field
 
   delegate :value,
-           to: :field_value,
+           to: :audit_field_value,
            prefix: true,
            allow_nil: true
 
@@ -43,14 +43,14 @@ class StructureFieldPresenter
 
   class << self
     def model_name
-      Field.model_name
+      AuditField.model_name
     end
   end
 
-  def initialize(structure, field, field_value = nil, string_value = nil)
+  def initialize(structure, audit_field, audit_field_value = nil, string_value = nil)
     @structure = structure
-    @field = field
-    @field_value = field_value
+    @audit_field = audit_field
+    @audit_field_value = audit_field_value
     @string_value = string_value
   end
 

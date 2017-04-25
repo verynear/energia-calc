@@ -9,7 +9,7 @@ class TempStructure < Generic::Strict
                   :substructures,
                   :wegowise_id
 
-    attr_reader :calc_field_values,
+    attr_reader :field_values,
                 :calc_structure_type
 
     delegate :api_name, to: :calc_structure_type, prefix: true

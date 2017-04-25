@@ -1,6 +1,6 @@
-class CreateMeasures < ActiveRecord::Migration
+class CreateAuditMeasures < ActiveRecord::Migration
   def change
-    create_table :measures, id: :uuid do |t|
+    create_table :audit_measures, id: :uuid do |t|
       t.string :name
       t.boolean :active, default: true
 

@@ -54,15 +54,15 @@ module Retrocalc
     end
 
     def fields_for(structure)
-      field_values = structure.field_values.includes(:field)
+      audit_field_values = structure.audit_field_values.includes(:audit_field)
 
-      field_values.each_with_object({}) do |value, hash|
-        api_name = value.field.api_name
+      audit_field_values.each_with_object({}) do |value, hash|
+        api_name = value.audit_field.api_name
         api_name = MAPPING[api_name] if MAPPING[api_name]
 
         hash[api_name] = { value: value.value,
-                           name: value.field.name,
-                           value_type: value.field.value_type }
+                           name: value.audit_field.name,
+                           value_type: value.audit_field.value_type }
       end
     end
 
@@ -89,7 +89,7 @@ module Retrocalc
         name: structure.name,
         structure_type: structure_type_json(structure.structure_type),
         wegowise_id: wegowise_id(structure),
-        field_values: fields_for(structure),
+        audit_field_values: fields_for(structure),
         n_structures: n_structures_for(structure),
         sample_group_id: sample_group_id_for(structure),
         photos: PhotosJsonPresenter.new(structure).as_json,

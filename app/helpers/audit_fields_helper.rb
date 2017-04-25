@@ -1,4 +1,4 @@
-module FieldsHelper
+module AuditFieldsHelper
   US_STATES = [
     ['AK', 'AK'],
     ['AL', 'AL'],

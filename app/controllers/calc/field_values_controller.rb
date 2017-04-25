@@ -1,10 +1,10 @@
-class Calc::CalcFieldValuesController < SecuredController
+class Calc::FieldValuesController < SecuredController
   before_action :set_parent
 
   def update
-    calc_field_value = @parent.calc_field_values.find(params[:id])
-    calc_field_value.value = params[:value]
-    calc_field_value.save!
+    field_value = @parent.field_values.find(params[:id])
+    field_value.value = params[:value]
+    field_value.save!
 
     json = {
       audit_report_summary: AuditReportSummarySerializer.new(

@@ -1,42 +1,29 @@
 class FieldValue < ActiveRecord::Base
-  include Cloneable,
-          SoftDestruction
+  belongs_to :parent, polymorphic: true
 
-  belongs_to :field
-  belongs_to :structure
+  delegate :convert_value, to: :field
+  delegate :value_type, to: :field
+  delegate :name, to: :field, prefix: true
+  delegate :options, to: :field, prefix: true
 
-  validates :field_id, presence: true, uniqueness: { scope: :structure_id }
-  validates :structure_id, presence: true
+  def field
+    Field.by_api_name!(field_api_name)
+  end
 
-  def value=(val)
-    return if val.nil?
-    public_send("#{value_type}=", val)
+  def from_audit
+    return false unless parent.is_a?(Structure)
+
+    parent.wegoaudit_structure.has_field?(field_api_name)
+  end
+
+  def original_value
+    return nil unless parent.is_a?(Structure)
+
+    parent.wegoaudit_structure.field_values
+      .fetch(field_api_name, {})['value']
   end
 
   def value
-    public_send("#{value_type}")
-  end
-
-  def field
-    @field ||= Field.where(id: field_id).first
-  end
-
-  def structure
-    @structure ||= Structure.where(id: structure_id)
-  end
-
-  # def string_value
-  #   @string_value = FieldValue.where(structure_id: structure_id).where.not(string_value: nil)
-  # end
-
-  private
-
-
-  def value_type
-    field.storage_type
-  end
-
-  def convert_value(val)
-    field.convert_value(val)
+    convert_value(self[:value])
   end
 end

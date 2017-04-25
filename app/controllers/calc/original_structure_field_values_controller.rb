@@ -2,14 +2,14 @@ class Calc::OriginalStructureFieldValuesController < SecuredController
   before_action :set_parent
 
   def update
-    calc_field_value = @audit_report.original_structure_field_values
+    field_value = @audit_report.original_structure_field_values
       .find(params[:id])
-    calc_field_value.value = params[:value]
-    calc_field_value.save!
+    field_value.value = params[:value]
+    field_value.save!
 
     calculator = AuditReportCalculator.new(audit_report: @audit_report)
     json = {
-      new_value: calc_field_value.value,
+      new_value: field_value.value,
       audit_report_summary: AuditReportSummarySerializer.new(
         audit_report: @audit_report,
         audit_report_calculator: calculator

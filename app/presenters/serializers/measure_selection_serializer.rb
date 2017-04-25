@@ -7,7 +7,7 @@ class MeasureSelectionSerializer < Generic::Strict
       id: measure_selection.id,
       calculate_order: measure_selection.calculate_order,
       enabled: measure_selection.enabled,
-      name: measure_selection.calc_measure_name,
+      name: measure_selection.measure_name,
       notes: measure_selection.notes,
       report_id: measure_selection.audit_report_id,
       structure_changes: structure_changes_as_json,

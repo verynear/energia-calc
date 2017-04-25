@@ -1,20 +1,20 @@
 module Web
-  class MeasuresController < BaseController
+  class AuditMeasuresController < BaseController
     def update
-      measure = Measure.find(params[:id])
-      measure_value = MeasureValue.find_or_create_by(
+      audit_measure = AuditMeasure.find(params[:id])
+      audit_measure_value = AuditMeasureValue.find_or_create_by(
         audit_id: current_audit.id,
-        measure_id: measure.id
+        audit_measure_id: audit_measure.id
       )
 
-      if measure_value.update(measure_params)
+      if audit_measure_value.update(audit_measure_params)
         head 204
       else
         head 422
       end
     end
 
-    def measure_params
+    def audit_measure_params
       current_timestamp = DateTime.current
       params.permit(:value, :notes)
             .merge(upload_attempt_on: current_timestamp,

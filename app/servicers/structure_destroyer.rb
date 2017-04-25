@@ -14,7 +14,7 @@ class StructureDestroyer < BaseServicer
   private
 
   def destroy_field_values
-    structure.field_values.destroy_all
+    structure.audit_field_values.destroy_all
   end
 
   def destroy_sample_groups

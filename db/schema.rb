@@ -201,14 +201,14 @@ ActiveRecord::Schema.define(version: 20170224202529) do
 
   add_index "calc_fields", ["api_name"], name: "index_calc_fields_on_api_name", unique: true, using: :btree
 
-  create_table "calc_measures", force: :cascade do |t|
+  create_table "measures", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "api_name",   limit: 255, null: false
   end
 
-  add_index "calc_measures", ["api_name"], name: "index_calc_measures_on_api_name", unique: true, using: :btree
+  add_index "measures", ["api_name"], name: "index_measures_on_api_name", unique: true, using: :btree
 
   create_table "calc_organizations", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -335,7 +335,7 @@ ActiveRecord::Schema.define(version: 20170224202529) do
 
   create_table "measure_selections", force: :cascade do |t|
     t.integer  "audit_report_id",                               null: false
-    t.integer  "calc_measure_id",                               null: false
+    t.integer  "measure_id",                               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "notes"
@@ -346,8 +346,8 @@ ActiveRecord::Schema.define(version: 20170224202529) do
     t.string   "recommendation",     limit: 255
   end
 
-  create_table "measure_values", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.uuid     "measure_id",                           null: false
+  create_table "audit_measure_values", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.uuid     "audit_measure_id",                           null: false
     t.uuid     "audit_id",                             null: false
     t.boolean  "value",                default: false
     t.text     "notes"
@@ -358,7 +358,7 @@ ActiveRecord::Schema.define(version: 20170224202529) do
     t.datetime "destroy_attempt_on"
   end
 
-  create_table "measures", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+  create_table "audit_measures", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.boolean  "active",                 default: true
     t.datetime "created_at"
@@ -366,7 +366,7 @@ ActiveRecord::Schema.define(version: 20170224202529) do
     t.string   "api_name",   limit: 255,                null: false
   end
 
-  add_index "measures", ["api_name"], name: "index_measures_on_api_name", unique: true, using: :btree
+  add_index "audit_measures", ["api_name"], name: "index_audit_measures_on_api_name", unique: true, using: :btree
 
   create_table "memberships", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "organization_id"
@@ -561,7 +561,7 @@ ActiveRecord::Schema.define(version: 20170224202529) do
   add_foreign_key "calc_field_values", "calc_fields", column: "field_api_name", primary_key: "api_name", name: "calc_field_values_field_api_name_fk"
   add_foreign_key "calc_structures", "structure_changes", name: "calc_structures_structure_change_id_fk"
   add_foreign_key "measure_selections", "audit_reports", name: "measure_selections_audit_report_id_fk"
-  add_foreign_key "measure_selections", "calc_measures", name: "measure_selections_calc_measure_id_fk"
+  add_foreign_key "measure_selections", "measures", name: "measure_selections_measure_id_fk"
   add_foreign_key "original_structure_field_values", "audit_reports", name: "original_structure_field_values_audit_report_id_fk"
   add_foreign_key "structure_changes", "measure_selections", name: "structure_changes_measure_selection_id_fk"
 end

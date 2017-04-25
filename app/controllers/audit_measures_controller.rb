@@ -1,6 +1,6 @@
-class MeasuresController < SecuredController
+class AuditMeasuresController < SecuredController
   def index
-    @measures = Measure.all
+    @audit_measures = AuditMeasure.all
     respond_to do |format|
       format.json do
         render json: @measures

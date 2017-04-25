@@ -1,7 +1,7 @@
-class CreateFieldValues < ActiveRecord::Migration
+class CreateAuditFieldValues < ActiveRecord::Migration
   def change
-    create_table :field_values, id: :uuid do |t|
-      t.uuid :field_id, index: true
+    create_table :audit_field_values, id: :uuid do |t|
+      t.uuid :audit_field_id, index: true
       t.uuid :structure_id, index: true
       t.string :string_value
       t.float :float_value
