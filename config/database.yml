@@ -23,11 +23,7 @@ default: &default
 
 development:
   <<: *default
-<<<<<<< HEAD
   database: retroaudit
-=======
-  database: retrocalc
->>>>>>> e90843c7c6076007a2d7b45f86318f319a3fc8d2
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
