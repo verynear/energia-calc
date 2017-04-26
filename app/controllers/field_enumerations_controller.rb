@@ -11,7 +11,7 @@ class FieldEnumerationsController < SecuredController
 
   def field_enumeration_params
     params.require(:field_enumeration).permit(:id,
-                                        :field_id,
+                                        :audit_field_id,
                                         :string_value,
                                         :value,
                                         :display_order,

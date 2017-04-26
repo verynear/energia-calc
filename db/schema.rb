@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708213940) do
+ActiveRecord::Schema.define(version: 20170426013031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -322,14 +322,15 @@ ActiveRecord::Schema.define(version: 20150708213940) do
   add_index "field_enumerations", ["audit_field_id"], name: "field_enumerations_audit_field_id_idx", using: :btree
 
   create_table "field_values", force: :cascade do |t|
-    t.string   "value",             limit: 255, default: "", null: false
-    t.string   "field_api_name",    limit: 255,              null: false
+    t.text     "value",          default: "", null: false
+    t.string   "field_api_name",              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "calc_structure_id"
+    t.integer  "parent_id"
+    t.string   "parent_type"
   end
 
-  add_index "field_values", ["field_api_name", "calc_structure_id"], name: "field_values_field_api_name_idx", unique: true, using: :btree
+  add_index "field_values", ["parent_type", "parent_id"], name: "field_values_parent_type_idx", using: :btree
 
   create_table "fields", primary_key: "api_name", force: :cascade do |t|
     t.integer "id",                     default: "nextval('calc_fields_id_seq'::regclass)", null: false
@@ -592,8 +593,11 @@ ActiveRecord::Schema.define(version: 20150708213940) do
   add_foreign_key "audits", "users", column: "locked_by", name: "audits_locked_by_fk"
   add_foreign_key "building_monthly_data", "audit_reports", name: "building_monthly_data_audit_report_id_fk"
   add_foreign_key "calc_structures", "structure_changes", name: "calc_structures_structure_change_id_fk"
+  add_foreign_key "field_values", "fields", column: "field_api_name", primary_key: "api_name", name: "field_values_fields_fk"
   add_foreign_key "measure_selections", "audit_reports", name: "measure_selections_audit_report_id_fk"
   add_foreign_key "measure_selections", "measures", name: "measure_selections_measures_fk"
   add_foreign_key "original_structure_field_values", "audit_reports", name: "original_structure_field_values_audit_report_id_fk"
+  add_foreign_key "sample_groups", "structure_types", name: "sample_groups_structure_types_fk"
+  add_foreign_key "sample_groups", "structures", column: "parent_structure_id", name: "sample_groups_structures_fk"
   add_foreign_key "structure_changes", "measure_selections", name: "structure_changes_measure_selection_id_fk"
 end

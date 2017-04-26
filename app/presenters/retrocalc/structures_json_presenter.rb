@@ -46,7 +46,7 @@ module Retrocalc
       end
     end
 
-    def field_json(field)
+    def field_json(audit_field)
       {
         name: structure_type.name,
         api_name: structure_type.api_name

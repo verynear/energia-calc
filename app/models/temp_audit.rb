@@ -6,6 +6,8 @@ class TempAudit
                   :date,
                   :id,
                   :measures,
+                  :audit_field_values,
+                  :audit_measures,
                   :name,
                   :photos,
                   :sample_groups

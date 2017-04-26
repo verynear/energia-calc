@@ -20,7 +20,7 @@ class FieldValue < ActiveRecord::Base
     return nil unless parent.is_a?(Structure)
 
     parent.wegoaudit_structure.field_values
-      .fetch(field_api_name, {})['value']
+      .fetch(field_api_name, value)
   end
 
   def value

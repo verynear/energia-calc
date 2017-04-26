@@ -3,7 +3,7 @@ class AuditMeasuresController < SecuredController
     @audit_measures = AuditMeasure.all
     respond_to do |format|
       format.json do
-        render json: @measures
+        render json: @audit_measures
       end
     end
   end

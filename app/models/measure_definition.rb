@@ -78,7 +78,7 @@ class MeasureDefinition < Generic::Strict
         name: st_api_name,
         definition: definition_hash,
         fields: fields,
-        calc_structure_type: structure_type
+        calc_structure_type: calc_structure_type
       )
     end.compact
   end

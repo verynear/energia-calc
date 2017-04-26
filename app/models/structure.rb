@@ -43,4 +43,16 @@ class Structure < ActiveRecord::Base
   def value_for_picker_field(audit_field)
       field_enumerations.where(audit_field_id: audit_field.id)
   end
+
+  def physical_structure
+    if physical_structure_type == 'Building'
+      @physical_structure = Building.find_by(id: physical_structure_id)
+    elsif physical_structure_type == 'Meter'
+      @physical_structure ||= Meter.find_by(id: physical_structure_id)
+    elsif physical_structure_type == 'Apartment'
+      @physical_structure ||= Apartment.find_by(id: physical_structure_id)
+    else
+      @physical_structure = nil
+    end
+  end
 end
