@@ -11,9 +11,10 @@ class MeasureSelection < ActiveRecord::Base
 
   has_many :structure_changes
   has_many :calc_structures, through: :structure_changes
+  has_many :field_values, as: :parent
 
   delegate :temp_audit, to: :audit_report
-  delegate :structure_types, to: :measure
+  delegate :calc_structure_types, to: :measure
   delegate :fields_for_structure_type, to: :measure
   delegate :grouping_field_api_name, to: :measure
   delegate :name, to: :measure, prefix: true

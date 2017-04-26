@@ -16,7 +16,7 @@ class StructureListGrouper < Generic::Strict
   end
 
   def grouped_structures
-    structures_by_sample_group = structures.group_by(&:sample_group_id)
+    structures_by_sample_group = @structures.group_by(&:sample_group_id)
     grouped_structures = structures_by_sample_group.delete(nil) || []
 
     structures_by_sample_group.each_with_object(grouped_structures) \

@@ -10,7 +10,7 @@ class NewStructureChangeContext < BaseContext
            to: :measure_selection
 
   def available_structure_types
-    measure.meas_structure_types.select do |calc_structure_type|
+    measure.calc_structure_types.select do |calc_structure_type|
       structure_type_definition =
         measure.structure_type_definition_for(calc_structure_type)
       if !structure_type_definition.multiple? &&

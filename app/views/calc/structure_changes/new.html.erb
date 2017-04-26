@@ -15,9 +15,9 @@
            url: calc_measure_selection_structure_changes_path(@measure_selection),
            html: { class: 'js-select-structure-form' }) do |form| %>
 
-      <% @context.available_structure_types.each do |structure_type| %>
+      <% @context.available_structure_types.each do |calc_structure_type| %>
         <%= render "/calc/structure_changes/structure_select",
-                   structure_type: structure_type
+                   calc_structure_type: calc_structure_type
         %>
       <% end %>
 

@@ -10,7 +10,8 @@ class TempStructure < Generic::Strict
                   :wegowise_id
 
     attr_reader :field_values,
-                :calc_structure_type
+                :calc_structure_type,
+                :structure_type
 
     delegate :api_name, to: :calc_structure_type, prefix: true
     delegate :name, to: :calc_structure_type, prefix: true
@@ -46,7 +47,7 @@ class TempStructure < Generic::Strict
     end
 
     def has_field?(api_name)
-      @field_values.keys.include?(api_name)
+      field_values.keys.include?(api_name)
     end
 
     def location

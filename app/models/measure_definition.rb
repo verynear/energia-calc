@@ -73,7 +73,7 @@ class MeasureDefinition < Generic::Strict
       definition_hash = local_definition.fetch(:structures, {})
         .fetch(st_api_name.to_sym, {})
 
-      structure_type = CalcStructureType.by_api_name!(st_api_name)
+      calc_structure_type = CalcStructureType.by_api_name!(st_api_name)
       StructureTypeDefinition.new(
         name: st_api_name,
         definition: definition_hash,
@@ -88,11 +88,6 @@ class MeasureDefinition < Generic::Strict
     structure_type_definitions.map(&:calc_structure_type)
   end
   memoize :calc_structure_types
-
-  def meas_structure_types
-    structure_type_definitions.map(&:calc_structure_type)
-  end
-  memoize :meas_structure_types
 
   private
 
