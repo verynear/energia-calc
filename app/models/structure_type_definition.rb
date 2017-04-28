@@ -2,7 +2,7 @@ class StructureTypeDefinition < Generic::Strict
   attr_accessor :definition,
                 :fields,
                 :name,
-                :calc_structure_type
+                :structure_type
 
   def determining?
     definition.fetch(:determining, false)

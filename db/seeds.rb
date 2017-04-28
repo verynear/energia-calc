@@ -1,4 +1,7 @@
-audit_structure_type = StructureType.find_or_create_by(
+require_relative 'general_seeds'
+require_relative 'measure_specific_seeds'
+
+audit_structure_type = AuditStrcType.find_or_create_by(
   name: 'Audit',
   active: true,
   display_order: 1,

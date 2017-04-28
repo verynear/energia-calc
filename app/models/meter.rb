@@ -2,7 +2,7 @@ class Meter < ActiveRecord::Base
   include Cloneable,
           SoftDestruction
 
-  has_many :structures, as: :physical_structure
+  has_many :audit_structures, as: :physical_structure
 
   def name=(new_name)
     self.account_number = new_name
@@ -17,6 +17,6 @@ class Meter < ActiveRecord::Base
   end
 
   def self.structure_type
-    StructureType.find_by(physical_structure_type: 'Meter')
+    AuditStrcType.find_by(physical_structure_type: 'Meter')
   end
 end

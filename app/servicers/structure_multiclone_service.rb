@@ -3,7 +3,7 @@ class StructureMulticloneService < BaseServicer
 
   attr_accessor :n_copies,
                 :pattern,
-                :structure
+                :audit_structure
 
   attr_reader :cloned_structures
 
@@ -11,7 +11,7 @@ class StructureMulticloneService < BaseServicer
     1.upto(n_copies) do |count|
       StructureCloneService.execute!(
         params: { name: patterned_name(count) },
-        structure: structure
+        audit_structure: audit_structure
       )
     end
   end

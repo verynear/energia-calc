@@ -1,8 +1,8 @@
 class StructureDestroyer < BaseServicer
-  attr_accessor :structure
+  attr_accessor :audit_structure
 
   def execute!
-    Structure.transaction do
+    AuditStructure.transaction do
       destroy_field_values
       destroy_sample_groups
       destroy_substructures
@@ -14,27 +14,27 @@ class StructureDestroyer < BaseServicer
   private
 
   def destroy_field_values
-    structure.audit_field_values.destroy_all
+    audit_structure.audit_field_values.destroy_all
   end
 
   def destroy_sample_groups
-    structure.sample_groups.each do |sample_group|
+    audit_structure.sample_groups.each do |sample_group|
       SampleGroupDestroyer.execute!(sample_group: sample_group)
     end
   end
 
   def destroy_substructures
-    structure.substructures.each do |substructure|
-      StructureDestroyer.execute!(structure: substructure)
+    audit_structure.substructures.each do |substructure|
+      StructureDestroyer.execute!(audit_structure: substructure)
     end
   end
 
   def destroy_structure
-    structure.physical_structure.destroy if structure.physical_structure
-    structure.destroy
+    audit_structure.physical_structure.destroy if audit_structure.physical_structure
+    audit_structure.destroy
   end
 
   def destroy_images
-    structure.structure_images.destroy_all
+    audit_structure.structure_images.destroy_all
   end
 end

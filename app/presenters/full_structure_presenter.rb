@@ -26,8 +26,8 @@ class FullStructurePresenter < Decorator
   end
 
   def field_values_array
-    field_values.map do |field_value|
-      field_value.as_json
+    audit_field_values.map do |audit_field_value|
+      audit_field_value.as_json
     end
   end
 end

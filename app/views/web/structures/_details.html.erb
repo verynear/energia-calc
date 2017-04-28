@@ -1,5 +1,5 @@
 <div class="active-content__details js-autosave-form">
-  <%= form_for [current_audit, structure], remote: true do |f| %>
+  <%= form_for [current_audit, audit_structure], remote: true do |f| %>
     <fieldset>
       <legend class="section-title">
         Structure
@@ -11,18 +11,18 @@
       </div>
 
       <div class="form-row">
-        <%= label_tag :structure_type, 'Type', class: 'form-row__label' %>
-        <%= text_field_tag :structure_type, structure.structure_type.name, disabled: true %>
+        <%= label_tag :audit_strc_type, 'Type', class: 'form-row__label' %>
+        <%= text_field_tag :audit_strc_type, audit_structure.audit_strc_type.name, disabled: true %>
       </div>
     </fieldset>
   <%- end %>
 
-  <%- if structure.physical_structure %>
-    <%= render structure.physical_structure_type.downcase,
-          physical_structure: structure.physical_structure %>
+  <%- if audit_structure.physical_structure %>
+    <%= render audit_structure.physical_structure_type.downcase,
+          physical_structure: audit_structure.physical_structure %>
   <%- end %>
 
-    <%- StructureDetailsPresenter.new(structure).groupings.each do |grouping| %>
+    <%- StructureDetailsPresenter.new(audit_structure).groupings.each do |grouping| %>
     <fieldset>
       <legend class="section-title">
         <%= grouping.name %>
@@ -32,7 +32,7 @@
               method: :put,
               remote: true,
               url: audit_audit_field_path(current_audit.id, audit_field) do |f| %>
-          <%= hidden_field_tag :structure_id, structure.id %>
+          <%= hidden_field_tag :audit_structure_id, audit_structure.id %>
           <div class="form-row">
             <%= label_tag audit_field.name.parameterize,
                   audit_field.name,
@@ -48,7 +48,7 @@
                       value: audit_field.audit_field_value_value %>
               <% end %>
             <% else %>
-              <%= render "web/fields/#{field.partial}",
+              <%= render "web/fields/#{audit_field.partial}",
                     name: audit_field.name.parameterize,
                     value: audit_field.audit_field_value,
                     seldefault: audit_field.string_value %>

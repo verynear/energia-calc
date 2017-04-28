@@ -1,12 +1,12 @@
 <div>
-  <%- SubstructureTypesPresenter.new(structure)
-        .substructures.each do |structure_type, substructures| %>
+  <%- SubstructureTypesPresenter.new(audit_structure)
+        .substructures.each do |audit_strc_type, substructures| %>
     <%= render 'web/structures/structure_type_row',
-          structure_type: structure_type %>
+          audit_strc_type: audit_strc_type %>
 
     <%- substructures.each do |substructure| %>
       <%= render 'web/structures/structure_row',
-            structure: substructure %>
+            audit_structure: substructure %>
     <%- end %>
   <%- end %>
 </div>

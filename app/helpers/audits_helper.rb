@@ -1,7 +1,7 @@
 module AuditsHelper
   def link_to_audit(audit)
     link_text = lock_icon(audit)
-    link_text << audit.structure.name
+    link_text << audit.audit_structure.name
     link_to link_text, audit, class: 'row-block-link'
   end
 

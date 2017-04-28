@@ -4,7 +4,7 @@ class CreateStructureImages < ActiveRecord::Migration
       t.attachment :asset
       t.string :file_name, null: false
       t.string :s3_path
-      t.uuid :structure_id, null: false, index: true
+      t.uuid :audit_structure_id, null: false, index: true
       t.datetime :upload_attempt_on
       t.datetime :successful_upload_on
 

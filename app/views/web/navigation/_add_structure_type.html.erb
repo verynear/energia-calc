@@ -1,9 +1,9 @@
 <%- if structure_type.sampleable? %>
   <%= link_to 'Add Sample Group', '#new-sample-group-modal',
     class: 'js-modal-open js-update-subtypes section-title__action',
-    data: { structure_type_id: structure_type.id } %>
+    data: { audit_strc_type_id: audit_strc_type.id } %>
 <%- else %>
   <%= link_to 'Add', '#new-structure-modal',
     class: 'js-modal-open js-update-subtypes section-title__action',
-    data: { structure_type_id: structure_type.id } %>
+    data: { audit_strc_type_id: audit_strc_type.id } %>
 <%- end %>

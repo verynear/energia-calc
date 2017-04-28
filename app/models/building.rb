@@ -5,8 +5,8 @@ class Building < ActiveRecord::Base
   has_many :apartments
   has_many :organization_buildings
   has_many :organizations, through: :organization_buildings
-  has_many :meters, as: :structure
-  has_one :structure, as: :physical_structure
+  has_many :meters, as: :audit_structure
+  has_one :audit_structure, as: :physical_structure
 
   def self.create_temporary!(wego_id, name)
       create!(wegowise_id: wego_id,
@@ -28,8 +28,8 @@ class Building < ActiveRecord::Base
       .order(:nickname)
   end
 
-  def self.structure_type
-    StructureType.find_by(physical_structure_type: 'Building')
+  def self.audit_strc_type
+    AuditStrcType.find_by(physical_structure_type: 'Building')
   end
 
   def linked?

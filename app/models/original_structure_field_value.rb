@@ -20,7 +20,7 @@ class OriginalStructureFieldValue < ActiveRecord::Base
       n_structures: 1,
       name: 'Unnamed',
       field_values: {},
-      calc_structure_type: {}
+      structure_type: {}
     )
   end
 

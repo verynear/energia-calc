@@ -37,15 +37,15 @@ module Retrocalc
     end
 
     def photos_json
-      Retrocalc::PhotosJsonPresenter.new(audit.structure).as_json
+      Retrocalc::PhotosJsonPresenter.new(audit.audit_structure).as_json
     end
 
     def sample_groups_json
-      Retrocalc::SampleGroupsJsonPresenter.new(audit.structure).as_json
+      Retrocalc::SampleGroupsJsonPresenter.new(audit.audit_structure).as_json
     end
 
     def structures_json
-      Retrocalc::StructuresJsonPresenter.new(audit.structure).as_json
+      Retrocalc::StructuresJsonPresenter.new(audit.audit_structure).as_json
     end
   end
 end

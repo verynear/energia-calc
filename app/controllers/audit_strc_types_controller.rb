@@ -1,13 +1,13 @@
-class StructureTypesController < SecuredController
+class AuditStrcTypesController < SecuredController
   # before_filter :authenticate_user!
 
   def index
-    render json: StructureType.all
+    render json: AuditStrcType.all
   end
 
   def subtypes
     render json: StructureTypeSubtypesPresenter.new(
-      StructureType.find(params[:id]),
+      AuditStrcType.find(params[:id]),
       params[:selected]
     )
   end

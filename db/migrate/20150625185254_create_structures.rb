@@ -1,6 +1,6 @@
-class CreateCalcStructures < ActiveRecord::Migration
+class CreateStructures < ActiveRecord::Migration
   def up
-    create_table :calc_structures do |t|
+    create_table :structures do |t|
       t.string :name
       t.boolean :proposed
 
@@ -13,13 +13,13 @@ class CreateCalcStructures < ActiveRecord::Migration
                   :original_structure_wegoaudit_id,
                   :structure_wegoaudit_id
 
-    add_foreign_key :calc_structures,
+    add_foreign_key :structures,
                     :structure_changes,
                     on_delete: :cascade
   end
 
   def down
-    drop_table :calc_structures
+    drop_table :structures
 
     rename_column :structure_changes,
                   :structure_wegoaudit_id,

@@ -5,7 +5,7 @@ class Measure < ActiveRecord::Base
   validates :api_name, uniqueness: true, presence: true
 
   delegate :grouping_field_api_name, to: :structure_type_definition
-  delegate :calc_structure_types,
+  delegate :structure_types,
            :fields_for_structure_type,
            :structure_type_definition_for,
            :inputs_only?,

@@ -9,11 +9,11 @@ module Web
       @current_audit ||= Audit.find(params[:audit_id])
     end
 
-    def redirect_to_parent(structure, options = {})
-      if structure.parent_object.audit
+    def redirect_to_parent(audit_structure, options = {})
+      if audit_structure.parent_object.audit
         redirect_to current_audit, options
       else
-        redirect_to [current_audit, structure.parent_object], options
+        redirect_to [current_audit, audit_structure.parent_object], options
       end
     end
   end

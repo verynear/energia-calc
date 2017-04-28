@@ -48,8 +48,8 @@ class BuildingsController < SecuredController
   end
 
   def export_full
-    @structure = FullStructurePresenter.new(@building.structure)
-    render json: [@structure.as_json]
+    @audit_structure = FullStructurePresenter.new(@building.audit_structure)
+    render json: [@audit_structure.as_json]
   end
 
   private

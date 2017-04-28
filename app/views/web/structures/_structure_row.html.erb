@@ -1,25 +1,25 @@
 <div class="structure-row js-structure-row">
   <%= link_to structure.short_description,
-        [current_audit, structure],
+        [current_audit, audit_structure],
         class: 'structure-row__link' %>
 
   <div class="row-actions">
     <%- if can_edit? %>
-      <%= render 'web/navigation/trash', delete_object: structure %>
+      <%= render 'web/navigation/trash', delete_object: audit_structure %>
       <%= link_to('#clone-structure-modal',
             class: 'tooltip row-actions__link js-modal-open js-clone-structure',
             data: {
-              source_structure_id: structure.id,
+              source_structure_id: audit_structure.id,
               tooltip: 'Clone' }) do %>
         <i class="icon-clone"></i>
       <%- end %>
     <%- end %>
 
-    <%- if can_link?(structure) %>
+    <%- if can_link?(audit_structure) %>
       <%= link_to('#link-structure-modal',
             class: 'tooltip row-actions__link js-modal-open js-link-structure',
             data: {
-              structure_path: link_audit_structure_path(current_audit, structure),
+              structure_path: link_audit_structure_path(current_audit, audit_structure),
               tooltip: 'Link' }) do %>
         <i class="icon-link"></i>
       <%- end %>

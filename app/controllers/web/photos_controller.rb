@@ -3,14 +3,14 @@ module Web
     skip_before_action :authenticate_user!, only: [:download]
 
     def create
-      structure = Structure.find(photo_params[:structure_id])
-      image = structure.structure_images.new(photo_params)
+      audit_structure = AuditStructure.find(photo_params[:audit_structure_id])
+      image = audit_structure.structure_images.new(photo_params)
       if image.save
         flash[:notice] = 'New image uploaded!'
       else
         flash[:alert] = 'Unable to save image.'
       end
-      redirect_to structure.audit || [current_audit, structure]
+      redirect_to audit_structure.audit || [current_audit, audit_structure]
     end
 
     def destroy
@@ -34,7 +34,7 @@ module Web
 
     def photo_params
       params.require(:structure_image)
-            .permit(:asset, :structure_id)
+            .permit(:asset, :audit_structure_id)
             .merge(file_name: file_name_param)
             .merge(timestamp_params)
     end

@@ -6,7 +6,7 @@ class AuditReports.Views.NameField extends AuditReports.Views.Field
   syncFieldValue: ->
     $.ajax(
       method: 'PUT'
-      url: "/calc/calc_structures/#{@model.get('id')}"
+      url: "/calc/structures/#{@model.get('id')}"
       data:
         structure:
           name: @$input.val()

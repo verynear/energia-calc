@@ -24,7 +24,7 @@ class AuditFieldValuesController < SecuredController
     params.require(:audit_field_value).permit(:id,
                                         :destroy_attempt_on,
                                         :audit_field_id,
-                                        :structure_id,
+                                        :audit_structure_id,
                                         :string_value,
                                         :float_value,
                                         :decimal_value,

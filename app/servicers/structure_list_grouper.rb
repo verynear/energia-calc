@@ -5,13 +5,13 @@
 #
 class StructureListGrouper < Generic::Strict
   attr_accessor :measure_selection,
-                :calc_structure_type,
-                :calc_structures,
+                :structure_type,
+                :structures,
                 :temp_structures
 
-  def initialize(measure_selection, calc_structure_type, structures)
+  def initialize(measure_selection, structure_type, structures)
     @measure_selection = measure_selection
-    @calc_structure_type = calc_structure_type
+    @structure_type = structure_type
     @structures = structures
   end
 

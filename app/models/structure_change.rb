@@ -1,31 +1,31 @@
 class StructureChange < ActiveRecord::Base
   belongs_to :measure_selection
-  belongs_to :calc_structure_type
+  belongs_to :structure_type
 
   delegate :temp_audit, to: :measure_selection
-  delegate :api_name, to: :calc_structure_type, prefix: true
+  delegate :api_name, to: :structure_type, prefix: true
 
   has_many :field_values
-  has_many :calc_structures
+  has_many :structures
 
   def determining_structure?
     structure_type_definition.determining?
   end
 
   def fields
-    @fields ||= measure_selection.fields_for_structure_type(calc_structure_type)
+    @fields ||= measure_selection.fields_for_structure_type(structure_type)
   end
 
   def grouped_structures
     @grouped_structures ||= begin
       available_structures =
         measure_selection.audit_report.all_structures.select do |structure|
-          structure.calc_structure_type.api_name == calc_structure_type.api_name ||
-            structure.calc_structure_type.genus_api_name == calc_structure_type.api_name
+          structure.structure_type.api_name == structure_type.api_name ||
+            structure.structure_type.genus_api_name == structure_type.api_name
         end
 
       StructureListGrouper.new(
-        measure_selection, calc_structure_type, available_structures)
+        measure_selection, structure_type, available_structures)
         .grouped_structures
     end
   end
@@ -42,15 +42,15 @@ class StructureChange < ActiveRecord::Base
   end
 
   def original_structure
-    @original_structure ||= calc_structures.find { |calc_structure| !calc_structure.proposed? }
+    @original_structure ||= structures.find { |structure| !structure.proposed? }
   end
 
   def proposed_structure
-    @proposed_structure ||= calc_structures.find(&:proposed)
+    @proposed_structure ||= structures.find(&:proposed)
   end
 
   def structure_type_definition
-    measure_selection.structure_type_definition_for(calc_structure_type)
+    measure_selection.structure_type_definition_for(structure_type)
   end
 
   def wegoaudit_field_values
@@ -76,7 +76,7 @@ class StructureChange < ActiveRecord::Base
       n_structures: 1,
       name: 'Unnamed',
       field_values: {},
-      calc_structure_type: { 'api_name' => calc_structure_type.api_name }
+      structure_type: { 'api_name' => structure_type.api_name }
     )
   end
 end
