@@ -6,7 +6,7 @@
     <h2 class="modal__title">Clone structure</h2>
   </div>
 
-  <%= form_tag clone_audit_structures_path(current_audit), method: :post do |f| %>
+  <%= form_tag clone_audit_audit_structures_path(current_audit), method: :post do |f| %>
     <%= hidden_field_tag :source_structure_id, '', class: 'js-source-structure-id' %>
 
     <div class="form-row">

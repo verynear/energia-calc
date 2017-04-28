@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428193741) do
+ActiveRecord::Schema.define(version: 20170428224614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -519,7 +519,7 @@ ActiveRecord::Schema.define(version: 20170428193741) do
     t.boolean  "asset_processing"
   end
 
-  add_index "structure_images", ["audit_structure_id"], name: "structure_images_structure_id_idx", using: :btree
+  add_index "structure_images", ["audit_structure_id"], name: "structure_images_audit_structure_id_idx", using: :btree
 
   create_table "structure_types", force: :cascade do |t|
     t.string "name",            limit: 255, null: false
@@ -593,11 +593,11 @@ ActiveRecord::Schema.define(version: 20170428193741) do
   add_foreign_key "audits", "users", column: "locked_by", name: "audits_locked_by_fk"
   add_foreign_key "building_monthly_data", "audit_reports", name: "building_monthly_data_audit_report_id_fk"
   add_foreign_key "field_values", "fields", column: "field_api_name", primary_key: "api_name", name: "field_values_fields_fk"
-  add_foreign_key "measure_selections", "audit_reports", name: "measure_selections_audit_report_id_fk"
-  add_foreign_key "measure_selections", "measures", name: "measure_selections_measures_fk"
-  add_foreign_key "original_structure_field_values", "audit_reports", name: "original_structure_field_values_audit_report_id_fk"
+  add_foreign_key "measure_selections", "audit_reports", on_delete: :cascade
+  add_foreign_key "measure_selections", "measures", on_delete: :cascade
+  add_foreign_key "original_structure_field_values", "audit_reports", on_delete: :cascade
   add_foreign_key "sample_groups", "audit_strc_types", name: "sample_groups_audit_strc_types_fk"
   add_foreign_key "sample_groups", "audit_structures", column: "parent_structure_id", name: "sample_groups_structures_fk"
   add_foreign_key "structure_changes", "measure_selections", name: "structure_changes_measure_selection_id_fk"
-  add_foreign_key "structures", "structure_changes", name: "structures_structure_change_id_fk"
+  add_foreign_key "structures", "structure_changes", on_delete: :cascade
 end

@@ -29,7 +29,7 @@ class SubstructureTypesPresenter
   end
 
   def ordered_sample_groups
-    structure.sample_groups
+    audit_structure.sample_groups
              .active
              .includes(:audit_strc_type)
              .order(:name)

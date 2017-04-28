@@ -18,16 +18,16 @@
   <%= render 'tab_menu' %>
 
   <div class="pane-wrapper">
-    <%= render 'web/structures/substructures', audit_structure: @audit.audit_structure %>
-    <%= render 'web/structures/details', audit_structure: @audit.audit_structure %>
+    <%= render 'web/audit_structures/substructures', audit_structure: @audit.audit_structure %>
+    <%= render 'web/audit_structures/details', audit_structure: @audit.audit_structure %>
     <%= render 'web/photos/photos', audit_structure: @audit.audit_structure %>
     <%= render 'measures', audit: @audit %>
   </div>
 </div>
 
-<%= render 'web/structures/clone_structure_modal' %>
-<%= render 'web/structures/link_structure_modal' %>
-<%= render 'web/structures/new_structure_modal',
+<%= render 'web/audit_structures/clone_structure_modal' %>
+<%= render 'web/audit_structures/link_structure_modal' %>
+<%= render 'web/audit_structures/new_structure_modal',
       parent_structure: @audit.audit_structure %>
 <%= render 'web/sample_groups/new_sample_group_modal',
       parent_structure: @audit.audit_structure %>

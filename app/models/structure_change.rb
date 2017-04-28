@@ -2,7 +2,7 @@ class StructureChange < ActiveRecord::Base
   belongs_to :measure_selection
   belongs_to :structure_type
 
-  delegate :temp_audit, to: :measure_selection
+  delegate :audit, to: :measure_selection
   delegate :api_name, to: :structure_type, prefix: true
 
   has_many :field_values
@@ -72,7 +72,7 @@ class StructureChange < ActiveRecord::Base
   def non_wegoaudit_structure
     TempStructure.new(
       id: SecureRandom.uuid,
-      temp_audit: temp_audit,
+      audit: audit,
       n_structures: 1,
       name: 'Unnamed',
       field_values: {},

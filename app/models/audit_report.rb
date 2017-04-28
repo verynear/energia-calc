@@ -21,8 +21,8 @@ class AuditReport < ActiveRecord::Base
     temp_audit.flattened_structures
   end
 
-  def temp_audit
-    @temp_audit ||= TempAudit.new(data)
+  def audit
+    @audit ||= TempAudit.new(data)
   end
 
   def belongs_to_user?(other_user)

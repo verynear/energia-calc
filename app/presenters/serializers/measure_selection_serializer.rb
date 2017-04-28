@@ -41,7 +41,7 @@ class MeasureSelectionSerializer < Generic::Strict
   private
 
   def audit_photos_json
-    measure_selection.audit_report.temp_audit.photos
+    measure_selection.audit_report.audit.photos
   end
 
   def structure_photos_json

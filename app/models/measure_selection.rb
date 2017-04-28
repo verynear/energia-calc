@@ -13,7 +13,7 @@ class MeasureSelection < ActiveRecord::Base
   has_many :structures, through: :structure_changes
   has_many :field_values, as: :parent
 
-  delegate :temp_audit, to: :audit_report
+  delegate :audit, to: :audit_report
   delegate :structure_types, to: :measure
   delegate :fields_for_structure_type, to: :measure
   delegate :grouping_field_api_name, to: :measure

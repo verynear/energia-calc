@@ -1,5 +1,6 @@
 class TempStructure < Generic::Strict
-    attr_accessor :temp_audit,
+    attr_accessor :audit,
+                  :temp_audit,
                   :id,
                   :n_structures,
                   :name,

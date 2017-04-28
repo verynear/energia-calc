@@ -1,4 +1,4 @@
-class CreateStructures < ActiveRecord::Migration
+class CreateAuditStructures < ActiveRecord::Migration
   def change
     create_table :audit_structures, id: :uuid do |t|
       t.uuid :audit_strc_type_id, index: true
