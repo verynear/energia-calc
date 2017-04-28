@@ -2,29 +2,30 @@
 # combined, and returns a composite structure.
 #
 class StructureCombiner < Generic::Strict
-  attr_accessor :structures
+  attr_accessor :calc_structures,
+                :temp_structures
 
-  def initialize(structures)
-    @structures = structures
+  def initialize(calc_structures)
+    @calc_structures = calc_structures
   end
 
   def combined_structures
-    return structures.first if structures.length == 1
+    return calc_structures.first if calc_structures.length == 1
 
-    structures.first.tap do |structure|
-      structure.n_structures = n_structures_sum
-      structure.field_values = combined_field_values
+    calc_structures.first.tap do |calc_structure|
+      calc_structure.n_structures = n_structures_sum
+      calc_structure.field_values = combined_field_values
     end
   end
 
   private
 
   def combined_field_values
-    structure_field_values = structures.map(&:field_values)
+    structure_field_values = calc_structures.map(&:field_values)
     FieldValuesCombiner.new(structure_field_values).combined_field_values
   end
 
   def n_structures_sum
-    structures.map(&:n_structures).reduce(0.0) { |sum, n| sum + n }.round
+    calc_structures.map(&:n_structures).reduce(0.0) { |sum, n| sum + n }.round
   end
 end

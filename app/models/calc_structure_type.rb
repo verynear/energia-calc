@@ -5,6 +5,6 @@ class CalcStructureType < ActiveRecord::Base
   validates :api_name, uniqueness: true, presence: true
 
   def genus_structure_type
-    StructureType.by_api_name!(genus_api_name)
+    CalcStructureType.by_api_name!(genus_api_name)
   end
 end

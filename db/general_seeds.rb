@@ -17,5 +17,5 @@ AuditReport.all.each do |audit_report|
   end
 end
 
-StructureType.find_or_create_by!(
+CalcStructureType.find_or_create_by!(
   api_name: 'building', genus_api_name: 'building', name: 'Building')

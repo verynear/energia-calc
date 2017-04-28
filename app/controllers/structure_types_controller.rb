@@ -1,5 +1,5 @@
 class StructureTypesController < SecuredController
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
 
   def index
     render json: StructureType.all

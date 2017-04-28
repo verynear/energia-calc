@@ -5,23 +5,24 @@
 #
 class StructureListGrouper < Generic::Strict
   attr_accessor :measure_selection,
-                :structure_type,
-                :structures
+                :calc_structure_type,
+                :calc_structures,
+                :temp_structures
 
-  def initialize(measure_selection, structure_type, structures)
+  def initialize(measure_selection, calc_structure_type, structures)
     @measure_selection = measure_selection
-    @structure_type = structure_type
+    @calc_structure_type = calc_structure_type
     @structures = structures
   end
 
   def grouped_structures
-    structures_by_sample_group = structures.group_by(&:sample_group_id)
+    structures_by_sample_group = @structures.group_by(&:sample_group_id)
     grouped_structures = structures_by_sample_group.delete(nil) || []
 
     structures_by_sample_group.each_with_object(grouped_structures) \
       do |(_sample_group_id, sg_structures), results|
       structures_by_field_value = sg_structures.group_by do |structure|
-        value = structure.field_values.fetch(grouping_field.to_s, {})['value']
+        value = structure.audit_field_values.fetch(grouping_field.to_s, {})['value']
         "#{structure.structure_type.api_name}_#{value}"
       end
       structures_by_field_value.each do |_field_value, fv_structures|

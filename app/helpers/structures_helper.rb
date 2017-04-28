@@ -7,10 +7,7 @@ module StructuresHelper
     return false unless can_edit?
 
     structure.structure_type.physical_structure_type == 'Building' &&
-      !structure.physical_structure.linked?
-
-    logger.debug "Structure = #{structure.name}, physical_structure_type = #{structure.physical_structure_type}, 
-    linked? = #{structure.physical_structure.linked?}"
+      !structure.physical_structure&.linked?
   end
 
   def crumb_links(audit, structure)

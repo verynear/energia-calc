@@ -36,7 +36,7 @@ class AuditFieldValue < ActiveRecord::Base
     audit_field.storage_type
   end
 
-  def convert_value(val)
-    audit_field.convert_value(val)
+  def convert_audit_value(val)
+    audit_field.convert_audit_value(val)
   end
 end
