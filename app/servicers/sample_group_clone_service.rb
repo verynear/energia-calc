@@ -20,7 +20,7 @@ class SampleGroupCloneService < BaseServicer
     sample_group.substructures.each do |substructure|
       StructureCloneService.execute!(
         params: { sample_group_id: cloned_sample_group.id },
-        structure: substructure
+        audit_structure: substructure
       )
     end
   end

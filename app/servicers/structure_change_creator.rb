@@ -1,7 +1,7 @@
 class StructureChangeCreator < Generic::Strict
   attr_accessor :measure,
                 :measure_selection,
-                :calc_structure_type,
+                :structure_type,
                 :structure_wegoaudit_id
 
   attr_reader :structure_change
@@ -19,8 +19,8 @@ class StructureChangeCreator < Generic::Strict
 
       create_original_structure_field_values
 
-      create_calc_structure(proposed: false)
-      create_calc_structure(proposed: true)
+      create_structure(proposed: false)
+      create_structure(proposed: true)
     end
   end
 
@@ -28,7 +28,7 @@ class StructureChangeCreator < Generic::Strict
 
   def create_original_structure_field_values
     measure_selection
-      .interaction_fields_for(structure_change.calc_structure_type)
+      .interaction_fields_for(structure_change.structure_type)
       .each do |field_api_name|
         measure_selection.audit_report.original_structure_field_values
           .find_or_create_by!(
@@ -38,8 +38,8 @@ class StructureChangeCreator < Generic::Strict
       end
   end
 
-  def create_calc_structure(**options)
-    creator = CalcStructureCreator.new(
+  def create_structure(**options)
+    creator = StructureCreator.new(
       { measure: measure_selection.measure,
         structure_change: structure_change }.merge(options)
     )
@@ -49,7 +49,7 @@ class StructureChangeCreator < Generic::Strict
   def create_structure_change
     @structure_change = measure_selection.structure_changes.create!(
       structure_wegoaudit_id: structure_wegoaudit_id,
-      calc_structure_type: calc_structure_type
+      structure_type: structure_type
     )
   end
 end

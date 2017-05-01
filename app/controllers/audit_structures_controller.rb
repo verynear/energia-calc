@@ -1,34 +1,34 @@
-class StructuresController < SecuredController
+class AuditStructuresController < SecuredController
   include RemoteObjectProcessing
 
   before_action :load_structure, except: [:create]
   def show
-    render json: Structure.find(params[:id])
+    render json: AuditStructure.find(params[:id])
   end
 
   def create
-    render json: process_object(Structure, structure_params)
+    render json: process_object(AuditStructure, audit_structure_params)
   end
 
   def update
-    render json: process_object(Structure, structure_params)
+    render json: process_object(AuditStructure, audit_structure_params)
   end
 
   def export_full
-    render json: [FullStructurePresenter.new(@structure)]
+    render json: [FullStructurePresenter.new(@audit_structure)]
   end
 
   private
 
   def load_structure
-    @structure = Structure.find(params[:id])
+    @audit_structure = AuditStructure.find(params[:id])
   end
 
   def structure_params
-    params.require(:structure)
+    params.require(:audit_structure)
           .permit(:id,
                   :destroy_attempt_on,
-                  :structure_type_id,
+                  :audit_strc_type_id,
                   :name,
                   :successful_upload_on,
                   :upload_attempt_on,

@@ -1,26 +1,26 @@
 class StructureGroupingPresenter
   attr_reader :grouping,
-              :structure,
+              :audit_structure,
               :audit_field,
               :audit_field_value
 
   delegate :name,
            to: :grouping
 
-  def initialize(structure, grouping)
-    @structure = structure
+  def initialize(audit_structure, grouping)
+    @audit_structure = audit_structure
     @grouping = grouping
   end
 
   def audit_fields
       grouping.audit_fields.order(:display_order).map do |audit_field|
         if audit_field.value_type != 'picker'
-           StructureFieldPresenter.new(structure, audit_field, audit_field_values[audit_field.id])
+           StructureFieldPresenter.new(audit_structure, audit_field, audit_field_values[audit_field.id])
         else
           if audit_field_values.empty?
-            StructureFieldPresenter.new(structure, audit_field, collection)
+            StructureFieldPresenter.new(audit_structure, audit_field, collection)
           else
-            StructureFieldPresenter.new(structure, audit_field, collection, audit_field_values[audit_field.id]['string_value'])
+            StructureFieldPresenter.new(audit_structure, audit_field, collection, audit_field_values[audit_field.id]['string_value'])
           end
         end
       end
@@ -30,7 +30,7 @@ class StructureGroupingPresenter
 
     
     def audit_field_values
-      @audit_field_values ||= structure.audit_field_values.map do |audit_field_value|
+      @audit_field_values ||= audit_structure.audit_field_values.map do |audit_field_value|
         [audit_field_value.audit_field_id, audit_field_value]
       end.to_h
     end

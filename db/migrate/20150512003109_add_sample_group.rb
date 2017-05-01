@@ -2,7 +2,7 @@ class AddSampleGroup < ActiveRecord::Migration
   def change
     create_table :sample_groups, id: :uuid do |t|
       t.uuid :parent_structure_id, null: false, index: true
-      t.uuid :structure_type_id, null: false
+      t.uuid :audit_strc_type_id, null: false
       t.string :name, null: false
       t.integer :n_structures
       t.datetime :successful_upload_on
@@ -13,6 +13,6 @@ class AddSampleGroup < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_column :structures, :sample_group_id, :uuid
+    add_column :audit_structures, :sample_group_id, :uuid
   end
 end

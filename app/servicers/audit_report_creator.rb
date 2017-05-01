@@ -50,7 +50,7 @@ class AuditReportCreator < Generic::Strict
 
     associate_measures
     create_field_values
-    import_wegowise_data
+    # import_wegowise_data
   end
 
   def create_field_values

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
        get :undelete
      end
   end
-  resources :structure_types, only: [] do
+  resources :audit_strc_types, only: [] do
     member do
       get 'subtypes'
     end
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       end
     end
     resources :sample_groups, only: [:create, :destroy, :show, :update]
-    resources :structures, only: [:create, :destroy, :show, :update] do
+    resources :audit_structures, only: [:create, :destroy, :show, :update] do
       collection do
         post :clone
       end
@@ -79,8 +79,8 @@ Rails.application.routes.draw do
     end
   end
   resources :sample_groups, only: [:create, :show, :update]
-  resources :structure_types, only: [:index]
-  resources :structures, only: [:create, :show, :update] do
+  resources :audit_strc_types, only: [:index]
+  resources :audit_structures, only: [:create, :show, :update] do
     member do
       get :export_full
     end
@@ -122,11 +122,11 @@ Rails.application.routes.draw do
       put :preview, on: :collection
     end
 
-    scope 'calc_structures/:calc_structure_id', as: 'structure' do
+    scope 'structures/:structure_id', as: 'structure' do
       resources :field_values, only: [:update]
     end
 
-    resources :calc_structures, only: [:update]
+    resources :structures, only: [:update]
   end
 
   root to: 'visitors#index'

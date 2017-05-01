@@ -30,7 +30,7 @@ class SampleGroupsController < SecuredController
                   :n_structures,
                   :name,
                   :parent_structure_id,
-                  :structure_type_id,
+                  :audit_strc_type_id,
                   :successful_upload_on,
                   :updated_at,
                   :upload_attempt_on)

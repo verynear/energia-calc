@@ -1,49 +1,69 @@
-class StructureCreator < BaseServicer
-  attr_accessor :params,
-                :parent_structure,
-                :structure_type
+class StructureCreator < Generic::Strict
+  attr_accessor :measure,
+                :proposed,
+                :structure_change
 
   attr_reader :structure
 
-  def execute!
-    Structure.transaction do
-      create_structure
-      create_physical_structure
-    end
+  def initialize(*)
+    super
+    self.proposed ||= false
+    raise ArgumentError, 'measure' unless measure
+    raise ArgumentError, 'structure_change' unless structure_change
+  end
+
+  def create
+    execute
+    structure
+  end
+
+  def execute
+    @structure = structure_change.structures.build(proposed: proposed)
+    structure.name = structure_change.wegoaudit_structure.description
+    structure.quantity = structure_change.wegoaudit_structure.n_structures
+    structure.save!
+
+    create_field_values_for(structure)
   end
 
   private
 
-  def create_structure
-    @structure = Structure.create(structure_params)
+  def attributes_for_field(field)
+    api_name = field.api_name
+    values_from_audit = structure_change.wegoaudit_field_values[api_name]
+    if values_from_audit
+      values_from_audit.except('name', 'value_type', 'picker_value')
+    else
+      { value: '' }
+    end
   end
 
-  def create_physical_structure
-    return unless structure_type.has_physical_structure?
-
-    object_class = structure_type.physical_structure_class
-    physical_structure = object_class.new
-    physical_structure.name = structure.name
-    physical_structure.successful_upload_on = current_timestamp
-    physical_structure.upload_attempt_on = current_timestamp
-    physical_structure.save
-
-    structure.update(
-      physical_structure_type: structure_type.physical_structure_type,
-      physical_structure_id: physical_structure.id,
-    )
+  def create_field_value(structure, field)
+    attributes = attributes_for_field(field)
+    # There's an ordering issue where you have to set field_api_name before you
+    # can set value
+    field_value = FieldValue.new(
+      field_api_name: field.api_name,
+      parent: structure)
+    field_value.attributes = attributes
+    field_value.save!
   end
 
-  def current_timestamp
-    @current_timestamp || DateTime.current
+  def create_field_values_for(structure)
+    structure_change.fields.map do |field|
+      proposed_only = structure_type_definition.proposed_only_field?(field)
+      existing_only = structure_type_definition.existing_only_field?(field)
+
+      next if !proposed && measure.inputs_only?
+      next if !proposed && proposed_only
+      next if proposed && existing_only
+      next if !proposed && structure_change.interaction_fields.include?(field)
+
+      create_field_value(structure, field)
+    end
   end
 
-  def structure_params
-    params.merge(
-      parent_structure_id: parent_structure.id,
-      structure_type_id: structure_type.id,
-      successful_upload_on: current_timestamp,
-      upload_attempt_on: current_timestamp
-    )
+  def structure_type_definition
+    measure.structure_type_definition_for(structure_change.structure_type)
   end
 end

@@ -1,6 +1,6 @@
-class CreateStructureTypes < ActiveRecord::Migration
+class CreateAuditStrcTypes < ActiveRecord::Migration
   def change
-    create_table :structure_types, id: :uuid do |t|
+    create_table :audit_strc_types, id: :uuid do |t|
       t.uuid :parent_structure_type_id, index: true
       t.string :name
       t.boolean :active

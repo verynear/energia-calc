@@ -2,15 +2,15 @@ class SampleGroup < ActiveRecord::Base
   include Cloneable,
           SoftDestruction
 
-  belongs_to :structure_type
-  belongs_to :parent_structure, class_name: 'Structure'
+  belongs_to :audit_strc_type
+  belongs_to :parent_structure, class_name: 'AuditStructure'
   has_many :substructures, foreign_key: :sample_group_id,
-                           class_name: 'Structure'
+                           class_name: 'AuditStructure'
 
   validates :n_structures, numericality: { only_integer: true }
   validates :name, presence: true
   validates :parent_structure_id, presence: true
-  validates :structure_type_id, presence: true
+  validates :audit_strc_type_id, presence: true
 
   scope :active, -> { where(destroy_attempt_on: nil) }
 
@@ -31,6 +31,6 @@ class SampleGroup < ActiveRecord::Base
   end
 
   def short_description
-    "#{structure_type.name} - #{name} (#{substructures.count} of #{n_structures})"
+    "#{audit_strc_type.name} - #{name} (#{substructures.count} of #{n_structures})"
   end
 end

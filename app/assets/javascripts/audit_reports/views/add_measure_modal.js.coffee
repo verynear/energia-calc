@@ -11,7 +11,7 @@ class AuditReports.Views.AddMeasureModal extends Modal
     $.ajax(
       url: @measureSelectionUrl(),
       data: @$form.serialize(),
-      method: 'POST',
+      method: 'GET',
       success: (data) =>
         @model.get('measure_selections').push(data.measure_selection)
         triggerAuditReportSummary(data)
@@ -20,4 +20,4 @@ class AuditReports.Views.AddMeasureModal extends Modal
 
   measureSelectionUrl: ->
     id = @model.get('id')
-    "/calc/audit_reports/#{id}/measure_selections"
+    "/calc/audit_reports/#{id}/measure_selections/new"

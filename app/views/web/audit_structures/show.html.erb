@@ -1,0 +1,37 @@
+<%- title @audit_structure.name %>
+
+<%- content_for(:crumbs) do %>
+  <div class="crumbs">
+    <%= link_to 'All audits', audits_path %>
+    <i class="icon-chevron-right"></i>
+    <%- crumb_links(current_audit, @audit_structure.parent_object).each do |link_args| %>
+      <%= link_to *link_args %>
+      <i class="icon-chevron-right"></i>
+    <%- end %>
+    <%= @audit_structure.name %>
+  </div>
+<%- end %>
+
+<%- content_for(:title_links) do %>
+  <%= lock_icon(current_audit) %>
+<% end -%>
+
+<%= render 'web/navigation/sibling_menu', object: @audit_structure %>
+
+<div class="active-content js-active-content">
+  <%= render 'tab_menu' %>
+
+  <div class="pane-wrapper">
+    <% if @audit_structure.audit_strc_type.child_structure_types.length > 0 %>
+      <%= render 'substructures', audit_structure: @audit_structure %>
+    <% end %>
+    <%= render 'details', audit_structure: @audit_structure %>
+    <%= render 'web/photos/photos', audit_structure: @audit_structure %>
+  </div>
+</div>
+
+<%= render 'web/audit_structures/clone_structure_modal',
+      parent_structure: @audit_structure %>
+<%= render 'web/audit_structures/new_structure_modal', parent_structure: @audit_structure %>
+<%= render 'web/sample_groups/new_sample_group_modal',
+      parent_structure: @audit_structure %>

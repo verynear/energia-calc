@@ -12,13 +12,13 @@
       Substructures:
     </div>
     <ul class='no-list-style'>
-      <% @building.structure.substructures.sort { |a, b| a.structure_type_id <=> b.structure_type_id }.each do |substruct| %>
+      <% @building.audit_structure.substructures.sort { |a, b| a.audit_strc_type_id <=> b.audit_strc_type_id }.each do |substruct| %>
         <li>
-        <%= [substruct.structure_type.name, substruct.name].join(' - ') %>
+        <%= [substruct.audit_strc_type.name, substruct.name].join(' - ') %>
         <% if substruct.substructures.count > 0 %>
           <ul>
             <% substruct.substructures.each do |s| %>
-              <li><%= [s.structure_type.name, s.name].join(' - ') %></li>
+              <li><%= [s.audit_strc_type.name, s.name].join(' - ') %></li>
             <% end %>
           </ul>
         <% end %>

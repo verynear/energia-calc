@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426013031) do
+ActiveRecord::Schema.define(version: 20170428224614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20170426013031) do
 
   create_table "audit_field_values", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "audit_field_id"
-    t.uuid     "structure_id"
+    t.uuid     "audit_structure_id"
     t.text     "string_value"
     t.float    "float_value"
     t.decimal  "decimal_value"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20170426013031) do
     t.datetime "destroy_attempt_on"
   end
 
-  add_index "audit_field_values", ["audit_field_id", "structure_id"], name: "audit_field_values_audit_field_id_idx", using: :btree
+  add_index "audit_field_values", ["audit_field_id", "audit_structure_id"], name: "audit_field_values_audit_field_id_idx", using: :btree
 
   create_table "audit_fields", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "name",                 limit: 255, null: false
@@ -114,6 +114,39 @@ ActiveRecord::Schema.define(version: 20170426013031) do
     t.string   "wegoaudit_photo_id",   limit: 255
   end
 
+  create_table "audit_strc_types", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.uuid     "parent_structure_type_id"
+    t.string   "name",                     limit: 255
+    t.boolean  "active"
+    t.integer  "display_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "primary",                              default: false
+    t.string   "physical_structure_type",  limit: 255
+    t.string   "api_name",                 limit: 255,                 null: false
+  end
+
+  add_index "audit_strc_types", ["api_name", "parent_structure_type_id"], name: "index_audit_strc_types_on_api_name_and_parent_structure_type_id", unique: true, using: :btree
+
+  create_table "audit_structures", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.uuid     "audit_strc_type_id"
+    t.string   "name",                    limit: 255
+    t.datetime "successful_upload_on"
+    t.datetime "upload_attempt_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.uuid     "parent_structure_id"
+    t.uuid     "physical_structure_id"
+    t.string   "physical_structure_type", limit: 255
+    t.datetime "full_download_on"
+    t.datetime "destroy_attempt_on"
+    t.uuid     "sample_group_id"
+  end
+
+  add_index "audit_structures", ["audit_strc_type_id"], name: "audit_structures_audit_strc_type_id_idx", using: :btree
+  add_index "audit_structures", ["parent_structure_id"], name: "audit_structures_parent_structure_id_idx", using: :btree
+  add_index "audit_structures", ["physical_structure_type", "physical_structure_id"], name: "audit_structure_physical_structure", using: :btree
+
   create_table "audit_types", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "name",       limit: 255,                null: false
     t.boolean  "active",                 default: true
@@ -130,14 +163,14 @@ ActiveRecord::Schema.define(version: 20170426013031) do
     t.datetime "updated_at"
     t.datetime "upload_attempt_on"
     t.datetime "successful_upload_on"
-    t.uuid     "structure_id"
+    t.uuid     "audit_structure_id"
     t.uuid     "locked_by"
     t.uuid     "audit_type_id"
     t.datetime "destroy_attempt_on"
     t.integer  "organization_id"
   end
 
-  add_index "audits", ["structure_id"], name: "audits_structure_id_idx", using: :btree
+  add_index "audits", ["audit_structure_id"], name: "audits_audit_structure_id_idx", using: :btree
 
   create_table "building_monthly_data", force: :cascade do |t|
     t.integer  "wegowise_id",                 null: false
@@ -254,24 +287,6 @@ ActiveRecord::Schema.define(version: 20170426013031) do
     t.datetime "updated_at"
   end
 
-  create_table "calc_structure_types", force: :cascade do |t|
-    t.string "name",            limit: 255, null: false
-    t.string "api_name",        limit: 255, null: false
-    t.string "parent_api_name", limit: 255
-    t.string "genus_api_name",  limit: 255, null: false
-  end
-
-  add_index "calc_structure_types", ["api_name"], name: "index_calc_structure_types_on_api_name", unique: true, using: :btree
-
-  create_table "calc_structures", force: :cascade do |t|
-    t.string   "name",                limit: 255
-    t.boolean  "proposed"
-    t.integer  "structure_change_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "quantity"
-  end
-
   create_table "calc_users", force: :cascade do |t|
     t.integer  "wegowise_id",                        default: 1234
     t.string   "username",               limit: 255
@@ -343,7 +358,7 @@ ActiveRecord::Schema.define(version: 20170426013031) do
   add_index "fields", ["api_name"], name: "fields_api_name_idx", unique: true, using: :btree
 
   create_table "groupings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.uuid     "structure_type_id"
+    t.uuid     "audit_strc_type_id"
     t.string   "name",                 limit: 255, null: false
     t.integer  "display_order",                    null: false
     t.datetime "successful_upload_on"
@@ -352,7 +367,7 @@ ActiveRecord::Schema.define(version: 20170426013031) do
     t.datetime "updated_at"
   end
 
-  add_index "groupings", ["structure_type_id"], name: "groupings_structure_type_id_idx", using: :btree
+  add_index "groupings", ["audit_strc_type_id"], name: "groupings_audit_strc_type_id_idx", using: :btree
 
   create_table "hourly_temperatures", force: :cascade do |t|
     t.string  "location",    limit: 255
@@ -467,7 +482,7 @@ ActiveRecord::Schema.define(version: 20170426013031) do
 
   create_table "sample_groups", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "parent_structure_id",              null: false
-    t.uuid     "structure_type_id",                null: false
+    t.uuid     "audit_strc_type_id",               null: false
     t.string   "name",                 limit: 255, null: false
     t.integer  "n_structures"
     t.datetime "successful_upload_on"
@@ -484,7 +499,7 @@ ActiveRecord::Schema.define(version: 20170426013031) do
     t.uuid     "structure_wegoaudit_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "calc_structure_type_id"
+    t.integer  "structure_type_id"
     t.integer  "measure_selection_id",   null: false
   end
 
@@ -495,7 +510,7 @@ ActiveRecord::Schema.define(version: 20170426013031) do
     t.datetime "asset_updated_at"
     t.string   "file_name",            limit: 255, null: false
     t.string   "s3_path",              limit: 255
-    t.uuid     "structure_id",                     null: false
+    t.uuid     "audit_structure_id",               null: false
     t.datetime "upload_attempt_on"
     t.datetime "successful_upload_on"
     t.datetime "created_at"
@@ -504,40 +519,25 @@ ActiveRecord::Schema.define(version: 20170426013031) do
     t.boolean  "asset_processing"
   end
 
-  add_index "structure_images", ["structure_id"], name: "structure_images_structure_id_idx", using: :btree
+  add_index "structure_images", ["audit_structure_id"], name: "structure_images_audit_structure_id_idx", using: :btree
 
-  create_table "structure_types", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.uuid     "parent_structure_type_id"
-    t.string   "name",                     limit: 255
-    t.boolean  "active"
-    t.integer  "display_order"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "primary",                              default: false
-    t.string   "physical_structure_type",  limit: 255
-    t.string   "api_name",                 limit: 255,                 null: false
+  create_table "structure_types", force: :cascade do |t|
+    t.string "name",            limit: 255, null: false
+    t.string "api_name",        limit: 255, null: false
+    t.string "parent_api_name", limit: 255
+    t.string "genus_api_name",  limit: 255, null: false
   end
 
-  add_index "structure_types", ["api_name", "parent_structure_type_id"], name: "index_structure_types_on_api_name_and_parent_structure_type_id", unique: true, using: :btree
+  add_index "structure_types", ["api_name"], name: "index_structure_types_on_api_name", unique: true, using: :btree
 
-  create_table "structures", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.uuid     "structure_type_id"
-    t.string   "name",                    limit: 255
-    t.datetime "successful_upload_on"
-    t.datetime "upload_attempt_on"
+  create_table "structures", force: :cascade do |t|
+    t.string   "name",                limit: 255
+    t.boolean  "proposed"
+    t.integer  "structure_change_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.uuid     "parent_structure_id"
-    t.uuid     "physical_structure_id"
-    t.string   "physical_structure_type", limit: 255
-    t.datetime "full_download_on"
-    t.datetime "destroy_attempt_on"
-    t.uuid     "sample_group_id"
+    t.integer  "quantity"
   end
-
-  add_index "structures", ["parent_structure_id"], name: "structures_parent_structure_id_idx", using: :btree
-  add_index "structures", ["physical_structure_type", "physical_structure_id"], name: "structure_physical_structure", using: :btree
-  add_index "structures", ["structure_type_id"], name: "structures_structure_type_id_idx", using: :btree
 
   create_table "substructure_types", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "parent_structure_type_id"
@@ -592,12 +592,12 @@ ActiveRecord::Schema.define(version: 20170426013031) do
   add_foreign_key "audits", "audit_types", name: "audits_audit_type_id_fk"
   add_foreign_key "audits", "users", column: "locked_by", name: "audits_locked_by_fk"
   add_foreign_key "building_monthly_data", "audit_reports", name: "building_monthly_data_audit_report_id_fk"
-  add_foreign_key "calc_structures", "structure_changes", name: "calc_structures_structure_change_id_fk"
   add_foreign_key "field_values", "fields", column: "field_api_name", primary_key: "api_name", name: "field_values_fields_fk"
-  add_foreign_key "measure_selections", "audit_reports", name: "measure_selections_audit_report_id_fk"
-  add_foreign_key "measure_selections", "measures", name: "measure_selections_measures_fk"
-  add_foreign_key "original_structure_field_values", "audit_reports", name: "original_structure_field_values_audit_report_id_fk"
-  add_foreign_key "sample_groups", "structure_types", name: "sample_groups_structure_types_fk"
-  add_foreign_key "sample_groups", "structures", column: "parent_structure_id", name: "sample_groups_structures_fk"
+  add_foreign_key "measure_selections", "audit_reports", on_delete: :cascade
+  add_foreign_key "measure_selections", "measures", on_delete: :cascade
+  add_foreign_key "original_structure_field_values", "audit_reports", on_delete: :cascade
+  add_foreign_key "sample_groups", "audit_strc_types", name: "sample_groups_audit_strc_types_fk"
+  add_foreign_key "sample_groups", "audit_structures", column: "parent_structure_id", name: "sample_groups_structures_fk"
   add_foreign_key "structure_changes", "measure_selections", name: "structure_changes_measure_selection_id_fk"
+  add_foreign_key "structures", "structure_changes", on_delete: :cascade
 end

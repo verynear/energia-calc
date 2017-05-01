@@ -1,7 +1,7 @@
 <div class="section-title">
   <%- if can_edit? %>
     <%= render 'web/navigation/add_structure_type',
-          structure_type: structure_type %>
+          audit_strc_type: audit_strc_type %>
   <%- end %>
-  <%= structure_type.name %>
+  <%= audit_strc_type.name %>
 </div>

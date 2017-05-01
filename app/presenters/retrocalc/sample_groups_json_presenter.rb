@@ -18,13 +18,13 @@ module Retrocalc
 
     private
 
-    def add_sample_groups(structure, array)
-      array.concat(structure.sample_groups)
+    def add_sample_groups(audit_structure, array)
+      array.concat(audit_structure.sample_groups)
     end
 
     def flattened_sample_groups
-      substructures.each_with_object(sample_groups) do |structure, groups|
-        add_sample_groups(structure, groups)
+      substructures.each_with_object(sample_groups) do |audit_structure, groups|
+        add_sample_groups(audit_structure, groups)
       end
     end
 

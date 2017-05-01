@@ -1,9 +1,9 @@
 class StructureTypeSubtypesPresenter
-  attr_reader :structure_type
+  attr_reader :audit_strc_type
 
-  def initialize(structure_type, selected = nil)
-    @structure_type = structure_type
-    @selected_type = StructureType.find(selected) if selected.present?
+  def initialize(audit_strc_type, selected = nil)
+    @audit_strc_type = audit_strc_type
+    @selected_type = AuditStrcType.find(selected) if selected.present?
   end
 
   def as_json
@@ -16,12 +16,12 @@ class StructureTypeSubtypesPresenter
   private
 
   def has_no_subtypes?
-    structure_type.primary?
+    audit_strc_type.primary?
   end
 
   def ordered_child_structure_types
     @ordered_child_structure_types ||=
-      structure_type.child_structure_types.order(:name)
+      audit_strc_type.child_structure_types.order(:name)
   end
 
   def selected_type
@@ -29,7 +29,7 @@ class StructureTypeSubtypesPresenter
   end
 
   def selectable_types
-    return [[structure_type.name, structure_type.id]] if has_no_subtypes?
+    return [[audit_strc_type.name, audit_strc_type.id]] if has_no_subtypes?
     ordered_child_structure_types.pluck(:name, :id)
   end
 

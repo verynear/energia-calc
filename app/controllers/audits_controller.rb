@@ -65,8 +65,8 @@ class AuditsController < ApplicationController
   end
 
   def show
-    @substructure = Structure.new(parent_structure: @audit.structure)
-    @sample_group = SampleGroup.new(parent_structure: @audit.structure)
+    @substructure = AuditStructure.new(parent_structure: @audit.audit_structure)
+    @sample_group = SampleGroup.new(parent_structure: @audit.audit_structure)
   end
 
   def destroy
@@ -117,7 +117,7 @@ class AuditsController < ApplicationController
                   :is_archived,
                   :performed_on,
                   :user_id,
-                  :structure_id,
+                  :audit_structure_id,
                   :upload_attempt_on,
                   :successful_upload_on,
                   :audit_type_id,
@@ -126,8 +126,8 @@ class AuditsController < ApplicationController
                   :organization_id)
   end
 
-  def audit_structure_type
-    @audit_structure_type ||= StructureType.find_by(name: 'Audit')
+  def audit_strc_type
+    @audit_strc_type ||= AuditStrcType.find_by(name: 'Audit')
   end
 
   def process_audit

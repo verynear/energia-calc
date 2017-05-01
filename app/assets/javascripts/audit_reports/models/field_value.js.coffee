@@ -11,7 +11,7 @@ class AuditReports.Models.FieldValue extends Backbone.RelationalModel
     value = @get('default')
     return value if typeof value in ['number', 'string']
 
-    if @get('calc_structure').get('proposed')
+    if @get('structure').get('proposed')
       value.proposed
     else
       value.existing

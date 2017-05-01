@@ -38,7 +38,7 @@ class UpdateService < ObjectServicer
 
   def subobject_type(key)
     key = key.to_s
-    return Structure if key == 'substructures'
+    return AuditStructure if key == 'substructures'
     return AuditFieldValue if key == 'audit_field_values'
     Module.const_get(@object.physical_structure_type)
   end

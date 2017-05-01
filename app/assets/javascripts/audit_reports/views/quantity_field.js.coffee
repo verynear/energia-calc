@@ -41,7 +41,7 @@ class AuditReports.Views.QuantityField extends AuditReports.Views.Field
   syncFieldValue: ->
     $.ajax(
       method: 'PUT'
-      url: "/calc/calc_structures/#{@model.get('id')}"
+      url: "/calc/structures/#{@model.get('id')}"
       data:
         structure:
           quantity: @$input.val()

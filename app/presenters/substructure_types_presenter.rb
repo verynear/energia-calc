@@ -1,9 +1,9 @@
 class SubstructureTypesPresenter
-  attr_reader :structure,
+  attr_reader :audit_structure,
               :substructures
 
-  def initialize(structure)
-    @structure = structure
+  def initialize(audit_structure)
+    @audit_structure = audit_structure
 
     @substructures = {}
     ordered_substructure_types.each do |structure_subtype|
@@ -11,39 +11,39 @@ class SubstructureTypesPresenter
     end
 
     ordered_substructures.each do |substructure|
-      structure_type = find_section(substructure.structure_type)
-      @substructures[structure_type] << substructure
+      audit_strc_type = find_section(substructure.audit_strc_type)
+      @substructures[audit_strc_type] << substructure
     end
 
     ordered_sample_groups.each do |sample_group|
-      structure_type = find_section(sample_group.structure_type)
-      @substructures[structure_type] << sample_group
+      audit_strc_type = find_section(sample_group.audit_strc_type)
+      @substructures[audit_strc_type] << sample_group
     end
   end
 
   private
 
-  def find_section(structure_type)
-    return structure_type if substructures.has_key?(structure_type)
-    find_section(structure_type.parent_structure_type)
+  def find_section(audit_strc_type)
+    return audit_strc_type if substructures.has_key?(audit_strc_type)
+    find_section(audit_strc_type.parent_structure_type)
   end
 
   def ordered_sample_groups
-    structure.sample_groups
+    audit_structure.sample_groups
              .active
-             .includes(:structure_type)
+             .includes(:audit_strc_type)
              .order(:name)
   end
 
   def ordered_substructures
-    structure.substructures
+    audit_structure.substructures
              .active
-             .includes(:physical_structure, :structure_type)
+             .includes(:physical_structure, :audit_strc_type)
              .order(:name)
   end
 
   def ordered_substructure_types
-    structure.structure_type
+    audit_structure.audit_strc_type
              .child_structure_types
              .order(:name)
   end

@@ -5,7 +5,7 @@ class Calc::StructureChangesController < SecuredController
     structure_changes = structure_changes_params.map do |api_name, options|
       StructureChangeCreator.new(
         measure: @measure_selection.measure,
-        calc_structure_type: CalcStructureType.find_by!(api_name: api_name),
+        structure_type: StructureType.find_by!(api_name: api_name),
         structure_wegoaudit_id: options.fetch(:structure_wegoaudit_id),
         measure_selection: @measure_selection
       ).create

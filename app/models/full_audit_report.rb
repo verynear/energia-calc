@@ -47,10 +47,10 @@ class FullAuditReport < Generic::Strict
   def measure_selections
     audit_report.measure_selections
       .where(enabled: true)
-      .includes(:structure_changes, :calc_structures, :field_values)
-      .joins(:structure_changes, :calc_structures, :field_values)
+      .includes(:structure_changes, :structures, :field_values)
+      .joins(:structure_changes, :structures, :field_values)
       .rank(:calculate_order)
-      .select('structure_changes.*', 'calc_structures.*', 'field_values.*')
+      .select('structure_changes.*', 'structures.*', 'field_values.*')
   end
   memoize :measure_selections
 

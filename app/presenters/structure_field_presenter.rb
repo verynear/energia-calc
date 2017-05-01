@@ -21,7 +21,7 @@ class StructureFieldPresenter
   attr_reader :audit_field,
               :audit_field_value,
               :field_enumeration,
-              :structure
+              :audit_structure
 
   delegate :name,
            :to_param,
@@ -47,8 +47,8 @@ class StructureFieldPresenter
     end
   end
 
-  def initialize(structure, audit_field, audit_field_value = nil, string_value = nil)
-    @structure = structure
+  def initialize(audit_structure, audit_field, audit_field_value = nil, string_value = nil)
+    @audit_structure = audit_structure
     @audit_field = audit_field
     @audit_field_value = audit_field_value
     @string_value = string_value

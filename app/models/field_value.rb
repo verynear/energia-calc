@@ -11,13 +11,13 @@ class FieldValue < ActiveRecord::Base
   end
 
   def from_audit
-    return false unless parent.is_a?(Structure)
+    return false unless parent.is_a?(Structure) || parent.is_a?(AuditStructure)
 
     parent.wegoaudit_structure.has_field?(field_api_name)
   end
 
   def original_value
-    return nil unless parent.is_a?(Structure)
+    return nil unless parent.is_a?(Structure) || parent.is_a?(AuditStructure)
 
     parent.wegoaudit_structure.field_values
       .fetch(field_api_name, value)

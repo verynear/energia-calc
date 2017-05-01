@@ -6,8 +6,8 @@ class AuditDigest
 			          :audit_measure,
                 :audit_measure_value,
                 :sample_group,
-                :structure,
-			          :structure_type,
+                :audit_structure,
+			          :audit_strc_type,
                 :user
 
 
@@ -48,9 +48,9 @@ class AuditDigest
   end
 
   def structure_types_list
-    response = StructureType.uniq(:api_name).order(:id).map do |structure_type|
-      next if structure_type.api_name == 'audit'
-      Retrocalc::StructureTypeJsonPresenter.new(structure_type).as_json
+    response = AuditStrcType.uniq(:api_name).order(:id).map do |audit_strc_type|
+      next if audit_strc_type.api_name == 'audit'
+      Retrocalc::StructureTypeJsonPresenter.new(audit_strc_type).as_json
     end.compact
 
     return response

@@ -111,7 +111,7 @@ class AuditReportCalculator < Generic::Strict
   end
 
   def get_annual_cost_reduction_percentage(summary_hash)
-    unless summary_hash[:annual_operating_cost_proposed].is_a?(Numeric)
+    unless summary_hash[:annual_operating_cost_proposed].is_a?(Numeric) || summary_hash[:annual_operating_cost_proposed].is_a?(BigDecimal)
       return :error
     end
 

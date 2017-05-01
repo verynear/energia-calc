@@ -34,27 +34,26 @@ module Retrocalc
         substructures.concat(sample_group.substructures)
       end
 
-      exportable_substructures.map { |structure| structure_json(structure) }
+      exportable_substructures.map { |audit_structure| structure_json(structure) }
     end
 
     private
 
     def exportable_substructures
       substructures.select do |substructure|
-        substructure.physical_structure_type != 'Building' ||
-          substructure.physical_structure.wegowise_id != 0
+        substructure.physical_structure_type != 'Building'
       end
     end
 
     def field_json(audit_field)
       {
-        name: structure_type.name,
-        api_name: structure_type.api_name
+        name: audit_strc_type.name,
+        api_name: audit_strc_type.api_name
       }
     end
 
-    def fields_for(structure)
-      audit_field_values = structure.audit_field_values.includes(:audit_field)
+    def fields_for(audit_structure)
+      audit_field_values = audit_structure.audit_field_values.includes(:audit_field)
 
       audit_field_values.each_with_object({}) do |value, hash|
         api_name = value.audit_field.api_name
@@ -66,8 +65,8 @@ module Retrocalc
       end
     end
 
-    def n_structures_for(structure)
-      sample_group = structure.sample_group
+    def n_structures_for(audit_structure)
+      sample_group = audit_structure.sample_group
 
       if sample_group.present?
         self.n_structures = (sample_group.n_structures /
@@ -76,38 +75,38 @@ module Retrocalc
       n_structures
     end
 
-    def sample_group_id_for(structure)
-      if structure.sample_group.present?
-        self.sample_group_id = structure.sample_group.id
+    def sample_group_id_for(audit_structure)
+      if audit_structure.sample_group.present?
+        self.sample_group_id = audit_structure.sample_group.id
       end
       sample_group_id
     end
 
-    def structure_json(structure)
+    def structure_json(audit_structure)
       {
-        id: structure.id,
-        name: structure.name,
-        structure_type: structure_type_json(structure.structure_type),
-        wegowise_id: wegowise_id(structure),
-        audit_field_values: fields_for(structure),
-        n_structures: n_structures_for(structure),
-        sample_group_id: sample_group_id_for(structure),
-        photos: PhotosJsonPresenter.new(structure).as_json,
+        id: audit_structure.id,
+        name: audit_structure.name,
+        structure_type: structure_type_json(audit_structure.audit_strc_type),
+        wegowise_id: wegowise_id(audit_structure),
+        field_values: fields_for(audit_structure),
+        n_structures: n_structures_for(audit_structure),
+        sample_group_id: sample_group_id_for(audit_structure),
+        photos: PhotosJsonPresenter.new(audit_structure).as_json,
         substructures: StructuresJsonPresenter.new(
-          structure, n_structures, sample_group_id).as_json
+          audit_structure, n_structures, sample_group_id).as_json
       }
     end
 
-    def structure_type_json(structure_type)
+    def structure_type_json(audit_strc_type)
       {
-        name: structure_type.name,
-        api_name: structure_type.api_name
+        name: audit_strc_type.name,
+        api_name: audit_strc_type.api_name
       }
     end
 
-    def wegowise_id(structure)
-      return nil if structure.physical_structure.nil?
-      structure.physical_structure.wegowise_id
+    def wegowise_id(audit_structure)
+      return nil if audit_structure.physical_structure.nil?
+      audit_structure.physical_structure.wegowise_id
     end
   end
 end

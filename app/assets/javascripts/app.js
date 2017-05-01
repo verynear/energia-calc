@@ -84,7 +84,7 @@ $(function modals() {
         selectedTypeId = $structureTypes.val(),
         options = '';
 
-    $.ajax({ url: '/structure_types/' + parentStructureTypeId + '/subtypes',
+    $.ajax({ url: '/audit_strc_types/' + parentStructureTypeId + '/subtypes',
              method: 'GET',
              data: { selected: selectedTypeId }})
      .done(function(data) {

@@ -1,8 +1,8 @@
 <nav class="sibling-menu js-sidebar-nav">
   <%- SubstructureTypesPresenter.new(object.parent_object)
-        .substructures.each do |structure_type, substructures| %>
+        .substructures.each do |audit_strc_type, substructures| %>
     <div class="sibling-menu__title">
-      <%= structure_type.name %>
+      <%= audit_strc_type.name %>
     </div>
 
     <% substructures.each do |substructure| -%>

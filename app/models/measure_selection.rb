@@ -10,11 +10,11 @@ class MeasureSelection < ActiveRecord::Base
   has_many :field_values, as: :parent
 
   has_many :structure_changes
-  has_many :calc_structures, through: :structure_changes
+  has_many :structures, through: :structure_changes
   has_many :field_values, as: :parent
 
-  delegate :temp_audit, to: :audit_report
-  delegate :calc_structure_types, to: :measure
+  delegate :audit, to: :audit_report
+  delegate :structure_types, to: :measure
   delegate :fields_for_structure_type, to: :measure
   delegate :grouping_field_api_name, to: :measure
   delegate :name, to: :measure, prefix: true
@@ -40,8 +40,8 @@ class MeasureSelection < ActiveRecord::Base
     field_value('degradation_rate')
   end
 
-  def has_structure_change_for(calc_structure_type)
-    structure_changes.where(calc_structure_type_id: calc_structure_type.id).exists?
+  def has_structure_change_for(structure_type)
+    structure_changes.where(structure_type_id: structure_type.id).exists?
   end
 
   def relevant_calculations

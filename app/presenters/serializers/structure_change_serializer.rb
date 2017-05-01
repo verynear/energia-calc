@@ -14,21 +14,21 @@ class StructureChangeSerializer < Generic::Strict
 
   private
 
-  def structure_as_json(calc_structure)
+  def structure_as_json(structure)
     effective_structure_values = measure_summary
       .effective_structure_values.fetch(
         structure_change.structure_wegoaudit_id,
         {})
 
     StructureSerializer.new(
-      calc_structure: calc_structure,
+      structure: structure,
       structure_change: structure_change,
       effective_structure_values: effective_structure_values,
       measure_selection: measure_selection).as_json
   end
 
   def structure_type_name
-    structure_change.calc_structure_type.name
+    structure_change.structure_type.name
   end
   memoize :structure_type_name
 end

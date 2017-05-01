@@ -1,8 +1,8 @@
 class StructureLinkService < BaseServicer
   attr_accessor :physical_structure,
-                :structure
+                :audit_structure
 
   def execute!
-    structure.physical_structure.update(physical_structure.cloneable_attributes)
+    audit_structure.physical_structure.update(physical_structure.cloneable_attributes)
   end
 end

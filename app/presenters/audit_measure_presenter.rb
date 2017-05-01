@@ -1,4 +1,4 @@
-class MeasurePresenter
+class AuditMeasurePresenter
   attr_reader :audit_measure,
               :audit_measure_value
 

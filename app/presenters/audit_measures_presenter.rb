@@ -7,7 +7,7 @@ class AuditMeasuresPresenter
 
   def audit_measures
     @audit_measures ||= AuditMeasure.active.order(:name).map do |audit_measure|
-      MeasurePresenter.new(audit_measure, audit_measure_values[audit_measure.id])
+      AuditMeasurePresenter.new(audit_measure, audit_measure_values[audit_measure.id])
     end
   end
 

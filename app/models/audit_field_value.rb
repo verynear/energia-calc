@@ -3,10 +3,10 @@ class AuditFieldValue < ActiveRecord::Base
           SoftDestruction
 
   belongs_to :audit_field
-  belongs_to :structure
+  belongs_to :audit_structure
 
   validates :audit_field_id, presence: true, uniqueness: { scope: :structure_id }
-  validates :structure_id, presence: true
+  validates :audit_structure_id, presence: true
 
   def value=(val)
     return if val.nil?
@@ -21,12 +21,12 @@ class AuditFieldValue < ActiveRecord::Base
     @audit_field ||= AuditField.where(id: audit_field_id).first
   end
 
-  def structure
-    @structure ||= Structure.where(id: structure_id)
+  def audit_structure
+    @audit_structure ||= AuditStructure.where(id: audit_structure_id)
   end
 
   # def string_value
-  #   @string_value = FieldValue.where(structure_id: structure_id).where.not(string_value: nil)
+  #   @string_value = FieldValue.where(audit_structure_id: audit_structure_id).where.not(string_value: nil)
   # end
 
   private

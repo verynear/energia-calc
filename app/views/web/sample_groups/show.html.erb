@@ -3,7 +3,7 @@
 <%- content_for(:titlebar) do %>
   <%- if can_edit? && !@sample_group.is_complete? %>
     <a class="titlebar__btn btn btn-outline js-modal-open js-update-subtypes"
-       data-structure-type-id="<%= @sample_group.structure_type_id %>"
+       data-structure-type-id="<%= @sample_group.audit_strc_type_id %>"
        href="#new-structure-modal">
       Add Sample <i class="icon-plus"></i>
     </a>

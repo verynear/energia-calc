@@ -8,15 +8,15 @@ class Audit < ActiveRecord::Base
 
   belongs_to :audit_type
   belongs_to :user
-  belongs_to :structure
+  belongs_to :audit_structure
   belongs_to :locked_by_user, foreign_key: :locked_by, class_name: 'User'
 
-  has_many :audit_field_values, through: :structure
+  has_many :audit_field_values, through: :audit_structure
   has_many :audit_measure_values
 
-  delegate :structure_type,
+  delegate :audit_strc_type,
            :value_for_field,
-           to: :structure
+           to: :audit_structure
 
   delegate :name,
            to: :audit_type,
@@ -31,7 +31,7 @@ class Audit < ActiveRecord::Base
   end
 
   def audit_field_values
-    AuditFieldValue.where(structure_id: self.structure_id)
+    AuditFieldValue.where(audit_structure_id: self.audit_structure_id)
   end
 
   def audit_measure_value

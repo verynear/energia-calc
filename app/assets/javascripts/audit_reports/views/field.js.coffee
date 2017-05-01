@@ -133,7 +133,7 @@ class AuditReports.Views.Field extends Backbone.View
       @$fli.addClass('is-disabled')
 
   syncUrl: ->
-    "/calc/calc_structures/#{@model.get('calc_structure').get('id')}" +
+    "/calc/structures/#{@model.get('structure').get('id')}" +
       "/field_values/#{@model.get('id')}"
 
   syncFieldValue: ->

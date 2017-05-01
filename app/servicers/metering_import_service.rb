@@ -1,7 +1,7 @@
 class MeteringImportService < BaseServicer
   attr_accessor :meter,
                 :params,
-                :structure,
+                :audit_structure,
                 :user
 
   def execute!
@@ -26,19 +26,19 @@ class MeteringImportService < BaseServicer
   def create_or_update_metering
     if metering_exists?
       @metering.update_attributes(physical_structure: @meter,
-                                  parent_structure_id: @physical_structure.structure,
+                                  parent_structure_id: @physical_structure.audit_structure,
                                   name: @meter.name)
     else
-      @metering = Structure.create(structure_type: Meter.structure_type,
+      @metering = AuditStructure.create(audit_strc_type: Meter.audit_strc_type,
                                    physical_structure: @meter,
-                                   parent_structure_id: @physical_structure.structure,
+                                   parent_structure_id: @physical_structure.audit_structure,
                                    name: @meter.name)
     end
   end
 
   def metering_exists?
-    @metering = Structure.find_by(physical_structure: @meter,
-                                  parent_structure_id: @physical_structure.structure.id)
+    @metering = AuditStructure.find_by(physical_structure: @meter,
+                                  parent_structure_id: @physical_structure.audit_structure.id)
     @metering
   end
 
@@ -46,7 +46,7 @@ class MeteringImportService < BaseServicer
     @physical_structure = structure_class.create_temporary!(params[:wegowise_id],
                                                             params[:name])
 
-    Structure.create!(structure_type: structure_class.structure_type,
+    AuditStructure.create!(audit_strc_type: structure_class.audit_strc_type,
                  name: params[:name],
                  physical_structure: @physical_structure)
   end
