@@ -40,7 +40,7 @@ class AuditField < ActiveRecord::Base
   
   def field_enumerations
      return nil unless picker?
-    @field_enumeration = FieldEnumeration.where(field_id: field.id)
+    @field_enumeration = FieldEnumeration.where(audit_field_id: audit_field.id)
   end
 
   def grouping

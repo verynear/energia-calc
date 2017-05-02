@@ -13,7 +13,8 @@ class TempStructure < Generic::Strict
 
     attr_reader :field_values,
                 :structure_type,
-                :audit_strc_type
+                :audit_strc_type,
+                :audit_structures
 
     delegate :api_name, to: :structure_type, prefix: true
     delegate :name, to: :structure_type, prefix: true

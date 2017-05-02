@@ -17,7 +17,7 @@ class StructureGroupingPresenter
         if audit_field.value_type != 'picker'
            StructureFieldPresenter.new(audit_structure, audit_field, audit_field_values[audit_field.id])
         else
-          if audit_field_values.empty?
+          if !audit_field_values[audit_field.id]
             StructureFieldPresenter.new(audit_structure, audit_field, collection)
           else
             StructureFieldPresenter.new(audit_structure, audit_field, collection, audit_field_values[audit_field.id]['string_value'])
