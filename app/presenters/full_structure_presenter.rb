@@ -7,7 +7,7 @@ class FullStructurePresenter < Decorator
     end
     h['substructures'] = substructures_array
     h['sample_groups'] = sample_groups_array
-    h['field_values'] = field_values_array
+    h['audit_field_values'] = field_values_array
     h
   end
 

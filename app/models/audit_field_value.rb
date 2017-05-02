@@ -5,7 +5,7 @@ class AuditFieldValue < ActiveRecord::Base
   belongs_to :audit_field
   belongs_to :audit_structure
 
-  validates :audit_field_id, presence: true, uniqueness: { scope: :structure_id }
+  validates :audit_field_id, presence: true, uniqueness: { scope: :audit_structure_id }
   validates :audit_structure_id, presence: true
 
   def value=(val)

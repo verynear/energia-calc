@@ -50,7 +50,7 @@ class AuditReportCreator < Generic::Strict
 
     associate_measures
     create_field_values
-    # import_wegowise_data
+    import_wegowise_data
   end
 
   def create_field_values
@@ -66,9 +66,9 @@ class AuditReportCreator < Generic::Strict
 
   def import_wegowise_data
     structures = data['structures']
-    wegowise_ids = WegowiseIdFinder.new(structures).find_ids
+    # wegowise_ids = WegowiseIdFinder.new(structures).find_ids
 
-    start_data_import_workers(wegowise_ids)
+    # start_data_import_workers(wegowise_ids)
   end
 
   def start_data_import_workers(wegowise_ids)

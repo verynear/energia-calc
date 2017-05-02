@@ -6,6 +6,6 @@ class Grouping < ActiveRecord::Base
 
   validates :name, presence: true
   validates :display_order, presence: true,
-                            uniqueness: { scope: [:structure_type_id] }
+                            uniqueness: { scope: [:audit_strc_type_id] }
   validates :audit_strc_type, presence: true
 end

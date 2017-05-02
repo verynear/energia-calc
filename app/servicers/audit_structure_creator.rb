@@ -3,7 +3,7 @@ class AuditStructureCreator < BaseServicer
                 :parent_structure,
                 :audit_strc_type
 
-  attr_reader :structure
+  attr_reader :audit_structure
 
   def execute!
     AuditStructure.transaction do

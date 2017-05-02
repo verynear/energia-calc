@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><%= yield(:page_title) + ' | ' if content_for?(:page_title) %>RetroCalc</title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "RetroCalc" %>">
+    <title><%= yield(:page_title) + ' | ' if content_for?(:page_title) %>WegoAudit</title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "WegoAudit" %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
@@ -13,7 +13,7 @@
   <body>
     <header class="header">
       <div class="container">
-        <%#<%= link_to image_tag('logo-white.svg'), root_path %>
+        <%= link_to image_tag('logo-white.svg'), root_path %>
         <nav class="global-menu">
           <%= render 'layouts/navigation_links' %>
         </nav>
@@ -22,8 +22,8 @@
     </header>
 
     <%= render 'layouts/messages' %>
-
     <br>
+    <section class="titlebar">
       <div class="container">
         <%= yield(:titlebar) if content_for?(:titlebar) %>
         <%- if content_for?(:page_title) %>
@@ -32,6 +32,7 @@
         <%= yield(:title_links) if content_for?(:title_links) %>
         <%= yield(:crumbs) if content_for?(:crumbs) %>
       </div>
+    </section>
     
     <p class="alert"><%= alert %></p>
 

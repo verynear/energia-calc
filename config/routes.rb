@@ -94,11 +94,11 @@ Rails.application.routes.draw do
 
   namespace :calc do
     resources :audit_reports do
-        get 'download_usage', on: :member
+      get 'download_usage', on: :member
 
       resource :display,
-             only: [:edit, :update, :show],
-             controller: 'display_reports' do
+            only: [:edit, :update, :show],
+            controller: 'display_reports' do
         collection do
           put :change_template
           put :preview

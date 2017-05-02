@@ -34,7 +34,7 @@ module Retrocalc
         substructures.concat(sample_group.substructures)
       end
 
-      exportable_substructures.map { |audit_structure| structure_json(structure) }
+      exportable_substructures.map { |audit_structure| structure_json(audit_structure) }
     end
 
     private

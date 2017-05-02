@@ -16,7 +16,7 @@ module Web
       )
       if params[:audit_structure][:parent_structure_id].present?
         parent_structure = AuditStructure.find(params[:audit_structure][:parent_structure_id])
-        creator = StructureCreator.new(
+        creator = AuditStructureCreator.new(
           params: params.require(:audit_structure).permit(:name),
           parent_structure: parent_structure,
           audit_strc_type: audit_strc_type

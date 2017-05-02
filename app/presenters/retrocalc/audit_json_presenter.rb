@@ -29,7 +29,7 @@ module Retrocalc
     private
 
     def measures_json(audit_measure_values)
-      audit.audit_measure_values.map do |audit_measure_value|
+      audit_measure_values.map do |audit_measure_value|
         { name: audit_measure_value.audit_measure_name,
           api_name: audit_measure_value.audit_measure.api_name,
           notes: audit_measure_value.notes }
