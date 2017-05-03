@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :audit_reports
   has_many :measure_selections, through: :audit_reports
 
-  belongs_to :calc_organization
+  belongs_to :organization
 
   validates :email,
             format: { with: VALID_EMAIL_REGEXP },
@@ -56,14 +56,14 @@ class User < ActiveRecord::Base
   end
 
   def available_reports
-    calc_organization.audit_reports
+    organization.audit_reports
   end
 
   def available_templates
-    calc_organization.report_templates
+    organization.report_templates
   end
 
-  def calc_organization
+  def organization
     super || NullOrganization.new
   end
 end

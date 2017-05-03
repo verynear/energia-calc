@@ -61,7 +61,7 @@ namespace :import do
         "#{org_name} #{File.basename(markdown_file, '.md')}".titleize
       markdown = File.read(markdown_file)
 
-      organization = CalcOrganization.find_by(name: wego_org_names[org_name])
+      organization = Organization.find_by(name: wego_org_names[org_name])
       report_template = ReportTemplate.find_or_create_by!(
         name: template_name,
         layout: org_name)

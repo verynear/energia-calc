@@ -1,12 +1,12 @@
 class AuditReport < ActiveRecord::Base
 
-  delegate :default_report_template, to: :calc_organization
+  delegate :default_report_template, to: :organization
 
   validates :name, presence: true
   validates :wegoaudit_id, presence: true
 
   belongs_to :user
-  belongs_to :calc_organization
+  belongs_to :organization
   belongs_to :report_template
 
   has_many :apartment_monthly_data

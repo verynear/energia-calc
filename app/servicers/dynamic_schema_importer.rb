@@ -3,9 +3,9 @@ class DynamicSchemaImporter < BaseServicer
     open_csv('db/seed_dynamic_schema.csv').each do |row|
       next unless row.valid?
 
-      if row.object_name == audit_strc_type.name
-        create_notes_field(audit_strc_type)
-        create_details_field(audit_strc_type, row)
+      if row.object_name == audit_structure_type.name
+        create_notes_field(audit_structure_type)
+        create_details_field(audit_structure_type, row)
       else
         created_types = create_structure_type_hierarchy(row)
         created_types.each do |type|
@@ -18,15 +18,15 @@ class DynamicSchemaImporter < BaseServicer
 
   private
 
-  def audit_strc_type
-    @audit_strc_type ||= AuditStrcType.find_or_create_by(
+  def audit_structure_type
+    @audit_structure_type ||= AuditStrcType.find_or_create_by(
       name: 'Audit',
       active: true,
       display_order: 1,
       primary: true)
   end
 
-  def create_details_field(audit_strc_type, row)
+  def create_details_field(structure_type, row)
     return unless row.field_valid?
 
     grouping = audit_strc_type.groupings.find_or_create_by(
@@ -35,7 +35,7 @@ class DynamicSchemaImporter < BaseServicer
       grouping.update(display_order: audit_strc_type.groupings.count + 1)
     end
 
-    row.audit_fields.each do |field_options|
+    row.fields.each do |field_options|
       audit_field = grouping.audit_fields.find_or_create_by(name: field_options[:name])
 
       if audit_field.display_order.nil?
@@ -53,9 +53,9 @@ class DynamicSchemaImporter < BaseServicer
     end
   end
 
-  def create_notes_field(audit_strc_type)
+  def create_notes_field(structure_type)
     row = NotesRow.new(nil)
-    create_details_field(audit_strc_type, row)
+    create_details_field(structure_type, row)
   end
 
   def create_structure_type_hierarchy(row)
