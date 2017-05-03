@@ -14,7 +14,7 @@ class AddApiNames < ActiveRecord::Migration
     AuditStrcType.all.each(&:generate_api_name!)
     add_column :audit_measures, :api_name, :string
     AuditMeasure.all.each(&:generate_api_name!)
-    add_column :fields, :api_name, :string
+    add_column :audit_fields, :api_name, :string
     AuditField.all.each(&:generate_api_name!)
 
     change_column :audit_strc_types, :api_name, :string, null: false

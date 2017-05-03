@@ -1,6 +1,6 @@
 class UserOrganizationUpdater < Generic::Strict
-  attr_accessor :calc_user
-  attr_reader :calc_organization
+  attr_accessor :user
+  attr_reader :organization
 
   def execute
     if wegowise_org
@@ -14,16 +14,16 @@ class UserOrganizationUpdater < Generic::Strict
   private
 
   def add_user_to_organization
-    calc_user.update!(calc_organization: calc_organization)
+    user.update!(organization: organization)
   end
 
   def create_or_update_organization
-    @calc_organization = CalcOrganization.find_by(wegowise_id: wegowise_org['id'])
+    @organization = Organization.find_by(wegowise_id: wegowise_org['id'])
 
-    if calc_organization
-      calc_organization.update!(org_params)
+    if organization
+      organization.update!(org_params)
     else
-      @calc_organization = CalcOrganization.create!(org_params)
+      @organization = Organization.create!(org_params)
     end
   end
 
@@ -34,12 +34,12 @@ class UserOrganizationUpdater < Generic::Strict
     }
   end
 
-  def remove_calc_user_from_organization
-    calc_user.update!(calc_organization: nil)
+  def remove_user_from_organization
+    user.update!(organization: nil)
   end
 
   def wegowise_org
-    calc_organizations.first if calc_organizations.present?
+    organizations.first if organizations.present?
   end
   memoize :wegowise_org
 end

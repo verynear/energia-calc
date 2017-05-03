@@ -22,7 +22,7 @@ class Calc::ReportTemplatesController < SecuredController
   def edit
     @page_title = 'Edit report template'
     @template = ReportTemplate.find(params[:id])
-    @calc_user = CalcUser.find_by(wegowise_id: current_user.wegowise_id)
+    @user = User.find_by(wegowise_id: current_user.wegowise_id)
     @context = ReportTemplateContext.new(
       report_template: @template,
       user: current_user)
