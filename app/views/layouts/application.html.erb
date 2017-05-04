@@ -21,7 +21,9 @@
       
     </header>
 
-    <%= render 'layouts/messages' %>
+    <div>
+      <%= render 'layouts/messages' %>
+    </div>
 
     <br>
       <div class="container">
@@ -33,15 +35,13 @@
         <%= yield(:crumbs) if content_for?(:crumbs) %>
       </div>
     
-    <p class="alert"><%= alert %></p>
+    <p class="alert"><%= alert %>
 
     <section class="content">
       <div class="container">
         <%= yield %>
       </div>
     </section>
-
-  <%= javascript_include_tag 'application' %>
 
     <footer class="footer">
       <div class="container">
