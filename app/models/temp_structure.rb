@@ -1,19 +1,23 @@
 class TempStructure < Generic::Strict
-    attr_accessor :temp_audit,
+    attr_accessor :audit,
+                  :temp_audit,
                   :id,
                   :n_structures,
                   :name,
                   :parent_structure,
                   :photos,
+                  :structures,
                   :sample_group_id,
                   :substructures,
                   :wegowise_id
 
-    attr_reader :calc_field_values,
-                :calc_structure_type
+    attr_reader :field_values,
+                :structure_type,
+                :audit_strc_type,
+                :audit_structures
 
-    delegate :api_name, to: :calc_structure_type, prefix: true
-    delegate :name, to: :calc_structure_type, prefix: true
+    delegate :api_name, to: :structure_type, prefix: true
+    delegate :name, to: :structure_type, prefix: true
 
     def containing_physical_structure
       return unless parent_structure
@@ -42,11 +46,11 @@ class TempStructure < Generic::Strict
     end
 
     def genus_structure_type_name
-      calc_structure_type.genus_structure_type.name
+      structure_type.genus_structure_type.name
     end
 
     def has_field?(api_name)
-      @field_values.keys.include?(api_name)
+      field_values.keys.include?(api_name)
     end
 
     def location
@@ -74,8 +78,8 @@ class TempStructure < Generic::Strict
       sample_group.present?
     end
 
-    def calc_structure_type=(hash)
+    def structure_type=(hash)
       hash = hash.stringify_keys
-      @calc_structure_type = CalcStructureType.by_api_name!(hash['api_name'])
+      @structure_type = StructureType.by_api_name!(hash['api_name'])
     end
   end

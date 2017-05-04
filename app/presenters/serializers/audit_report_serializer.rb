@@ -27,9 +27,9 @@ class AuditReportSerializer < Generic::Strict
   def measure_selections_json
     audit_report.measure_selections
       .includes(
-        :calc_measure,
+        :measure,
         :structure_changes,
-        :calc_structures).map do |selection|
+        :structures).map do |selection|
       measure_summary =
         audit_report_calculator.summary_for_measure_selection(selection)
       MeasureSelectionSerializer.new(

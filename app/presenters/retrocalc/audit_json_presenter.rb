@@ -20,7 +20,7 @@ module Retrocalc
 
       top_level[:structures] = structures_json
       top_level[:sample_groups] = sample_groups_json
-      top_level[:measures] = measures_json(audit.measure_values)
+      top_level[:measures] = measures_json(audit.audit_measure_values)
       top_level[:photos] = photos_json
 
       top_level
@@ -28,24 +28,24 @@ module Retrocalc
 
     private
 
-    def measures_json(measure_values)
-      audit.measure_values.map do |measure_value|
-        { name: measure_value.measure_name,
-          api_name: measure_value.measure.api_name,
-          notes: measure_value.notes }
+    def measures_json(audit_measure_values)
+      audit_measure_values.map do |audit_measure_value|
+        { name: audit_measure_value.audit_measure_name,
+          api_name: audit_measure_value.audit_measure.api_name,
+          notes: audit_measure_value.notes }
       end
     end
 
     def photos_json
-      Retrocalc::PhotosJsonPresenter.new(audit.structure).as_json
+      Retrocalc::PhotosJsonPresenter.new(audit.audit_structure).as_json
     end
 
     def sample_groups_json
-      Retrocalc::SampleGroupsJsonPresenter.new(audit.structure).as_json
+      Retrocalc::SampleGroupsJsonPresenter.new(audit.audit_structure).as_json
     end
 
     def structures_json
-      Retrocalc::StructuresJsonPresenter.new(audit.structure).as_json
+      Retrocalc::StructuresJsonPresenter.new(audit.audit_structure).as_json
     end
   end
 end

@@ -29,10 +29,10 @@ class AuditReportCreator < Generic::Strict
 
   def associate_measures
     data['measures'].each do |wegoaudit_measure|
-      measure = CalcMeasure.by_api_name!(wegoaudit_measure['api_name'])
+      measure = Measure.by_api_name!(wegoaudit_measure['api_name'])
       MeasureSelectionCreator.new(
         audit_report: audit_report,
-        calc_measure: measure,
+        measure: measure,
         notes: wegoaudit_measure['notes']
       ).create
     end
@@ -54,21 +54,21 @@ class AuditReportCreator < Generic::Strict
   end
 
   def create_field_values
-    CalcField.where(level: 'audit_report').each do |field|
+    Field.where(level: 'audit_report').each do |field|
       options = { field_api_name: field.api_name }
       if field.api_name == 'audit_date'
         options[:value] = audit_report.data['date']
       end
 
-      audit_report.calc_field_values.create!(options)
+      audit_report.field_values.create!(options)
     end
   end
 
   def import_wegowise_data
     structures = data['structures']
-    wegowise_ids = WegowiseIdFinder.new(structures).find_ids
+    # wegowise_ids = WegowiseIdFinder.new(structures).find_ids
 
-    start_data_import_workers(wegowise_ids)
+    # start_data_import_workers(wegowise_ids)
   end
 
   def start_data_import_workers(wegowise_ids)

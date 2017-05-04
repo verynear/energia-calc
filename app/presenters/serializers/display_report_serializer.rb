@@ -8,7 +8,7 @@ class DisplayReportSerializer < Generic::Strict
       name: audit_report.name,
       markdown: display_report.markdown,
       rendered_html: display_report.formatted_report,
-      photos: audit_report.temp_audit.photos,
+      photos: audit_report.audit.photos,
       selected_photo_id: audit_report.wegoaudit_photo_id
     }
   end

@@ -1,16 +1,22 @@
-class TempAudit
+class TempAudit < Generic::Strict
     attr_reader :date,
-                :structures
+                :audit_structures,
+                :audit_strc_type
+                
 
     attr_accessor :audit_type,
                   :date,
                   :id,
                   :measures,
+                  :audit_field_values,
+                  :audit_measures,
                   :name,
                   :photos,
-                  :sample_groups
+                  :sample_groups,
+                  :structures
 
     def initialize(*)
+      super
       self.structures ||= []
       self.measures ||= []
     end

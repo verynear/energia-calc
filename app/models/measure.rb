@@ -1,14 +1,18 @@
 class Measure < ActiveRecord::Base
-  include ApiNameGeneration
-
-  before_create :generate_api_name
-
-  has_many :measure_values
+  include WegoauditObjectLookup
 
   validates :name, presence: true
+  validates :api_name, uniqueness: true, presence: true
 
-  validate :validate_unchanged_api_name
+  delegate :grouping_field_api_name, to: :structure_type_definition
+  delegate :structure_types,
+           :fields_for_structure_type,
+           :structure_type_definition_for,
+           :inputs_only?,
+           to: :definition
 
-  scope :active, -> { where(active: true) }
-  scope :inactive, -> { where(active: false) }
+  def definition
+    MeasureDefinition.get(api_name)
+  end
+  memoize :definition
 end

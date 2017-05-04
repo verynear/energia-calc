@@ -1,6 +1,6 @@
 class MeasureSelectionCreator < Generic::Strict
   attr_accessor :audit_report,
-                :calc_measure,
+                :measure,
                 :notes
 
   attr_reader :measure_selection
@@ -21,15 +21,15 @@ class MeasureSelectionCreator < Generic::Strict
   private
 
   def create_field_values
-    measure_selection.calc_measure_definition.measure_fields.each do |field|
-      measure_selection.calc_field_values.create!(field_api_name: field.api_name)
+    measure_selection.measure_definition.measure_fields.each do |field|
+      measure_selection.field_values.create!(field_api_name: field.api_name)
     end
   end
 
   def create_measure_selection
     @measure_selection = MeasureSelection.create!(
       audit_report: audit_report,
-      calc_measure: calc_measure,
+      measure: measure,
       notes: notes
     )
   end

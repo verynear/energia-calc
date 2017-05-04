@@ -55,8 +55,11 @@ class AuditReports.Views.MeasureContent extends Backbone.View
       checked: if @model.get('enabled') then 'checked' else ''
     )
 
-    @_renderStructureChanges()
-    @_renderMeasureSummary()
+    if @model.get('structure_changes').isEmpty()
+      @$el.append @noStructuresTemplate()
+    else
+      @_renderStructureChanges()
+      @_renderMeasureSummary()
 
     measureNotes = @model.get('notes')
     if measureNotes

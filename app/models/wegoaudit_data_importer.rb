@@ -1,6 +1,6 @@
 class WegoauditDataImporter
   def import!(&block)
-    import_entities(:structure_types, &block)
+    import_entities(:audit_strc_types, &block)
   end
 
   def import_entities(type)

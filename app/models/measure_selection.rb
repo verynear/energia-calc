@@ -2,22 +2,23 @@ class MeasureSelection < ActiveRecord::Base
   include RankedModel
   ranks :calculate_order, with_same: :audit_report_id
 
-  validates :calc_measure_id, presence: true
+  validates :measure_id, presence: true
   validates :audit_report_id, presence: true
 
-  belongs_to :calc_measure
+  belongs_to :measure
   belongs_to :audit_report
-  has_many :calc_field_values, as: :parent
+  has_many :field_values, as: :parent
 
   has_many :structure_changes
-  has_many :calc_structures, through: :structure_changes
+  has_many :structures, through: :structure_changes
+  has_many :field_values, as: :parent
 
-  delegate :temp_audit, to: :audit_report
-  delegate :structure_types, to: :calc_measure
-  delegate :fields_for_structure_type, to: :calc_measure
-  delegate :grouping_field_api_name, to: :calc_measure
-  delegate :name, to: :calc_measure, prefix: true
-  delegate :definition, to: :calc_measure, prefix: true
+  delegate :audit, to: :audit_report
+  delegate :structure_types, to: :measure
+  delegate :fields_for_structure_type, to: :measure
+  delegate :grouping_field_api_name, to: :measure
+  delegate :name, to: :measure, prefix: true
+  delegate :definition, to: :measure, prefix: true
   delegate :data_types,
            :defaults,
            :interaction_fields,
@@ -29,18 +30,18 @@ class MeasureSelection < ActiveRecord::Base
            :for_electric?,
            :for_gas?,
            :for_oil?,
-           to: :calc_measure_definition
+           to: :measure_definition
 
   def belongs_to_user?(user)
     audit_report.user == user
   end
 
   def degradation_rate
-    calc_field_value('degradation_rate')
+    field_value('degradation_rate')
   end
 
-  def has_structure_change_for(calc_structure_type)
-    structure_changes.where(calc_structure_type_id: calc_structure_type.id).exists?
+  def has_structure_change_for(structure_type)
+    structure_changes.where(structure_type_id: structure_type.id).exists?
   end
 
   def relevant_calculations
@@ -74,23 +75,23 @@ class MeasureSelection < ActiveRecord::Base
   end
 
   def retrofit_lifetime
-    value = calc_field_value('retrofit_lifetime')
+    value = field_value('retrofit_lifetime')
     return value if value.present?
 
     defaults[:retrofit_lifetime]
   end
 
   def utility_rebate
-    calc_field_value('utility_rebate')
+    field_value('utility_rebate')
   end
 
   def warm_weather_shutdown_temperature
-    calc_field_value('warm_weather_shutdown_temperature')
+    field_value('warm_weather_shutdown_temperature')
   end
 
   private
 
-  def calc_field_value(api_name)
-    calc_field_values.find_by(field_api_name: api_name).value
+  def field_value(api_name)
+    field_values.find_by(field_api_name: api_name).value
   end
 end

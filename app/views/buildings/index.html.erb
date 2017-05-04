@@ -6,7 +6,7 @@
       <% organization.buildings.each do |building| %>
         <li>
           <%= link_to building.nickname, building_path(building) %>
-          - <%= link_to 'Full download', download_full_building_path(building) %>
+          - <%= link_to '(Download Wegowise Data)', download_full_building_path(building) %>
         </li>
       <% end %>
     </ul>

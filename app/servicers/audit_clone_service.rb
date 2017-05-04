@@ -11,16 +11,16 @@ class AuditCloneService < BaseServicer
     )
 
     self.audit = Audit.new(new_audit_params)
-    audit.structure = Structure.create(
+    audit.audit_structure = AuditStructure.create(
       name: audit.name,
-      structure_type_id: audit_structure_type_id
+      audit_strc_type_id: audit_strc_type_id
     )
     audit.save!
   end
 
   private
 
-  def audit_structure_type_id
-    source_audit.structure.structure_type_id
+  def audit_strc_type_id
+    source_audit.audit_structure.audit_strc_type_id
   end
 end

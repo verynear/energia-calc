@@ -3,9 +3,9 @@ class DynamicSchemaImporter < BaseServicer
     open_csv('db/seed_dynamic_schema.csv').each do |row|
       next unless row.valid?
 
-      if row.object_name == audit_structure_type.name
-        create_notes_field(audit_structure_type)
-        create_details_field(audit_structure_type, row)
+      if row.object_name == audit_strc_type.name
+        create_notes_field(audit_strc_type)
+        create_details_field(audit_strc_type, row)
       else
         created_types = create_structure_type_hierarchy(row)
         created_types.each do |type|
@@ -18,44 +18,44 @@ class DynamicSchemaImporter < BaseServicer
 
   private
 
-  def audit_structure_type
-    @audit_structure_type ||= StructureType.find_or_create_by(
+  def audit_strc_type
+    @audit_strc_type ||= AuditStrcType.find_or_create_by(
       name: 'Audit',
       active: true,
       display_order: 1,
       primary: true)
   end
 
-  def create_details_field(structure_type, row)
+  def create_details_field(audit_strc_type, row)
     return unless row.field_valid?
 
-    grouping = structure_type.groupings.find_or_create_by(
+    grouping = audit_strc_type.groupings.find_or_create_by(
       name: row.grouping_name)
     if grouping.display_order.nil?
-      grouping.update(display_order: structure_type.groupings.count + 1)
+      grouping.update(display_order: audit_strc_type.groupings.count + 1)
     end
 
-    row.fields.each do |field_options|
-      field = grouping.fields.find_or_create_by(name: field_options[:name])
+    row.audit_fields.each do |field_options|
+      audit_field = grouping.audit_fields.find_or_create_by(name: field_options[:name])
 
-      if field.display_order.nil?
-        field_options[:display_order] = grouping.fields.count + 1
+      if audit_field.display_order.nil?
+        field_options[:display_order] = grouping.audit_fields.count + 1
       end
 
-      field.update!(field_options)
+      audit_field.update!(field_options)
 
       row.picker_options.each do |option|
-        field_enum = field.field_enumerations.find_or_create_by(value: option)
+        field_enum = audit_field.field_enumerations.find_or_create_by(value: option)
         if field_enum.display_order.nil?
-          field_enum.update(display_order: field.field_enumerations.count + 1)
+          field_enum.update(display_order: audit_field.field_enumerations.count + 1)
         end
       end
     end
   end
 
-  def create_notes_field(structure_type)
+  def create_notes_field(audit_strc_type)
     row = NotesRow.new(nil)
-    create_details_field(structure_type, row)
+    create_details_field(audit_strc_type, row)
   end
 
   def create_structure_type_hierarchy(row)
@@ -122,7 +122,7 @@ class DynamicSchemaImporter < BaseServicer
 
   def parent_objects_for(names, &block)
     names.each do |parent_name|
-      StructureType.where(name: parent_name).each do |parent_object|
+      AuditStrcType.where(name: parent_name).each do |parent_object|
         block.call(parent_object)
       end
     end

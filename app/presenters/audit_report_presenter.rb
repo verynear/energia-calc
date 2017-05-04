@@ -34,10 +34,10 @@ class AuditReportPresenter < DelegateClass(AuditReport)
   end
 
   def method_missing(mthd, *args)
-    return super unless calc_field_values.map(&:field_api_name).include?(mthd.to_s)
+    return super unless field_values.map(&:field_api_name).include?(mthd.to_s)
 
     self.class.send(:define_method, mthd) do
-      calc_field_values.find_by(field_api_name: mthd).try!(:value)
+      field_values.find_by(field_api_name: mthd).try!(:value)
     end
     public_send(mthd)
   end

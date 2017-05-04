@@ -3,11 +3,11 @@ class PhotosController < ApplicationController
                 :load_structure
 
   def index
-    @images = @structure.structure_images
+    @images = @audit_structure.structure_images
   end
 
   def create
-    @image = @structure.structure_images.find_or_create_by(id: params[:id])
+    @image = @audit_structure.structure_images.find_or_create_by(id: params[:id])
     if @image.update_attributes(image_params)
       @image.update(successful_upload_on: @image.upload_attempt_on)
       render json: @image, status: :ok
@@ -19,7 +19,7 @@ class PhotosController < ApplicationController
   private
 
   def load_structure
-    @structure = Structure.find(params[:structure_id])
+    @audit_structure = AuditStructure.find(params[:audit_structure_id])
   end
 
   def image_params

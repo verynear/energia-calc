@@ -2,14 +2,14 @@ module Web
   class SampleGroupsController < BaseController
     def create
       # TODO: cleanup
-      parent_structure = Structure.find(params[:sample_group][:parent_structure_id])
-      structure_type = StructureType.find(
-        params[:structure_subtype] || params[:structure_type]
+      parent_structure = AuditStructure.find(params[:sample_group][:parent_structure_id])
+      audit_strc_type = AuditStrcType.find(
+        params[:structure_subtype] || params[:audit_strc_type]
       )
       creator = SampleGroupCreator.new(
         params: sample_group_params,
         parent_structure: parent_structure,
-        structure_type: structure_type
+        audit_strc_type: audit_strc_type
       )
       creator.execute!
       redirect_to_parent creator.sample_group
@@ -24,7 +24,7 @@ module Web
 
     def show
       @sample_group = SampleGroup.find(params[:id])
-      @substructure = Structure.new(sample_group: @sample_group)
+      @substructure = AuditStructure.new(sample_group: @sample_group)
     end
 
     def update

@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><%= content_for?(:title) ? yield(:title) : "WegoAudit" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "WegoAudit" %>">
+    <title><%= content_for?(:title) ? yield(:title) : "RetroCalc" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "RetroCalc" %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= csrf_meta_tags %>
@@ -12,7 +12,7 @@
   <body>
     <header class="header">
       <div class="container">
-        <%= link_to image_tag('logo-white.svg'), root_path %>
+        <%#<%= link_to image_tag('logo-white.svg'), root_path %>
         <nav class="global-menu">
           <%= link_to 'Login', '/signin' %>
         </nav>

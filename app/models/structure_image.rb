@@ -4,7 +4,7 @@ class StructureImage < ActiveRecord::Base
 
   DEFAULT_EXPIRATION_SECONDS = 10
 
-  belongs_to :structure
+  belongs_to :audit_structure
 
   has_attached_file :asset,
     styles: {
@@ -18,7 +18,7 @@ class StructureImage < ActiveRecord::Base
   validates_attachment_content_type :asset,
                                     content_type: %w[image/jpg image/jpeg image/png]
 
-  alias_method :parent_object, :structure
+  alias_method :parent_object, :audit_structure
 
   def absolute_url(style)
     WegoAudit::BASE_URL + asset.url(style)

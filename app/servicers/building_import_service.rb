@@ -20,7 +20,7 @@ class BuildingImportService < BaseServicer
   end
 
   def create_structure
-    Structure.where(structure_type_id: Building.structure_type.id,
+    AuditStructure.where(audit_strc_type_id: Building.audit_strc_type.id,
                     physical_structure_id: @building.id,
                     physical_structure_type: 'Building',
                     name: @building.name)

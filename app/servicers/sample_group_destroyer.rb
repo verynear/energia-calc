@@ -15,8 +15,8 @@ class SampleGroupDestroyer < BaseServicer
   end
 
   def destroy_substructures
-    sample_group.substructures.each do |structure|
-      StructureDestroyer.execute!(structure: structure)
+    sample_group.substructures.each do |audit_structure|
+      StructureDestroyer.execute!(audit_structure: audit_structure)
     end
   end
 end

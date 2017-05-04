@@ -5,17 +5,17 @@ class AuditMeasuresPresenter
     @audit = audit
   end
 
-  def measures
-    @measures ||= Measure.active.order(:name).map do |measure|
-      MeasurePresenter.new(measure, measure_values[measure.id])
+  def audit_measures
+    @audit_measures ||= AuditMeasure.active.order(:name).map do |audit_measure|
+      AuditMeasurePresenter.new(audit_measure, audit_measure_values[audit_measure.id])
     end
   end
 
   private
 
-  def measure_values
-    @measure_values ||= audit.measure_values.map do |measure_value|
-      [measure_value.measure_id, measure_value]
+  def audit_measure_values
+    @audit_measure_values ||= audit.audit_measure_values.map do |audit_measure_value|
+      [audit_measure_value.audit_measure_id, audit_measure_value]
     end.to_h
   end
 end

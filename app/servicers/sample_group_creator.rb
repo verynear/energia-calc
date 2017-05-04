@@ -1,7 +1,7 @@
 class SampleGroupCreator < BaseServicer
   attr_accessor :params,
                 :parent_structure,
-                :structure_type
+                :audit_strc_type
 
   attr_reader :sample_group
 
@@ -22,7 +22,8 @@ class SampleGroupCreator < BaseServicer
   def sample_group_params
     params.merge(
       parent_structure_id: parent_structure.id,
-      structure_type_id: structure_type.id,
+      
+      audit_strc_type_id: audit_strc_type.id,
       successful_upload_on: current_timestamp,
       upload_attempt_on: current_timestamp
     )

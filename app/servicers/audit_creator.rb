@@ -23,8 +23,8 @@ class AuditCreator < BaseServicer
                   :organization_id)
   end
 
-  def audit_structure_type
-    @audit_structure_type ||= StructureType.find_by(name: 'Audit')
+  def audit_strc_type
+    @audit_strc_type ||= AuditStrcType.find_by(name: 'Audit')
   end
 
   def initialize_audit
@@ -32,9 +32,9 @@ class AuditCreator < BaseServicer
   end
 
   def initialize_audit_structure
-    audit.structure = Structure.new(
+    audit.audit_structure = AuditStructure.new(
       name: audit.name,
-      structure_type: audit_structure_type
+      audit_strc_type: audit_strc_type
     )
   end
 

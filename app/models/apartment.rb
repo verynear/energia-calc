@@ -3,7 +3,7 @@ class Apartment < ActiveRecord::Base
           SoftDestruction
 
   belongs_to :building
-  has_one :structure, as: :physical_structure
+  has_one :audit_structure, as: :physical_structure
 
   validates :unit_number, presence: true
   validate :only_one_non_cloned
@@ -14,8 +14,8 @@ class Apartment < ActiveRecord::Base
             cloned: false)
   end
 
-  def self.structure_type
-    StructureType.find_by(physical_structure_type: 'Apartment')
+  def self.audit_strc_type
+    AuditStrcType.find_by(physical_structure_type: 'Apartment')
   end
 
   def name=(new_name)

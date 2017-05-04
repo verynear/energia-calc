@@ -2,10 +2,10 @@ class Calc::MeasureSelectionsController < SecuredController
   before_action :set_audit_report
 
   def create
-    calc_measure = CalcMeasure.find(params[:measure_selection][:measure_id])
+    measure = Measure.find(params[:measure_selection][:measure_id])
 
     selection = MeasureSelectionCreator.new(
-      calc_measure: calc_measure,
+      measure: measure,
       audit_report: @audit_report).create
 
     calculator = AuditReportCalculator.new(audit_report: @audit_report)
@@ -38,7 +38,7 @@ class Calc::MeasureSelectionsController < SecuredController
 
   def new
     available_measure_names = Kilomeasure.registry.names
-    @calc_measures = CalcMeasure.where(api_name: available_measure_names).order(:name)
+    @measures = Measure.where(api_name: available_measure_names).order(:name)
     render layout: false
   end
 

@@ -47,10 +47,10 @@ class FullAuditReport < Generic::Strict
   def measure_selections
     audit_report.measure_selections
       .where(enabled: true)
-      .includes(:structure_changes, :calc_structures, :calc_field_values)
-      .joins(:structure_changes, :calc_structures, :calc_field_values)
+      .includes(:structure_changes, :structures, :field_values)
+      .joins(:structure_changes, :structures, :field_values)
       .rank(:calculate_order)
-      .select('structure_changes.*', 'calc_structures.*', 'calc_field_values.*')
+      .select('structure_changes.*', 'structures.*', 'field_values.*')
   end
   memoize :measure_selections
 
@@ -62,7 +62,7 @@ class FullAuditReport < Generic::Strict
         field_api_name = row[:field_api_name]
         value = row[:value]
         hash[structure_wegoaudit_id] ||= {}
-        value = CalcField.by_api_name!(field_api_name).convert_value(value)
+        value = Field.by_api_name!(field_api_name).convert_value(value)
         hash[structure_wegoaudit_id][field_api_name] = value
       end
   end
@@ -95,9 +95,9 @@ class FullAuditReport < Generic::Strict
   end
 
   def field_values_for_object(object)
-    object.calc_field_values.pluck(:field_api_name, :value)
+    object.field_values.pluck(:field_api_name, :value)
       .each_with_object({}) do |(field_api_name, value), hash|
-      value = CalcField.by_api_name!(field_api_name).convert_value(value)
+      value = Field.by_api_name!(field_api_name).convert_value(value)
       hash[field_api_name] = value
     end.symbolize_keys
   end

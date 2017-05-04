@@ -1,5 +1,5 @@
-class AddProposedOnlyFlagToCalcFields < ActiveRecord::Migration
+class AddProposedOnlyFlagToFields < ActiveRecord::Migration
   def change
-    add_column :calc_fields, :proposed_only, :boolean, default: false
+    add_column :fields, :proposed_only, :boolean, default: false
   end
 end

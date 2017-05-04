@@ -192,6 +192,9 @@ GEM
     lumberjack (1.0.11)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    marginalia (1.4.0)
+      actionpack (>= 2.3)
+      activerecord (>= 2.3)
     memoizer (1.0.3)
     method_source (0.8.2)
     mime-types (3.1)
@@ -427,6 +430,7 @@ DEPENDENCIES
   launchy
   liquid
   lograge
+  marginalia
   memoizer
   oauth
   oj
@@ -466,5 +470,8 @@ DEPENDENCIES
   wkhtmltopdf-binary-edge
   wkhtmltopdf-heroku
 
+RUBY VERSION
+   ruby 2.3.3p222
+
 BUNDLED WITH
-   1.14.3
+   1.14.6

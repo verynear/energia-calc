@@ -8,15 +8,15 @@ class Audit < ActiveRecord::Base
 
   belongs_to :audit_type
   belongs_to :user
-  belongs_to :structure
+  belongs_to :audit_structure
   belongs_to :locked_by_user, foreign_key: :locked_by, class_name: 'User'
 
-  has_many :field_values, through: :structure
-  has_many :measure_values
+  has_many :audit_field_values, through: :audit_structure
+  has_many :audit_measure_values
 
-  delegate :structure_type,
+  delegate :audit_strc_type,
            :value_for_field,
-           to: :structure
+           to: :audit_structure
 
   delegate :name,
            to: :audit_type,
@@ -29,9 +29,17 @@ class Audit < ActiveRecord::Base
   def is_locked?
     !locked_by.nil?
   end
+
+  def audit_field_values
+    AuditFieldValue.where(audit_structure_id: self.audit_structure_id)
+  end
+
+  def audit_measure_value
+    AuditMeasureValue.where(audit_id: self.id)
+  end
   
-  def measure_value(measure)
-    measure_value.find_by(measure_id: measure.id)
+  def audit_measure_value(audit_measure)
+    audit_measure_value.find_by(audit_measure_id: audit_measure.id)
   end
 
   def parent_object

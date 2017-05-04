@@ -18,7 +18,7 @@ Rails.application.routes.draw do
        get :undelete
      end
   end
-  resources :structure_types, only: [] do
+  resources :audit_strc_types, only: [] do
     member do
       get 'subtypes'
     end
@@ -29,15 +29,15 @@ Rails.application.routes.draw do
         post :search
       end
     end
-    resources :fields, only: [:update]
-    resources :measures, only: [:update]
+    resources :audit_fields, only: [:update]
+    resources :audit_measures, only: [:update]
     resources :photos, only: [:create, :destroy] do
       member do
         get ':style.jpg' => 'photos#download', as: :download
       end
     end
     resources :sample_groups, only: [:create, :destroy, :show, :update]
-    resources :structures, only: [:create, :destroy, :show, :update] do
+    resources :audit_structures, only: [:create, :destroy, :show, :update] do
       collection do
         post :clone
       end
@@ -67,11 +67,11 @@ Rails.application.routes.draw do
     end
   end
   resources :field_enumerations, only: [:index]
-  resources :field_values, only: [:index, :create, :update]
-  resources :fields, only: [:index]
+  resources :audit_field_values, only: [:index, :create, :update]
+  resources :audit_fields, only: [:index]
   resources :groupings, only: [:index]
-  resources :measure_values, only: [:index, :create, :update, :show]
-  resources :measures, only: [:index]
+  resources :audit_measure_values, only: [:index, :create, :update, :show]
+  resources :audit_measures, only: [:index]
   resources :meters, only: [:create, :update]
   resources :organizations, only: [:index, :show] do
     member do
@@ -79,8 +79,8 @@ Rails.application.routes.draw do
     end
   end
   resources :sample_groups, only: [:create, :show, :update]
-  resources :structure_types, only: [:index]
-  resources :structures, only: [:create, :show, :update] do
+  resources :audit_strc_types, only: [:index]
+  resources :audit_structures, only: [:create, :show, :update] do
     member do
       get :export_full
     end
@@ -94,18 +94,18 @@ Rails.application.routes.draw do
 
   namespace :calc do
     resources :audit_reports do
-        get 'download_usage', on: :member
+      get 'download_usage', on: :member
 
       resource :display,
-             only: [:edit, :update, :show],
-             controller: 'display_reports' do
+            only: [:edit, :update, :show],
+            controller: 'display_reports' do
         collection do
           put :change_template
           put :preview
         end
       end
 
-      resources :calc_field_values, only: [:update]
+      resources :field_values, only: [:update]
       resources :original_structure_field_values, only: [:update]
     end
 
@@ -115,18 +115,18 @@ Rails.application.routes.draw do
 
     scope 'measure_selections/:measure_selection_id', as: 'measure_selection' do
       resources :structure_changes, only: [:new, :create, :destroy]
-      resources :calc_field_values, only: [:update]
+      resources :field_values, only: [:update]
     end
 
     resources :report_templates, except: [:show] do
       put :preview, on: :collection
     end
 
-    scope 'calc_structures/:calc_structure_id', as: 'structure' do
-      resources :calc_field_values, only: [:update]
+    scope 'structures/:structure_id', as: 'structure' do
+      resources :field_values, only: [:update]
     end
 
-    resources :calc_structures, only: [:update]
+    resources :structures, only: [:update]
   end
 
   root to: 'visitors#index'
