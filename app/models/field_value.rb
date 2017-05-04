@@ -1,5 +1,6 @@
 class FieldValue < ActiveRecord::Base
   belongs_to :parent, polymorphic: true
+  belongs_to :field
 
   delegate :convert_value, to: :field
   delegate :value_type, to: :field

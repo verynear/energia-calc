@@ -107,6 +107,27 @@ AuditReport.all.each do |audit_report|
   end
 end
 
+Organization.find_or_create_by!(
+  id: '19cfb419-f657-49e2-a543-d5af358a4e9c',
+  name: 'Retrocalc Testers',
+  owner_id: '0f664c6d-7b18-4826-80f5-c4be7b134a29',
+  wegowise_id: 20
+)
+
+Organization.find_or_create_by!(
+  id: '29efb419-f657-69e2-a543-f5af358a4e5d',
+  name: 'Elevate Energy',
+  owner_id: 'b3d3a144-b119-4c4e-a94e-cf1d6ddc21e8',
+  wegowise_id: 22
+)
+
+Organization.find_or_create_by!(
+  id: '856acf1c-b83d-4325-b54a-466b1416aa05',
+  name: 'New Ecology',
+  owner_id: '786c9d96-b181-4435-a132-c6f543a3dd52',
+  wegowise_id: 18
+)
+
 StructureType.find_or_create_by!(
   api_name: 'building', genus_api_name: 'building', name: 'Building')
 

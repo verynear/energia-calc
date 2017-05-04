@@ -1,6 +1,8 @@
 class Field < ActiveRecord::Base
   include WegoauditObjectLookup
 
+  has_many :field_values
+
   validates :name, presence: true
   validates :api_name, uniqueness: true, presence: true
   validates :value_type, presence: true
