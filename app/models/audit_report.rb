@@ -1,5 +1,4 @@
 class AuditReport < ActiveRecord::Base
-
   delegate :default_report_template, to: :organization
 
   validates :name, presence: true

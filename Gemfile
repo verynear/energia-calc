@@ -1,6 +1,6 @@
-ruby "2.2.3"
+ruby "2.3.3"
 source 'https://rubygems.org'
-ruby '2.2.3'
+ruby '2.3.3'
 
 # gem 'aws-sdk'
 gem 'activerecord-import'
@@ -12,6 +12,7 @@ gem 'devise', '~> 4.2'
 gem 'faraday'
 gem 'faraday_middleware-parse_oj'
 # gem 'foreigner'
+gem 'hashdiff'
 gem 'ice_nine'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
@@ -88,6 +89,6 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ujs'
-  gem 'rails-assets-backbone', '>= 1.2.3'
+  gem 'rails-assets-backbone', '>= 1.3.3'
   gem 'rails-assets-backbone-relational', '>= 0.10.0'
 end
