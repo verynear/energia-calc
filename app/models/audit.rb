@@ -34,9 +34,9 @@ class Audit < ActiveRecord::Base
     AuditFieldValue.where(audit_structure_id: self.audit_structure_id)
   end
 
-  def audit_measure_value
-    AuditMeasureValue.where(audit_id: self.id)
-  end
+  # def audit_measure_value
+  #   AuditMeasureValue.where(audit_id: self.id)
+  # end
   
   def audit_measure_value(audit_measure)
     audit_measure_value.find_by(audit_measure_id: audit_measure.id)

@@ -1,6 +1,6 @@
-ruby "2.3.3"
+ruby "2.2.3"
 source 'https://rubygems.org'
-ruby '2.3.3'
+ruby '2.2.3'
 
 # gem 'aws-sdk'
 gem 'activerecord-import'
@@ -11,7 +11,7 @@ gem 'devise', '~> 4.2'
 # gem 'door_stop', path: 'vendor/gems/door_stop'
 gem 'faraday'
 gem 'faraday_middleware-parse_oj'
-gem 'foreigner'
+# gem 'foreigner'
 gem 'ice_nine'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
@@ -51,7 +51,6 @@ group :development do
   gem 'guard-rails'
   gem 'guard-rubocop'
   gem 'overcommit'
-  gem 'quiet_assets'
   gem 'rails-erd'
   gem 'spring', require: false
 end

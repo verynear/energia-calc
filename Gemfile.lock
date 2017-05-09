@@ -133,8 +133,6 @@ GEM
       oj (~> 2.0)
     fattr (2.2.2)
     ffi (1.9.8)
-    foreigner (1.7.1)
-      activerecord (>= 3.0.0)
     formatador (0.2.5)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
@@ -425,7 +423,6 @@ DEPENDENCIES
   faker
   faraday
   faraday_middleware-parse_oj
-  foreigner
   guard
   guard-bundler
   guard-livereload
