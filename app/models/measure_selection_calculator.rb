@@ -187,9 +187,9 @@ class MeasureSelectionCalculator < Generic::Strict
       value = (results[result_field] || 0)
 
       if result_field == 'annual_electric_savings'
-        value = value * 0.034095106405145  # KWH_TO_THERMS_COEFFICIENT
+        value = value * 0.034095106405145
       elsif result_field == 'annual_oil_savings'
-        value = value * 0.0000100024  # BTU_TO_THERMS_COEFFICIENT
+        value = value * (1.0 / 100_000)
       end
 
       if measure_selection.for_building_heating?
@@ -272,7 +272,7 @@ class MeasureSelectionCalculator < Generic::Strict
       return unless results_hash # rubocop:disable Lint/NonLocalExitFromIterator
 
       results_hash.each do |key, value|
-        # next unless value.is_a?(Numeric)
+        next unless value.is_a?(Numeric)
 
         summary_hash[key] ||= 0
         summary_hash[key] += value
