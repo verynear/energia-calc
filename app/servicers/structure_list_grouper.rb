@@ -22,7 +22,7 @@ class StructureListGrouper < Generic::Strict
     structures_by_sample_group.each_with_object(grouped_structures) \
       do |(_sample_group_id, sg_structures), results|
       structures_by_field_value = sg_structures.group_by do |structure|
-        value = structure.audit_field_values.fetch(grouping_field.to_s, {})['value']
+        value = structure.field_values.fetch(grouping_field.to_s, {})['value']
         "#{structure.structure_type.api_name}_#{value}"
       end
       structures_by_field_value.each do |_field_value, fv_structures|

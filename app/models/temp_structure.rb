@@ -68,7 +68,7 @@ class TempStructure < Generic::Strict
     def sample_group
       return unless sample_group_id
 
-      sample_groups = temp_audit.sample_groups.map do |group|
+      sample_groups = audit.sample_groups.map do |group|
         HashWithIndifferentAccess.new(group)
       end
       sample_groups.find { |group| group[:id] == sample_group_id }
