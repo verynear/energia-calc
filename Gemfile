@@ -38,8 +38,8 @@ gem 'sinatra', '>= 1.3.0', require: false
 gem 'uglifier', '>= 1.3.0'
 gem 'websocket'
 gem 'whenever', require: false
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'   # needed for wicked-pdf
+gem 'wicked_pdf', git: 'https://github.com/mileszs/wicked_pdf.git'
+#gem 'wkhtmltopdf-binary'   # needed for wicked-pdf
 gem 'kilomeasure', path: 'vendor/gems/kilomeasure'
 gem 'liquid'
 
