@@ -68,12 +68,8 @@ class AuditReports.Views.Field extends Backbone.View
   setHtml: ->
     if @model.get('value_type') == 'picker'
       options = _(@model.get('options')).map (option) =>
-        if _.isArray(option)
-          selected = if option == @model.get('value') then 'selected' else ''
-          "<option #{selected} value='#{option[1]}'>#{option[0]}</option>"
-        else
-          selected = if option == @model.get('value') then 'selected' else ''
-          "<option #{selected} value='#{option}'>#{option}</option>"
+        selected = if option == @model.get('value') then 'selected' else ''
+        "<option #{selected} value='#{option}'>#{option}</option>"
       @selectFieldTemplate(
         name: @model.get('name')
         apiName: @model.get('api_name')

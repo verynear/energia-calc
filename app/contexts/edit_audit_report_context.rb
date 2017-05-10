@@ -41,11 +41,11 @@ class EditAuditReportContext < BaseContext
     audit_report.field_values.pluck_to_hash(*fields).map do |row|
       field = Field.by_api_name!(row[:field_api_name])
 
-      if row[:field_api_name] == 'location_for_temperatures'
-        field_options = location_for_temperature_options
-      else
+      # if row[:field_api_name] == 'location_for_temperatures'
+      #   field_options = location_for_temperature_options
+      # else
         field_options = field.options
-      end
+      # end
 
       {
         id: row[:id],
@@ -158,7 +158,7 @@ class EditAuditReportContext < BaseContext
       .pluck_to_hash(:location, :state_code)
     [['', '']] +
       field_options.map do |row|
-        ["#{row[:location]}, #{row[:state_code]}", row[:location]]
+        ["#{row[:location]}, #{row[:state_code]}", "#{row[:location]}"]
       end
   end
 end

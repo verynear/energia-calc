@@ -67,6 +67,9 @@ $base-line-height: 24px;
 @import "component/fli";
 @import "component/gallery";
 @import "component/tablecalc";
+@import "component/tooltip";
+@import "component/totals";
+
 //-- Views
 @import "view/gallery";
 @import "view/login";
