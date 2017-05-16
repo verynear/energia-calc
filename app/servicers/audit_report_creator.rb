@@ -56,7 +56,7 @@ class AuditReportCreator < Generic::Strict
     Field.where(level: 'audit_report').each do |field|
       options = { field_api_name: field.api_name }
       if field.api_name == 'audit_date'
-        options[:value] = audit_report.data['date']
+        options[:value] = audit_report.audit.date
       end
 
       audit_report.field_values.create!(options)

@@ -8,7 +8,7 @@ window.AuditReports =
 window.triggerAuditReportSummary =
   (data) ->
     AuditReports.EventBus.trigger(
-      "channel:effective_structure_values",
+      "channel:effective_structure_field_values",
       ['change', data.audit_report_summary.effective_structure_values_lookup]
     )
     AuditReports.EventBus.trigger(

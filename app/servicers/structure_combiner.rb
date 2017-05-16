@@ -2,8 +2,7 @@
 # combined, and returns a composite structure.
 #
 class StructureCombiner < Generic::Strict
-  attr_accessor :structures,
-                :temp_structures
+  attr_accessor :structures
 
   def initialize(structures)
     @structures = structures

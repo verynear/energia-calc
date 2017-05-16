@@ -1,9 +1,6 @@
 class NewStructureChangeContext < BaseContext
   attr_accessor :audit_report,
-                :measure_selection,
-                :temp_structure,
-                :structure,
-                :structure_type
+                :measure_selection
 
   delegate :measure,
            :measure_name,

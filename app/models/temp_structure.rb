@@ -6,15 +6,12 @@ class TempStructure < Generic::Strict
                   :name,
                   :parent_structure,
                   :photos,
-                  :structures,
                   :sample_group_id,
                   :substructures,
                   :wegowise_id
 
     attr_reader :field_values,
-                :structure_type,
-                :audit_strc_type,
-                :audit_structures
+                :structure_type
 
     delegate :api_name, to: :structure_type, prefix: true
     delegate :name, to: :structure_type, prefix: true
@@ -68,7 +65,7 @@ class TempStructure < Generic::Strict
     def sample_group
       return unless sample_group_id
 
-      sample_groups = audit.sample_groups.map do |group|
+      sample_groups = temp_audit.sample_groups.map do |group|
         HashWithIndifferentAccess.new(group)
       end
       sample_groups.find { |group| group[:id] == sample_group_id }
