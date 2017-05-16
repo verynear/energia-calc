@@ -18,7 +18,7 @@ module Retrocalc
 
       return top_level if top_level_only
 
-      top_level[:structures] = structures_json
+      top_level[:temp_structures] = structures_json
       top_level[:sample_groups] = sample_groups_json
       top_level[:measures] = measures_json(audit.audit_measure_values)
       top_level[:photos] = photos_json

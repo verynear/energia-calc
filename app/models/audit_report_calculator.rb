@@ -1,4 +1,13 @@
 class AuditReportCalculator < Generic::Strict
+  BUILDING_USAGE_FIELDS_MAPPING = {
+    heating_fuel_baseload_in_therms: :annual_gas_savings,
+    heating_usage_in_therms: :annual_gas_savings,
+    water_usage_in_gallons: :annual_water_savings,
+    electric_usage_in_kwh: :annual_electric_savings,
+    gas_usage_in_therms: :annual_gas_savings,
+    oil_usage_in_btu: :annual_oil_savings
+  }
+
   attr_writer :audit_report
 
   def audit_report
@@ -103,7 +112,7 @@ class AuditReportCalculator < Generic::Strict
   end
 
   def decrement_usage_values(calculator, usage_values)
-    WegoAudit::BUILDING_USAGE_FIELDS_MAPPING.each do |usage_field, result_field|
+    BUILDING_USAGE_FIELDS_MAPPING.each do |usage_field, result_field|
       new_value = usage_values[usage_field] -
         (calculator.public_send(result_field) || 0.0)
       usage_values[usage_field] = new_value

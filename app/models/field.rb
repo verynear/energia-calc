@@ -13,7 +13,7 @@ class Field < ActiveRecord::Base
     when 'string', 'picker' then val.to_s
     when 'decimal' then BigDecimal.new(val)
     when 'integer' then val.to_i
-    when 'date' then val.to_datetime
+    when 'date' then val.to_datetime.strftime('%b %d, %Y  %H:%M')
     when 'switch'
       if val == 'true'
         true

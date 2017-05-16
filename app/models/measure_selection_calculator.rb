@@ -17,6 +17,15 @@ class MeasureSelectionCalculator < Generic::Strict
     :annual_operating_cost_proposed
   ]
 
+  BUILDING_USAGE_FIELDS_MAPPING = {
+    heating_fuel_baseload_in_therms: :annual_gas_savings,
+    heating_usage_in_therms: :annual_gas_savings,
+    water_usage_in_gallons: :annual_water_savings,
+    electric_usage_in_kwh: :annual_electric_savings,
+    gas_usage_in_therms: :annual_gas_savings,
+    oil_usage_in_btu: :annual_oil_savings
+  }
+
   attr_accessor :audit_report_inputs,
                 :effective_structure_values,
                 :full_audit_report,
@@ -176,7 +185,7 @@ class MeasureSelectionCalculator < Generic::Strict
   memoize :calculated_inputs
 
   def decrement_usage_values(results)
-    WegoAudit::BUILDING_USAGE_FIELDS_MAPPING.each do |usage_field, result_field|
+    BUILDING_USAGE_FIELDS_MAPPING.each do |usage_field, result_field|
       value = (results[result_field] || 0)
       usage_values[usage_field] -= value
     end

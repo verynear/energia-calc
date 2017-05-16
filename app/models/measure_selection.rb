@@ -41,7 +41,7 @@ class MeasureSelection < ActiveRecord::Base
   end
 
   def has_structure_change_for(structure_type)
-    structure_changes.where(structure_type: structure_type.id).exists?
+    structure_changes.where(structure_type_id: structure_type.id).exists?
   end
 
   def relevant_calculations
