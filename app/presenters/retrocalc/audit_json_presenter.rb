@@ -1,5 +1,18 @@
 module Retrocalc
   class AuditJsonPresenter
+    MAPPING = {
+      'auditor_name' => 'auditor_name',
+      'auditor_email' => 'auditor_email',
+      'name' => 'contact_name',
+      'phone_number' => 'contact_phone',
+      'email_address' => 'contact_email',
+      'address' => 'contact_address',
+      'city' => 'contact_city',
+      'state' => 'contact_state',
+      'zip_code' => 'contact_zip',
+      'holding_company' => 'contact_company'
+    }
+
     attr_accessor :audit,
                   :top_level_only
 
@@ -13,6 +26,7 @@ module Retrocalc
         id: audit.id,
         name: audit.name,
         date: audit.performed_on,
+        field_values: fields_for(audit),
         audit_type: audit.audit_type.try(:name)
       }
 
@@ -27,6 +41,17 @@ module Retrocalc
     end
 
     private
+
+    def fields_for(audit)
+      audit_field_values = audit.audit_field_values.includes(:audit_field)
+
+      audit_field_values.each_with_object({}) do |value, hash|
+        api_name = value.audit_field.api_name
+        api_name = MAPPING[api_name] if MAPPING[api_name]
+
+        hash[api_name] = value.value 
+      end
+    end
 
     def measures_json(audit_measure_values)
       audit_measure_values.map do |audit_measure_value|

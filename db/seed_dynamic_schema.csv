@@ -1,7 +1,7 @@
 ,Parent Object,"Object (Heating System, Envelop, Water, etc)",Type,Subtype,Details Category,Data Field,Field Type,"Object Type (Picker,Field Etc)",Dependancy,Formula,Field Unit,Input Requirement,Field Source,Validation Rules,Flag Condition,Multiple choices possible?,Multiple iterations possible?,Elevate Multifamily,NEI Walk Through (NEI Existing Bldg),Michigan,Green Coast,Elevate 2-4,Elevate Non-Profit,Water Only,NEI Existing Conditions (NEI New Con),AHRAE Level 2,Input for Measure Calculation,Reference for Measure Calculation,"If Reference for Measure Calculation, How?"
 ,,Audit,,,Audit,Date of field visit (actual audit),Date,,,,,Required,System,,,,,,,,,,,,,,,,
-,,Audit,,,Auditor,Name,String,,,,,Required,Auditor,,,,x,x,x,,,x,x,x,x,x,,,
-,,Audit,,,Auditor,Email Address,Email,,,,,Optional,Auditor,,,,x,x,x,,,x,x,,,,,,
+,,Audit,,,Auditor,Auditor Name,String,,,,,Required,Auditor,,,,x,x,x,,,x,x,x,x,x,,,
+,,Audit,,,Auditor,Auditor Email,Email,,,,,Optional,Auditor,,,,x,x,x,,,x,x,,,,,,
 ,,Audit,,,Auditor,Phone Number,Phone,,,,,Optional,Auditor,,,,x,x,x,,,x,x,,,,,,
 ,,Audit,,,Owner Info,Holding Company,String,,,,,Required,Auditor,,,,x,x,,,,x,x,,,,,,
 ,,Audit,,,Owner Info,Name,String,,,,,Required,Auditor,,,,x,x,,,,x,x,,,,,,

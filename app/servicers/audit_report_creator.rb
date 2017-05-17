@@ -57,6 +57,8 @@ class AuditReportCreator < Generic::Strict
       options = { field_api_name: field.api_name }
       if field.api_name == 'audit_date'
         options[:value] = audit_report.audit.date
+      elsif audit_report.audit.field_values[field.api_name] != nil
+        options[:value] = audit_report.audit.field_values[field.api_name]
       end
 
       audit_report.field_values.create!(options)

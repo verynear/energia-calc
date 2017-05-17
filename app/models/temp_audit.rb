@@ -7,6 +7,7 @@ class TempAudit < Generic::Strict
     attr_accessor :audit_type,
                   :id,
                   :measures,
+                  :field_values,
                   :name,
                   :photos,
                   :sample_groups
@@ -25,6 +26,10 @@ class TempAudit < Generic::Strict
       temp_structures.each_with_object([]) do |structure, array|
         append_structures_to_array(array, structure)
       end
+    end
+
+    def field_values
+      @field_values
     end
 
     def formatted_date

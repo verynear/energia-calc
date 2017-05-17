@@ -38,15 +38,9 @@
                   audit_field.name,
                   class: 'form-row__label' %>
             <% if audit_field.value_type != 'picker' %>
-              <% if audit_field.value_type == 'string' || audit_field.value_type == 'text' %>
-                <%= render "web/fields/#{audit_field.partial}",
-                      name: audit_field.name.parameterize,
-                      value: audit_field.audit_field_value.try(:[], 'string_value') %>
-              <% else %>
-                <%= render "web/fields/#{audit_field.partial}",
-                      name: audit_field.name.parameterize,
-                      value: audit_field.audit_field_value_value %>
-              <% end %>
+              <%= render "web/fields/#{audit_field.partial}",
+                    name: audit_field.name.parameterize,
+                    value: audit_field.audit_field_value_value %>
             <% else %>
               <%= render "web/fields/#{audit_field.partial}",
                     name: audit_field.name.parameterize,

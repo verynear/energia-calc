@@ -30,9 +30,13 @@ class Audit < ActiveRecord::Base
     !locked_by.nil?
   end
 
-  def audit_field_values
-    AuditFieldValue.where(audit_structure_id: self.audit_structure_id)
-  end
+  # def audit_field_values
+  #   AuditFieldValue.where(audit_structure_id: self.audit_structure_id)
+  # end
+
+  # def field_values
+  #   AuditFieldValue.where(audit_structure_id: self.audit_structure_id)
+  # end
 
   # def audit_measure_value
   #   AuditMeasureValue.where(audit_id: self.id)

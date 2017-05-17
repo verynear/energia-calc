@@ -72,19 +72,23 @@
                     { "type": "null" }]
         },
         "field_values": {
-          "type": "object",
-          "additionalProperties": { "$ref": "#/definitions/field_value" }
+          "anyOf": [{ "type": "string" },
+                   { "type": "integer" },
+                   { "type": "float" },
+                   { "type": "decimal" },
+                   { "type": "array" }],
+          "additionalProperties": { "$ref": "#/definitions/audit_field_value" }
         },
         "substructures":  {
           "type": "array",
-          "items": { "$ref": "#/definitions/structure" }
+          "items": { "$ref": "#/definitions/audit_structure" }
         },
         "photos": {
           "type": "array",
           "items": { "$ref": "#/definitions/photo" }
         }
       },
-      "required": ["id", "name", "field_values", "structure_type", "n_structures"],
+      "required": ["id", "name", "audit_field_values", "structure_type", "n_structures"],
       "additionalProperties": false
     }
   },
@@ -96,9 +100,17 @@
         "name": { "type": "string" },
         "date": { "type": "string" },
         "audit_type": { "type": "string" },
+        "field_values": {
+          "anyOf": [{ "type": "string" },
+                    { "type": "integer" },
+                    { "type": "float" },
+                    { "type": "decimal" },
+                    { "type": "array" }],
+          "additionalProperties": { "$ref": "#/definitions/audit_field_value" }
+        },
         "structures": {
           "type": "array",
-          "items": { "$ref": "#/definitions/structure" }
+          "items": { "$ref": "#/definitions/audit_structure" }
         },
         "sample_groups": {
           "type": "array",
@@ -106,7 +118,7 @@
         },
         "measures": {
           "type": "array",
-          "items": { "$ref": "#/definitions/measure" }
+          "items": { "$ref": "#/definitions/audit_measure" }
         },
         "photos": {
           "type": "array",

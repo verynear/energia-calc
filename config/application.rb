@@ -70,3 +70,7 @@ module Wegosurvey
 end
 
 Rails.logger = Logger.new(STDOUT)
+
+Raven.configure do |config|
+  config.dsn = 'https://5527340841fc436eac14e50fa261aec8:c4b5f50c0dbe4713b4e3826bae2e4ed0@sentry.io/168919'
+end

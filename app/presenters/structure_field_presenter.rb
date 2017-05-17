@@ -47,6 +47,10 @@ class StructureFieldPresenter
     end
   end
 
+  def persisted?
+    false
+  end
+
   def initialize(audit_structure, audit_field, audit_field_value = nil, string_value = nil)
     @audit_structure = audit_structure
     @audit_field = audit_field
