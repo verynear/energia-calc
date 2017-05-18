@@ -17,7 +17,7 @@ module Web
       if params[:audit_structure][:parent_structure_id].present?
         parent_structure = AuditStructure.find(params[:audit_structure][:parent_structure_id])
         creator = AuditStructureCreator.new(
-          params: params.require(:audit_structure).permit(:name),
+          params: audit_structure_params,
           parent_structure: parent_structure,
           audit_strc_type: audit_strc_type
         )
@@ -57,7 +57,6 @@ module Web
 
     def update
       audit_structure = AuditStructure.find(params[:id])
-      audit_structure_params = params.require(:audit_structure).permit(:name)
       AuditStructure.transaction do
         audit_structure.update!(audit_structure_params)
         audit_structure.audit.update!(name: audit_structure.name) if audit_structure.audit

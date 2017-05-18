@@ -41,7 +41,6 @@ $base-line-height: 24px;
 @import "base/general";
 @import "base/normalize";
 @import "base/fonts";
-@import "base/icons";
 @import "base/type";
 //-- Layout
 @import "layout/footer";
@@ -67,7 +66,7 @@ $base-line-height: 24px;
 @import "component/fli";
 @import "component/gallery";
 @import "component/tablecalc";
-@import "component/tooltip";
+@import "component/tooltipab";
 @import "component/totals";
 
 //-- Views
@@ -84,4 +83,50 @@ $base-line-height: 24px;
 
 .hide {
   display: none;
+}
+
+.content {
+  @extend %clearfix;
+}
+
+.active-content {
+  border: 1px solid $grey;
+  float: left;
+  margin-left: -1px;
+  width: $site-inner-width - $sibling-menu-width;
+  background: #fff;
+  position: relative;
+  z-index: 9;
+  padding: 0 20px 20px 20px;
+}
+
+.section-title {
+  line-height: $table-real-line-height;
+  font-weight: bold;
+  background-color: $grey-lightest;
+  border-bottom: 1px solid $grey;
+  padding: 0 $table-h-padding;
+  display: block;
+  width: 100%;
+}
+
+.section-title__action {
+  float: right;
+  font-weight: normal;
+  padding: 0 10px;
+}
+
+.form-row {
+  background: #fff;
+}
+
+.active-content__details {
+  .form-row__label {
+    width: 200px;
+  }
+}
+
+.active-content__photos {
+  padding-top: 20px;
+
 }

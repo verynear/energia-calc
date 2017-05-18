@@ -21,4 +21,11 @@ module AuditStructuresHelper
       ]
     end
   end
+
+  def audit_strc_type_options
+    audit_strc_types = AuditStrcType.where(id: audit_strc_type_id)
+                           .order(:name)
+                           .pluck(:name, :id)
+    options_for_select audit_strc_types
+  end
 end

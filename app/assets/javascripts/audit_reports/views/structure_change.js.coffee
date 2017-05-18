@@ -67,7 +67,7 @@ class AuditReports.Views.StructureChange extends Backbone.View
         @model.get('measure_selection')
           .get('structure_changes')
           .remove(@model)
-        $('.tooltip').hide()
+        $('.tooltipab').hide()
         @remove()
         triggerAuditReportSummary(data)
     )
