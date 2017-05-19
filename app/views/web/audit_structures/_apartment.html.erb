@@ -1,8 +1,16 @@
 <% ['n_bedrooms', 'unit_number', 'sqft'].each do |audit_field_name| %>
-  <div class="form-row">
-    <label class="form-row__label">
-      <%= audit_field_name.gsub('_', ' ').titleize %>
-    </label>
-    <input disabled="disabled" type="text" value="<%= physical_structure.send(audit_field_name.to_sym) %>">
-  </div>
+<%= form_for [current_audit, physical_structure],
+	              method: :put,
+	              remote: true,
+	              url: apartment_path(current_audit.id, physical_structure) do |f| %>
+	  <%= hidden_field_tag :field_attr, audit_field_name.to_sym %>
+	  <div class="form-row">
+	    <%= label_tag audit_field_name.parameterize,
+	          audit_field_name.gsub('_', ' ').titleize,
+	          class: 'form-row__label' %>
+	    <%= render "web/fields/text_input_field",
+	          name: audit_field_name.parameterize,
+	          value: physical_structure.send(audit_field_name.to_sym) %>
+	  </div>
+	<% end %>
 <% end %>

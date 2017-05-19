@@ -160,17 +160,18 @@ class MeasureSelectionCalculator < Generic::Strict
   private
 
   def average_outdoor_temperature
-    options = {
-      location:
-        audit_report_inputs[:location_for_temperatures],
-      warm_weather_shutdown_temperature:
-        measure_selection_inputs[:shared][:warm_weather_shutdown_temperature],
-      heating_season_end_month:
-        audit_report_inputs[:heating_season_end_month],
-      heating_season_start_month:
-        audit_report_inputs[:heating_season_start_month]
-    }
-    Calculations::AverageOutdoorTemperature.new(options).call
+    # options = {
+    #   location:
+    #     audit_report_inputs[:location_for_temperatures],
+    #   warm_weather_shutdown_temperature:
+    #     measure_selection_inputs[:shared][:warm_weather_shutdown_temperature],
+    #   heating_season_end_month:
+    #     audit_report_inputs[:heating_season_end_month],
+    #   heating_season_start_month:
+    #     audit_report_inputs[:heating_season_start_month]
+    # }
+    # Calculations::AverageOutdoorTemperature.new(options).call
+    50
   end
   memoize :average_outdoor_temperature
 
