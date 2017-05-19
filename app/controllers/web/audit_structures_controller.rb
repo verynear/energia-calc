@@ -17,7 +17,7 @@ module Web
       if params[:audit_structure][:parent_structure_id].present?
         parent_structure = AuditStructure.find(params[:audit_structure][:parent_structure_id])
         creator = AuditStructureCreator.new(
-          params: audit_structure_params,
+          params: params.require(:audit_structure).permit(:name),
           parent_structure: parent_structure,
           audit_strc_type: audit_strc_type
         )
@@ -43,7 +43,7 @@ module Web
 
     def link
       audit_structure = AuditStructure.find(params[:id])
-      building = current_user.buildings.find(params[:building_id])
+      building = Building.find(params[:building_id])
       StructureLinkService.execute!(audit_structure: audit_structure,
                                     physical_structure: building)
       redirect_to_parent audit_structure
@@ -57,6 +57,7 @@ module Web
 
     def update
       audit_structure = AuditStructure.find(params[:id])
+      audit_structure_params = params.require(:audit_structure).permit(:name)
       AuditStructure.transaction do
         audit_structure.update!(audit_structure_params)
         audit_structure.audit.update!(name: audit_structure.name) if audit_structure.audit

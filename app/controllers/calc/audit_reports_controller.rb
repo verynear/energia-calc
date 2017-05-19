@@ -23,7 +23,7 @@ class Calc::AuditReportsController < SecuredController
 
     if archive.entries.blank?
       flash[:alert] = 'No data available to download.'
-      redirect_to audit_reports_path
+      redirect_to calc_audit_reports_path
     else
       content = archive.to_s
       send_data(content, filename: archive.basename)

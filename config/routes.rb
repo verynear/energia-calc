@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
   scope 'audits/:audit_id', as: 'audit', module: 'web' do
-    resources :buildings, only: [] do
+    resources :buildings, only: [:update] do
       collection do
         post :search
       end
