@@ -18,7 +18,7 @@ Rails.application.routes.draw do
        get :undelete
      end
   end
-  resources :audit_strc_types, only: [:index] do
+  resources :audit_strc_types, only: [] do
     member do
       get 'subtypes'
     end

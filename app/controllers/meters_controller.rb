@@ -12,7 +12,7 @@ class MetersController < SecuredController
   private
 
   def meter_params
-    params.require(:meter).permit(:account_number,
+    params.permit(:account_number,
                                   :attempted_import_at,
                                   :buildings_count,
                                   :cloned,
