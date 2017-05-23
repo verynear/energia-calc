@@ -24,7 +24,7 @@ class AuditStructuresController < SecuredController
     @audit_structure = AuditStructure.find(params[:id])
   end
 
-  def structure_params
+  def audit_structure_params
     params.require(:audit_structure)
           .permit(:id,
                   :destroy_attempt_on,

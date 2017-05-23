@@ -123,6 +123,7 @@ class AuditsController < ApplicationController
                   :audit_type_id,
                   :created_at,
                   :updated_at,
+                  :locked_by,
                   :organization_id)
   end
 

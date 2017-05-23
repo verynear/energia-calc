@@ -17,6 +17,15 @@ class MeasureSelectionCalculator < Generic::Strict
     :annual_operating_cost_proposed
   ]
 
+  BUILDING_USAGE_FIELDS_MAPPING = {
+    heating_fuel_baseload_in_therms: :annual_gas_savings,
+    heating_usage_in_therms: :annual_gas_savings,
+    water_usage_in_gallons: :annual_water_savings,
+    electric_usage_in_kwh: :annual_electric_savings,
+    gas_usage_in_therms: :annual_gas_savings,
+    oil_usage_in_btu: :annual_oil_savings
+  }
+
   attr_accessor :audit_report_inputs,
                 :effective_structure_values,
                 :full_audit_report,
@@ -151,17 +160,18 @@ class MeasureSelectionCalculator < Generic::Strict
   private
 
   def average_outdoor_temperature
-    options = {
-      location:
-        audit_report_inputs[:location_for_temperatures],
-      warm_weather_shutdown_temperature:
-        measure_selection_inputs[:shared][:warm_weather_shutdown_temperature],
-      heating_season_end_month:
-        audit_report_inputs[:heating_season_end_month],
-      heating_season_start_month:
-        audit_report_inputs[:heating_season_start_month]
-    }
-    Calculations::AverageOutdoorTemperature.new(options).call
+    # options = {
+    #   location:
+    #     audit_report_inputs[:location_for_temperatures],
+    #   warm_weather_shutdown_temperature:
+    #     measure_selection_inputs[:shared][:warm_weather_shutdown_temperature],
+    #   heating_season_end_month:
+    #     audit_report_inputs[:heating_season_end_month],
+    #   heating_season_start_month:
+    #     audit_report_inputs[:heating_season_start_month]
+    # }
+    # Calculations::AverageOutdoorTemperature.new(options).call
+    50
   end
   memoize :average_outdoor_temperature
 
@@ -176,7 +186,7 @@ class MeasureSelectionCalculator < Generic::Strict
   memoize :calculated_inputs
 
   def decrement_usage_values(results)
-    WegoAudit::BUILDING_USAGE_FIELDS_MAPPING.each do |usage_field, result_field|
+    BUILDING_USAGE_FIELDS_MAPPING.each do |usage_field, result_field|
       value = (results[result_field] || 0)
       usage_values[usage_field] -= value
     end
@@ -187,9 +197,9 @@ class MeasureSelectionCalculator < Generic::Strict
       value = (results[result_field] || 0)
 
       if result_field == 'annual_electric_savings'
-        value = value * 0.034095106405145  # KWH_TO_THERMS_COEFFICIENT
+        value = value * 0.034095106405145
       elsif result_field == 'annual_oil_savings'
-        value = value * 0.0000100024  # BTU_TO_THERMS_COEFFICIENT
+        value = value * (1.0 / 100_000)
       end
 
       if measure_selection.for_building_heating?
@@ -272,7 +282,7 @@ class MeasureSelectionCalculator < Generic::Strict
       return unless results_hash # rubocop:disable Lint/NonLocalExitFromIterator
 
       results_hash.each do |key, value|
-        # next unless value.is_a?(Numeric)
+        next unless value.is_a?(Numeric)
 
         summary_hash[key] ||= 0
         summary_hash[key] += value

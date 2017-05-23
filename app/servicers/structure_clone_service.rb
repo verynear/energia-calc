@@ -44,7 +44,7 @@ class StructureCloneService < BaseServicer
   end
 
   def clone_substructures
-    structure.substructures.each do |substructure|
+    audit_structure.substructures.each do |substructure|
       StructureCloneService.execute!(
         params: { parent_structure_id: cloned_structure.id },
         audit_structure: substructure

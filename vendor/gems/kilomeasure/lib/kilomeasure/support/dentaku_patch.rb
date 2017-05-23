@@ -23,7 +23,7 @@ module Dentaku
           else
             r[var_name] = evaluate!(expressions[var_name], expressions.merge(r))
           end
-        rescue Dentaku::UnboundVariableError, ZeroDivisionError => ex
+        rescue Dentaku::UnboundVariableError, ZeroDivisionError, ArgumentError => ex
           r[var_name] = block.call(ex, var_name)
         end
       end

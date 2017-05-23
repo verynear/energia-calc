@@ -16,7 +16,7 @@ class Meter < ActiveRecord::Base
     [data_type, account_number].compact.join(' - ')
   end
 
-  def self.structure_type
+  def self.audit_strc_type
     AuditStrcType.find_by(physical_structure_type: 'Meter')
   end
 end

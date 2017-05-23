@@ -17,7 +17,7 @@ module Web
       if params[:audit_structure][:parent_structure_id].present?
         parent_structure = AuditStructure.find(params[:audit_structure][:parent_structure_id])
         creator = AuditStructureCreator.new(
-          params: params.require(:audit_structure).permit(:name),
+          params:  params.require(:audit_structure).permit(:name),
           parent_structure: parent_structure,
           audit_strc_type: audit_strc_type
         )
@@ -26,11 +26,26 @@ module Web
         redirect_to_parent audit_structure
       elsif params[:audit_structure][:sample_group_id].present?
         sample_group = SampleGroup.find(params[:audit_structure][:sample_group_id])
-        audit_structure = AuditStructure.create(
-          name: structure_params[:name],
-          sample_group_id: sample_group.id,
-          audit_strc_type_id: audit_strc_type.id
-        )
+        
+        if audit_strc_type.name == 'Apartment'
+          parent_structure = AuditStructure.find(sample_group.parent_structure_id)
+          creator = AuditStructureCreator.new(
+            params:  params.require(:audit_structure).permit(:name),
+            parent_structure: parent_structure,
+            audit_strc_type: audit_strc_type
+          )
+          creator.execute!
+          audit_structure = creator.audit_structure
+          audit_structure.update(sample_group_id: sample_group.id)
+        else
+          audit_structure = AuditStructure.create(
+            name: audit_structure_params[:name],
+            sample_group_id: sample_group.id,
+            audit_strc_type_id: audit_strc_type.id,
+            parent_structure_id: sample_group.parent_structure_id
+          )
+        end
+
         redirect_to [current_audit, audit_structure.sample_group]
       end
     end
@@ -43,7 +58,7 @@ module Web
 
     def link
       audit_structure = AuditStructure.find(params[:id])
-      building = current_user.buildings.find(params[:building_id])
+      building = Building.find(params[:building_id])
       StructureLinkService.execute!(audit_structure: audit_structure,
                                     physical_structure: building)
       redirect_to_parent audit_structure

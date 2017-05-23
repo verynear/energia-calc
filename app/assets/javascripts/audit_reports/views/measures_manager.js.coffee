@@ -2,6 +2,7 @@ class AuditReports.Views.MeasuresManager extends Backbone.View
   events: {}
 
   template: _.template """
+    <br><br><br>
     <ul class='measures-tabs js-sidebar-nav'>
     </ul>
     <div class="measure-wrapper js-active-content">

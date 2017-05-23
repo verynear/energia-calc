@@ -1,42 +1,43 @@
 class TempAudit < Generic::Strict
     attr_reader :date,
-                :audit_structures,
-                :audit_strc_type
+                :structures,
+                :temp_structures
                 
 
     attr_accessor :audit_type,
-                  :date,
                   :id,
                   :measures,
-                  :audit_field_values,
-                  :audit_measures,
+                  :field_values,
                   :name,
                   :photos,
-                  :sample_groups,
-                  :structures
+                  :sample_groups
 
     def initialize(*)
       super
-      self.structures ||= []
+      self.temp_structures ||= []
       self.measures ||= []
     end
 
     def date=(string_or_date)
-      @date = string_or_date.to_datetime
+      @date = string_or_date.to_datetime.strftime('%b %d, %Y  %H:%M')
     end
 
     def flattened_structures
-      structures.each_with_object([]) do |structure, array|
+      temp_structures.each_with_object([]) do |structure, array|
         append_structures_to_array(array, structure)
       end
+    end
+
+    def field_values
+      @field_values
     end
 
     def formatted_date
       date.strftime('%m/%d/%Y')
     end
 
-    def structures=(json_structures)
-      @structures = build_structures(json_structures)
+    def temp_structures=(json_structures)
+      @temp_structures = build_structures(json_structures)
     end
 
     private
@@ -51,13 +52,13 @@ class TempAudit < Generic::Strict
     def build_structures(json_structures, parent_structure = nil)
       json_structures.map do |json_structure|
         substructures_json = json_structure.delete('substructures') || []
-        structure = TempStructure.new(
+        temp_structure = TempStructure.new(
           json_structure.merge(
             parent_structure: parent_structure,
             audit: self))
-        structure.substructures =
-          build_structures(substructures_json, structure)
-        structure
+        temp_structure.substructures =
+          build_structures(substructures_json, temp_structure)
+        temp_structure
       end
     end
   end

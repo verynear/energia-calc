@@ -27,8 +27,7 @@ class ApartmentsController < SecuredController
   end
 
   def apartment_params
-    params.require(:apartment)
-          .permit(:building_id,
+    params.permit(:building_id,
                   :cloned,
                   :created_at,
                   :destroy_attempt_on,

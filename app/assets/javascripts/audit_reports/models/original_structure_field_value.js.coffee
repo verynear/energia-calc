@@ -11,7 +11,7 @@ class AuditReports.Models.OriginalStructureFieldValue extends Backbone.Relationa
 
   initialize: ->
     @listenTo(AuditReports.EventBus,
-      "channel:effective_structure_values",
+      "channel:effective_structure_field_values",
       @_listenForEffectiveStructureChange
     )
 

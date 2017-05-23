@@ -25,10 +25,6 @@ class AuditFieldValue < ActiveRecord::Base
     @audit_structure ||= AuditStructure.where(id: audit_structure_id)
   end
 
-  # def string_value
-  #   @string_value = FieldValue.where(audit_structure_id: audit_structure_id).where.not(string_value: nil)
-  # end
-
   private
 
 

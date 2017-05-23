@@ -14,7 +14,7 @@ class Calc::DisplayReportsController < SecuredController
   end
 
   def edit
-    @page_title = "Report based on \"#{@audit_report.audit_name}\""
+    @page_title = "Report based on \"#{@audit_report.name}\""
     @context = DisplayReportContext.new(
       audit_report: @audit_report,
       user: current_user)

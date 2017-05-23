@@ -1,4 +1,15 @@
 class FullAuditReport < Generic::Strict
+  BUILDING_USAGE_FIELDS_MAPPING = {
+    heating_fuel_baseload_in_therms: :annual_gas_savings,
+    heating_usage_in_therms: :annual_gas_savings,
+    water_usage_in_gallons: :annual_water_savings,
+    electric_usage_in_kwh: :annual_electric_savings,
+    gas_usage_in_therms: :annual_gas_savings,
+    oil_usage_in_btu: :annual_oil_savings
+  }
+
+  BUILDING_USAGE_FIELDS = BUILDING_USAGE_FIELDS_MAPPING.keys
+
   attr_accessor :audit_report
 
   delegate :id, to: :audit_report
@@ -69,7 +80,7 @@ class FullAuditReport < Generic::Strict
   memoize :original_structure_values
 
   def usage_values
-    field_values_hash.slice(*WegoAudit::BUILDING_USAGE_FIELDS)
+    field_values_hash.slice(*BUILDING_USAGE_FIELDS)
       .each_with_object({}) do |(key, value), hash|
       hash[key] ||= value
       hash[key] ||= 0

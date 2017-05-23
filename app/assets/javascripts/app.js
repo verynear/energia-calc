@@ -108,7 +108,7 @@ $(function modals() {
   $('.js-update-subtypes').on('click', function() {
     var $link = $(this),
         $modal = $($link.attr('href')),
-        structureTypeId = $link.data('structure-type-id');
+        structureTypeId = $link.data('audit-strc-type-id');
 
     $modal.find('.js-structure-types').html('');
     $modal.find('.js-structure-subtypes').html('');
@@ -125,7 +125,7 @@ $(function modals() {
 // Autosubmit fields on blur
 // --------------------------------
 $(function autosubmitForms() {
-  $('.js-autosave-form').on('change', 'input,textarea,select', function() {
+  $('.js-autosave-form').on('change', 'input,textarea,textfield,select', function() {
     $(this).parents('form').submit();
   });
 });

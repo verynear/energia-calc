@@ -1,5 +1,4 @@
 class AuditStrcTypesController < SecuredController
-  # before_filter :authenticate_user!
 
   def index
     render json: AuditStrcType.all

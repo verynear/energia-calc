@@ -6,23 +6,22 @@
 class StructureListGrouper < Generic::Strict
   attr_accessor :measure_selection,
                 :structure_type,
-                :structures,
                 :temp_structures
 
-  def initialize(measure_selection, structure_type, structures)
+  def initialize(measure_selection, structure_type, temp_structures)
     @measure_selection = measure_selection
     @structure_type = structure_type
-    @structures = structures
+    @temp_structures = temp_structures
   end
 
   def grouped_structures
-    structures_by_sample_group = @structures.group_by(&:sample_group_id)
+    structures_by_sample_group = @temp_structures.group_by(&:sample_group_id)
     grouped_structures = structures_by_sample_group.delete(nil) || []
 
     structures_by_sample_group.each_with_object(grouped_structures) \
       do |(_sample_group_id, sg_structures), results|
       structures_by_field_value = sg_structures.group_by do |structure|
-        value = structure.audit_field_values.fetch(grouping_field.to_s, {})['value']
+        value = structure.field_values.fetch(grouping_field.to_s, {})['value']
         "#{structure.structure_type.api_name}_#{value}"
       end
       structures_by_field_value.each do |_field_value, fv_structures|
@@ -33,8 +32,8 @@ class StructureListGrouper < Generic::Strict
 
   private
 
-  def combined_structures(structures)
-    StructureCombiner.new(structures).combined_structures
+  def combined_structures(temp_structures)
+    StructureCombiner.new(temp_structures).combined_structures
   end
   memoize :combined_structures
 

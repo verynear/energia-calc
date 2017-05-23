@@ -17,6 +17,21 @@ class Calc::AuditReportsController < SecuredController
     redirect_to calc_audit_reports_path
   end
 
+  def download_usage
+    archive = AuditUsageDataArchive.new(audit_report)
+    archive.build
+
+    if archive.entries.blank?
+      flash[:alert] = 'No data available to download.'
+      redirect_to calc_audit_reports_path
+    else
+      content = archive.to_s
+      send_data(content, filename: archive.basename)
+    end
+
+    archive.delete
+  end
+
   def edit
     @audit_report = audit_report
     @page_title = "Edit data for \"#{@audit_report.name}\""

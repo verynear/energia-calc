@@ -2,7 +2,6 @@ class AuditReportCreator < Generic::Strict
   attr_accessor :data,
                 :report_template,
                 :user,
-                :calc_user,
                 :wegoaudit_id
 
   attr_reader :audit_report
@@ -10,7 +9,7 @@ class AuditReportCreator < Generic::Strict
   def initialize(*)
     super
     @user_org = user.organization_id
-    self.report_template ||= CalcOrganization.find(@user_org).report_templates
+    self.report_template ||= Organization.find(@user_org).report_templates
       .first_or_create(layout: 'default', name: 'Base Template')
   end
 
@@ -39,11 +38,11 @@ class AuditReportCreator < Generic::Strict
   end
 
   def create_audit_report
-    @calc_user = CalcUser.find_by(wegowise_id: user.wegowise_id)
+    @user = User.find_by(wegowise_id: user.wegowise_id)
     @audit_report = AuditReport.create!(
       name: data['name'],
-      calc_user_id: @calc_user.id,
-      calc_organization_id: user.organization_id,
+      user_id: @user.id,
+      organization_id: user.organization_id,
       data: data,
       report_template: report_template,
       wegoaudit_id: wegoaudit_id)
@@ -57,7 +56,9 @@ class AuditReportCreator < Generic::Strict
     Field.where(level: 'audit_report').each do |field|
       options = { field_api_name: field.api_name }
       if field.api_name == 'audit_date'
-        options[:value] = audit_report.data['date']
+        options[:value] = audit_report.audit.date
+      elsif audit_report.audit.field_values[field.api_name] != nil
+        options[:value] = audit_report.audit.field_values[field.api_name]
       end
 
       audit_report.field_values.create!(options)

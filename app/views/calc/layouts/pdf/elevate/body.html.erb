@@ -16,7 +16,7 @@
   <div class="assessment-date__title">
     Assessment Date:
   </div>
-  <%= context.report.audit_date.strftime("%m/%d/%Y") %>
+  <%= context.report.data['date'].to_date.strftime("%m/%d/%Y") %>
 </div>
 
 <div class="completed-for">

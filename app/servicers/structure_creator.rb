@@ -3,7 +3,8 @@ class StructureCreator < Generic::Strict
                 :proposed,
                 :structure_change
 
-  attr_reader :structure
+  attr_reader :structure,
+              :temp_structure
 
   def initialize(*)
     super

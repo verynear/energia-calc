@@ -12,9 +12,9 @@ module Calculations
         annual_gas_savings ||
         annual_oil_savings
 
-      electric_savings = annual_electric_savings.to_f * 3412.14163312794
+      electric_savings = annual_electric_savings.to_f * 3_412.14163312794
 
-      gas_savings = annual_gas_savings.to_f * 100000
+      gas_savings = annual_gas_savings.to_f * 100_000
 
       oil_savings = annual_oil_savings.to_f
 

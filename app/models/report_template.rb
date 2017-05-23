@@ -1,3 +1,3 @@
 class ReportTemplate < ActiveRecord::Base
-  belongs_to :calc_organization
+  belongs_to :organization
 end
