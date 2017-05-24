@@ -1,4 +1,4 @@
-<% ['n_bedrooms', 'unit_number', 'sqft'].each do |audit_field_name| %>
+<% ['building_id', 'unit_number', 'sqft', 'n_bedrooms', 'wegowise_id'].each do |audit_field_name| %>
 <%= form_for [current_audit, physical_structure],
 	              method: :put,
 	              remote: true,

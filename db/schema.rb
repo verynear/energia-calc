@@ -185,18 +185,18 @@ ActiveRecord::Schema.define(version: 20170426013031) do
   end
 
   create_table "buildings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer  "wegowise_id"
+    t.integer  "wegowise_id",               default: 0
     t.string   "street_address"
     t.string   "city"
     t.string   "state_code"
     t.string   "zip_code"
-    t.integer  "development_id"
+    t.integer  "development_id",            default: 0
     t.integer  "sqft"
     t.integer  "n_stories"
     t.string   "building_type"
     t.string   "construction"
-    t.integer  "n_apartments"
-    t.integer  "n_bedrooms"
+    t.integer  "n_apartments",              default: 0
+    t.integer  "n_bedrooms",                default: 0
     t.string   "heating_fuel"
     t.string   "hot_water_fuel"
     t.string   "hot_water_system"
@@ -237,7 +237,7 @@ ActiveRecord::Schema.define(version: 20170426013031) do
     t.float    "lng"
     t.boolean  "public_housing"
     t.string   "nickname",                                     null: false
-    t.string   "country"
+    t.string   "country",                       default: "United States"
     t.string   "county"
     t.string   "climate_zone"
     t.integer  "water_area_meters_count",       default: 0,    null: false

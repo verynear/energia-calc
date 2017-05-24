@@ -12,7 +12,7 @@ module Web
       if value.blank?
         # delete field value
       else
-      	building.update_column(audit_field_name, value)
+      	building.update_attribute(audit_field_name.to_sym, value)
       end
       head 204
     rescue ActiveRecord::RecordInvalid
