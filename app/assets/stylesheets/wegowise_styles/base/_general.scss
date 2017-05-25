@@ -18,6 +18,17 @@ a {
   &:active {
     color: $link-color-hover;
   }
+
+  
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+
+  // icons are sitting a bit high
+  i {
+    top: 3px;
+  }
 }
 
 img {

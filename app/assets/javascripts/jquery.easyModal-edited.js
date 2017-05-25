@@ -111,8 +111,7 @@
           $modal.css({
             'display' : 'block',
             'margin-left' : (parseInt(o.left, 10) > -1 ? 0 : -($modal.outerWidth() / 2)) + 'px',
-            'z-index': modalZ,
-            'top' : $(document).scrollTop() + 50
+            'z-index': modalZ
           });
 
           $overlay.css({'z-index': overlayZ, 'display': 'block'});
@@ -133,6 +132,7 @@
             $modal.one('webkittransitionend moztransitionend MStransitionend otransitionend transitionend', function(){
               $modal.css('display', 'none');
               $overlay.css('display', 'none');
+              $(this).remove();
             });
           }
           else {

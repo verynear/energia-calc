@@ -34,8 +34,8 @@ class OriginalStructureFieldValue < ActiveRecord::Base
   end
 
   def wegoaudit_structure
-    audit_report.all_structures.find do |structure|
-      structure.id == structure_wegoaudit_id
+    audit_report.all_structures.find do |temp_structure|
+      temp_structure.id == structure_wegoaudit_id
     end || non_wegoaudit_structure
   end
 end
