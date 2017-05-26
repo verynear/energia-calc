@@ -7,22 +7,21 @@ class AuditsController < ApplicationController
   def index
      respond_to do |format|
        format.html do
-          @audits = Audit.active.includes(:audit_type).order(performed_on: :desc).all
-        # @audits = current_user.available_audits
-        #                       .active
-        #                       .includes(:audit_type)
-        #                       .order(performed_on: :desc)
+        @audits = current_user.available_audits
+                              .active
+                              .includes(:audit_type)
+                              .order(performed_on: :desc)
        end
 
       format.json do
-        @audits = Audit.active.all
+        @audits = current_user.audits.active
         render json: @audits
       end
     end
   end
 
   def clone
-    source_audit = Audit.find(params[:source_audit_id])
+    source_audit = current_user.available_audits.active.find(params[:source_audit_id])
     new_audit_params = params.require(:audit).permit(:name, :performed_on)
     AuditCloneService.execute!(params: new_audit_params,
                                source_audit: source_audit)
@@ -43,7 +42,7 @@ class AuditsController < ApplicationController
   end
 
   def deleted
-    @audits = Audit.destroyed
+    @audits = current_user.available_audits.destroyed
   end
 
   def immediate_delete
@@ -158,12 +157,12 @@ class AuditsController < ApplicationController
   end
 
   def find_audit
-    @audit = Audit.find_by_id(params[:id])
+    @audit = current_user.available_audits.find_by_id(params[:id])
     head :not_found unless @audit
   end
 
   def current_audit
     return nil unless params[:id]
-    @audit ||= Audit.find(params[:id])
+    @audit ||= current_user.available_audits.find(params[:id])
   end
 end

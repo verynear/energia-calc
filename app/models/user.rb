@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
 
   def active_audits
-    Audit.where(organization_id: organization_id)
+    audits.active
   end
 
   def full_name(reverse = false)
