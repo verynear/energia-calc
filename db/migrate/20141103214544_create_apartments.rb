@@ -1,7 +1,7 @@
 class CreateApartments < ActiveRecord::Migration
   def change
     create_table :apartments, id: :uuid do |t|
-      t.integer :wegowise_id, index: true
+      t.integer :wegowise_id, default: 0, index: true
       t.uuid    :building_id, index: true, null: false
       t.string  :unit_number, null: false
       t.integer :sqft,        null: false

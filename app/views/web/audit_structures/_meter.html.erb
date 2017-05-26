@@ -1,16 +1,20 @@
-<% ['data_type', 'account_number', 'utility_company_name', 'coverage', 'for_heating', 'notes'].each do |audit_field_name| %>
+<% ['wegowise_id', 'data_type', 'account_number', 'utility_company_name', 'utility_company_wegowise_id', 'coverage', 'for_heating', 'n_buildings', 'scope', 'other_utility_company', 'buildings_count', 'tenant_pays', 'status'].each do |audit_field_name| %>
   <%= form_for [current_audit, physical_structure],
 	              method: :put,
 	              remote: true,
 	              url: meter_path(physical_structure) do |f| %>
-	  <%= hidden_field_tag :field_attr, audit_field_name.to_sym %>
+	  
 	  <div class="form-row">
 	    <%= label_tag audit_field_name.parameterize,
 	          audit_field_name.gsub('_', ' ').titleize,
 	          class: 'form-row__label' %>
-	    <%= render "web/fields/text_input_field",
-	          name: audit_field_name.parameterize,
-	          value: physical_structure.send(audit_field_name.to_sym) %>
+	    <% if ['for_heating', 'tenant_pays'].include? audit_field_name %>
+	      <%= select_tag audit_field_name.to_sym, options_for_select([["No",false], ["Yes",true]], {:selected => physical_structure.send(audit_field_name.to_sym)}), :prompt => 'select one' %>
+	    <% else %>
+	      <%= render "web/fields/text_input_field",
+	            name: audit_field_name.parameterize,
+	            value: physical_structure.send(audit_field_name.to_sym) %>
+	    <% end %>
 	  </div>
 	<% end %>
 <% end %>

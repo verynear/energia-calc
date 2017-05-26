@@ -25,7 +25,7 @@ class AuditStructureCreator < BaseServicer
     physical_structure = object_class.new
     physical_structure.name = audit_structure.name
     if audit_strc_type.name == 'Apartment'
-      physical_structure.building_id = audit_structure.parent_structure_id
+      physical_structure.building_id = parent_structure.physical_structure_id
     end
     physical_structure.successful_upload_on = current_timestamp
     physical_structure.upload_attempt_on = current_timestamp

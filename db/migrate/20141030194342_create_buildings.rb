@@ -1,26 +1,26 @@
 class CreateBuildings < ActiveRecord::Migration
   def change
     create_table :buildings, id: :uuid do |t|
-      t.integer  :wegowise_id, index: true
+      t.integer  :wegowise_id, index: true, default: 0
       t.string   :street_address,                                      null: false
       t.string   :city,                                                null: false
       t.string   :state_code,                    limit: 2,             null: false
       t.string   :zip_code,                                            null: false
-      t.integer  :development_id
+      t.integer  :development_id,                           default: 0
       t.integer  :sqft
       t.integer  :n_stories
       t.string   :building_type
       t.string   :construction
-      t.integer  :n_apartments
-      t.integer  :n_bedrooms
+      t.integer  :n_apartments,                              default: 0
+      t.integer  :n_bedrooms,                                default: 0
       t.string   :heating_fuel
       t.string   :hot_water_fuel
       t.string   :hot_water_system
-      t.integer  :n_elevators
+      t.integer  :n_elevators,                              default: 0
       t.string   :heating_system
       t.string   :dryer_fuel
       t.string   :cooling_system
-      t.boolean  :draft,                                               null: false
+      t.boolean  :draft,                                     default: true, null: false
       t.text     :notes
       t.boolean  :green_certified
       t.boolean  :leed_certified
@@ -53,7 +53,7 @@ class CreateBuildings < ActiveRecord::Migration
       t.float    :lng
       t.boolean  :public_housing
       t.string   :nickname,                                            null: false
-      t.string   :country
+      t.string   :country,                                 default: "United States"
       t.string   :county
       t.string   :climate_zone
       t.integer  :water_area_meters_count,                 default: 0, null: false

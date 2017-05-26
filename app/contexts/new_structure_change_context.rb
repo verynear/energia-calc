@@ -20,8 +20,8 @@ class NewStructureChangeContext < BaseContext
   end
 
   def grouped_structures_options(structure_type)
-    grouped_structures_for_structure_type(structure_type).map do |temp_structure|
-      [temp_structure.description_with_quantity, temp_structure.id]
+    grouped_structures_for_structure_type(structure_type).map do |structure|
+      [structure.description_with_quantity, structure.id]
     end +
       [['New structure...', '']]
   end
@@ -36,8 +36,8 @@ class NewStructureChangeContext < BaseContext
   end
 
   def grouped_structures_for_structure_type(structure_type)
-    temp_structures = all_structures_for_structure_type(structure_type)
-    StructureListGrouper.new(measure_selection, structure_type, temp_structures)
+    structures = all_structures_for_structure_type(structure_type)
+    StructureListGrouper.new(measure_selection, structure_type, structures)
       .grouped_structures
   end
   memoize :grouped_structures_for_structure_type

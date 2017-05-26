@@ -12,7 +12,13 @@ module Retrocalc
       'wattage' => 'watts_per_lamp',
       'measured_gpm' => 'gpm',
       'rated_gpf' => 'rated_gallons_per_flush',
-      'air_flow_rating' => 'air_volume_in_cf_existing'
+      'air_flow_rating' => 'air_volume_in_cf_existing',
+      'gas_total_usage_therms' => 'gas_usage_in_therms',
+      'gas_heating_load_therms' => 'heating_usage_in_therms',
+      'electricity_total_usage' => 'electric_usage_in_kwh',
+      'electricity_cooling_load_therms' => 'cooling_usage_in_therms',
+      'gas_baseload_therms' => 'heating_fuel_baseload_in_therms'
+
     }
 
     attr_accessor :n_structures,

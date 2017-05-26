@@ -1,7 +1,7 @@
 class CreateMeters < ActiveRecord::Migration
   def change
     create_table :meters, id: :uuid do |t|
-      t.integer  :wegowise_id, index: true
+      t.integer  :wegowise_id, default: 0, index: true
       t.string   :data_type
       t.string   :coverage
       t.text     :notes

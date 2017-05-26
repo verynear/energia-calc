@@ -10,7 +10,20 @@ module Retrocalc
       'city' => 'contact_city',
       'state' => 'contact_state',
       'zip_code' => 'contact_zip',
-      'holding_company' => 'contact_company'
+      'holding_company' => 'contact_company',
+      'gas_total_usage_therms' => 'gas_usage_in_therms',
+      'gas_heating_load_therms' => 'heating_usage_in_therms',
+      'electricity_total_usage' => 'electric_usage_in_kwh',
+      'electricity_cooling_load_therms' => 'cooling_usage_in_therms',
+      'gas_baseload_therms' => 'heating_fuel_baseload_in_therms',
+      'water_total_usage_gal' => 'water_usage_in_gallons',
+      'oil_total_usage_btu' => 'oil_usage_in_btu',
+      'utility_water_cost_gal' => 'water_cost_per_gallon',
+      'utility_electric_cost_kwh' => 'electric_cost_per_kwh',
+      'utility_gas_cost_thm' => 'gas_cost_per_therm',
+      'utility_oil_cost_btu' => 'oil_cost_per_btu',
+      'nominal_escalation_rate' => 'escalation_rate',
+      'nominal_interest_rate' => 'interest_rate'
     }
 
     attr_accessor :audit,

@@ -8,8 +8,7 @@ class AuditReports.Views.AddStructureChangeModal extends Modal
       event.preventDefault()
 
       $.ajax(
-        url: "/calc/measure_selections/#{@model.get('id')}/" +
-           "structure_changes",
+        url: @$form.attr('action'),
         data: @$form.serialize(),
         method: 'POST',
         success: (data) =>
