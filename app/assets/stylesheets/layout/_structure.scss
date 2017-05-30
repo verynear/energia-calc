@@ -1,7 +1,13 @@
 .container {
-  width: $site-width;
+  max-width: 95%;
   padding: 0 20px;
   margin: 0 auto;
+
+  @if $is-responsive {
+    @media screen and (max-width: $breakpoint-m) {
+      padding: 0 10px;
+    }
+  }
 }
 
 .content {
@@ -11,4 +17,15 @@
 
 .row {
   @extend %clearfix;
+}
+
+.main-section {
+  @extend %clearfix;
+  padding: $section-v-spacing 0 $section-v-spacing;
+
+  @if $is-responsive {
+    @media screen and (max-width: $breakpoint-m) {
+      padding: 12px 0 12px;
+    }
+  }
 }

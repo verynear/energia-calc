@@ -1,6 +1,6 @@
 .report-builder-actions {
   @extend %clearfix;
-  margin-bottom: $base-line-height * 1.5;
+  margin-bottom: 36px;
 
   &__export {
     margin-right: 20px;
@@ -19,26 +19,26 @@
   }
 
   &__help-content {
-    margin-top: $base-line-height/2;
+    margin-top: 12px;
     padding: 10px;
-    background: $grey100;
+    background: #F5F5F5;
   }
 }
 
 .markdown-editor {
-  width: $markdow-editor-width;
-  padding-right: 20px;
-  overflow-y: scroll;
+  width: 34%;
   float: left;
+  padding-right: 10px;
+  overflow-y: scroll;
 
   &__contentblock {
-    width: 95%;
-    height: 20vh;
+    width: 82%;
+    height: 20%;
   }
 
   &__input {
-    width: $markdow-editor-width;
-    height: 65vh;
+    width: 95%;
+    height: 65%;
   }
 
   .row {
@@ -49,10 +49,9 @@
 
 .markdown-preview {
   border-left: 1px dashed;
-  padding-left: 20px;
-  width: $markdown-preview-width;
+  margin-left: 37%;
+  padding-left: 10px;
   overflow-y: scroll;
-  float: left;
 }
 
 .shortcode {

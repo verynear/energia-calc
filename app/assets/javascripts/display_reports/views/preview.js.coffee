@@ -9,5 +9,4 @@ class DisplayReports.Views.Preview extends Backbone.View
     @$el
 
   _resizePreview: ->
-    @$el.height($(window).height() - @$el.offset().top)
-
+    @$el.height($(window).height())

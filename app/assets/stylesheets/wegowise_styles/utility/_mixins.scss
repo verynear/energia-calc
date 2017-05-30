@@ -198,3 +198,23 @@
     font-stretch: $font-stretch;
   }
 }
+
+// Tables
+@mixin th-width($col, $width) {
+  #{$col} {
+    width: $width;
+  }
+}
+
+@mixin table-columns($widths...) {
+  table-layout: fixed;
+  width: 100%;
+
+  $n: 1;
+  $var: "col:nth-child(" + $n + ")";
+  @each $width in $widths {
+    @include th-width($var, $width);
+    $n: $n + 1;
+    $var: "col:nth-child(" + $n + ")";
+  }
+}

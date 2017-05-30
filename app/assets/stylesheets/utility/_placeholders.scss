@@ -96,6 +96,31 @@
   backface-visibility: hidden;
 }
 
+// Patterns
+//---------
+%pattern-grid-noise {
+  background-image: image-url("patterns/grid-noise.png");
+}
+
+%pattern-grid-noise-bordered {
+  @extend %pattern-grid-noise;
+  border: 1px solid $grey-light;
+}
+
+%pattern-grid-noise-bordered-horizontal {
+  @extend %pattern-grid-noise-bordered;
+  border-left: none;
+  border-right: none;
+}
+
+%pattern-grid-noise--light {
+  background-image: image-url("patterns/grid-noise--light.png");
+}
+
+%pattern-grid-noise-bordered--light {
+  @extend %pattern-grid-noise--light;
+  border: 1px solid $grey-light;
+}
 
 // Panels and alerts
 //--------------------

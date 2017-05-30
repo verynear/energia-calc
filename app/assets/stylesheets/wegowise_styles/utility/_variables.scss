@@ -1,13 +1,4 @@
-$asset-url: "" !default;
 
-// Font path
-//-----------
-// Use with interpolation syntax: #{$font-path}
-$font-path: "/fonts" !default;
-
-// Site config
-//-------------
-$is-responsive: true !default;
 
 // CTAs
 //--------
@@ -64,11 +55,11 @@ $subheader-color: #fff !default;
 
 // Structure
 //-----------
-$site-inner-width: $site-width - 40; // 20px padding each side
+$site-inner-width: 1120px; // 20px padding each side
 $measures-tabs-width: 200px;
-$measures-content-width: $site-inner-width - $measures-tabs-width;
+$measures-content-width: 920px;
 $markdown-preview-width: 600px;
-$markdow-editor-width: $site-inner-width - $markdown-preview-width;
+$markdow-editor-width: 520px;
 
 
 // Colours
@@ -130,29 +121,6 @@ $info-font-color: #31708f !default;
 $info-bg-color: #d9edf7 !default;
 $info-border-color: #bce8f1 !default;
 
-// Typography
-//------------
-// Font families
-$base-font-family: 'Dagny', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
-$bold-font-family: 'DagnyBold', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
-$title-font-family: 'OpenSansBold', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
-$secondary-title-font-family: 'OpenSansLight', 'HelveticaNeue-Light', 'Helvetica Neue Light', Arial, sans-serif !default;
-$fixed-font-family: 'inconsolata-1','inconsolata-2', Monaco, 'Courier New', monospace;
-
-
-//-- Colors
-$base-font-color: #212121;
-$bold-font-color: $base-font-color;
-$title-font-color: $base-font-color;
-$meta-font-color: $min-legibility;
-
-// Sizes
-$base-font-size: 16px !default;
-$base-line-height: 24px !default;
-$small-font-size: 14px !default;
-$impact-font-size: $base-font-size*1.25 !default;
-$lead-font-size: $impact-font-size !default;
-$fixed-font-size: 14px !default;
 
 // Titles
 $h1-size: 36px !default;
@@ -169,10 +137,6 @@ $cta-letter-spacing: 1px;
 //------
 $grid-spacing: 3px;
 
-// Transitions
-//-------------
-$transition-speed: 0.3s;
-$custom-bezier: cubic-bezier(0.465, 0.183, 0.153, 0.946);
 
 // Buttons
 //---------

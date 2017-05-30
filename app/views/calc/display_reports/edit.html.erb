@@ -5,6 +5,9 @@
           class: 'btn titlebar__nav__btn' %>
   </nav>
 <% end %>
+<br>
+<br>
+<br>
 
 
 <div class='markdown-editor js-markdown-editor'>
@@ -12,7 +15,7 @@
         @context.audit_report,
         url: calc_audit_report_display_path(@context.audit_report)) do |f| %>
     <div class='row'>
-      <%= f.label :report_template_id, 'Select template' %>
+      <%= f.label :report_template_id, 'Select template  -' %>
       <%= f.select :report_template_id,
             @report_templates.order(:name).pluck(:name, :id),
             {},
@@ -26,6 +29,8 @@
         class: 'btn btn--primary btn--view-pdf' %>
   <% end %>
 </div>
+<br>
+
 <div class='markdown-preview report js-markdown-preview <%= @context.layout%>-pdf'>
   <%= @context.preview_html %>
 </div>

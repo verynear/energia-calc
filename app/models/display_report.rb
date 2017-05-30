@@ -65,7 +65,7 @@ class DisplayReport < Generic::Strict
     if registers[:mode] == 'active'
       liquid_tags
         .select { |tag| tag =~ /contentblock/ }
-        .map { |tag| "<p>#{tag}</p>" }
+        .map { |tag| "<br><p>#{tag}</p><br /><br />" }
         .join("\n")
     else
       rendered.gsub('LIQUID_TAG').with_index { |_, index| liquid_tags[index] }

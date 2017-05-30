@@ -15,20 +15,6 @@ $link-color: $primary-color-darker;
 
 $base-line-height: 24px;
 
-// Wego framework
-//-----------------
-@import "wegowise_styles/base/normalize";
-@import "wegowise_styles/utility/variables";
-@import "wegowise_styles/utility/placeholders";
-@import "wegowise_styles/utility/mixins";
-@import "wegowise_styles/base/fonts";
-@import "wegowise_styles/base/general";
-@import "wegowise_styles/base/type";
-@import "wegowise_styles/component/forms";
-@import "wegowise_styles/component/btn";
-@import "wegowise_styles/component/table";
-@import "wegowise_styles/layout/structure";
-
 // Wego Audit
 //-----------------
 @import "vendor/fancybox";
@@ -36,6 +22,7 @@ $base-line-height: 24px;
 @import "utility/animations";
 @import "utility/placeholders";
 @import "utility/mixins";
+@import "normalize";
 //-- Base
 @import "base/icons";
 @import "base/general";
@@ -79,6 +66,13 @@ $base-line-height: 24px;
 @import "views/report-builder";
 @import "views/report-preview";
 @import "views/view-reports";
+
+// Wego framework
+//-----------------
+@import "wegowise_styles/base/general";
+@import "wegowise_styles/base/type";
+@import "wegowise_styles/component/table";
+
 
 
 .hide {

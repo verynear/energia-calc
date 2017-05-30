@@ -1,6 +1,6 @@
 // Buttons
 .btn {
-  box-shadow: none;
+  box-shadow: 0 1px 0 rgba(#000,0.25);
   border: none;
 
   .icon-plus {
@@ -12,6 +12,7 @@
 .btn-primary {
   color: $btn-primary-color;
   background-color: $btn-primary-bg;
+  box-shadow: 0 1px 0 #a31e00;
 
   &:hover {
     color: $btn-primary-color-hover;
@@ -21,6 +22,15 @@
   &:active {
     background: $primary-color-dark;
   }
+}
+
+.btn-secondary {
+  box-shadow: 0 1px 0 darken(#0c77f9, 15%);
+}
+
+.btn-primary,
+.btn-secondary {
+  text-shadow: 0 -1px 1px rgba(#000,0.3);
 }
 
 button::-moz-focus-inner,
@@ -64,4 +74,18 @@ button {
 
 .btn-large {
   font-size: 1.3em;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  .btn & {
+    vertical-align: -1px;
+  }
+
+  .btn-small & {
+    vertical-align: -2px;
+  }
+
+  .btn-large & {
+    vertical-align: -4px;
+  }
 }

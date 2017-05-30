@@ -65,4 +65,4 @@ class DisplayReports.Views.Editor extends Backbone.View
       )
 
   _resizeEditor: =>
-    @$el.height($(window).height() - @$el.offset().top)
+    @$el.height($(window).height())
