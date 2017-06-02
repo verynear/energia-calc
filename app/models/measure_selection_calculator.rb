@@ -171,7 +171,7 @@ class MeasureSelectionCalculator < Generic::Strict
     #     audit_report_inputs[:heating_season_start_month]
     # }
     # Calculations::AverageOutdoorTemperature.new(options).call
-    50
+    39.9
   end
   memoize :average_outdoor_temperature
 
