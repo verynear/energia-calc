@@ -81,10 +81,10 @@ module LiquidTags
         value = audit_report_calculator.summary[field]
         if value.is_a?(Numeric)
           if [:annual_gas_usage_existing, :annual_gas_savings].include?(field)
-            value = value.to_f * WegoAudit::THERMS_TO_BTU_COEFFICIENT
+            value = value.to_f * Retrocalc::THERMS_TO_BTU_COEFFICIENT
           elsif [:annual_electric_usage_existing,
                  :annual_electric_savings].include?(field)
-            value = value.to_f * WegoAudit::KWH_TO_BTU_COEFFICIENT
+            value = value.to_f * Retrocalc::KWH_TO_BTU_COEFFICIENT
           end
           value /= 1_000_000.0
           hash[field] = value

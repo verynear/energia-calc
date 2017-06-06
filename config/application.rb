@@ -25,6 +25,7 @@ module Wegosurvey
       #{config.root}/app/controllers/concerns
       #{config.root}/app/models/concerns
       #{config.root}/lib
+      #{config.root}/lib/constants
       #{config.root}/app/servicers
       #{config.root}/app/contexts
       #{config.root}/app/presenters

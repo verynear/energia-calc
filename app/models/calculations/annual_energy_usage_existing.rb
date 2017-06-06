@@ -12,9 +12,9 @@ module Calculations
         annual_gas_usage_existing ||
         annual_oil_usage_existing
 
-      electric_usage_in_btu = annual_electric_usage_existing.to_f * 3_412.14163312794
+      electric_usage_in_btu = annual_electric_usage_existing.to_f * Retrocalc::KWH_TO_BTU_COEFFICIENT
 
-      gas_usage_in_btu = annual_gas_usage_existing.to_f * 100_000
+      gas_usage_in_btu = annual_gas_usage_existing.to_f * Retrocalc::THERMS_TO_BTU_COEFFICIENT
 
       oil_usage_in_btu = annual_oil_usage_existing.to_f
 

@@ -21,7 +21,7 @@ class StructureImage < ActiveRecord::Base
   alias_method :parent_object, :audit_structure
 
   def absolute_url(style)
-    WegoAudit::BASE_URL + asset.url(style)
+    Retrocalc::BASE_URL + asset.url(style)
   end
 
   def expiring_url(style)
