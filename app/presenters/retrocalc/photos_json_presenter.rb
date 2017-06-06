@@ -16,7 +16,7 @@ module Retrocalc
     private
 
     def absolute_url(photo, style)
-      WegoAudit::BASE_URL +
+      Retrocalc::BASE_URL +
         download_audit_photo_path(parent_audit, photo, style: style)
     end
 

@@ -24,32 +24,35 @@
 
     <%- StructureDetailsPresenter.new(audit_structure).groupings.each do |grouping| %>
     <fieldset>
-      <legend class="section-title">
-        <%= grouping.name %>
-      </legend>
-      <%- grouping.audit_fields.each do |audit_field| %>
-        <%= form_for [current_audit, audit_field],
-              method: :put,
-              remote: true,
-              url: audit_audit_field_path(current_audit.id, audit_field) do |f| %>
-          <%= hidden_field_tag :audit_structure_id, audit_structure.id %>
-          <div class="form-row">
-            <%= label_tag audit_field.name.parameterize,
-                  audit_field.name,
-                  class: 'form-row__label' %>
-            <% if audit_field.value_type != 'picker' %>
-              <%= render "web/fields/#{audit_field.partial}",
-                    name: audit_field.name.parameterize,
-                    value: audit_field.audit_field_value_value %>
-            <% else %>
-              <%= render "web/fields/#{audit_field.partial}",
-                    name: audit_field.name.parameterize,
-                    value: audit_field.audit_field_value,
-                    seldefault: audit_field.string_value %>
-            <% end %>
-          </div>
+      <% if grouping.name != 'Utility data' && grouping.name != 'Savings Investment Ratio (SIR)' %>
+        <legend class="section-title">
+          <%= grouping.name %>
+        </legend>
+        <%- grouping.audit_fields.each do |audit_field| %>
+          <%= form_for [current_audit, audit_field],
+                method: :put,
+                remote: true,
+                url: audit_audit_field_path(current_audit.id, audit_field) do |f| %>
+            <%= hidden_field_tag :audit_structure_id, audit_structure.id %>
+            <div class="form-row">
+              <%= label_tag audit_field.name.parameterize,
+                    audit_field.name,
+                    class: 'form-row__label' %>
+              <% if audit_field.value_type != 'picker' %>
+                <%= render "web/fields/#{audit_field.partial}",
+                      name: audit_field.name.parameterize,
+                      value: audit_field.audit_field_value_value %>
+              <% else %>
+                <%= render "web/fields/#{audit_field.partial}",
+                      name: audit_field.name.parameterize,
+                      value: audit_field.audit_field_value,
+                      seldefault: audit_field.string_value %>
+              <% end %>
+            </div>
+          <%- end %>
         <%- end %>
-      <%- end %>
+      <% else %>
+      <% end %>
     </fieldset>
     <%- end %>
   </form>

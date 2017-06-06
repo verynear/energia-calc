@@ -1,7 +1,7 @@
 .report {
   h1 {
     @extend %secondary-title-font;
-    margin-bottom: $base-line-height;
+    margin-bottom: 24px;
   }
 }
 
@@ -9,7 +9,7 @@
   table-layout: fixed;
 
   th {
-    font-size: ($base-font-size - 2px);
+    font-size: 12px;
   }
 
   td {

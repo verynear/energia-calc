@@ -24,6 +24,7 @@ module LiquidTags
         <label for='content_block[#{@block_name}]'>
         #{@block_name}
         </label>
+        <br>
         <textarea
           class='markdown-editor__contentblock js-contentblock-textarea'
           data-contentblock-name='#{@block_name}'

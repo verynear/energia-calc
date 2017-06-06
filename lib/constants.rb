@@ -1,8 +1,8 @@
-module WegoAudit
+module Retrocalc
   BASE_URL =
     case Rails.env
-    when 'production' then 'https://wegoaudit.wegowise.com/'
-    when 'staging' then 'https://wegoaudit-staging.wegowise.com/'
+    when 'production' then 'https://retrocalc.herokuapp.com/'
+    when 'staging' then 'https://retrocalc.herokuapp.com/'
     when 'development' then "http://#{ENV['WEGOAUDIT_LOCAL_IP']}:9292"
     when 'test' then "http://#{ENV['WEGOAUDIT_LOCAL_IP']}:9292"
     end
@@ -27,7 +27,6 @@ module WegoAudit
     :building_heating]
 
   DOORSTOP_SHARED_SECRET = 's3kr3t'
-  WEGOAUDIT_URL = ENV['WEGOAUDIT_URL'] || "http://10.2.20.31:9292"
 
   KWH_TO_BTU_COEFFICIENT = 3_412.14163312794
   KWH_TO_THERMS_COEFFICIENT = 0.034095106405145
