@@ -8,15 +8,6 @@ based on how each action affects the cost and savings of the recommendations
 as a whole
 - generate a report of the recommended actions
 
-The first step is handled by WegoAudit, which includes an iOS application
-(`wegoaudit-ios`) and a Rails backend (`wegoaudit`). Retrocalc will handle the
-second and third steps.
-
-Currently, New Ecology and Elevate use Excel spreadsheets to perform the
-calculations (step 2) and generate the report (step 3); the organizations
-have different spreadsheets for the calculations, and different workflows
-for report generation.
-
 Retrocalc will also interact with the kilomeasure gem (see
 vendor/gems/kilomeasure), which contains the calculations for each measure.
 
@@ -24,12 +15,12 @@ vendor/gems/kilomeasure), which contains the calculations for each measure.
 
 - **Audit:** A set of data gathered for a particular building (or set of
   buildings).  There are several types of audits, listed in
-  `wegoaudit/seeds.rb`.
+  `retrocalc/seeds.rb`.
 - **Audit Report:** Users begin interacting with Retrocalc by creating an audit
   report based on a particular audit.  An audit report contains a set of
   measures, and will have an overall cost and savings.
 - **Measure:** A specific recommendation; these are also listed in
-  `wegoaudit/seeds.rb`. Each measure will have its own cost and savings, and
+  `retrocalc/seeds.rb`. Each measure will have its own cost and savings, and
   will require certain inputs in order to perform the calculations.
 
 
@@ -51,13 +42,6 @@ database:
 rake db:create db:migrate db:seed
 ```
 
-Create an API token for a non-admin user in your WegoWise development
-environment. Add the API credentials to your `.env.development` file.
-
-```shell
-export WEGOWISE_PROVIDER_KEY="YOUR_KEY"
-export WEGOWISE_PROVIDER_SECRET="YOUR_SECRET"
-```
 
 ## Running the development server
 
