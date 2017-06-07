@@ -1,6 +1,37 @@
-# wegoaudit
+# retrocalc
 
-The rails backend for wegoaudit-ios.
+workflow that includes the following steps:
+
+- perform an audit on a building (or set of buildings)
+- decide on a set of recommended actions (for example, boiler replacement),
+based on how each action affects the cost and savings of the recommendations
+as a whole
+- generate a report of the recommended actions
+
+The first step is handled by WegoAudit, which includes an iOS application
+(`wegoaudit-ios`) and a Rails backend (`wegoaudit`). Retrocalc will handle the
+second and third steps.
+
+Currently, New Ecology and Elevate use Excel spreadsheets to perform the
+calculations (step 2) and generate the report (step 3); the organizations
+have different spreadsheets for the calculations, and different workflows
+for report generation.
+
+Retrocalc will also interact with the kilomeasure gem (see
+vendor/gems/kilomeasure), which contains the calculations for each measure.
+
+## Vocabulary
+
+- **Audit:** A set of data gathered for a particular building (or set of
+  buildings).  There are several types of audits, listed in
+  `wegoaudit/seeds.rb`.
+- **Audit Report:** Users begin interacting with Retrocalc by creating an audit
+  report based on a particular audit.  An audit report contains a set of
+  measures, and will have an overall cost and savings.
+- **Measure:** A specific recommendation; these are also listed in
+  `wegoaudit/seeds.rb`. Each measure will have its own cost and savings, and
+  will require certain inputs in order to perform the calculations.
+
 
 ## Setup
 
