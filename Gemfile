@@ -18,6 +18,8 @@ gem 'ice_nine'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'json-schema'
+gem 'kilomeasure', path: 'vendor/gems/kilomeasure'
+gem 'liquid'
 gem 'marginalia'
 gem 'memoizer'
 gem 'nokogiri'
@@ -36,14 +38,15 @@ gem 'rubyzip'
 gem 'sass-rails', '~> 5.0'
 # gem 'sidekiq', '~> 3.4.0'
 gem 'sentry-raven'
+gem 'scout_apm'
 gem 'sinatra', '>= 1.3.0', require: false
 gem 'uglifier', '>= 1.3.0'
 gem 'websocket'
 gem 'whenever', require: false
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'   # needed for wicked-pdf
-gem 'kilomeasure', path: 'vendor/gems/kilomeasure'
-gem 'liquid'
+
+
 
 group :development do
   gem 'better_errors'

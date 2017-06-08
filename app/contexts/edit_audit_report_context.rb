@@ -63,7 +63,7 @@ class EditAuditReportContext < BaseContext
   def fields
     [
       {
-        title: 'Basic',
+        title: 'Basic Audit Info',
         rows: [
           [:report_name, :audit_date, :auditor_name, :auditor_email]
         ]
