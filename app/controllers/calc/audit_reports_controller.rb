@@ -49,7 +49,7 @@ class Calc::AuditReportsController < SecuredController
   def new
     @user_org = current_user.organization_id
     @page_title = 'Create report'
-    @audits = Audit.where(organization_id: @user_org)
+    @audits = Audit.includes(:audit_type).where(organization_id: @user_org)
     render layout: false
   end
 

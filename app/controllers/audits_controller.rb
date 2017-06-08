@@ -9,7 +9,7 @@ class AuditsController < ApplicationController
        format.html do
         @audits = current_user.available_audits
                               .active
-                              .includes(:audit_type)
+                              .includes(:audit_type, :audit_structure, :user)
                               .order(performed_on: :desc)
        end
 

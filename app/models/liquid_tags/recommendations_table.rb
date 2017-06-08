@@ -112,7 +112,7 @@ module LiquidTags
     end
 
     def rows
-      enabled_selections.rank(:calculate_order).each_with_index
+      enabled_selections.includes(:measure).rank(:calculate_order).each_with_index
         .map do |measure_selection, index|
         measure_tr(measure_selection, index)
       end

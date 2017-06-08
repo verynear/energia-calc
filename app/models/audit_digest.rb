@@ -14,7 +14,7 @@ class AuditDigest
   def new_audit(audit_id)
     raise ArgumentError unless audit_id.present?
 
-    audit = Audit.find(audit_id)
+    audit = Audit.includes(audit_structure: [:sample_groups, :physical_structure]).find(audit_id)
 
     Retrocalc::AuditJsonPresenter.new(audit).as_json
   end

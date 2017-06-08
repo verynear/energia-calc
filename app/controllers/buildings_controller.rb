@@ -4,7 +4,7 @@ class BuildingsController < SecuredController
   before_filter :load_building, except: [:create, :index, :update]
 
   def index
-    @organizations = Organization.all
+    @organizations = Organization.includes(:buildings).all
 
     respond_to do |format|
       format.html do

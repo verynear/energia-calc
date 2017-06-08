@@ -35,7 +35,7 @@ class StructureSerializer < Generic::Strict
   private
 
   def field_values_as_json
-    structure.field_values.map do |field_value|
+    structure.field_values.includes(:parent).map do |field_value|
       {
         id: field_value.id,
         name: field_value.field_name,

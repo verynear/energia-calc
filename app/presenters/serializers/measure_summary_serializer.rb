@@ -97,7 +97,7 @@ class MeasureSummarySerializer < Generic::Strict
   end
 
   def field_values_as_json
-    measure_selection.field_values.map do |field_value|
+    measure_selection.field_values.includes(:parent).map do |field_value|
       {
         id: field_value.id,
         name: field_value.field_name,

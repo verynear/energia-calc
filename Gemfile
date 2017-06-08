@@ -51,6 +51,7 @@ gem 'wkhtmltopdf-binary'   # needed for wicked-pdf
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bullet', '~> 5.5', '>= 5.5.1'
   gem 'guard'
   gem 'guard-bundler'
   gem 'guard-livereload'

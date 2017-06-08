@@ -29,7 +29,7 @@ class AuditReportSerializer < Generic::Strict
       .includes(
         :measure,
         :structure_changes,
-        :structures).map do |selection|
+        :field_values).map do |selection|
       measure_summary =
         audit_report_calculator.summary_for_measure_selection(selection)
       MeasureSelectionSerializer.new(

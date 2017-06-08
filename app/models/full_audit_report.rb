@@ -120,14 +120,14 @@ class FullAuditReport < Generic::Strict
   end
 
   def measure_selection_field_values_lookup
-    measure_selections.each_with_object({}) do |measure_selection, hash|
+    measure_selections.includes(:measure).each_with_object({}) do |measure_selection, hash|
       hash[measure_selection.id] = {}
       hash[measure_selection.id][:shared] =
         field_values_for_measure_selection(measure_selection)
 
       hash[measure_selection.id][:structure_changes] = {}
 
-      measure_selection.structure_changes.each do |structure_change|
+      measure_selection.structure_changes.includes(:structure_type, :structures).each do |structure_change|
         next if structure_change.determining_structure?
 
         hash[measure_selection.id][:structure_changes][structure_change.id] =
