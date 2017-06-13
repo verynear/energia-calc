@@ -75,6 +75,8 @@
 
       return this.each(function () {
 
+        $(options.overlayParent).find('.lean-overlay').remove();
+
         var o = options,
         $overlay = $('<div class="lean-overlay"></div>'),
         $modal = $(this);
@@ -132,7 +134,7 @@
             $modal.one('webkittransitionend moztransitionend MStransitionend otransitionend transitionend', function(){
               $modal.css('display', 'none');
               $overlay.css('display', 'none');
-              $(this).remove();
+              
             });
           }
           else {

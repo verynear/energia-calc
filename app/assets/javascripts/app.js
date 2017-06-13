@@ -67,7 +67,7 @@ $(function modals() {
     closeButtonClass: '.js-modal-close'
   });
 
-  $('.js-modal-open').click(function(e) {
+  $('.js-modal-open').on('click', function(e) {
     var target = $(this).attr('href');
     $(target).trigger('openModal');
     e.preventDefault();
@@ -108,11 +108,12 @@ $(function modals() {
   $('.js-update-subtypes').on('click', function() {
     var $link = $(this),
         $modal = $($link.attr('href')),
-        structureTypeId = $link.data('audit-strc-type-id');
+        structureTypeId = $link.data('audit-strc-type-id');   
 
     $modal.find('.js-structure-types').html('');
     $modal.find('.js-structure-subtypes').html('');
     $modal.find('.js-parent-structure-type').val(structureTypeId);
+
     updateStructureTypes($modal);
   });
 
