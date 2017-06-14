@@ -47,7 +47,7 @@ class FullAuditReport < Generic::Strict
   def measure_selections
     audit_report.measure_selections
       .where(enabled: true)
-      .includes(:structure_changes, :structures, :field_values)
+      .includes(:structure_changes)
       .joins(:structure_changes, :structures, :field_values)
       .rank(:calculate_order)
       .select('structure_changes.*', 'structures.*', 'field_values.*')
