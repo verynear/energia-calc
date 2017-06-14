@@ -107,7 +107,7 @@
             $modal.one('webkittransitionend moztransitionend MStransitionend otransitionend transitionend', function(){
               $modal.css('display', 'none');
               $overlay.css('display', 'none');
-            
+        
             });
           }
           else {

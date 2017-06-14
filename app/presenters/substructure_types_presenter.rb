@@ -38,7 +38,7 @@ class SubstructureTypesPresenter
   def ordered_substructures
     audit_structure.substructures
              .active
-             .includes(:physical_structure, :audit_strc_type)
+             .includes(:physical_structure, audit_strc_type: [:parent_structure_type])
              .order(:name)
   end
 
