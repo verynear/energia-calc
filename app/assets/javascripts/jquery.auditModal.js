@@ -18,6 +18,8 @@
     init: function (options) {
 
       var defaults = {
+        top: 'auto',
+        left: 'auto',
         autoOpen: false,
         overlayOpacity: 0.5,
         overlayColor: '#000',
@@ -48,7 +50,7 @@
 
       return this.each(function () {
 
-        $(options.overlayParent).find('.lean-overlay').remove();
+        
 
         var o = options,
         $overlay = $('<div class="lean-overlay"></div>'),
@@ -71,12 +73,12 @@
 
         $modal.css({
           'display': 'none',
-          'position' : 'absolute',
+          'position' : 'fixed',
           // When updateZIndexOnOpen is set to true, we avoid computing the z-index on initialization,
           // because the value would be replaced when opening the modal.
           'z-index': (o.updateZIndexOnOpen ? 0 : o.zIndex() + 1),
           'left' : parseInt(o.left, 10) > -1 ? o.left + 'px' : 50 + '%',
-          'top' : $(document).scrollTop() + 50
+          'top' : parseInt(o.top, 10) > -1 ? o.top + 'px' : 50 + '%'
         });
 
         $modal.bind('openAuditModal', function () {
@@ -86,6 +88,7 @@
           $modal.css({
             'display' : 'block',
             'margin-left' : (parseInt(o.left, 10) > -1 ? 0 : -($modal.outerWidth() / 2)) + 'px',
+            'margin-top' : (parseInt(o.top, 10) > -1 ? 0 : -($modal.outerHeight() / 2)) + 'px',
             'z-index': modalZ
           });
 
