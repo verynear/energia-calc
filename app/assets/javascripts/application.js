@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.easyModal-edited
+//= require jquery.auditModal
 //= require jquery.fancybox
 //= require sco.panes
 //= require sco.tab

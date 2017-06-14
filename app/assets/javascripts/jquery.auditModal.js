@@ -12,33 +12,6 @@
 /*jslint browser: true*/
 /*global jQuery*/
 
-(function($,sr){
-
-  // debouncing function from John Hann
-  // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
-  var debounce = function (func, threshold, execAsap) {
-    var timeout;
-
-    return function debounced () {
-      var obj = this, args = arguments;
-      function delayed () {
-        if (!execAsap)
-        func.apply(obj, args);
-        timeout = null;
-      };
-      if (timeout)
-      clearTimeout(timeout);
-      else if (execAsap)
-      func.apply(obj, args);
-
-      timeout = setTimeout(delayed, threshold || 100);
-    };
-  }
-  // smartModalResize
-  jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
-
-})(jQuery,'smartModalResize');
-
 (function ($) {
   "use strict";
   var methods = {
@@ -106,7 +79,7 @@
           'top' : $(document).scrollTop() + 50
         });
 
-        $modal.bind('openModal', function () {
+        $modal.bind('openAuditModal', function () {
           var overlayZ = o.updateZIndexOnOpen ? o.zIndex() : parseInt($overlay.css('z-index'), 10),
           modalZ = overlayZ + 1;
 
@@ -128,13 +101,13 @@
           }
         });
 
-        $modal.bind('closeModal', function () {
+        $modal.bind('closeAuditModal', function () {
           if(o.transitionIn !== '' && o.transitionOut !== ''){
             $modal.removeClass(o.transitionIn);
             $modal.one('webkittransitionend moztransitionend MStransitionend otransitionend transitionend', function(){
               $modal.css('display', 'none');
               $overlay.css('display', 'none');
-              $(this).remove();
+            
             });
           }
           else {
@@ -150,14 +123,14 @@
         // Close on overlay click
         $overlay.click(function () {
           if (o.overlayClose) {
-            $modal.trigger('closeModal');
+            $modal.trigger('closeAuditModal');
           }
         });
 
         $(document).keydown(function (e) {
           // ESCAPE key pressed
           if (o.closeOnEscape && e.keyCode === 27) {
-            $modal.trigger('closeModal');
+            $modal.trigger('closeAuditModal');
           }
         });
 
@@ -172,13 +145,13 @@
 
         // Close when button pressed
         $modal.on('click', o.closeButtonClass, function (e) {
-          $modal.trigger('closeModal');
+          $modal.trigger('closeAuditModal');
           e.preventDefault();
         });
 
         // Automatically open modal if option set
         if (o.autoOpen) {
-          $modal.trigger('openModal');
+          $modal.trigger('openAuditModal');
         }
 
       });
@@ -186,7 +159,7 @@
     }
   };
 
-  $.fn.easyModal = function (method) {
+  $.fn.auditModal = function (method) {
 
     // Method calling logic
     if (methods[method]) {

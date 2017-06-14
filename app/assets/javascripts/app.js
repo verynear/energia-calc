@@ -60,21 +60,21 @@ $(function linkStructure() {
 // Open/close modal controls
 //---------------------------
 $(function modals() {
-  $('.js-modal').easyModal({
+  $('.js-modal').auditModal({
     top: 200,
     transitionIn: 'slidein',
     transitionOut: 'slideout',
-    closeButtonClass: '.js-modal-close'
+    closeButtonClass: '.js-modal-audit-close'
   });
 
   $('.js-modal-open').on('click', function(e) {
     var target = $(this).attr('href');
-    $(target).trigger('openModal');
+    $(target).trigger('openAuditModal');
     e.preventDefault();
   });
 
-  $('.js-modal-close').click(function(e) {
-    $('.js-modal').trigger('closeModal');
+  $('.js-modal-audit-close').click(function(e) {
+    $('.js-modal').trigger('closeAuditModal');
   });
 
   var updateStructureTypes = function($modal) {
