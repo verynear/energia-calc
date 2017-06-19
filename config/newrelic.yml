@@ -5,14 +5,14 @@
 #
 # Generated June 19, 2017
 #
-# This configuration file is custom generated for Elevate Energy_1
+# This configuration file is custom generated for app67084055@heroku.com
 #
 # For full documentation of agent configuration options, please refer to
 # https://docs.newrelic.com/docs/agents/ruby-agent/installation-configuration/ruby-agent-configuration
 
 common: &default_settings
   # Required license key associated with your New Relic account.
-  license_key: 89f14435c930b37144a5a46c343a69bc6ff34b37
+  license_key: f3f1c90bd50b1080f76562b948030e8fe2966918
 
   # Your application name. Renaming here affects where data displays in New
   # Relic.  For more details, see https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/renaming-applications
