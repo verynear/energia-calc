@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   # before_action :authenticate_user!
-  before_action :set_raven_context
   skip_before_action :verify_authenticity_token, if: :json_request?
 
 
@@ -40,11 +39,6 @@ class ApplicationController < ActionController::Base
     #      redirect_to root_url, :alert => 'You need to sign in for access to this page.'
     #   end
     # end
-
-    def set_raven_context
-      Raven.user_context(id: session[:current_user_id]) # or anything else in session
-      Raven.extra_context(params: params.to_unsafe_h, url: request.url)
-    end
 
     def mobile_device?
       return true if request.user_agent =~ /Mobile|webOS/
