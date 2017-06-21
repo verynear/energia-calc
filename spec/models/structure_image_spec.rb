@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe StructureImage do
-  it { should belong_to(:structure) }
+  it { should belong_to(:audit_structure) }
   it { should have_attached_file(:asset) }
   it { should validate_attachment_content_type(:asset)
               .allowing('image/jpg', 'image/jpeg') }

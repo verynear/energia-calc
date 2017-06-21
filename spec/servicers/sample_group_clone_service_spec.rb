@@ -2,12 +2,12 @@ require 'rails_helper'
 
 describe SampleGroupCloneService do
   let(:audit) { create(:audit) }
-  let(:common_area_type) { create(:structure_type, name: 'Common Area') }
+  let(:common_area_type) { create(:audit_strc_type, name: 'Common Area') }
   let(:sample_group) do
     create(:sample_group,
            name: 'My sample group',
-           parent_structure: audit.structure,
-           structure_type: common_area_type)
+           parent_structure: audit.audit_structure,
+           audit_strc_type: common_area_type)
   end
 
   it 'sets and gets params' do
@@ -26,7 +26,7 @@ describe SampleGroupCloneService do
       sample_group: sample_group
     )
     service.execute!
-    expect(audit.structure.sample_groups.map(&:name)).to eq [
+    expect(audit.audit_structure.sample_groups.map(&:name)).to eq [
       'My sample group',
       'My cloned sample group'
     ]
@@ -34,10 +34,10 @@ describe SampleGroupCloneService do
 
 
   it 'clones all sampled structures' do
-    hallway = create(:structure,
+    hallway = create(:audit_structure,
                      name: 'My hallway',
                      sample_group: sample_group,
-                     structure_type: common_area_type)
+                     audit_strc_type: common_area_type)
     service = described_class.new(
       params: { name: 'My cloned sample group' },
       sample_group: sample_group

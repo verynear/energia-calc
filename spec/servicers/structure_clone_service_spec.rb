@@ -7,22 +7,22 @@ describe StructureCloneService do
   end
 
   it 'sets and gets #structure' do
-    structure = described_class.new(structure: :foo).structure
-    expect(structure).to eq :foo
+    audit_structure = described_class.new(audit_structure: :foo).audit_structure
+    expect(audit_structure).to eq :foo
   end
 
   describe '#execute!' do
-    let(:heating_system_type) { create(:structure_type, name: 'Heating System') }
+    let(:heating_system_type) { create(:audit_strc_type, name: 'Heating System') }
     let(:existing_structure) do
-      create(:structure,
+      create(:audit_structure,
              name: 'My existing structure',
-             structure_type: heating_system_type)
+             audit_strc_type: heating_system_type)
     end
 
     it 'clones the top level structure' do
       service = described_class.new(
         params: { name: 'My cloned structure' },
-        structure: existing_structure
+        audit_structure: existing_structure
       )
       service.execute!
       expect(service.cloned_structure).to be_persisted
@@ -34,10 +34,10 @@ describe StructureCloneService do
                         nickname: 'My existing structure')
       service = described_class.new(
         params: { name: 'My cloned structure' },
-        structure: building.structure
+        audit_structure: building.audit_structure
       )
       service.execute!
-      expect(service.structure.physical_structure).to_not be_nil
+      expect(service.audit_structure.physical_structure).to_not be_nil
       expect(service.cloned_structure.physical_structure).to_not be_nil
       expect(service.cloned_structure.name).to eq 'My cloned structure'
       expect(service.cloned_structure.physical_structure.name)
@@ -45,47 +45,47 @@ describe StructureCloneService do
     end
 
     it 'clones field values' do
-      location_field = create(:field, :string)
-      create(:field_value,
-             field: location_field,
+      location_field = create(:audit_field, :string)
+      create(:audit_field_value,
+             audit_field: location_field,
              string_value: 'My location',
-             structure: existing_structure)
+             audit_structure: existing_structure)
       service = described_class.new(
         params: { name: 'My cloned structure' },
-        structure: existing_structure
+        audit_structure: existing_structure
       )
       service.execute!
 
-      expect(service.cloned_structure.field_values.map(&:value)).to eq ['My location']
+      expect(service.cloned_structure.audit_field_values.map(&:value)).to eq ['My location']
     end
 
     it 'clones sample groups' do
-      common_area_type = create(:structure_type,
+      common_area_type = create(:audit_strc_type,
                                 name: 'Common Area',
                                 parent_structure_type: heating_system_type)
       hallway_group = create(:sample_group,
                              name: 'My hallways',
                              parent_structure: existing_structure,
-                             structure_type: common_area_type)
+                             audit_strc_type: common_area_type)
       service = described_class.new(
         params: { name: 'My cloned structure' },
-        structure: existing_structure
+        audit_structure: existing_structure
       )
       service.execute!
       expect(service.cloned_structure.sample_groups.map(&:name)).to eq ['My hallways']
     end
 
     it 'clones substructures' do
-      controls_structure_type = create(:structure_type,
+      controls_structure_type = create(:audit_strc_type,
                                        name: 'Controls',
                                        parent_structure_type: heating_system_type)
-      controls_structure = create(:structure,
+      controls_structure = create(:audit_structure,
                                   name: 'Heating system controls',
                                   parent_structure: existing_structure)
 
       service = described_class.new(
         params: { name: 'My cloned structure' },
-        structure: existing_structure
+        audit_structure: existing_structure
       )
       service.execute!
 

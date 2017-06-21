@@ -2,13 +2,13 @@ require 'rails_helper'
 
 describe Audit do
   it { should belong_to :locked_by_user }
-  it { should belong_to :structure }
+  it { should belong_to :audit_structure }
   it { should belong_to :user }
-  it { should have_many :field_values }
+  it { should have_many :audit_field_values }
 
   it 'creates a new structure with the same name' do
     audit = create(:audit)
-    expect(audit.name).to eq audit.structure.name
+    expect(audit.name).to eq audit.audit_structure.name
   end
 
   describe 'soft destruction' do

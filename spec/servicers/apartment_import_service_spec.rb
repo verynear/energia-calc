@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe ApartmentImportService do
   let(:building) { create(:building_with_structure) }
-  let!(:apartment_structure_type) { create(:apartment_structure_type) }
+  let!(:apartment_audit_strc_type) { create(:apartment_audit_strc_type) }
   let(:service) do
     ApartmentImportService.new(params: params, building: building)
   end
@@ -18,8 +18,8 @@ describe ApartmentImportService do
   it 'associates the apartment structure with the building structure' do
     service.execute
     apartment = service.apartment
-    expect(apartment.structure.parent_structure_id)
-      .to eq building.structure.id
+    expect(apartment.audit_structure.parent_structure_id)
+      .to eq building.audit_structure.id
   end
 
   it 'updates the apartment if it already exists' do

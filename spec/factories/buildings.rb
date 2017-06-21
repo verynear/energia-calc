@@ -13,8 +13,8 @@ FactoryGirl.define do
 
     factory :building_with_structure do
       after(:create) do |building, evaluator|
-        create(:structure, physical_structure: building,
-                           structure_type: create(:building_structure_type),
+        create(:audit_structure, physical_structure: building,
+                           audit_strc_type: create(:building_audit_strc_type),
                            name: building.nickname)
       end
     end

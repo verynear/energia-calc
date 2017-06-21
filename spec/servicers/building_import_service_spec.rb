@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe BuildingImportService do
   let(:organization) { create(:organization) }
-  let!(:structure_type) do
-    create(:structure_type, name: 'Building',
+  let!(:audit_strc_type) do
+    create(:audit_strc_type, name: 'Building',
                             physical_structure_type: 'Building')
   end
   let(:service) do
@@ -40,7 +40,7 @@ describe BuildingImportService do
   end
 
   it 'creates a structure for the building' do
-    expect { service.execute }.to change { Structure.count }.by 1
+    expect { service.execute }.to change { AuditStructure.count }.by 1
   end
 
   it "removes the basement key if it's value is nil" do

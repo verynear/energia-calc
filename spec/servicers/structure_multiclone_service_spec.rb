@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe StructureMulticloneService do
-  let(:existing_structure) { instance_double(Structure) }
+  let(:existing_structure) { instance_double(AuditStructure) }
 
   it 'makes a single copy of a structure' do
     should_clone 'Foo structure'
     described_class.execute!(
       n_copies: 1,
       pattern: 'Foo structure',
-      structure: existing_structure
+      audit_structure: existing_structure
     )
   end
 
@@ -18,7 +18,7 @@ describe StructureMulticloneService do
     described_class.execute!(
       n_copies: 2,
       pattern: 'Foo structure ?',
-      structure: existing_structure
+      audit_structure: existing_structure
     )
   end
 
@@ -28,7 +28,7 @@ describe StructureMulticloneService do
     described_class.execute!(
       n_copies: 2,
       pattern: 'Foo structure #',
-      structure: existing_structure
+      audit_structure: existing_structure
     )
   end
 
@@ -36,7 +36,7 @@ describe StructureMulticloneService do
     expect(StructureCloneService)
       .to receive(:execute!)
       .with(params: { name: new_name },
-            structure: existing_structure)
+            audit_structure: existing_structure)
       .once
   end
 end

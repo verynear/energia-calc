@@ -17,8 +17,8 @@ FactoryGirl.define do
     end
 
     after(:create) do |meter, evaluator|
-      create(:structure, physical_structure: meter,
-                         structure_type: create(:meter_structure_type),
+      create(:audit_structure, physical_structure: meter,
+                         audit_strc_type: create(:meter_audit_strc_type),
                          name: meter.account_number)
     end
 

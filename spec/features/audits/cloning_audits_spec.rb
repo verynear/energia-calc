@@ -4,7 +4,7 @@ feature 'Cloning audits', :omniauth, :js do
   let!(:user) { create(:user) }
   let!(:foo_audit_type) { create(:audit_type, name: 'Foo Audits') }
   let!(:bar_audit_type) { create(:audit_type, name: 'Bar Audits') }
-  let!(:audit_structure_type) { create(:audit_structure_type) }
+  let!(:audit_structure_type) { create(:audit_audit_strc_type) }
   let!(:existing_audit) do
     create(:audit,
            audit_type: foo_audit_type,

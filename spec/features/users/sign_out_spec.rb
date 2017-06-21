@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-feature 'Sign out', :omniauth do
+feature 'Sign out', :devise do
   scenario 'user signs out successfully' do
-    user = create(:user)
-    signin_as(user)
+    sign_in
     click_link 'Logout'
     expect(page).to have_content 'Signed out'
   end

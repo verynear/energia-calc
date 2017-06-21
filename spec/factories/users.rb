@@ -8,5 +8,8 @@ FactoryGirl.define do
     sequence(:email) { |n| "email#{n}@factory.com" }
     token 'token'
     secret 'secret'
+    password "password"
+    password_confirmation "password"
+    confirmed_at Date.today
   end
 end

@@ -4,7 +4,7 @@ class RemoveUnmatchedFieldValues < ActiveRecord::Migration
       'TRUNCATE fields RESTART IDENTITY'
     )
 
-    require Rails.root.join('db', 'seeds')
+    # require Rails.root.join('db', 'seeds')
 
     api_names = Field.pluck('api_name')
 

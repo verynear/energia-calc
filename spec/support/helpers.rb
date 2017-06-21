@@ -1,5 +1,7 @@
+require 'support/helpers/devise'
+
 RSpec.configure do |config|
-  config.include Omniauth::Mock
-  config.include Omniauth::SessionHelpers, type: :feature
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
 end
-OmniAuth.config.test_mode = true

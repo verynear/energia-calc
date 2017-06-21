@@ -8,13 +8,8 @@ feature 'Managing structure images', :js do
   end
 
   before do
-    Sidekiq::Testing.inline! # process paperclip attachments immediately
     signin_as user
     click_audit audit.name
-  end
-
-  after do
-    Sidekiq::Testing.fake!
   end
 
   scenario 'for an audit structure' do
@@ -30,13 +25,13 @@ feature 'Managing structure images', :js do
   end
 
   scenario 'for a substructure' do
-    window_type = create(:structure_type,
+    window_type = create(:audit_strc_type,
                          name: 'Window',
-                         parent_structure_type: audit.structure.structure_type)
-    create(:structure,
+                         parent_structure_type: audit.audit_structure.audit_strc_type)
+    create(:audit_structure,
            name: 'My window',
-           parent_structure: audit.structure,
-           structure_type: window_type)
+           parent_structure: audit.audit_structure,
+           audit_strc_type: window_type)
     visit current_path
 
     click_structure_row 'My window'

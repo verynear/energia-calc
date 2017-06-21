@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :grouping do
-    structure_type { create(:structure_type) }
+    audit_strc_type { create(:audit_strc_type) }
     name "MyString"
     display_order 1
     successful_upload_on "2014-10-01 17:55:27"

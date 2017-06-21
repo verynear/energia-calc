@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Editing audit details', :omniauth, :js do
   let!(:user) { create(:user) }
   let!(:audit) { create(:audit, name: 'My audit', user: user) }
-  let!(:audit_structure_type) { audit.structure.structure_type }
+  let!(:audit_structure_type) { audit.audit_structure.audit_strc_type }
 
   before do
     signin_as user
@@ -28,12 +28,12 @@ feature 'Editing audit details', :omniauth, :js do
   scenario 'for structure fields' do
     grouping = create(:grouping,
                       name: 'Auditor',
-                      structure_type: audit.structure.structure_type)
-    create(:field, :string,
+                      audit_strc_type: audit.audit_structure.audit_strc_type)
+    create(:audit_field, :string,
            display_order: 1,
            grouping: grouping,
            name: 'Auditor name')
-    create(:field, :email,
+    create(:audit_field, :email,
            display_order: 2,
            grouping: grouping,
            name: 'Email')

@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-feature 'Creating audits', :omniauth, :js do
+feature 'Creating audits', :devise, :js do
   let!(:user) { create(:user) }
   let!(:foo_audit_type) { create(:audit_type, name: 'Foo Audits') }
   let!(:bar_audit_type) { create(:audit_type, name: 'Bar Audits') }
-  let!(:audit_structure_type) { create(:audit_structure_type) }
+  let!(:audit_structure_type) { create(:audit_audit_strc_type) }
 
   before do
-    signin_as(user)
+    sign_in
     visit audits_path
   end
 
@@ -25,9 +25,9 @@ feature 'Creating audits', :omniauth, :js do
 
     # the 'audit structure' is created
     audit = Audit.last
-    expect(audit.structure).to be_present
-    expect(audit.structure.name).to eq audit.name
-    expect(audit.structure.structure_type.name).to eq 'Audit'
+    expect(audit.audit_structure).to be_present
+    expect(audit.audit_structure.name).to eq audit.name
+    expect(audit.audit_structure.audit_strc_type.name).to eq 'Audit'
   end
 
   scenario 'when selecting a non-default audit type' do

@@ -55,8 +55,8 @@ describe AuditCloneService do
 
     it 'creates an associated audit structure' do
       service.execute!
-      expect(service.audit.structure).to be_a Structure
-      expect(service.audit.structure.name).to eq 'Bar audit'
+      expect(service.audit.audit_structure).to be_a AuditStructure
+      expect(service.audit.audit_structure.name).to eq 'Bar audit'
     end
   end
 end

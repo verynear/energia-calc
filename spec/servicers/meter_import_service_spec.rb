@@ -3,7 +3,7 @@ require 'rails_helper'
 describe MeterImportService do
   let(:organization) { create(:organization) }
   let(:user) { organization.owner }
-  let(:structure) { create(:building_with_structure) }
+  let(:audit_structure) { create(:building_with_structure) }
   let(:service) do
     MeterImportService.new(params: params,
                            user: user)

@@ -4,20 +4,20 @@ feature 'Cloning sampled structures', :omniauth, :js do
   let!(:user) { create(:user) }
   let!(:audit) { create(:audit, user: user) }
   let!(:common_area_type) do
-    create(:structure_type,
+    create(:audit_strc_type,
            name: 'Common Area',
-           parent_structure_type: audit.structure.structure_type)
+           parent_structure_type: audit.audit_structure.audit_strc_type)
   end
   let!(:sample_group) do
     create(:sample_group,
            name: 'Hallways',
-           parent_structure: audit.structure,
-           structure_type: common_area_type)
+           parent_structure: audit.audit_structure,
+           audit_strc_type: common_area_type)
   end
   let!(:existing_structure) do
-    create(:structure,
+    create(:audit_structure,
            name: 'My existing structure',
-           structure_type: common_area_type,
+           audit_strc_type: common_area_type,
            sample_group: sample_group)
   end
 

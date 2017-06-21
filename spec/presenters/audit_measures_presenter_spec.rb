@@ -8,27 +8,27 @@ describe AuditMeasuresPresenter do
 
   it 'returns an array of all active measures' do
     audit = create(:audit)
-    measure1 = create(:measure,
+    measure1 = create(:audit_measure,
                       active: true,
                       name: 'Measure 1')
-    measure2 = create(:measure,
+    measure2 = create(:audit_measure,
                       active: false,
                       name: 'Measure 2')
     presenter = described_class.new(audit)
-    expect(presenter.measures.map(&:name)).to eq ['Measure 1']
+    expect(presenter.audit_measures.map(&:name)).to eq ['Measure 1']
   end
 
   it 'maps measure_values onto their corresponding measures' do
     audit = create(:audit)
-    measure1 = create(:measure, name: 'Measure 1')
-    measure2 = create(:measure, name: 'Measure 2')
-    measure_value = create(:measure_value,
+    measure1 = create(:audit_measure, name: 'Measure 1')
+    measure2 = create(:audit_measure, name: 'Measure 2')
+    audit_measure_value = create(:audit_measure_value,
                            audit: audit,
-                           measure: measure1,
+                           audit_measure: measure1,
                            value: true,
                            notes: 'My important note')
     presenter = described_class.new(audit)
-    expect(presenter.measures.map(&:value)).to eq [true, nil]
-    expect(presenter.measures.map(&:notes)).to eq ['My important note', nil]
+    expect(presenter.audit_measures.map(&:value)).to eq [true, nil]
+    expect(presenter.audit_measures.map(&:notes)).to eq ['My important note', nil]
   end
 end

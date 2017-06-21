@@ -1,11 +1,12 @@
 require 'rails_helper'
 
-describe SessionsController, :omniauth do
+describe SessionsController, :devise do
   let(:user) { build(:user) }
 
   before do
-    request.env['omniauth.auth'] = auth_mock(user)
-    allow(WegoUser).to receive(:new).and_return(double(show: {}))
+    user = double('user')
+    allow(request.env['warden']).to receive(:authenticate!).and_return(user)
+    allow(controller).to receive(:current_user).and_return(user)
   end
 
   describe '#create' do

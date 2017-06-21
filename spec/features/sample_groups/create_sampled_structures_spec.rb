@@ -3,17 +3,17 @@ require 'rails_helper'
 feature 'Creating sampled structures within a sample group', :omniauth, :js do
   let!(:user) { create(:user) }
   let!(:audit) { create(:audit, user: user) }
-  let(:audit_structure_type) { audit.structure.structure_type }
+  let(:audit_structure_type) { audit.audit_structure.audit_structure_type }
   let!(:common_area_type) do
-    create(:common_area_structure_type,
+    create(:common_area_audit_strc_type,
            parent_structure_type: audit_structure_type)
   end
   let!(:hallways_sample_group) do
     create(:sample_group,
            n_structures: 1,
            name: 'Downstairs hallways',
-           parent_structure: audit.structure,
-           structure_type: common_area_type)
+           parent_structure: audit.audit_structure,
+           audit_strc_type: common_area_type)
   end
 
   before do

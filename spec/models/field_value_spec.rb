@@ -1,94 +1,85 @@
 require 'rails_helper'
 
 describe FieldValue do
-  it { should belong_to :field }
-  it { should belong_to :structure }
-  it { should validate_presence_of :field_id }
-  it { should validate_presence_of :structure_id }
-
-  it 'allows long values for string_value' do
-    long_value = 'x' * 300
-    structure = create(:structure)
-    field = create(:field, :string)
-    field_value = field.field_values.create!(string_value: long_value,
-                                             structure: structure)
-    expect(field_value.string_value).to eq long_value
+  let(:field_api_name) { 'field' }
+  let!(:field) do
+    create(:field, api_name: field_api_name)
+    Field.by_api_name!(field_api_name)
   end
+  let!(:field_value) { described_class.new(field_api_name: field.api_name) }
 
-  it 'should validate uniqueness of field_id scoped to structure' do
-    field = create(:field)
-    structure = create(:structure)
-    params = { structure_id: structure.id, field_id: field.id }
-    field_value = create(:field_value, params)
+  it { is_expected.to belong_to(:parent) }
 
-    expect{ create(:field_value, params) }
-      .to raise_error(ActiveRecord::RecordInvalid,
-                      'Validation failed: Field has already been taken')
+  specify '#field is set' do
+    expect(field_value.field).to eq(field)
   end
 
   describe '#value' do
-    it 'returns the value from the correct storage column' do
-      field = create(:field, :text)
-      field_value = field.field_values.build(string_value: 'foo')
-      expect(field_value.value).to eq 'foo'
+    it 'is an empty string that is treated as nil by default' do
+      field.value_type = 'string'
+      expect(field_value[:value]).to eq('')
+      expect(field_value.value).to eq(nil)
     end
 
-    it 'converts date columns into an integer' do
-      current_time = DateTime.current
-      field = create(:field, :date)
-      field_value = field.field_values.build(date_value: current_time)
-      expect(field_value.value).to eq current_time
+    specify 'with string value_type it casts to a string' do
+      field_value.value = '123'
+      field.value_type = 'string'
+      expect(field_value.value).to eq('123')
+    end
+
+    specify 'with picker value_type it casts to a string' do
+      field_value.value = '123'
+      field.value_type = 'picker'
+      expect(field_value.value).to eq('123')
+    end
+
+    specify 'with decimal value_type it casts to a BigDecimal' do
+      field_value.value = '0.123'
+      field.value_type = 'decimal'
+      expect(field_value.value).to eq(BigDecimal.new('0.123'))
+    end
+
+    specify 'with integer value_type it casts to an integer' do
+      field_value.value = '123'
+      field.value_type = 'integer'
+      expect(field_value.value).to eq(123)
+    end
+
+    specify 'with date value_type it casts to a datetime' do
+      field_value.value = '2015-05-05 12:01'
+      field.value_type = 'date'
+      expect(field_value.value).to eq('May 05, 2015  12:01')
+    end
+
+    specify 'with switch value_type it passes the value on' do
+      field_value.value = 'true'
+      field.value_type = 'switch'
+      expect(field_value.value).to eq(true)
     end
   end
 
-  describe '#value=' do
-    it 'does nothing if nil is passed in' do
-      field_value = FieldValue.new
-      actual = field_value.value = nil
-      expect(actual).to eq nil
-    end
+  specify '#from_audit asks wegoaudit_structure about structure' do
+    wegoaudit_structure = instance_double(TempStructure)
+    structure = mock_model(
+      Structure,
+      wegoaudit_structure: wegoaudit_structure)
+    field_value.parent = structure
+    allow(wegoaudit_structure).to receive(:has_field?)
+      .with(field_api_name).and_return('something')
 
-    it 'sets the correct storage column' do
-      field = create(:field, :text)
-      field_value = field.field_values.build
-      field_value.value = 'foo'
-      expect(field_value.string_value).to eq 'foo'
-    end
+    expect(field_value.from_audit).to eq('something')
+  end
 
-    it 'converts integers' do
-      field = create(:field, :integer)
-      field_value = field.field_values.build
-      field_value.value = 42
-      expect(field_value.integer_value).to eq 42
-    end
+  specify '#original_value asks wegoaudit_structure about value' do
+    wegoaudit_structure = instance_double(
+      TempStructure,
+      field_values: { field_api_name => 'value' }
+    )
+    structure = mock_model(
+      Structure,
+      wegoaudit_structure: wegoaudit_structure)
+    field_value.parent = structure
 
-    it 'converts floats' do
-      field = create(:field, :float)
-      field_value = field.field_values.build
-      field_value.value = '3.14'
-      expect(field_value.float_value).to eq 3.14
-    end
-
-    it 'converts decimals' do
-      field = create(:field, :decimal)
-      field_value = field.field_values.build
-      field_value.value = '3.14159265359'
-      expect(field_value.decimal_value).to eq BigDecimal.new('3.14159265359')
-    end
-
-    it 'converts dates' do
-      current_time = DateTime.current
-      field = create(:field, :date)
-      field_value = field.field_values.build
-      field_value.value = current_time
-      expect(field_value.date_value).to eq current_time
-    end
-
-    it 'sets booleans' do
-      field = create(:field, :switch)
-      field_value = field.field_values.build
-      field_value.value = true
-      expect(field_value.boolean_value).to eq true
-    end
+    expect(field_value.original_value).to eq('value')
   end
 end

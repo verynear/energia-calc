@@ -4,20 +4,20 @@ feature 'Editing sample group details', :omniauth, :js do
   let!(:user) { create(:user) }
   let!(:audit) { create(:audit, user: user) }
   let!(:common_area_type) do
-    create(:structure_type,
+    create(:audit_strc_type,
            name: 'Common Area',
-           parent_structure_type: audit.structure.structure_type)
+           parent_structure_type: audit.audit_structure.audit_strc_type)
   end
   let!(:hallway_structure) do
     create(:sample_group,
            n_structures: 2,
            name: 'Hallways',
-           parent_structure: audit.structure,
-           structure_type: common_area_type)
+           parent_structure: audit.audit_structure,
+           audit_strc_type: common_area_type)
   end
 
   scenario 'for attributes on the sample group record' do
-    signin_as(user)
+    sign_in
     click_audit audit.name
     click_structure_row 'Hallways'
     click_section_tab 'Details'

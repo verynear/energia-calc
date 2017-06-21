@@ -12,9 +12,9 @@ FactoryGirl.define do
     end
 
     before(:create) do |audit, evaluator|
-      unless audit.structure.present?
-        audit.structure = create(:structure,
-                                 structure_type: create(:audit_structure_type),
+      unless audit.audit_structure.present?
+        audit.audit_structure = create(:audit_structure,
+                                 audit_strc_type: create(:audit_audit_strc_type),
                                  name: audit.name)
       end
     end

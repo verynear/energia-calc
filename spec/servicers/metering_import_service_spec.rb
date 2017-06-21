@@ -14,19 +14,19 @@ describe MeteringImportService do
 
     it 'creates a structure with association to the building if one does not
         exist' do
-      before_count = Structure.count
+      before_count = AuditStructure.count
       service.execute
-      expect(Structure.count).to eq before_count + 1
-      expect(building.structure.substructures.first.physical_structure)
+      expect(AuditStructure.count).to eq before_count + 1
+      expect(building.audit_structure.substructures.first.physical_structure)
         .to eq meter
     end
 
     it 'does not create a structure if one already exists' do
-      Structure.create(structure_type: Meter.structure_type,
+      AuditStructure.create(audit_strc_type: Meter.audit_strc_type,
                        physical_structure: meter,
-                       parent_structure_id: building.structure,
+                       parent_structure_id: building.audit_structure,
                        name: meter.name)
-      expect { service.execute }.to change { Structure.count }.by 0
+      expect { service.execute }.to change { AuditStructure.count }.by 0
     end
   end
 
@@ -38,7 +38,7 @@ describe MeteringImportService do
     end
 
     it 'creates a structure for the meter and the temporary physical structure' do
-      expect { service.execute }.to change { Structure.count }.by 2
+      expect { service.execute }.to change { AuditStructure.count }.by 2
     end
 
     it 'enqueues the structure retrieval' do

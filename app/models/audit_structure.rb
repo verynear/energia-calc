@@ -37,7 +37,7 @@ class AuditStructure < ActiveRecord::Base
   end
 
   def value_for_field(audit_field)
-      audit_field_values.where(audit_structure_id: audit_structure.id).where(audit_field_id: audit_field.id)
+      audit_field_values.where(audit_field_id: audit_field.id).first
   end
 
   def value_for_picker_field(audit_field)

@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 describe StructureTypeSubtypesPresenter do
-  let(:structure_type) { instance_double(StructureType) }
+  let(:audit_strc_type) { instance_double(AuditStrcType) }
 
   describe '#as_json' do
     context 'for primary types' do
       it 'returns only the one primary structure type' do
-        structure_type = create(:structure_type, primary: true)
-        presenter = described_class.new(structure_type)
+        audit_strc_type = create(:audit_strc_type, primary: true)
+        presenter = described_class.new(audit_strc_type)
         expect(presenter.as_json).to eq({
-          types: [[structure_type.name, structure_type.id]],
+          types: [[audit_strc_type.name, audit_strc_type.id]],
           subtypes: []
         })
       end
@@ -17,13 +17,13 @@ describe StructureTypeSubtypesPresenter do
 
     context 'for structure types with only child types' do
       it 'returns all child types' do
-        dhw_type = create(:structure_type,
+        dhw_type = create(:audit_strc_type,
                           name: 'Domestic Hot Water System',
                           primary: false)
-        indirect_type = create(:structure_type,
+        indirect_type = create(:audit_strc_type,
                                name: 'Boiler/Tank - Indirect Fired',
                                parent_structure_type: dhw_type)
-        direct_type = create(:structure_type,
+        direct_type = create(:audit_strc_type,
                              name: 'Direct Fired',
                              parent_structure_type: dhw_type)
         presenter = described_class.new(dhw_type)
@@ -39,25 +39,25 @@ describe StructureTypeSubtypesPresenter do
 
     context 'for structure types that have child types and subtypes' do
       let!(:heating_system_type) do
-        create(:structure_type,
+        create(:audit_strc_type,
                name: 'Heating System',
                primary: false)
       end
       let!(:controls_type) do
-        create(:structure_type,
+        create(:audit_strc_type,
                name: 'Controls',
                parent_structure_type: heating_system_type,
                primary: true)
       end
       let!(:forced_air_type) do
-        create(:structure_type,
+        create(:audit_strc_type,
                name: 'Forced Air',
                parent_structure_type: heating_system_type,
                primary: true)
       end
 
       it 'returns all child types and subtypes' do
-        outdoor_cutoff_type = create(:structure_type,
+        outdoor_cutoff_type = create(:audit_strc_type,
                                      name: 'Outdoor Cutoff',
                                      parent_structure_type: controls_type,
                                      primary: true)
@@ -74,7 +74,7 @@ describe StructureTypeSubtypesPresenter do
       end
 
       it 'returns subtypes for the selected type' do
-        electric_subtype = create(:structure_type,
+        electric_subtype = create(:audit_strc_type,
                                   name: 'Electric',
                                   parent_structure_type: forced_air_type,
                                   primary: true)

@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Creating sample groups', :omniauth, :js do
   let!(:user) { create(:user) }
   let!(:audit) { create(:audit, user: user) }
-  let(:audit_structure_type) { audit.structure.structure_type }
+  let(:audit_structure_type) { audit.audit_structure.audit_strc_type }
 
   before { signin_as user }
 
@@ -21,9 +21,9 @@ feature 'Creating sample groups', :omniauth, :js do
   end
 
   scenario 'with a structure parent structure' do
-    building_type = create(:building_structure_type,
+    building_type = create(:building_audit_strc_type,
                            parent_structure_type: audit_structure_type)
-    apartment_type = create(:apartment_structure_type,
+    apartment_type = create(:apartment_audit_strc_type,
                             parent_structure_type: building_type)
 
     click_audit audit.name

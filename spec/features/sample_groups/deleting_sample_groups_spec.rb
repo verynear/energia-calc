@@ -4,16 +4,16 @@ feature 'Deleting sample groups', :js do
   let!(:user) { create(:user) }
   let!(:audit) { create(:audit, user: user) }
   let!(:building_type) do
-    create(:building_structure_type,
-           parent_structure_type: audit.structure.structure_type)
+    create(:building_audit_strc_type,
+           parent_structure_type: audit.audit_structure.audit_strc_type)
   end
   let!(:apartment_type) do
-    create(:apartment_structure_type,
+    create(:apartment_audit_strc_type,
            parent_structure_type: building_type)
   end
   let!(:common_area_type) do
-    create(:common_area_structure_type,
-           parent_structure_type: audit.structure.structure_type)
+    create(:common_area_audit_strc_type,
+           parent_structure_type: audit.audit_structure.audit_strc_type)
   end
 
   before do

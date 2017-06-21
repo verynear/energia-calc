@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe Retrocalc::AuditJsonPresenter do
-  let(:structure) do
+  let(:audit_structure) do
     mock_model(
-      Structure, substructures: [], sample_groups: [], structure_images: []
+      AuditStructure, substructures: [], sample_groups: [], structure_images: []
     )
   end
 
@@ -14,8 +14,8 @@ describe Retrocalc::AuditJsonPresenter do
       name: :name,
       performed_on: :date,
       audit_type: mock_model(AuditType, name: :audit_type),
-      structure: structure,
-      measure_values: []
+      audit_structure: audit_structure,
+      audit_measure_values: []
     )
   end
 
@@ -35,18 +35,18 @@ describe Retrocalc::AuditJsonPresenter do
     it 'returns the whole audit with the measures' do
       measure_value1 =
         mock_model(
-          MeasureValue,
-          measure_name: 'foo foo',
-          measure: double(api_name: 'foo_foo'),
+          AuditMeasureValue,
+          audit_measure_name: 'foo foo',
+          audit_measure: double(api_name: 'foo_foo'),
           notes: 'note1')
 
       measure_value2 =
         mock_model(
-          MeasureValue,
-          measure_name: 'fah fah',
-          measure: double(api_name: 'fah_fah'))
+          AuditMeasureValue,
+          audit_measure_name: 'fah fah',
+          audit_measure: double(api_name: 'fah_fah'))
 
-      allow(audit).to receive(:measure_values)
+      allow(audit).to receive(:audit_measure_values)
         .and_return([measure_value1, measure_value2])
 
       audit_json_presenter = Retrocalc::AuditJsonPresenter.new(audit)
@@ -56,7 +56,7 @@ describe Retrocalc::AuditJsonPresenter do
         name: :name,
         date: :date,
         audit_type: :audit_type,
-        structures: [],
+        temp_structures: [],
         sample_groups: [],
         photos: [],
         measures: [{ name: 'foo foo', api_name: 'foo_foo', notes: 'note1' },
@@ -68,9 +68,9 @@ describe Retrocalc::AuditJsonPresenter do
       structure_image1 = mock_model(StructureImage, id: 'foo')
       structure_image2 = mock_model(StructureImage, id: 'bar')
 
-      allow(structure).to receive(:structure_images)
+      allow(audit_structure).to receive(:structure_images)
         .and_return [structure_image1, structure_image2]
-      allow(structure).to receive(:parent_audit).and_return audit
+      allow(audit_structure).to receive(:parent_audit).and_return audit
 
       audit_json_presenter = Retrocalc::AuditJsonPresenter.new(audit)
       json = audit_json_presenter.as_json
@@ -80,7 +80,7 @@ describe Retrocalc::AuditJsonPresenter do
         name: :name,
         date: :date,
         audit_type: :audit_type,
-        structures: [],
+        temp_structures: [],
         sample_groups: [],
         photos: [
           { id: 'foo',
@@ -111,16 +111,16 @@ describe Retrocalc::AuditJsonPresenter do
 
       structure1a =
         mock_model(
-          Structure,
+          AuditStructure,
           id: SecureRandom.uuid,
           name: 'bar',
           parent_audit: audit,
-          structure_type: instance_double(StructureType,
+          audit_strc_type: instance_double(AuditStrcType,
                                           name: 'StructureType 1a',
                                           api_name: 'structure_type1a'),
           physical_structure: nil,
-          field_values: double(includes: [
-            mock_model(FieldValue, value: 3, field: field3)]),
+          audit_field_values: double(includes: [
+            mock_model(AuditFieldValue, value: 3, audit_field: field3)]),
           substructures: [],
           structure_images: [structure_image1, structure_image2],
           sample_group: nil,
@@ -128,24 +128,24 @@ describe Retrocalc::AuditJsonPresenter do
 
       structure1 =
         mock_model(
-          Structure,
+          AuditStructure,
           id: SecureRandom.uuid,
           name: 'foo',
           parent_audit: audit,
-          structure_type: instance_double(StructureType,
+          audit_strc_type: instance_double(AuditStrcType,
                                           name: 'StructureType 1',
                                           api_name: 'structure_type1'),
           physical_structure: nil,
-          field_values: double(includes: [
-            mock_model(FieldValue, value: 1, field: field1),
-            mock_model(FieldValue, value: 'val', field: field2)
+          audit_field_values: double(includes: [
+            mock_model(AuditFieldValue, value: 1, audit_field: field1),
+            mock_model(AuditFieldValue, value: 'val', audit_field: field2)
           ]),
           substructures: [structure1a],
           structure_images: [],
           sample_group: nil,
           sample_groups: [])
 
-      allow(audit.structure).to receive(:substructures)
+      allow(audit.audit_structure).to receive(:substructures)
         .and_return([structure1])
 
       audit_json_presenter = Retrocalc::AuditJsonPresenter.new(audit)
@@ -155,14 +155,14 @@ describe Retrocalc::AuditJsonPresenter do
         name: :name,
         date: :date,
         audit_type: :audit_type,
-        structures: [
+        temp_structures: [
           {
             id: structure1.id,
             name: 'foo',
             wegowise_id: nil,
             structure_type: { api_name: 'structure_type1',
                               name: 'StructureType 1' },
-            field_values: { 'field_1' => { value: 1,
+            audit_field_values: { 'field_1' => { value: 1,
                                      value_type: 'integer',
                                      name: 'Field 1' },
                             'field_2' => { value: 'val',
@@ -179,7 +179,7 @@ describe Retrocalc::AuditJsonPresenter do
                  wegowise_id: nil,
                  structure_type: { api_name: 'structure_type1a',
                                    name: 'StructureType 1a' },
-                field_values: { 'field_3' => { value: 3,
+                audit_field_values: { 'field_3' => { value: 3,
                                          value_type: 'integer',
                                          name: 'Field 3' }
                 },
@@ -206,14 +206,14 @@ describe Retrocalc::AuditJsonPresenter do
     it 'includes sample groups and scaled structures within sample groups' do
       substructure3 =
         mock_model(
-          Structure,
+          AuditStructure,
           id: SecureRandom.uuid,
           name: 'baz',
           physical_structure: nil,
-          structure_type: build(:structure_type,
+          audit_strc_type: build(:audit_strc_type,
                                 name: 'Other',
                                 api_name: 'other'),
-          field_values: double(includes: []),
+          audit_field_values: double(includes: []),
           substructures: [],
           sample_group: nil,
           sample_groups: [],
@@ -222,14 +222,14 @@ describe Retrocalc::AuditJsonPresenter do
 
       substructure2 =
         mock_model(
-          Structure,
+          AuditStructure,
           id: SecureRandom.uuid,
           name: 'bar',
           physical_structure: nil,
-          structure_type: build(:structure_type,
+          audit_strc_type: build(:audit_strc_type,
                                 name: 'Other',
                                 api_name: 'other'),
-          field_values: double(includes: []),
+          audit_field_values: double(includes: []),
           substructures: [substructure3],
           sample_groups: [],
           structure_images: []
@@ -246,21 +246,21 @@ describe Retrocalc::AuditJsonPresenter do
 
       substructure1 =
         mock_model(
-          Structure,
+          AuditStructure,
           id: SecureRandom.uuid,
           name: 'foo',
           physical_structure: nil,
-          structure_type: build(:structure_type,
+          audit_strc_type: build(:audit_strc_type,
                                 name: 'Other',
                                 api_name: 'other'),
-          field_values: double(includes: []),
+          audit_field_values: double(includes: []),
           substructures: [],
           sample_group: nil,
           sample_groups: [sample_group],
           structure_images: []
         )
 
-      allow(audit.structure).to receive(:substructures)
+      allow(audit.audit_structure).to receive(:substructures)
         .and_return([substructure1])
       allow(sample_group).to receive(:parent_structure)
         .and_return(substructure1)
@@ -273,7 +273,7 @@ describe Retrocalc::AuditJsonPresenter do
         name: :name,
         date: :date,
         audit_type: :audit_type,
-        structures: [
+        temp_structures: [
           {
             id: substructure1.id,
             name: 'foo',
@@ -334,14 +334,14 @@ describe Retrocalc::AuditJsonPresenter do
 
       substructure1 =
         mock_model(
-          Structure,
+          AuditStructure,
           id: SecureRandom.uuid,
           name: 'foo',
           physical_structure: nil,
-          structure_type: build(:structure_type,
+          audit_strc_type: build(:audit_strc_type,
                                 name: 'Other',
                                 api_name: 'other'),
-          field_values: double(includes: []),
+          audit_field_values: double(includes: []),
           substructures: [],
           sample_group: nil,
           sample_groups: [],
@@ -350,12 +350,12 @@ describe Retrocalc::AuditJsonPresenter do
 
       substructure4 =
         mock_model(
-          Structure,
+          AuditStructure,
           id: SecureRandom.uuid,
           name: 'qux',
           physical_structure: meter,
-          structure_type: build(:meter_structure_type),
-          field_values: double(includes: []),
+          audit_strc_type: build(:meter_audit_strc_type),
+          audit_field_values: double(includes: []),
           substructures: [],
           sample_group: nil,
           sample_groups: [],
@@ -364,12 +364,12 @@ describe Retrocalc::AuditJsonPresenter do
 
       substructure3 =
         mock_model(
-          Structure,
+          AuditStructure,
           id: SecureRandom.uuid,
           name: 'baz',
           physical_structure: apartment,
-          structure_type: build(:apartment_structure_type),
-          field_values: double(includes: []),
+          audit_strc_type: build(:apartment_audit_strc_type),
+          audit_field_values: double(includes: []),
           substructures: [substructure4],
           sample_group: nil,
           sample_groups: [],
@@ -378,13 +378,13 @@ describe Retrocalc::AuditJsonPresenter do
 
       substructure2 =
         mock_model(
-          Structure,
+          AuditStructure,
           id: SecureRandom.uuid,
           name: 'bar',
           physical_structure: building1,
           physical_structure_type: 'Building',
-          structure_type: build(:building_structure_type),
-          field_values: double(includes: []),
+          audit_strc_type: build(:building_audit_strc_type),
+          audit_field_values: double(includes: []),
           substructures: [substructure3],
           sample_group: nil,
           sample_groups: [],
@@ -393,19 +393,19 @@ describe Retrocalc::AuditJsonPresenter do
 
       substructure5 =
         mock_model(
-          Structure,
+          AuditStructure,
           id: SecureRandom.uuid,
           name: 'corge',
           physical_structure: building2,
           physical_structure_type: 'Building',
-          structure_type: build(:building_structure_type),
-          field_values: double(includes: []),
+          audit_strc_type: build(:building_audit_strc_type),
+          audit_field_values: double(includes: []),
           substructures: [],
           sample_group: nil,
           sample_groups: []
         )
 
-      allow(audit.structure).to receive(:substructures)
+      allow(audit.audit_structure).to receive(:substructures)
         .and_return([substructure1, substructure2, substructure5])
 
       audit_json_presenter = Retrocalc::AuditJsonPresenter.new(audit)
@@ -415,7 +415,7 @@ describe Retrocalc::AuditJsonPresenter do
         name: :name,
         date: :date,
         audit_type: :audit_type,
-        structures: [
+        temp_structures: [
           {
             id: substructure1.id,
             name: 'foo',

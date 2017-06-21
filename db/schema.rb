@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426013031) do
+ActiveRecord::Schema.define(version: 20170223190558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170426013031) do
   end
 
   create_table "apartments", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer  "wegowise_id"
+    t.integer  "wegowise_id",          default: 0
     t.uuid     "building_id"
     t.string   "unit_number"
     t.integer  "sqft"
@@ -93,15 +93,15 @@ ActiveRecord::Schema.define(version: 20170426013031) do
   add_index "audit_measure_values", ["audit_id"], name: "index_audit_measure_values_on_audit_id", using: :btree
   add_index "audit_measure_values", ["audit_measure_id"], name: "index_audit_measure_values_on_audit_measure_id", using: :btree
 
-  create_table "audit_measures", id: :uuid, default: nil, force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.boolean  "active"
+  create_table "audit_measures", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "active",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "api_name",   limit: 255, null: false
+    t.string   "api_name",                  null: false
   end
 
-  add_index "audit_measures", ["api_name"], name: "audit_measures_api_name_idx", using: :btree
+  add_index "audit_measures", ["api_name"], name: "index_audit_measures_on_api_name", unique: true, using: :btree
 
   create_table "audit_reports", force: :cascade do |t|
     t.uuid     "user_id"
@@ -185,22 +185,22 @@ ActiveRecord::Schema.define(version: 20170426013031) do
   end
 
   create_table "buildings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer  "wegowise_id",               default: 0
+    t.integer  "wegowise_id",                   default: 0
     t.string   "street_address"
     t.string   "city"
     t.string   "state_code"
     t.string   "zip_code"
-    t.integer  "development_id",            default: 0
+    t.integer  "development_id",                default: 0
     t.integer  "sqft"
     t.integer  "n_stories"
     t.string   "building_type"
     t.string   "construction"
-    t.integer  "n_apartments",              default: 0
-    t.integer  "n_bedrooms",                default: 0
+    t.integer  "n_apartments",                  default: 0
+    t.integer  "n_bedrooms",                    default: 0
     t.string   "heating_fuel"
     t.string   "hot_water_fuel"
     t.string   "hot_water_system"
-    t.integer  "n_elevators"
+    t.integer  "n_elevators",                   default: 0
     t.string   "heating_system"
     t.string   "dryer_fuel"
     t.string   "cooling_system"
@@ -223,53 +223,53 @@ ActiveRecord::Schema.define(version: 20170426013031) do
     t.boolean  "has_basement"
     t.integer  "basement_sqft"
     t.boolean  "basement_conditioned"
-    t.integer  "n_gas_general_meters",          default: 0,    null: false
-    t.integer  "n_gas_area_meters",             default: 0,    null: false
-    t.integer  "n_electric_general_meters",     default: 0,    null: false
-    t.integer  "n_electric_area_meters",        default: 0,    null: false
-    t.integer  "n_water_general_meters",        default: 0,    null: false
-    t.integer  "n_water_area_meters",           default: 0,    null: false
+    t.integer  "n_gas_general_meters",          default: 0,               null: false
+    t.integer  "n_gas_area_meters",             default: 0,               null: false
+    t.integer  "n_electric_general_meters",     default: 0,               null: false
+    t.integer  "n_electric_area_meters",        default: 0,               null: false
+    t.integer  "n_water_general_meters",        default: 0,               null: false
+    t.integer  "n_water_area_meters",           default: 0,               null: false
     t.integer  "conditioned_sqft"
     t.boolean  "quarantine"
-    t.integer  "n_oil_area_meters",             default: 0,    null: false
-    t.integer  "n_oil_general_meters",          default: 0,    null: false
+    t.integer  "n_oil_area_meters",             default: 0,               null: false
+    t.integer  "n_oil_general_meters",          default: 0,               null: false
     t.float    "lat"
     t.float    "lng"
     t.boolean  "public_housing"
-    t.string   "nickname",                                     null: false
+    t.string   "nickname",                                                null: false
     t.string   "country",                       default: "United States"
     t.string   "county"
     t.string   "climate_zone"
-    t.integer  "water_area_meters_count",       default: 0,    null: false
-    t.integer  "electric_area_meters_count",    default: 0,    null: false
-    t.integer  "gas_area_meters_count",         default: 0,    null: false
-    t.integer  "oil_area_meters_count",         default: 0,    null: false
-    t.integer  "water_general_meters_count",    default: 0,    null: false
-    t.integer  "electric_general_meters_count", default: 0,    null: false
-    t.integer  "gas_general_meters_count",      default: 0,    null: false
-    t.integer  "oil_general_meters_count",      default: 0,    null: false
-    t.integer  "steam_general_meters_count",    default: 0,    null: false
-    t.integer  "steam_area_meters_count",       default: 0,    null: false
-    t.integer  "propane_general_meters_count",  default: 0,    null: false
-    t.integer  "propane_area_meters_count",     default: 0,    null: false
+    t.integer  "water_area_meters_count",       default: 0,               null: false
+    t.integer  "electric_area_meters_count",    default: 0,               null: false
+    t.integer  "gas_area_meters_count",         default: 0,               null: false
+    t.integer  "oil_area_meters_count",         default: 0,               null: false
+    t.integer  "water_general_meters_count",    default: 0,               null: false
+    t.integer  "electric_general_meters_count", default: 0,               null: false
+    t.integer  "gas_general_meters_count",      default: 0,               null: false
+    t.integer  "oil_general_meters_count",      default: 0,               null: false
+    t.integer  "steam_general_meters_count",    default: 0,               null: false
+    t.integer  "steam_area_meters_count",       default: 0,               null: false
+    t.integer  "propane_general_meters_count",  default: 0,               null: false
+    t.integer  "propane_area_meters_count",     default: 0,               null: false
     t.boolean  "tenant_pays_area_water"
     t.boolean  "tenant_pays_area_electric"
     t.boolean  "tenant_pays_area_gas"
     t.boolean  "tenant_pays_area_oil"
     t.boolean  "tenant_pays_area_steam"
     t.boolean  "tenant_pays_area_propane"
-    t.integer  "solar_general_meters_count",    default: 0,    null: false
-    t.integer  "solar_area_meters_count",       default: 0,    null: false
-    t.integer  "apartments_count",              default: 0,    null: false
+    t.integer  "solar_general_meters_count",    default: 0,               null: false
+    t.integer  "solar_area_meters_count",       default: 0,               null: false
+    t.integer  "apartments_count",              default: 0,               null: false
     t.integer  "areas_count",                   default: 0
     t.string   "other_building_type"
     t.string   "object_type"
-    t.integer  "n_steam_general_meters",        default: 0,    null: false
-    t.integer  "n_steam_area_meters",           default: 0,    null: false
-    t.integer  "n_propane_general_meters",      default: 0,    null: false
-    t.integer  "n_propane_area_meters",         default: 0,    null: false
-    t.integer  "n_solar_general_meters",        default: 0,    null: false
-    t.integer  "n_solar_area_meters",           default: 0,    null: false
+    t.integer  "n_steam_general_meters",        default: 0,               null: false
+    t.integer  "n_steam_area_meters",           default: 0,               null: false
+    t.integer  "n_propane_general_meters",      default: 0,               null: false
+    t.integer  "n_propane_area_meters",         default: 0,               null: false
+    t.integer  "n_solar_general_meters",        default: 0,               null: false
+    t.integer  "n_solar_area_meters",           default: 0,               null: false
     t.datetime "upload_attempt_on"
     t.datetime "successful_upload_on"
     t.datetime "created_at"
@@ -380,7 +380,7 @@ ActiveRecord::Schema.define(version: 20170426013031) do
   add_index "memberships", ["wegowise_id"], name: "index_memberships_on_wegowise_id", using: :btree
 
   create_table "meters", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer  "wegowise_id"
+    t.integer  "wegowise_id",                 default: 0
     t.string   "data_type"
     t.string   "coverage"
     t.text     "notes"
@@ -539,8 +539,8 @@ ActiveRecord::Schema.define(version: 20170426013031) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.string   "email"
     t.uuid     "organization_id"
+    t.string   "email",                  default: "",               null: false
     t.string   "encrypted_password",     default: "",               null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

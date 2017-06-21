@@ -2,12 +2,12 @@ require 'rails_helper'
 
 describe SampleGroupDestroyer do
   let!(:audit) { create(:audit) }
-  let!(:apartment_type) { create(:apartment_structure_type) }
+  let!(:apartment_type) { create(:apartment_audit_strc_type) }
   let!(:sample_group) do
     create(:sample_group,
            n_structures: 10,
-           parent_structure: audit.structure,
-           structure_type: apartment_type)
+           parent_structure: audit.audit_structure,
+           audit_strc_type: apartment_type)
   end
   let(:destroyer) { described_class.new(sample_group: sample_group) }
 
@@ -19,11 +19,11 @@ describe SampleGroupDestroyer do
   end
 
   it 'destroys associated structures' do
-    create(:structure,
+    create(:audit_structure,
            sample_group: sample_group,
-           structure_type: apartment_type)
+           audit_strc_type: apartment_type)
     expect { destroyer.execute }
-      .to change { Structure.count }
+      .to change { AuditStructure.count }
       .by(-1)
   end
 end

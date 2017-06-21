@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe DynamicSchemaImporter do
-  let(:audit_type) { StructureType.find_by(name: 'Audit') }
+  let(:audit_type) { AuditStrcType.find_by(name: 'Audit') }
 
   before(:all) do
     described_class.execute!
@@ -14,12 +14,12 @@ describe DynamicSchemaImporter do
   end
 
   specify 'imports the correct number of records' do
-    expect(StructureType.count).to eq 209
-    expect(Field.count).to eq 1984
+    expect(AuditStrcType.count).to eq 209
+    expect(AuditField.count).to eq 1984
   end
 
   specify 'creates a top level structure type' do
-    expect(StructureType.where(parent_structure_type_id: nil).count).to eq 1
+    expect(AuditStrcType.where(parent_structure_type_id: nil).count).to eq 1
   end
 
   specify 'structure types can have child types' do
@@ -33,7 +33,7 @@ describe DynamicSchemaImporter do
   end
 
   specify 'structure types can have types' do
-    meter_type = StructureType.find_by(name: 'Meter', primary: false)
+    meter_type = AuditStrcType.find_by(name: 'Meter', primary: false)
     expect(meter_type.child_structure_types.pluck(:name).sort).to eq [
       'Electric',
       'Gas',
@@ -42,7 +42,7 @@ describe DynamicSchemaImporter do
   end
 
   specify 'structure types can have types and subtypes' do
-    hs_type = StructureType.find_by(name: 'Heating System', primary: false)
+    hs_type = AuditStrcType.find_by(name: 'Heating System', primary: false)
     expect(hs_type.child_structure_types.pluck(:name).sort).to eq [
       'Cogeneration',
       'Controls',
@@ -73,14 +73,14 @@ describe DynamicSchemaImporter do
 
   specify 'groupings have fields' do
     grouping = Grouping.find_by(name: 'Auditor')
-    expect(grouping.fields.pluck(:name, :value_type)).to eq [
+    expect(grouping.audit_fields.pluck(:name, :value_type)).to eq [
       ['Name', 'string'],
       ['Email Address', 'email'],
       ['Phone Number', 'phone']]
   end
 
   specify 'fields have the correct types' do
-    expect(Field.all.uniq.pluck(:value_type).sort).to eq [
+    expect(AuditField.all.uniq.pluck(:value_type).sort).to eq [
       'check',
       'date',
       'decimal',
@@ -95,7 +95,7 @@ describe DynamicSchemaImporter do
   end
 
   specify 'pickers have field enumerables' do
-    picker = Field.find_by(name: 'Burner Type', value_type: 'picker')
+    picker = AuditField.find_by(name: 'Burner Type', value_type: 'picker')
     expect(picker.field_enumerations.pluck(:value).sort).to eq [
       'Atmospheric',
       'Forced Draft (power)',
@@ -104,17 +104,17 @@ describe DynamicSchemaImporter do
 
   specify 'multi-picklists import as separate check fields' do
     multi_picklist = Grouping.find_by(name: 'Insulation Location')
-    expect(multi_picklist.fields.pluck(:name, :value_type)).to eq [
+    expect(multi_picklist.audit_fields.pluck(:name, :value_type)).to eq [
       ['Wall', 'check'],
       ['Ceiling', 'check'],
       ['None', 'check']]
   end
 
   specify 'a notes field is created for every structure type' do
-    StructureType.where(primary: true).each do |structure_type|
-      general_grouping = structure_type.groupings.find_by_name('General')
+    AuditStrcType.where(primary: true).each do |audit_strc_type|
+      general_grouping = audit_strc_type.groupings.find_by_name('General')
       expect(general_grouping).to be_present
-      expect(general_grouping.fields.where(name: 'Notes').count).to eq 1
+      expect(general_grouping.audit_fields.where(name: 'Notes').count).to eq 1
     end
   end
 end

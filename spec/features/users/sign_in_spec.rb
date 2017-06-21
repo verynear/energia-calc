@@ -1,14 +1,12 @@
 require 'rails_helper'
 
-feature 'Sign in', :omniauth do
+feature 'Sign in', :devise do
   scenario "user can sign in with valid account" do
-    user = create(:user)
-    signin_as(user)
+    login_user
     expect(page).to have_content("Logout")
   end
 
   scenario 'user cannot sign in with invalid account' do
-    OmniAuth.config.mock_auth[:wegowise] = :invalid_credentials
     visit root_path
     expect(page).to have_content("Login")
     click_link "Login"

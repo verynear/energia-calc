@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 describe Meter do
-  let!(:structure_type) { create(:meter_structure_type) }
+  let!(:audit_strc_type) { create(:meter_audit_strc_type) }
 
-  it { should have_many :structures }
+  it { should have_many :audit_structures }
 
-  describe '.structure_type' do
+  describe '.audit_strc_type' do
     it 'retrieves the structure_type for meters' do
-      expect(Meter.structure_type).to eq structure_type
+      expect(Meter.audit_strc_type).to eq audit_strc_type
     end
   end
 

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe FullSampleGroupPresenter do
-  let(:structure) { create(:structure) }
-  let(:sample_group) { create(:sample_group, parent_structure: structure) }
+  let(:audit_structure) { create(:audit_structure) }
+  let(:sample_group) { create(:sample_group, parent_structure: audit_structure) }
   let(:presenter) { described_class.new(sample_group) }
   let(:sample_group_associations_hash) { { 'substructures' => [] } }
   let(:structure_associations_hash) do
@@ -20,7 +20,7 @@ describe FullSampleGroupPresenter do
     end
 
     it 'returns associated substructures' do
-      substructure = create(:structure, sample_group: sample_group)
+      substructure = create(:audit_structure, sample_group: sample_group)
       expected = sample_group.as_json.merge(sample_group_associations_hash)
       expected['substructures'] = [
         substructure.as_json.merge(structure_associations_hash)
