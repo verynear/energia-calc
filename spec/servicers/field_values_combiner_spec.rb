@@ -61,7 +61,7 @@ describe FieldValuesCombiner do
   end
   let!(:json_structures) { [structure1, structure2, structure3] }
   let!(:structures) do
-    json_structures.map { |json| Wegoaudit::Structure.new(json) }
+    json_structures.map { |json| TempStructure.new(json) }
   end
   let!(:structure_field_values) { structures.map(&:field_values) }
   let!(:combiner) { described_class.new(structure_field_values) }

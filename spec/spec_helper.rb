@@ -1,4 +1,5 @@
 require 'webmock/rspec'
+require 'support/controller_helpers'
 
 RSpec.configure do |config|
   if config.files_to_run.one?
@@ -23,6 +24,8 @@ RSpec.configure do |config|
   config.expose_dsl_globally = true
 
   # config.disable_monkey_patching!
+
+  config.include ControllerHelpers, :type => :controller
 
   config.mock_with :rspec do |mocks|
     mocks.syntax = :expect

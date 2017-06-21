@@ -14,7 +14,7 @@ feature 'Add report template', :js do
   end
 
   scenario 'select template to display an audit report' do
-    signin_as(user)
+    sign_in
     set_up_audit_report(
       user: user,
       measure_selections: [],

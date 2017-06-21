@@ -6,13 +6,13 @@ feature 'Cloning structures', :omniauth, :js do
   let!(:heating_system_type) do
     create(:audit_strc_type,
            name: 'Heating System',
-           parent_structure_type: audit.structure.structure_type)
+           parent_structure_type: audit.audit_structure.audit_strc_type)
   end
   let!(:existing_structure) do
     create(:audit_structure,
            name: 'My existing structure',
            audit_strc_type: heating_system_type,
-           parent_structure: audit.structure)
+           parent_structure: audit.audit_structure)
   end
 
   before do

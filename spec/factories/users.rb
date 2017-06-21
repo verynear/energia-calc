@@ -6,8 +6,7 @@ FactoryGirl.define do
     provider 'wegowise'
     sequence(:wegowise_id) { |id| id }
     sequence(:email) { |n| "email#{n}@factory.com" }
-    token 'token'
-    secret 'secret'
+    organization_id '29efb419-f657-69e2-a543-f5af358a4e5d'
     password "password"
     password_confirmation "password"
     confirmed_at Date.today

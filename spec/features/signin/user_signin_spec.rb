@@ -13,7 +13,7 @@ feature 'user signs in and signs out', :js do
   end
 
   scenario 'with invalid account' do
-
+    sign_in nil
     visit root_path
     click_link 'Login'
     expect(page).to have_content 'Authentication error'

@@ -13,7 +13,7 @@ feature 'Cloning audits', :omniauth, :js do
   end
 
   before do
-    signin_as(user)
+    sign_in
     visit audits_path
   end
 

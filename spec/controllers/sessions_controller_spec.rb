@@ -11,17 +11,17 @@ describe SessionsController, :devise do
 
   describe '#create' do
     it 'creates a user' do
-      expect {post :create, provider: :wegowise}.to change{ User.count }.by(1)
+      expect {post "/devise/sessions", :params => {provider: :wegowise}}.to change{ User.count }.by(1)
     end
 
     it 'creates a session' do
       expect(session[:user_id]).to be_nil
-      post :create, provider: :wegowise
+      post "/devise/sessions", :params => {provider: :wegowise}
       expect(session[:user_id]).not_to be_nil
     end
 
     it 'redirects to the home page' do
-      post :create, provider: :wegowise
+      post "/devise/sessions", :params => {provider: :wegowise}
       expect(response).to redirect_to root_url
     end
   end
@@ -33,12 +33,12 @@ describe SessionsController, :devise do
 
     it 'resets the session' do
       expect(session[:user_id]).not_to be_nil
-      delete :destroy
+      delete "/devise/sessions"
       expect(session[:user_id]).to be_nil
     end
 
     it 'redirects to the home page' do
-      delete :destroy
+      delete "/devise/sessions"
       expect(response).to redirect_to root_url
     end
   end

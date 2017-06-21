@@ -22,7 +22,7 @@ feature 'Linking structures to physical structures', :js do
     organization.buildings << building
     organization.save!
 
-    signin_as(user)
+    sign_in
     visit audits_path
     click_audit audit.name
   end

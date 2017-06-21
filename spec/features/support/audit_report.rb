@@ -405,7 +405,7 @@ module Features
     end
 
     def set_up_audit_report_for_measures(measures, user:, substructures:)
-      signin_as(user)
+      sign_in
 
       substructures_array = substructures.map do |substructure|
         structure_type = substructure.fetch(:structure_type)

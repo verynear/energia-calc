@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-feature 'While viewing measures for an audit', :omniauth, :js do
+feature 'While viewing measures for an audit', :devise, :js do
   let!(:user) { create(:user) }
   let!(:audit) { create(:audit, user: user) }
   let!(:measure1) { create(:audit_measure, name: 'DHW, Toilets') }
   let!(:measure2) { create(:audit_measure, name: 'Boiler Controls') }
 
   before do
-    sign_in user
+    sign_in
     visit audits_path
     click_audit audit.name
     click_section_tab 'Measures'

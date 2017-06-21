@@ -38,7 +38,7 @@ profile['browser.helperApps.neverAsk.saveToDisk'] =
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(
     app,
-    browser: :chrome,
+    browser: :firefox,
     profile: profile,
     http_client: Selenium::WebDriver::Remote::Http::Curb.new)
 end

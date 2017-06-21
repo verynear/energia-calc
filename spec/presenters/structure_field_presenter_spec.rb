@@ -22,13 +22,13 @@ describe StructureFieldPresenter do
 
     it 'returns nil if field_value is not nil' do
       presenter = described_class.new(audit_structure, audit_field)
-      expect(presenter.value).to eq nil
+      expect(presenter.audit_field_value).to eq nil
     end
 
     it 'returns the field_value if it has one' do
       audit_field_value = instance_double(AuditFieldValue, value: :foo)
       presenter = described_class.new(audit_structure, audit_field, audit_field_value)
-      expect(presenter.value).to eq :foo
+      expect(presenter.audit_field_value).to eq :foo
     end
   end
 end

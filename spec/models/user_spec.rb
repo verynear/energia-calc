@@ -7,13 +7,13 @@ describe User do
   it { should have_many(:buildings) }
 
   describe '.authenticated' do
-    it 'returns users who have a token and secret' do
+    it 'returns users who have a password and password_confirmation' do
       user = create(:user)
       expect(User.authenticated).to eq [user]
     end
 
-    it 'does not return users who are missing a token or secret' do
-      user = create(:user, token: nil, secret: nil)
+    it 'does not return users who are missing a password or password_confirmation' do
+      user = create(:user, password: nil, password_confirmation: nil)
       expect(User.authenticated).to be_empty
     end
   end
@@ -51,27 +51,27 @@ describe User do
   describe '#has_authenticated?' do
     let(:user) { User.new }
 
-    it 'returns true if the user has a token and secret' do
+    it 'returns true if the user has a password and password_confirmation' do
       user.password = 'password'
       user.password_confirmation = 'password'
       expect(user.has_authenticated?).to eq true
     end
 
-    it 'returns false if the user is missing a token' do
-      user.token = nil
-      user.secret = 'secret'
+    it 'returns false if the user is missing a password' do
+      user.password = nil
+      user.password_confirmation = 'password_confirmation'
       expect(user.has_authenticated?).to eq false
     end
 
-    it 'returns false if the user is missing a secret' do
-      user.token = 'token'
-      user.secret = nil
+    it 'returns false if the user is missing a password_confirmation' do
+      user.password = 'password'
+      user.password_confirmation = nil
       expect(user.has_authenticated?).to eq false
     end
 
-    it 'returns false if the user is missing a token and secret' do
-      user.token = nil
-      user.secret = nil
+    it 'returns false if the user is missing a password and password_confirmation' do
+      user.password = nil
+      user.password_confirmation = nil
       expect(user.has_authenticated?).to eq false
     end
   end

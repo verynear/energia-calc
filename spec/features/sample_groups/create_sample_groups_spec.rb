@@ -5,7 +5,7 @@ feature 'Creating sample groups', :omniauth, :js do
   let!(:audit) { create(:audit, user: user) }
   let(:audit_structure_type) { audit.audit_structure.audit_strc_type }
 
-  before { signin_as user }
+  before { sign_in }
 
   scenario 'with an audit parent structure' do
     common_area_type = create(:common_area_structure_type,
