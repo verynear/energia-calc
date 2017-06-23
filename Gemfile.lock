@@ -107,6 +107,8 @@ GEM
       execjs
     coffee-script-source (1.9.1)
     colorize (0.8.1)
+    combine_pdf (1.0.3)
+      ruby-rc4 (>= 0.1.5)
     concord (0.1.5)
       adamantium (~> 0.2.0)
       equalizer (~> 0.0.9)
@@ -257,6 +259,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
+    pdfkit (0.8.2)
     pg (0.18.1)
     powerpack (0.1.1)
     private_attr (1.1.0)
@@ -464,6 +467,7 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.1.0)
+  combine_pdf (~> 1.0, >= 1.0.3)
   curb
   database_cleaner
   delayed_paperclip
@@ -496,6 +500,7 @@ DEPENDENCIES
   overcommit
   paperclip
   pdf-reader
+  pdfkit
   pg
   pry-byebug
   pry-stack_explorer
@@ -533,4 +538,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.14.6
+   1.15.1

@@ -102,6 +102,7 @@ Rails.application.routes.draw do
         collection do
           put :change_template
           put :preview
+          put :combine
         end
       end
 

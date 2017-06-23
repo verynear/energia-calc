@@ -54,6 +54,22 @@ class Calc::DisplayReportsController < SecuredController
     redirect_to action: :edit
   end
 
+  def combine
+    @context = DisplayReportContext.new(
+      audit_report: @audit_report,
+      for_pdf: true,
+      user: current_user)
+
+    @combined_pdf = PdfCombiner.new(
+      pdf_url: @context.pdf_path,
+      attachments: combine_params,
+      filename: @audit_report.name.to_s,
+      current_user: current_user
+      ).combined
+
+    render @combined_pdf
+  end
+
   private
 
   def audit_report_params
@@ -62,6 +78,10 @@ class Calc::DisplayReportsController < SecuredController
 
   def content_block_params
     params[:content_block]
+  end
+
+  def combine_params
+    params[:attachments]
   end
 
   def set_audit_report
