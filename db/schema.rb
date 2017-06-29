@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223190558) do
+ActiveRecord::Schema.define(version: 20170628024828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 20170223190558) do
   end
 
   add_index "audit_fields", ["api_name", "grouping_id"], name: "index_audit_fields_on_api_name_and_grouping_id", unique: true, using: :btree
-  add_index "audit_fields", ["grouping_id"], name: "index_audit_fields_on_grouping_id", using: :btree
 
   create_table "audit_measure_values", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "audit_measure_id",                     null: false
@@ -93,15 +92,15 @@ ActiveRecord::Schema.define(version: 20170223190558) do
   add_index "audit_measure_values", ["audit_id"], name: "index_audit_measure_values_on_audit_id", using: :btree
   add_index "audit_measure_values", ["audit_measure_id"], name: "index_audit_measure_values_on_audit_measure_id", using: :btree
 
-  create_table "audit_measures", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "active",     default: true
+  create_table "audit_measures", id: :uuid, default: nil, force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "api_name",                  null: false
+    t.string   "api_name",   limit: 255, null: false
   end
 
-  add_index "audit_measures", ["api_name"], name: "index_audit_measures_on_api_name", unique: true, using: :btree
+  add_index "audit_measures", ["api_name"], name: "audit_measures_api_name_idx", using: :btree
 
   create_table "audit_reports", force: :cascade do |t|
     t.uuid     "user_id"
@@ -200,7 +199,7 @@ ActiveRecord::Schema.define(version: 20170223190558) do
     t.string   "heating_fuel"
     t.string   "hot_water_fuel"
     t.string   "hot_water_system"
-    t.integer  "n_elevators",                   default: 0
+    t.integer  "n_elevators"
     t.string   "heating_system"
     t.string   "dryer_fuel"
     t.string   "cooling_system"
@@ -385,11 +384,11 @@ ActiveRecord::Schema.define(version: 20170223190558) do
     t.string   "coverage"
     t.text     "notes"
     t.boolean  "for_heating"
-    t.integer  "n_buildings"
+    t.integer  "n_buildings",                 default: 0
     t.string   "scope"
     t.string   "other_utility_company"
-    t.integer  "buildings_count"
-    t.integer  "utility_company_wegowise_id"
+    t.integer  "buildings_count",             default: 0
+    t.integer  "utility_company_wegowise_id", default: 0
     t.string   "utility_company_name"
     t.boolean  "tenant_pays"
     t.string   "status"
@@ -486,6 +485,7 @@ ActiveRecord::Schema.define(version: 20170223190558) do
     t.datetime "updated_at"
     t.datetime "destroy_attempt_on"
     t.boolean  "asset_processing"
+    t.text     "image_data"
   end
 
   add_index "structure_images", ["audit_structure_id"], name: "index_structure_images_on_audit_structure_id", using: :btree
@@ -539,8 +539,8 @@ ActiveRecord::Schema.define(version: 20170223190558) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "email"
     t.uuid     "organization_id"
-    t.string   "email",                  default: "",               null: false
     t.string   "encrypted_password",     default: "",               null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

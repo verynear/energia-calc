@@ -2,8 +2,8 @@
   <%= form_for StructureImage.new(audit_structure_id: audit_structure.id),
         url: audit_photos_path(current_audit),
         html: { class: 'js-autosave-form camera', multipart: true } do |f| %>
-    <%= f.label :asset, 'Upload image', class: 'camera__label thumb' %>
-    <%= f.file_field :asset, class: 'js-upload-image camera__input' %>
+    <%= f.label :image, 'Upload image', class: 'camera__label thumb' %>
+    <%= f.file_field :image, class: 'js-upload-image camera__input' %>
     <%= f.hidden_field :audit_structure_id %>
   <%- end %>
 <%- end %>

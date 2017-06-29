@@ -67,7 +67,7 @@ class Calc::DisplayReportsController < SecuredController
       current_user: current_user
       ).combined
 
-    render @combined_pdf
+    render pdf: @combined_pdf
   end
 
   private

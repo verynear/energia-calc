@@ -1,22 +1,12 @@
 class StructureImage < ActiveRecord::Base
+  include ImageUploader::Attachment.new(:image) # adds an `image` virtual attribute
+
   include Cloneable,
           SoftDestruction
 
   DEFAULT_EXPIRATION_SECONDS = 10
 
   belongs_to :audit_structure
-
-  has_attached_file :asset,
-    styles: {
-      thumb: '150x150#',
-      medium: '800x800>'
-    }
-
-  process_in_background :asset
-
-  validates :file_name, presence: true
-  validates_attachment_content_type :asset,
-                                    content_type: %w[image/jpg image/jpeg image/png]
 
   alias_method :parent_object, :audit_structure
 
