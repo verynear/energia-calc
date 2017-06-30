@@ -18,4 +18,4 @@ Shrine.plugin :determine_mime_type
 Shrine.plugin :moving
 Shrine.plugin :pretty_location
 Shrine.plugin :default_url_options
-Shrine.plugin :logging
+Shrine.plugin :logging, logger: Rails.logger
