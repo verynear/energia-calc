@@ -1,9 +1,9 @@
 .fli {
   position: relative;
-  height: 48px;
-  border: 1px solid #E0E0E0;
+  height: 56px;
+  border: none !important;
   padding: 4px 4px 0 4px;
-  transition: all 0.3s;
+  transition: all 0.3s !important;
   background: #fff;
   overflow: hidden;
 
@@ -29,13 +29,13 @@
   }
 
   &__input {
-    font-size: 14px;
+    font-size: 14px !important;
     position: relative;
     background: transparent;
     width: 100%;
-    border: none !important;
+    border: 1px solid #E0E0E0;
     outline: none !important;
-    padding: 11px 0 3px !important;
+    padding: 10px 0 3px;
     box-shadow: none !important;
 
     .error & {
@@ -45,19 +45,20 @@
 
   &__label {
     display: block;
-    height: 10px;
-    transform: translateY(10px);
+    height: 18px;
+    transform: translateY(24px) !important;
     color: #757575;
-    transition: all $transition-speed;
-    white-space: nowrap;
+    transition: all $transition-speed !important;
+    white-space: nowrap !important;
+    padding-left: 4px;
 
     .error & {
       color: #B71C1C;
     }
 
     .is-completed & {
-      font-size: 13px;
-      transform: translateY(0);
+      font-size: 14px !important;
+      transform: translateY(0) !important;
     }
   }
 
@@ -124,11 +125,11 @@
   &--has-select {
     .fli__label {
       font-size: 13px;
-      transform: translateY(0);
+      transform: translateY(0) !important;
     }
 
     .fli__input {
-      top: 5px;
+      top: 1px;
     }
   }
 }
