@@ -91,7 +91,7 @@ class AuditReports.Views.Field extends Backbone.View
     @syncFieldValue()
 
   _onBlurInput: (event) =>
-    @$fli.removeClass('is-active')
+    @$input.removeClass('is-active')
 
     @_checkValidity()
 
@@ -107,7 +107,8 @@ class AuditReports.Views.Field extends Backbone.View
     @$input.focus()
 
   _onFocusInput: (event) ->
-    @$fli.addClass('is-active is-completed')
+    @$fli.addClass('is-completed')
+    @$input.addClass('is-active')
 
     prependWidth = @$input.siblings('.js-fli-prepend').outerWidth()
     appendWidth = @$input.siblings('.js-fli-append, .js-reset-value')

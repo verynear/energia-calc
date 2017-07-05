@@ -7,11 +7,6 @@
   background: #fff;
   overflow: hidden;
 
-  &.is-active {
-    border-color: darken(#E0E0E0, 15%);
-    box-shadow: 0 2px 3px rgba(#000, 0.2);
-  }
-
   &.is-disabled,
   &.is-disabled.is-completed {
     background: #F5F5F5;
@@ -33,7 +28,8 @@
     position: relative;
     background: transparent;
     width: 100%;
-    border: 1px solid #E0E0E0;
+    border: 1px solid #E0E0E0 !important;
+    border-color: #E0E0E0 !important;
     outline: none !important;
     padding: 10px 0 3px;
     box-shadow: none !important;
@@ -41,6 +37,12 @@
     .error & {
       color: #B71C1C;
     }
+
+    &.is-active {
+       border-color: darken(#E0E0E0, 20%) !important;
+       box-shadow: 0 2px 3px rgba(#000, 0.2) !important;
+     }
+
   }
 
   &__label {
