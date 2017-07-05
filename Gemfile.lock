@@ -507,7 +507,7 @@ DEPENDENCIES
   liquid
   lograge
   marginalia
-  memoizer
+  memoizer (~> 1.0, >= 1.0.1)
   mini_magick (>= 4.3.5)
   newrelic_rpm
   nokogiri
