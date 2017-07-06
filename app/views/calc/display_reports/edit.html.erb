@@ -34,14 +34,9 @@
 <h3>Add Appendices to Report</h3>
 <h5>(Can Select Multiple files)
 
-<%= form_tag({controller: "display_reports", action: :combine},method: 'put', multipart: true) do %>
-  <div class="form-row">
-    <%= file_field_tag 'attachments' %>
-    <%= file_field :attachments, multiple: true %>
-  </div>
-  <div class="actions">
-      <%= submit_tag 'Combine' %>
-  </div>
+<%= form_for :attachment, url: {controller: "display_reports", action: "combine"}, method: :put, multipart: true do %>
+    <%= file_field_tag :pdf %>
+    <%= submit_tag 'Combine' %>
 <% end %>
 
 <div class='markdown-preview report js-markdown-preview <%= @context.layout%>-pdf'>

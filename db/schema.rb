@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628024828) do
+ActiveRecord::Schema.define(version: 20170706013659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(version: 20170628024828) do
 
   add_index "apartments", ["building_id"], name: "index_apartments_on_building_id", using: :btree
   add_index "apartments", ["wegowise_id"], name: "index_apartments_on_wegowise_id", using: :btree
+
+  create_table "attachments", force: :cascade do |t|
+    t.string   "title"
+    t.text     "pdf_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "audit_field_values", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "audit_field_id"

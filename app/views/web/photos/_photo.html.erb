@@ -5,10 +5,10 @@
           class: 'thumb__delete' do %>
       <i class="icon-trash"></i>
     <%- end %>
-    <%= link_to(download_audit_photo_path(current_audit, photo, style: :medium),
+    <%= link_to(download_audit_photo_path(current_audit, photo, :original),
           class: 'js-gallery',
           data: { fancybox_group: 'gallery' }) do %>
-      <%= image_tag download_audit_photo_path(current_audit, photo, style: :thumb) %>
+      <%= image_tag photo.image_url(:thumb) %>
     <%- end %>
   </span>
 

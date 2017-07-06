@@ -21,20 +21,20 @@ module Web
 
     def download
       @image = StructureImage.find(params[:id])
-      redirect_to @image.asset.expiring_url(10, params[:style])
+      redirect_to @image.image_url(:original)
     end
 
     private
 
     def file_name_param
       params.require(:structure_image)
-            .fetch(:asset)
+            .fetch(:image)
             .original_filename
     end
 
     def photo_params
       params.require(:structure_image)
-            .permit(:asset, :audit_structure_id)
+            .permit(:image, :audit_structure_id)
             .merge(file_name: file_name_param)
             .merge(timestamp_params)
     end

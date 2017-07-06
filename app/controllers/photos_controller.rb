@@ -23,7 +23,7 @@ class PhotosController < ApplicationController
   end
 
   def image_params
-    params.permit(:asset,
+    params.permit(:image,
                   :file_name,
                   :upload_attempt_on)
   end

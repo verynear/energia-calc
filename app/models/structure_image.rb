@@ -11,10 +11,10 @@ class StructureImage < ActiveRecord::Base
   alias_method :parent_object, :audit_structure
 
   def absolute_url(style)
-    Retrocalc::BASE_URL + asset.url(style)
+    Retrocalc::BASE_URL + image.url(style)
   end
 
   def expiring_url(style)
-    asset.expiring_url(DEFAULT_EXPIRATION_SECONDS, style)
+    image.expiring_url(DEFAULT_EXPIRATION_SECONDS, style)
   end
 end
