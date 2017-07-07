@@ -39,9 +39,9 @@
 <h5>(Can Select Multiple files)
 
 <%= form_for(
-      @context.audit_report, 
-      url: combine_calc_audit_report_display_path(@context.audit_report), method: :put) do |f| %>
-    <%= f.file_field :attachments, :multiple => true %>
+      @attachment, 
+      url: combine_calc_audit_report_display_path(@context.audit_report), html: {multipart: true}, method: :put) do |f| %>
+    <%= f.file_field :pdf %>
     <br>
     <%= submit_tag 'Combine' %>
 <% end %>

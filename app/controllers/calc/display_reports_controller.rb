@@ -19,6 +19,7 @@ class Calc::DisplayReportsController < SecuredController
       audit_report: @audit_report,
       user: current_user)
     @report_templates = ReportTemplate.all
+    @attachment = Attachment.new
   end
 
   def preview
@@ -62,13 +63,12 @@ class Calc::DisplayReportsController < SecuredController
 
     @reportpdf = render_to_string @context.pdf_options
 
-    @audit_report.attachments = audit_report_params
+    attachment = Attachment.create(attachment_params)
 
     new_pdf = CombinePDF.new
     new_pdf << CombinePDF.parse(@reportpdf, allow_optional_content: true)
-    pdf_documents.each do |pdf_document|
-      new_pdf << CombinePDF.parse(IO.read(pdf_document))
-    end
+    new_pdf << CombinePDF.parse(attachment.pdf.read)
+    
 
     send_data new_pdf.to_pdf,
               filename: "#{@audit_report.name}_combined",
@@ -79,16 +79,20 @@ class Calc::DisplayReportsController < SecuredController
   private
 
   def audit_report_params
-    params.require(:audit_report).permit(:report_template_id, attachments: [])
+    params.require(:audit_report).permit(:report_template_id)
   end
 
   def content_block_params
     params[:content_block]
   end
 
+  def attachment_params
+    params.require(:attachment).permit(:pdf)
+  end
+
   def pdf_documents
-    @audit_report.attachments.map do |pdf_document|
-      File.new(pdf_document[1].pdf_url)
+    @attachments.map do |pdf|
+      File.new(pdf[1].tempfile)
     end
   end
 

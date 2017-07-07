@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706013659) do
+ActiveRecord::Schema.define(version: 20170707195831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,8 +46,9 @@ ActiveRecord::Schema.define(version: 20170706013659) do
   create_table "attachments", force: :cascade do |t|
     t.string   "title"
     t.text     "pdf_data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "audit_report_id"
   end
 
   create_table "audit_field_values", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|

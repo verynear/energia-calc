@@ -16,6 +16,7 @@ class AuditReport < ActiveRecord::Base
   has_many :measures, through: :measure_selections
   has_many :original_structure_field_values
   has_many :attachments
+  accepts_nested_attributes_for :attachments, allow_destroy: true
 
   has_many :field_values, as: :parent
 
