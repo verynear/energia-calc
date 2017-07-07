@@ -1,4 +1,6 @@
 class AuditReport < ActiveRecord::Base
+  attr_accessor :attachments
+
   delegate :default_report_template, to: :organization
 
   validates :name, presence: true
@@ -13,6 +15,7 @@ class AuditReport < ActiveRecord::Base
   has_many :measure_selections
   has_many :measures, through: :measure_selections
   has_many :original_structure_field_values
+  has_many :attachments
 
   has_many :field_values, as: :parent
 

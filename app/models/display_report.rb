@@ -79,4 +79,5 @@ class DisplayReport < Generic::Strict
       no_intra_emphasis: true
     )
   end
+
 end

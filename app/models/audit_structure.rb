@@ -9,6 +9,8 @@ class AuditStructure < ActiveRecord::Base
   has_many :child_structure_types, through: :audit_strc_type
   has_many :sample_groups, foreign_key: :parent_structure_id
   has_many :structure_images
+  accepts_nested_attributes_for :structure_images, allow_destroy: true
+  
   has_many :substructures, foreign_key: :parent_structure_id,
                            class_name: 'AuditStructure'
   has_many :audit_field_values
