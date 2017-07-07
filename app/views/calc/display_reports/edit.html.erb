@@ -41,7 +41,7 @@
 <%= form_for(
       @attachment, 
       url: combine_calc_audit_report_display_path(@context.audit_report), html: {multipart: true}, method: :put) do |f| %>
-    <%= f.file_field :pdf %>
+    <%= f.file_field :pdf, multiple: true, name: "attachment[pdf][]" %>
     <br>
     <%= submit_tag 'Combine' %>
 <% end %>
