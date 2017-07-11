@@ -1,6 +1,28 @@
-# wegoaudit
+# retrocalc
 
-The rails backend for wegoaudit-ios.
+workflow that includes the following steps:
+
+- perform an audit on a building (or set of buildings)
+- decide on a set of recommended actions (for example, boiler replacement),
+based on how each action affects the cost and savings of the recommendations
+as a whole
+- generate a report of the recommended actions
+
+Retrocalc will also interact with the kilomeasure gem (see
+vendor/gems/kilomeasure), which contains the calculations for each measure.
+
+## Vocabulary
+
+- **Audit:** A set of data gathered for a particular building (or set of
+  buildings).  There are several types of audits, listed in
+  `retrocalc/seeds.rb`.
+- **Audit Report:** Users begin interacting with Retrocalc by creating an audit
+  report based on a particular audit.  An audit report contains a set of
+  measures, and will have an overall cost and savings.
+- **Measure:** A specific recommendation; these are also listed in
+  `retrocalc/seeds.rb`. Each measure will have its own cost and savings, and
+  will require certain inputs in order to perform the calculations.
+
 
 ## Setup
 
@@ -20,13 +42,6 @@ database:
 rake db:create db:migrate db:seed
 ```
 
-Create an API token for a non-admin user in your WegoWise development
-environment. Add the API credentials to your `.env.development` file.
-
-```shell
-export WEGOWISE_PROVIDER_KEY="YOUR_KEY"
-export WEGOWISE_PROVIDER_SECRET="YOUR_SECRET"
-```
 
 ## Running the development server
 
