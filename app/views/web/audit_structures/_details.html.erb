@@ -24,7 +24,7 @@
 
     <%- StructureDetailsPresenter.new(audit_structure).groupings.each do |grouping| %>
     <fieldset>
-      <% if grouping.name != 'Utility data' && grouping.name != 'Savings Investment Ratio (SIR)' %>
+      <% if grouping.name != 'Utility usage data' && grouping.name != 'Savings Investment Ratio (SIR)' && grouping.name != 'Utility Costs' %>
         <legend class="section-title">
           <%= grouping.name %>
         </legend>

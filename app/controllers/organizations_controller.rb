@@ -2,7 +2,11 @@ class OrganizationsController < SecuredController
   before_filter :load_organization, only: [:download_buildings, :show]
 
   def index
-    @organizations = Organization.includes(:buildings).all
+    if current_user.adminrole?
+      @organizations = Organization.includes(:buildings).all
+    else
+      redirect_to root_url, :alert => "Access denied."
+    end
   end
 
   def show

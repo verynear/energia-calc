@@ -66,4 +66,12 @@ class User < ActiveRecord::Base
   def organization
     super || NullOrganization.new
   end
+
+  def adminrole?
+    if self.role == 'admin' || self.role == 'superadmin'
+      true
+    else
+      false
+    end
+  end
 end

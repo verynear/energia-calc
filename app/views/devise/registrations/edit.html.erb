@@ -4,7 +4,8 @@
   <%= devise_error_messages! %>
 
   <div class="form-row">
-    <%= f.email_field :email, autofocus: true %><%= f.text_field :username %>
+    <%= f.label :email, 'Email' %><br><%= f.email_field :email, autofocus: true %><br><br>
+    <%= f.label :username, 'Username' %><br><%= f.text_field :username %>
   </div>
 
    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -16,11 +17,23 @@
     <%= f.select(:organization_id, [['Elevate Energy', '29efb419-f657-69e2-a543-f5af358a4e5d'], ['New Ecology', '856acf1c-b83d-4325-b54a-466b1416aa05'], ['Testing', '19cfb419-f657-49e2-a543-d5af358a4e9c']]) %>
   </div>
 
+  <% if current_user.role == 'superadmin' %>
+    <div class="form-row">
+      <%= f.label :role, 'Select Role' %><br>
+      <%= f.select(:role, [['User', 'user'], ['Admin', 'admin'], ['Super-Admin', 'superadmin']]) %>
+    </div>
+  <% else %>
+    <div class="form-row">
+    <h4>User Role: <%= current_user.role.humanize %></h4>
+    </div>
+  <% end %>
+
   <div class="form-row">
     <%= f.text_field :first_name %><%= f.text_field :last_name %>
   </div>
 
   <div class="form-row">
+    <%= f.label :phone, 'Phone' %><br>
     <%= f.telephone_field :phone %>
   </div>
 
