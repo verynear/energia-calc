@@ -8,7 +8,7 @@ class AuditReportPresenter < DelegateClass(AuditReport)
   end
 
   def cover_image
-    audit.photos.find do |photo|
+    audit_report.photos.find do |photo|
       photo['id'] == wegoaudit_photo_id
     end
   end

@@ -39,4 +39,5 @@ class AuditReport < ActiveRecord::Base
   def data
     super || {}
   end
+
 end

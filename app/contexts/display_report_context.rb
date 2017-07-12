@@ -1,5 +1,6 @@
 class DisplayReportContext < BaseContext
   attr_accessor :audit_report,
+                :report_template,
                 :for_pdf,
                 :user
 
@@ -50,6 +51,10 @@ class DisplayReportContext < BaseContext
 
   def layout
     audit_report.report_template.layout
+  end
+
+  def preview_layout
+    audit_report.report_template
   end
 
   def pdf_options
@@ -108,6 +113,10 @@ class DisplayReportContext < BaseContext
     DisplayReportSerializer.new(
       audit_report: audit_report,
       display_report: display_report_for_preview).as_json
+  end
+
+  def preview_template_url
+    url_helpers.preview_calc_audit_report_display_path(audit_report)
   end
 
   def preview_report_url

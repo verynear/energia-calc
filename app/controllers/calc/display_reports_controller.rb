@@ -17,8 +17,10 @@ class Calc::DisplayReportsController < SecuredController
     @page_title = "Report based on \"#{@audit_report.name}\""
     @context = DisplayReportContext.new(
       audit_report: @audit_report,
-      user: current_user)
+      user: current_user,
+      report_template: @template)
     @report_templates = ReportTemplate.all
+    @template = @audit_report.report_template
     @attachment = Attachment.new
   end
 

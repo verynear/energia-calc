@@ -21,6 +21,15 @@
             {},
             { class: 'js-template-select' } %>
     </div>
+
+    <div class='row'>
+      <%= text_area_tag :markdown,
+                        @template.markdown,
+                      rows: 20,
+                      class: 'markdown-editor__input'
+      %>
+    </div>
+      
     <div class='js-template-form'>
     </div>
     <button type="submit" name="commit" class="btn">Save</button>
