@@ -14,7 +14,7 @@ class DisplayReportContext < BaseContext
     {
       form_html: form_html,
       display_report: display_report_as_json,
-      preview_url: preview_report_url
+      preview_url: custom_template_url
     }
   end
 
@@ -121,5 +121,9 @@ class DisplayReportContext < BaseContext
 
   def preview_report_url
     url_helpers.preview_calc_audit_report_display_path(audit_report)
+  end
+
+  def custom_template_url
+    url_helpers.custom_template_calc_audit_report_display_path(audit_report)
   end
 end

@@ -1,6 +1,6 @@
 class DisplayReports.Views.Photos extends Backbone.View
   template: _.template """
-  <h4>Cover photo</h4>
+  <h5>Cover photo</h5>
   <div class='gallery js-photos'>
   </div>
   """

@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :audit_measures, only: [:update]
     resources :photos, only: [:create, :destroy] do
       member do
-        get ':style.jpg' => 'photos#download', as: :download
+        get :download
       end
     end
     resources :sample_groups, only: [:create, :destroy, :show, :update]
@@ -103,6 +103,7 @@ Rails.application.routes.draw do
           put :change_template
           put :preview
           put :combine
+          put :custom_template
         end
       end
 

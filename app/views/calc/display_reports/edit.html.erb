@@ -21,14 +21,6 @@
             {},
             { class: 'js-template-select' } %>
     </div>
-
-    <div class='row'>
-      <%= text_area_tag :markdown,
-                        @template.markdown,
-                      rows: 20,
-                      class: 'markdown-editor__input'
-      %>
-    </div>
       
     <div class='js-template-form'>
     </div>
@@ -37,6 +29,32 @@
         @context.pdf_path,
         class: 'btn btn--primary btn--view-pdf' %>
   <% end %>
+
+  <h5>Customize Template</h5>
+
+  <%= form_for(
+        @context.report_template, 
+        url: custom_template_calc_audit_report_display_path(@context.audit_report)) do |f| %>
+    <div class='row'>
+      <%= f.text_field :name, placeholder: 'Template name' %>
+    </div>
+    <div class='row'>
+      <%= f.label :layout, 'Layout: ' %>
+      <%= f.select :layout,
+           ['default', 'elevate', 'nei'],
+           selected: @context.layout
+      %>
+    </div>
+    <div class='row'>
+      <%= f.text_area :markdown,
+                      rows: 20,
+                      class: 'markdown-editor__input'
+      %>
+    </div>
+
+    <button type="submit" name="commit" class="btn btn--primary">Save</button>
+  <% end %>
+
 </div>
 <br>
 

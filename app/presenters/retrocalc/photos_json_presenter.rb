@@ -15,9 +15,9 @@ module Retrocalc
 
     private
 
-    def absolute_url(photo, style)
+    def absolute_url(photo, size)
       Retrocalc::BASE_URL +
-        download_audit_photo_path(parent_audit, photo, style: style)
+        download_audit_photo_path(parent_audit, photo, size: size)
     end
 
     def parent_audit
@@ -28,7 +28,7 @@ module Retrocalc
       {
         id: photo.id,
         thumb_url: absolute_url(photo, :thumb),
-        medium_url: absolute_url(photo, :medium)
+        original_url: absolute_url(photo, :original)
       }
     end
   end

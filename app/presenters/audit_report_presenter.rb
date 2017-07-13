@@ -8,7 +8,7 @@ class AuditReportPresenter < DelegateClass(AuditReport)
   end
 
   def cover_image
-    audit_report.photos.find do |photo|
+    audit.photos.find do |photo|
       photo['id'] == wegoaudit_photo_id
     end
   end
@@ -16,13 +16,7 @@ class AuditReportPresenter < DelegateClass(AuditReport)
   def cover_image_url
     return unless cover_image
 
-    response = Net::HTTP.get_response(URI(cover_image['medium_url']))
-    image = Net::HTTP.get(URI(response['location']))
-    @tempfile = Tempfile.new(['image', '.jpg'])
-    @tempfile.binmode
-    @tempfile.write(image)
-    @tempfile.rewind
-    @tempfile.path
+    cover_image['original_url']
   end
 
   def demo_cover_image_url

@@ -18,9 +18,8 @@ class Calc::DisplayReportsController < SecuredController
     @context = DisplayReportContext.new(
       audit_report: @audit_report,
       user: current_user,
-      report_template: @template)
+      report_template: @audit_report.report_template)
     @report_templates = ReportTemplate.all
-    @template = @audit_report.report_template
     @attachment = Attachment.new
   end
 
@@ -57,6 +56,25 @@ class Calc::DisplayReportsController < SecuredController
     redirect_to action: :edit
   end
 
+  def custom_template
+    create_params = report_template_params.merge(
+      organization_id: current_user.organization_id
+    )
+
+    @report_template = ReportTemplate.create(create_params)
+
+    @audit_report.update(
+      report_template_id: @report_template.id)
+
+    @context = DisplayReportContext.new(
+      audit_report: @audit_report,
+      user: current_user,
+      report_template: @audit_report.report_template)
+    @report_templates = ReportTemplate.all
+    @attachment = Attachment.new
+    return render :edit
+  end
+
   def combine
     @context = DisplayReportContext.new(
       audit_report: @audit_report,
@@ -65,7 +83,12 @@ class Calc::DisplayReportsController < SecuredController
 
     @reportpdf = render_to_string @context.pdf_options
 
-    @attachments = Attachment.create(attachment_params)
+    params[:attachment]['pdf'].each do |pdffile|
+        Attachment.new(
+          title: @audit_report.name,
+          audit_report_id: @audit_report.id,
+          pdf: pdffile).save
+    end
     
 
     new_pdf = CombinePDF.new
@@ -84,6 +107,10 @@ class Calc::DisplayReportsController < SecuredController
 
   def audit_report_params
     params.require(:audit_report).permit(:report_template_id)
+  end
+
+  def report_template_params
+    params.require(:report_template).permit(:markdown, :name, :layout)
   end
 
   def content_block_params
