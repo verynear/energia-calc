@@ -5,7 +5,8 @@ class Calc::DisplayReportsController < SecuredController
     @audit_report.attributes = audit_report_params
     @context = DisplayReportContext.new(
       audit_report: @audit_report,
-      user: current_user)
+      user: current_user,
+      report_template: @audit_report.report_template)
 
     render json: {
       form: @context.form_html,
@@ -19,6 +20,8 @@ class Calc::DisplayReportsController < SecuredController
       audit_report: @audit_report,
       user: current_user,
       report_template: @audit_report.report_template)
+    @d = DateTime.now
+    @stamp = @d.strftime("%-m%-e%y")
     @report_templates = ReportTemplate.all
     @attachment = Attachment.new
   end
@@ -29,9 +32,12 @@ class Calc::DisplayReportsController < SecuredController
       content_block_params: content_block_params
     ).execute
 
+    @custom_template = ReportTemplate.new(report_template_params)
+
     @context = DisplayReportContext.new(
       audit_report: @audit_report,
-      user: current_user)
+      user: current_user,
+      report_template: @custom_template)
 
     render text: @context.preview_html
   end
@@ -40,7 +46,8 @@ class Calc::DisplayReportsController < SecuredController
     @context = DisplayReportContext.new(
       audit_report: @audit_report,
       for_pdf: true,
-      user: current_user)
+      user: current_user,
+      report_template: @audit_report.report_template)
 
     render @context.pdf_options
   end
@@ -61,18 +68,17 @@ class Calc::DisplayReportsController < SecuredController
       organization_id: current_user.organization_id
     )
 
-    @report_template = ReportTemplate.create(create_params)
+    @custom_template = ReportTemplate.create(create_params)
 
     @audit_report.update(
-      report_template_id: @report_template.id)
+      report_template_id: @custom_template.id)
 
     @context = DisplayReportContext.new(
       audit_report: @audit_report,
       user: current_user,
-      report_template: @audit_report.report_template)
-    @report_templates = ReportTemplate.all
-    @attachment = Attachment.new
-    return render :edit
+      report_template: @custom_template)
+    
+    redirect_to action: :edit
   end
 
   def combine

@@ -14,7 +14,7 @@ class DisplayReportContext < BaseContext
     {
       form_html: form_html,
       display_report: display_report_as_json,
-      preview_url: custom_template_url
+      preview_url: preview_report_url
     }
   end
 
@@ -24,7 +24,7 @@ class DisplayReportContext < BaseContext
       audit_report_calculator: audit_report_calculator,
       contentblock_mode: 'active',
       default_markdown: '',
-      markdown_source: audit_report.report_template
+      markdown_source: report_template
     ).display_report
   end
   memoize :display_report_for_form
@@ -36,7 +36,7 @@ class DisplayReportContext < BaseContext
       contentblock_mode: 'rendered',
       default_markdown: '',
       for_pdf: for_pdf,
-      markdown_source: audit_report.report_template
+      markdown_source: report_template
     ).display_report
   end
   memoize :display_report_for_preview
@@ -50,12 +50,9 @@ class DisplayReportContext < BaseContext
   end
 
   def layout
-    audit_report.report_template.layout
+    report_template.layout
   end
 
-  def preview_layout
-    audit_report.report_template
-  end
 
   def pdf_options
     {
@@ -115,15 +112,7 @@ class DisplayReportContext < BaseContext
       display_report: display_report_for_preview).as_json
   end
 
-  def preview_template_url
-    url_helpers.preview_calc_audit_report_display_path(audit_report)
-  end
-
   def preview_report_url
     url_helpers.preview_calc_audit_report_display_path(audit_report)
-  end
-
-  def custom_template_url
-    url_helpers.custom_template_calc_audit_report_display_path(audit_report)
   end
 end

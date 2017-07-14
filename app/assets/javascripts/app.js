@@ -225,3 +225,13 @@ $(function enableGalleryImg() {
   });
 });
 
+// Show/Hide Preview Template Editor
+//-------
+$(function customTemp() {
+    var x = document.getElementById('custform');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+});
