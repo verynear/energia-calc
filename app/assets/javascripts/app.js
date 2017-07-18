@@ -227,11 +227,13 @@ $(function enableGalleryImg() {
 
 // Show/Hide Preview Template Editor
 //-------
-$(function customTemp() {
+function customTemp() {
     var x = document.getElementById('custform');
     if (x.style.display === 'none') {
         x.style.display = 'block';
-    } else {
+    } else if (x.style.display === 'block') {
         x.style.display = 'none';
+    } else {
+        x.style.display = 'block';
     }
-});
+};

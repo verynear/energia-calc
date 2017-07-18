@@ -22,7 +22,7 @@ class Calc::DisplayReportsController < SecuredController
       report_template: @audit_report.report_template)
     @d = DateTime.now
     @stamp = @d.strftime("%-m%-e%y")
-    @report_templates = ReportTemplate.all
+    @report_templates = ReportTemplate.where.not("name like ?","%custom%")
     @attachment = Attachment.new
   end
 

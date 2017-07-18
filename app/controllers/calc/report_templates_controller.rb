@@ -30,7 +30,11 @@ class Calc::ReportTemplatesController < SecuredController
 
   def index
     @page_title = 'View templates'
-    @templates = ReportTemplate.all
+    if current_user.adminrole?
+      @templates = ReportTemplate.all
+    else
+      @templates = ReportTemplate.where.not("name like ?","%custom%")
+    end
   end
 
   def new

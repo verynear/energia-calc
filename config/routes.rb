@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, path: '', path_names: { sign_in: 'signin', sign_out: 'signout'}
+  devise_for :users, path_prefix: 'd', path_names: { sign_in: 'signin', sign_out: 'signout'}
   # General purpose routes that are used by both the web UI and iOS
 
-  resources :users, only: [:index, :show]
+  resources :users
 
 
   # Routes that the WegoAudit web UI depends on.

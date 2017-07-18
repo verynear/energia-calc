@@ -40,6 +40,12 @@ class ApplicationController < ActionController::Base
     #   end
     # end
 
+    def superadmin?
+      unless current_user.role == 'superadmin'
+        redirect_to root_url, :alert => "Access denied."
+      end
+    end
+
     def mobile_device?
       return true if request.user_agent =~ /Mobile|webOS/
       false

@@ -1,7 +1,54 @@
-<h3>User</h3>
-<p>Name: <%= @user.name if @user.name %></p>
-<ul>
-<% @buildings.each do |building| %>
-  <li><%= building %></li>
-<% end %>
-</ul>
+<h2><%= @user.username.to_s.humanize %> Profile</h2>
+
+  <div class="form-row">
+    Email: <%= @user.email %><br>
+  </div>
+
+  <div class="form-row">
+    Last Signed In: <%= @user.last_sign_in_at&.strftime('%b %d, %Y  %H:%M') %>
+  </div>
+
+
+  <div class="form-row">
+    Organization: <%= @organization.name %><br>
+  </div>
+
+  <div class="form-row">
+    User Role: <%= @user.role.humanize %><br>
+  </div>
+
+  <div class="form-row">
+    Name: <%= @user.first_name %> <%= @user.last_name %>
+  </div>
+
+  <div class="form-row">
+    Phone <%= @user.phone %><br>
+  </div>
+
+  <div class="form-row">
+  User's Active Audits:<br>
+  <% @active_audits.each do |audit| %>
+    <%= audit.name %> ,
+  <% end %>
+
+  </div>
+
+  <div class="form-row">
+    <%= link_to "Back to User Index", users_path %>
+  </div>
+
+  <div class="form-row">
+    <%= link_to "Edit User", edit_user_path(@user) %>
+  </div>
+
+  <div class="form-row">
+    <%= link_to "Delete User", @user, method: :delete,
+                                        data: { confirm: "You sure?" } %>
+  </div>
+
+  
+
+
+  
+
+  

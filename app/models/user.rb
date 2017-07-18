@@ -74,4 +74,8 @@ class User < ActiveRecord::Base
       false
     end
   end
+
+  def password_required?
+    false
+  end
 end
