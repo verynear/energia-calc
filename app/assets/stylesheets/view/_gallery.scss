@@ -22,6 +22,26 @@
   }
 }
 
+.gphotos {
+  margin: 0;
+  height: 0;
+
+  .gphotos__label {
+    border: 1px solid #ddd;
+    width: 150px;
+    height: 150px;
+    padding-top: 110px;
+    text-align: center;
+    background: #fff asset-url('gphotos.png') no-repeat 50% 46px;
+    cursor: pointer;
+  }
+
+  .gphotos__input {
+    height: 0;
+    overflow: hidden;
+  }
+}
+
 .thumb {
   display: block;
   float: left;

@@ -34,7 +34,7 @@ module Web
 
     def photo_params
       params.require(:structure_image)
-            .permit(:image, :audit_structure_id)
+            .permit(:image, :audit_structure_id, :image_remote_url)
             .merge(file_name: file_name_param)
             .merge(timestamp_params)
     end

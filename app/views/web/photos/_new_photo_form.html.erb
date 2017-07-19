@@ -4,6 +4,8 @@
         html: { class: 'js-autosave-form camera', multipart: true } do |f| %>
     <%= f.label :image, 'Upload image', class: 'camera__label thumb' %>
     <%= f.file_field :image, class: 'js-upload-image camera__input' %>
+    <%= f.label :remote_url, 'Google Photos', class: 'gphotos__label thumb' %>
+    <%= f.hidden_field :image_remote_url, class: 'js-upload-image camera__input', :id => "picker" %>
     <%= f.hidden_field :audit_structure_id %>
   <%- end %>
 <%- end %>

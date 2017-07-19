@@ -15,6 +15,7 @@ Shrine.plugin :validation_helpers
 Shrine.plugin :processing
 Shrine.plugin :versions
 Shrine.plugin :determine_mime_type
+Shrine.plugin :remote_url, max_size: 20*1024*1024
 Shrine.plugin :moving
 Shrine.plugin :pretty_location
 Shrine.plugin :default_url_options
