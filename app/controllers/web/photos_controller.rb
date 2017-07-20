@@ -21,7 +21,7 @@ module Web
 
     def download
       @image = StructureImage.find(params[:id])
-      redirect_to @image.image_url(params[:size].to_sym)
+      redirect_to @image.image_url(params[:format].to_sym)
     end
 
     private

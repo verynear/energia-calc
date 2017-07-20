@@ -1,6 +1,8 @@
 class StructureImage < ActiveRecord::Base
   include ImageUploader::Attachment.new(:image) # adds an `image` virtual attribute
 
+  validates :image_data, presence: { message: "Image data missing" }
+
   include Cloneable,
           SoftDestruction
 

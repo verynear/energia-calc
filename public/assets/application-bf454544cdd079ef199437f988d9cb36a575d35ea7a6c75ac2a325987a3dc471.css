@@ -1,0 +1,4370 @@
+@charset "UTF-8";
+/*! fancyBox v2.1.5 fancyapps.com | fancyapps.com/fancybox/#license */
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-wrap,
+.fancybox-skin,
+.fancybox-outer,
+.fancybox-inner,
+.fancybox-image,
+.fancybox-wrap iframe,
+.fancybox-wrap object,
+.fancybox-nav,
+.fancybox-nav span,
+.fancybox-tmp {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: none;
+  vertical-align: top;
+}
+
+/* line 20, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 8020;
+}
+
+/* line 27, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-skin {
+  position: relative;
+  background: #f9f9f9;
+  color: #444;
+  text-shadow: none;
+  border-radius: 4px;
+}
+
+/* line 37, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-opened {
+  z-index: 8030;
+}
+
+/* line 41, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-opened .fancybox-skin {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* line 47, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-outer, .fancybox-inner {
+  position: relative;
+}
+
+/* line 51, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-inner {
+  overflow: hidden;
+}
+
+/* line 55, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-type-iframe .fancybox-inner {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* line 59, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-error {
+  color: #444;
+  font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 0;
+  padding: 15px;
+  white-space: nowrap;
+}
+
+/* line 67, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-image, .fancybox-iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 73, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* line 78, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+  background-image: url("/images/fancybox/fancybox_sprite.png");
+}
+
+/* line 82, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+#fancybox-loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -22px;
+  margin-left: -22px;
+  background-position: 0 -108px;
+  opacity: 0.8;
+  cursor: pointer;
+  z-index: 8060;
+}
+
+/* line 94, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+#fancybox-loading div {
+  width: 44px;
+  height: 44px;
+  background: url("/images/fancybox/fancybox_loading.gif") center center no-repeat;
+}
+
+/* line 100, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  z-index: 8040;
+}
+
+/* line 110, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-nav {
+  position: absolute;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  cursor: pointer;
+  text-decoration: none;
+  background: transparent url("/images/fancybox/blank.gif");
+  /* helps IE */
+  -webkit-tap-highlight-color: transparent;
+  z-index: 8040;
+}
+
+/* line 122, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-prev {
+  left: 0;
+}
+
+/* line 126, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-next {
+  right: 0;
+}
+
+/* line 130, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-nav span {
+  position: absolute;
+  top: 50%;
+  width: 36px;
+  height: 34px;
+  margin-top: -18px;
+  cursor: pointer;
+  z-index: 8040;
+  visibility: hidden;
+}
+
+/* line 141, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-prev span {
+  left: 10px;
+  background-position: 0 -36px;
+}
+
+/* line 146, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-next span {
+  right: 10px;
+  background-position: 0 -72px;
+}
+
+/* line 151, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-nav:hover span {
+  visibility: visible;
+}
+
+/* line 155, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-tmp {
+  position: absolute;
+  top: -99999px;
+  left: -99999px;
+  visibility: hidden;
+  max-width: 99999px;
+  max-height: 99999px;
+  overflow: visible !important;
+}
+
+/* Overlay helper */
+/* line 167, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-lock {
+  overflow: hidden !important;
+  width: auto;
+}
+
+/* line 172, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-lock body {
+  overflow: hidden !important;
+}
+
+/* line 176, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-lock-test {
+  overflow-y: hidden !important;
+}
+
+/* line 180, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  display: none;
+  z-index: 8010;
+  background: url("/images/fancybox/fancybox_overlay.png");
+}
+
+/* line 190, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-overlay-fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+/* line 196, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-lock .fancybox-overlay {
+  overflow: auto;
+  overflow-y: scroll;
+}
+
+/* Title helper */
+/* line 203, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-title {
+  visibility: hidden;
+  font: normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  position: relative;
+  text-shadow: none;
+  z-index: 8050;
+}
+
+/* line 211, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-opened .fancybox-title {
+  visibility: visible;
+}
+
+/* line 215, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-title-float-wrap {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  margin-bottom: -35px;
+  z-index: 8050;
+  text-align: center;
+}
+
+/* line 224, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-title-float-wrap .child {
+  display: inline-block;
+  margin-right: -100%;
+  padding: 2px 20px;
+  background: transparent;
+  /* Fallback for web browsers that doesn't support RGBa */
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  text-shadow: 0 1px 2px #222;
+  color: #FFF;
+  font-weight: bold;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+/* line 240, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-title-outside-wrap {
+  position: relative;
+  margin-top: 10px;
+  color: #fff;
+}
+
+/* line 246, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-title-inside-wrap {
+  padding-top: 10px;
+}
+
+/* line 250, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+.fancybox-title-over-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  padding: 10px;
+  background: #000;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/*Retina graphics!*/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  /* line 265, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+  #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+    background-image: url("/images/fancybox/fancybox_sprite@2x.png");
+    background-size: 44px 152px;
+    /*The size of the normal image, half the size of the hi-res image*/
+  }
+
+  /* line 270, /home/scott/AuditCalc/app/assets/stylesheets/vendor/_fancybox.scss */
+  #fancybox-loading div {
+    background-image: url("/images/fancybox/fancybox_loading@2x.gif");
+    background-size: 24px 24px;
+    /*The size of the normal image, half the size of the hi-res image*/
+  }
+}
+@-webkit-keyframes successBgFlash {
+  0% {
+    background: #dff0d8;
+    border-bottom-color: #d6e9c6;
+  }
+  100% {
+    background: #fff;
+    border-bottom-color: #e8e8e8;
+  }
+}
+@keyframes successBgFlash {
+  0% {
+    background: #dff0d8;
+    border-bottom-color: #d6e9c6;
+  }
+  100% {
+    background: #fff;
+    border-bottom-color: #e8e8e8;
+  }
+}
+@-webkit-keyframes successLinkFlash {
+  0% {
+    color: #3c763d;
+  }
+  100% {
+    color: #212121;
+  }
+}
+@keyframes successLinkFlash {
+  0% {
+    color: #3c763d;
+  }
+  100% {
+    color: #212121;
+  }
+}
+@-webkit-keyframes animate-notice-bg {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -20px 0;
+  }
+}
+@keyframes animate-notice-bg {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -20px 0;
+  }
+}
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/utility/_placeholders.scss */
+.content, .header, .row, .main-section, .titlebar, .titlebar__nav, .form-actions, .form-row, .tab-menu, .measure-overview, .measure, .measure__actions, .structure-change-set, .structure, .report-builder-actions {
+  *zoom: 1;
+}
+/* line 4, /home/scott/AuditCalc/app/assets/stylesheets/utility/_placeholders.scss */
+.content:before, .header:before, .row:before, .main-section:before, .titlebar:before, .titlebar__nav:before, .form-actions:before, .form-row:before, .tab-menu:before, .measure-overview:before, .measure:before, .measure__actions:before, .structure-change-set:before, .structure:before, .report-builder-actions:before, .content:after, .header:after, .row:after, .main-section:after, .titlebar:after, .titlebar__nav:after, .form-actions:after, .form-row:after, .tab-menu:after, .measure-overview:after, .measure:after, .measure__actions:after, .structure-change-set:after, .structure:after, .report-builder-actions:after {
+  content: " ";
+  display: table;
+}
+/* line 10, /home/scott/AuditCalc/app/assets/stylesheets/utility/_placeholders.scss */
+.content:after, .header:after, .row:after, .main-section:after, .titlebar:after, .titlebar__nav:after, .form-actions:after, .form-row:after, .tab-menu:after, .measure-overview:after, .measure:after, .measure__actions:after, .structure-change-set:after, .structure:after, .report-builder-actions:after {
+  clear: both;
+}
+
+/* line 15, /home/scott/AuditCalc/app/assets/stylesheets/utility/_placeholders.scss */
+h1, h2, h3, h4, h5, h6, .measure__summary__title, .measure__summary__section-title, .structure__title {
+  font-family: "OpenSansBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal !important;
+}
+
+/* line 20, /home/scott/AuditCalc/app/assets/stylesheets/utility/_placeholders.scss */
+.secondary-title, .titlebar__title, .measure__empty, .structure__column__title, .report h1 {
+  font-family: "OpenSansLight", "HelveticaNeue-Light", "Helvetica Neue Light", Arial, sans-serif;
+  font-weight: normal !important;
+}
+
+/* line 25, /home/scott/AuditCalc/app/assets/stylesheets/utility/_placeholders.scss */
+strong,
+b, .table th {
+  font-weight: bold;
+  color: #212121;
+}
+
+/* line 50, /home/scott/AuditCalc/app/assets/stylesheets/utility/_placeholders.scss */
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus,
+select:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+/* line 58, /home/scott/AuditCalc/app/assets/stylesheets/utility/_placeholders.scss */
+input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="time"], input[type="week"], .uneditable-input,
+textarea, select, .addon {
+  height: 30px;
+  margin-top: 3px;
+}
+
+/* line 164, /home/scott/AuditCalc/app/assets/stylesheets/utility/_placeholders.scss */
+.report-builder-actions__help:after {
+  content: "\E003";
+  top: 2px;
+}
+/* line 171, /home/scott/AuditCalc/app/assets/stylesheets/utility/_placeholders.scss */
+.active.report-builder-actions__help:after {
+  content: "\E001";
+}
+
+/* line 178, /home/scott/AuditCalc/app/assets/stylesheets/utility/_placeholders.scss */
+.measures-tabs__grippy:hover {
+  cursor: move;
+  cursor: -webkit-grab;
+}
+
+/* line 185, /home/scott/AuditCalc/app/assets/stylesheets/utility/_placeholders.scss */
+.table--recommendations td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+/* line 9, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+/* line 19, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+body {
+  margin: 0;
+}
+
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+/* line 33, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+/* line 54, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+/* line 67, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+/* line 77, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+[hidden],
+template {
+  display: none;
+}
+
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+/* line 89, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+a {
+  background-color: transparent;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+/* line 97, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+/* line 109, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+/* line 117, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+/* line 126, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+/* line 135, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+/* line 144, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+/* line 153, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+/* line 161, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+/* line 169, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+sup {
+  top: -0.5em;
+}
+
+/* line 173, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+/* line 184, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+/* line 192, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+/* line 203, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+figure {
+  margin: 1em 40px;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+/* line 211, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+ * Contain overflow in all browsers.
+ */
+/* line 221, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+pre {
+  overflow: auto;
+}
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+/* line 229, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+/* line 252, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+/* line 266, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+button {
+  overflow: visible;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+/* line 277, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+/* line 290, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+/* line 302, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+/* line 311, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+/* line 322, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+input {
+  line-height: normal;
+}
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+/* line 334, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+/* line 346, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+/* line 357, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+/* line 370, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+/* line 379, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+/* line 390, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+/* line 399, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+textarea {
+  overflow: auto;
+}
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+/* line 408, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+optgroup {
+  font-weight: bold;
+}
+
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+/* line 419, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 424, /home/scott/AuditCalc/app/assets/stylesheets/_normalize.scss */
+td,
+th {
+  padding: 0;
+}
+
+/* -------
+This file is generated by gulp, don't edit manually
+See "icon-font-generator repo for details"
+------ */
+@font-face {
+  font-family: "audit-icons";
+  src: url("/fonts/audit-icons.eot");
+  src: url("/fonts/audit-icons.eot?#iefix") format("eot"), url("/fonts/audit-icons.woff") format("woff"), url("/fonts/audit-icons.ttf") format("truetype"), url("/fonts/audit-icons.svg#audit-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* line 16, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.report-builder-actions__help:after, [class^="icon-"], [class*=" icon-"], .structure__details:after {
+  display: inline-block;
+  position: relative;
+  font-family: 'audit-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 34, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-check:before {
+  content: "";
+}
+
+/* line 37, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-clone:before {
+  content: "";
+}
+
+/* line 40, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-close:before {
+  content: "";
+}
+
+/* line 43, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-import:before {
+  content: "";
+}
+
+/* line 46, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-link:before {
+  content: "";
+}
+
+/* line 49, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-locked:before {
+  content: "";
+}
+
+/* line 52, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-lupe:before {
+  content: "";
+}
+
+/* line 55, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-plus:before {
+  content: "";
+}
+
+/* line 58, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-restore:before {
+  content: "";
+}
+
+/* line 61, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-chevron-right:before {
+  content: "";
+}
+
+/* line 64, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-trash:before {
+  content: "";
+}
+
+/* line 67, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-triangle-down:before {
+  content: "";
+}
+
+/* line 70, /home/scott/AuditCalc/app/assets/stylesheets/base/_icons.scss */
+.icon-unlocked:before {
+  content: "";
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/base/_general.scss */
+.hide {
+  display: none;
+}
+
+/* line 9, /home/scott/AuditCalc/app/assets/stylesheets/base/_general.scss */
+.active-content {
+  border: 1px solid #9E9E9E;
+  float: left;
+  margin-left: -1px;
+  width: 870px;
+  background: #fff;
+  position: relative;
+  z-index: 9;
+  padding: 0 20px 20px 20px;
+}
+
+/* line 20, /home/scott/AuditCalc/app/assets/stylesheets/base/_general.scss */
+.section-title {
+  line-height: 42px;
+  font-weight: bold;
+  background-color: #fafafa;
+  border-bottom: 1px solid #9E9E9E;
+  padding: 0 10px;
+  display: block;
+  width: 100%;
+}
+
+/* line 30, /home/scott/AuditCalc/app/assets/stylesheets/base/_general.scss */
+.section-title__action {
+  float: right;
+  font-weight: normal;
+  padding: 0 10px;
+}
+
+/* line 36, /home/scott/AuditCalc/app/assets/stylesheets/base/_general.scss */
+.crumbs {
+  margin-top: 6px;
+}
+
+/*! normalize.css v2.1.2 | MIT License | git.io/normalize */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+/* line 30, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+/* line 41, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+/* line 50, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+[hidden] {
+  display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+/* line 64, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+/* line 74, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+body {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+/* line 86, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+a:focus {
+  outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+/* line 94, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 108, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+/* line 117, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 125, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+/* line 134, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+/* line 142, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+/* line 152, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+/* line 161, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+/* line 173, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+pre {
+  white-space: pre-wrap;
+}
+
+/**
+ * Set consistent quote types.
+ */
+/* line 181, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+/* line 189, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+/* line 197, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+/* line 205, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+sup {
+  top: -0.5em;
+}
+
+/* line 209, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+sub {
+  bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+/* line 221, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+/* line 229, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+/* line 241, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+figure {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/**
+ * Define consistent border, margin, and padding.
+ */
+/* line 253, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+/* line 264, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 275, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+/* line 289, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+button,
+input {
+  line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+/* line 301, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+/* line 314, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+/* line 326, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ */
+/* line 336, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+/* line 348, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+/* line 360, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+/* line 369, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+/* line 380, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+/* line 393, /home/scott/AuditCalc/app/assets/stylesheets/base/_normalize.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@font-face {
+  font-family: Dagny;
+  src: url("/fonts/DagnyWeb_modified.eot");
+  src: url("/fonts/DagnyWeb_modified.eot?#iefix") format("embedded-opentype"), url("/fonts/DagnyWeb_modified.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: Dagny;
+  src: url("/fonts/DagnyWeb_Bold_modified.eot");
+  src: url("/fonts/DagnyWeb_Bold_modified.eot?#iefix") format("embedded-opentype"), url("/fonts/DagnyWeb_Bold_modified.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: OpenSansBold;
+  src: url("/fonts/opensans-bold-webfont.eot");
+  src: url("/fonts/opensans-bold-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/opensans-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: OpenSansLight;
+  src: url("/fonts/opensans-light-webfont.eot");
+  src: url("/fonts/opensans-light-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/opensans-light-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/base/_type.scss */
+h1, h2, h3, h4, h5, h6 {
+  color: #212121;
+  margin: 24px 0 12px 0;
+}
+
+/* line 7, /home/scott/AuditCalc/app/assets/stylesheets/base/_type.scss */
+h1, h2, h3 {
+  line-height: 36px;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/base/_type.scss */
+h4, h5, h6 {
+  line-height: 24px;
+}
+
+/* line 15, /home/scott/AuditCalc/app/assets/stylesheets/base/_type.scss */
+h1 {
+  font-size: 36px;
+}
+/* line 18, /home/scott/AuditCalc/app/assets/stylesheets/base/_type.scss */
+h1 small {
+  font-size: 21px;
+}
+
+/* line 23, /home/scott/AuditCalc/app/assets/stylesheets/base/_type.scss */
+h2 {
+  font-size: 27px;
+}
+
+/* line 27, /home/scott/AuditCalc/app/assets/stylesheets/base/_type.scss */
+h3 {
+  font-size: 23px;
+}
+/* line 30, /home/scott/AuditCalc/app/assets/stylesheets/base/_type.scss */
+h3 small {
+  font-size: 16px;
+}
+
+/* line 35, /home/scott/AuditCalc/app/assets/stylesheets/base/_type.scss */
+h4 {
+  font-size: 19px;
+}
+
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/base/_type.scss */
+p {
+  margin: 0 0 12px 0;
+}
+
+/* line 49, /home/scott/AuditCalc/app/assets/stylesheets/base/_type.scss */
+.meta {
+  color: #9E9E9E;
+  font-weight: 200;
+}
+
+/* line 54, /home/scott/AuditCalc/app/assets/stylesheets/base/_type.scss */
+.fineprint {
+  font-size: 14px;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/layout/_footer.scss */
+.footer {
+  margin-top: 90px;
+  text-align: center;
+  color: #999;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/layout/_header.scss */
+.header {
+  background: #2196F3;
+  padding: 20px 0 12px;
+}
+
+/* line 8, /home/scott/AuditCalc/app/assets/stylesheets/layout/_header.scss */
+.logo {
+  color: #fff;
+  font-size: 17px;
+  line-height: 1;
+  padding: 15px 0;
+}
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/layout/_header.scss */
+.logo:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  color: #fff;
+}
+
+/* line 20, /home/scott/AuditCalc/app/assets/stylesheets/layout/_header.scss */
+.wego-logo {
+  float: left;
+}
+
+/* line 24, /home/scott/AuditCalc/app/assets/stylesheets/layout/_header.scss */
+.global-menu {
+  float: right;
+  display: inline;
+}
+/* line 28, /home/scott/AuditCalc/app/assets/stylesheets/layout/_header.scss */
+.global-menu a {
+  color: #fff;
+  padding: 2px 2px;
+}
+/* line 32, /home/scott/AuditCalc/app/assets/stylesheets/layout/_header.scss */
+.global-menu a:hover {
+  color: #fff;
+  background: #1565C0;
+}
+/* line 38, /home/scott/AuditCalc/app/assets/stylesheets/layout/_header.scss */
+.global-menu li {
+  display: inline-block;
+  padding: 5px 5px;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  margin-bottom: 6px;
+  margin-right: -3px;
+  margin-left: -3px;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-1 {
+  -ms-flex-preferred-size: 8.33333%;
+      flex-basis: 8.33333%;
+  max-width: 8.33333%;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-2 {
+  -ms-flex-preferred-size: 16.66667%;
+      flex-basis: 16.66667%;
+  max-width: 16.66667%;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-3 {
+  -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
+  max-width: 25%;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-4 {
+  -ms-flex-preferred-size: 33.33333%;
+      flex-basis: 33.33333%;
+  max-width: 33.33333%;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-5 {
+  -ms-flex-preferred-size: 41.66667%;
+      flex-basis: 41.66667%;
+  max-width: 41.66667%;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-6 {
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  max-width: 50%;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-7 {
+  -ms-flex-preferred-size: 58.33333%;
+      flex-basis: 58.33333%;
+  max-width: 58.33333%;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-8 {
+  -ms-flex-preferred-size: 66.66667%;
+      flex-basis: 66.66667%;
+  max-width: 66.66667%;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-9 {
+  -ms-flex-preferred-size: 75%;
+      flex-basis: 75%;
+  max-width: 75%;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-10 {
+  -ms-flex-preferred-size: 83.33333%;
+      flex-basis: 83.33333%;
+  max-width: 83.33333%;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-11 {
+  -ms-flex-preferred-size: 91.66667%;
+      flex-basis: 91.66667%;
+  max-width: 91.66667%;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-12 {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  max-width: 100%;
+}
+
+/* line 17, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+.col-auto {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+/* line 21, /home/scott/AuditCalc/app/assets/stylesheets/layout/_grid.scss */
+[class*='col-'] {
+  padding-right: 3px;
+  padding-left: 3px;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/layout/_structure.scss */
+.container {
+  max-width: 95%;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+/* line 13, /home/scott/AuditCalc/app/assets/stylesheets/layout/_structure.scss */
+.content {
+  margin-top: 24px;
+}
+
+/* line 22, /home/scott/AuditCalc/app/assets/stylesheets/layout/_structure.scss */
+.main-section {
+  padding: 48px 0 48px;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar {
+  background: #2196F3;
+  color: #fff;
+  padding: 48px 0 48px;
+}
+/* line 7, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__title {
+  color: #fff;
+  margin: 0;
+  float: left;
+}
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__action-icon {
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+  margin: -2px 0 0 20px;
+  background: #1976D2;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 100%;
+  display: block;
+  float: left;
+}
+/* line 24, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__action-icon:hover {
+  color: #fff;
+  background: #1565C0;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+/* line 30, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__action-icon i {
+  top: 4px;
+}
+/* line 35, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__nav {
+  font-size: 16px;
+  margin: 30px 0 -20px 0;
+  display: block;
+  float: left;
+  clear: both;
+}
+/* line 44, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__nav a {
+  color: #2196F3;
+  position: relative;
+}
+/* line 48, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__nav a:hover {
+  color: #fff;
+}
+/* line 52, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__nav a:not(.btn) {
+  padding-bottom: 8px;
+  border-bottom: 1px solid transparent;
+}
+/* line 56, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__nav a:not(.btn):before, .titlebar__nav a:not(.btn):after {
+  content: '';
+  background: #d3eafd;
+  display: block;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  -webkit-transition: width 0.15s ease-in-out;
+  transition: width 0.15s ease-in-out;
+}
+/* line 69, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__nav a:not(.btn):hover:before, .titlebar__nav a:not(.btn):hover:after {
+  width: 50%;
+}
+/* line 74, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__nav a:not(.btn):hover:before {
+  left: 50%;
+}
+/* line 78, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__nav a:not(.btn):hover:after {
+  right: 50%;
+}
+/* line 84, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__nav a + a {
+  margin-left: 30px;
+}
+/* line 89, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__nav__btn {
+  background: #1976D2;
+  color: #fff;
+  font-size: 14px;
+}
+/* line 94, /home/scott/AuditCalc/app/assets/stylesheets/layout/_titlebar.scss */
+.titlebar__nav__btn:hover {
+  background: #1565C0;
+  color: #fff;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  border: none;
+}
+/* line 6, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn .icon-plus {
+  bottom: -1px;
+  margin-left: 4px;
+}
+
+/* line 12, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn-primary {
+  color: whitesmoke;
+  background-color: #2196F3;
+  box-shadow: 0 1px 0 #a31e00;
+}
+/* line 17, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn-primary:hover {
+  color: #fff;
+  background-color: #0d8aee;
+}
+/* line 22, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn-primary:active {
+  background: #1565C0;
+}
+
+/* line 27, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn-secondary {
+  box-shadow: 0 1px 0 #0454b4;
+}
+
+/* line 31, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn-primary,
+.btn-secondary {
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* line 36, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* line 42, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+button {
+  border: 0;
+}
+
+/* line 47, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn {
+  color: #757575;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.71em 1.5em;
+  position: relative;
+  text-align: center;
+  display: inline-block;
+}
+/* line 59, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn:hover {
+  color: #333;
+  background-color: #fafafa;
+  cursor: pointer;
+  text-decoration: none;
+}
+/* line 66, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn span {
+  vertical-align: -3px;
+}
+
+/* line 71, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn-small {
+  font-size: 0.85em;
+}
+
+/* line 75, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn-large {
+  font-size: 1.3em;
+}
+
+/* line 80, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn [class^="icon-"], .btn [class*=" icon-"] {
+  vertical-align: -1px;
+}
+/* line 84, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn-small [class^="icon-"], .btn-small [class*=" icon-"] {
+  vertical-align: -2px;
+}
+/* line 88, /home/scott/AuditCalc/app/assets/stylesheets/component/_btn.scss */
+.btn-large [class^="icon-"], .btn-large [class*=" icon-"] {
+  vertical-align: -4px;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/component/_crumbs.scss */
+.crumbs i {
+  font-size: 11px;
+  margin: 0 3px;
+  bottom: -1px;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_delete-query.scss */
+.delete-query {
+  position: absolute;
+  z-index: 19;
+  background: #F2DEDE;
+  right: -1px;
+  top: -1px;
+  bottom: -1px;
+  width: 280px;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  -webkit-transition: height 0.2s ease-in, opacity 0.2s ease-in;
+  transition: height 0.2s ease-in, opacity 0.2s ease-in;
+}
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/component/_delete-query.scss */
+.delete-query.in {
+  height: 44px;
+  opacity: 1;
+}
+/* line 19, /home/scott/AuditCalc/app/assets/stylesheets/component/_delete-query.scss */
+.delete-query a {
+  display: block;
+  float: left;
+  width: 85px;
+  text-align: center;
+  border-left: 1px solid #EBCCD1;
+}
+/* line 26, /home/scott/AuditCalc/app/assets/stylesheets/component/_delete-query.scss */
+.delete-query a i {
+  top: 2px;
+  right: -2px;
+  font-size: 12px;
+}
+
+/* line 34, /home/scott/AuditCalc/app/assets/stylesheets/component/_delete-query.scss */
+.delete-query__q {
+  display: block;
+  text-align: center;
+  float: left;
+  width: 110px;
+}
+
+/* line 41, /home/scott/AuditCalc/app/assets/stylesheets/component/_delete-query.scss */
+.delete-query__yes {
+  color: #A94442;
+}
+
+/* line 45, /home/scott/AuditCalc/app/assets/stylesheets/component/_delete-query.scss */
+.delete-query__no {
+  color: #212121;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_forms.scss */
+.form-row {
+  background: #fff;
+}
+
+/* line 6, /home/scott/AuditCalc/app/assets/stylesheets/component/_forms.scss */
+.active-content__details .form-row__label {
+  width: 200px;
+}
+
+/* line 12, /home/scott/AuditCalc/app/assets/stylesheets/component/_forms.scss */
+.form-row--date select {
+  width: 80px;
+}
+
+/* line 17, /home/scott/AuditCalc/app/assets/stylesheets/component/_forms.scss */
+#custform {
+  display: none;
+}
+
+/* line 22, /home/scott/AuditCalc/app/assets/stylesheets/component/_forms.scss */
+select.month {
+  width: 100px;
+}
+/* line 26, /home/scott/AuditCalc/app/assets/stylesheets/component/_forms.scss */
+select.day {
+  width: 50px;
+}
+/* line 30, /home/scott/AuditCalc/app/assets/stylesheets/component/_forms.scss */
+select.year {
+  width: 70px;
+}
+
+/* line 35, /home/scott/AuditCalc/app/assets/stylesheets/component/_forms.scss */
+input + button.addon {
+  margin-left: 0;
+}
+
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/component/_forms.scss */
+button i {
+  margin-top: 2px;
+}
+
+/* line 43, /home/scott/AuditCalc/app/assets/stylesheets/component/_forms.scss */
+.form-row--search {
+  border-bottom: none;
+  margin-top: 10px;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+form {
+  margin: 0 0 24px;
+}
+/* line 4, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+.table form {
+  margin: 0;
+}
+
+/* line 9, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+/* line 15, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+label {
+  color: #212121;
+}
+
+/* line 20, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="time"], input[type="week"], .uneditable-input,
+input[type="radio"],
+input[type="checkbox"],
+textarea,
+select,
+.uneditable-input,
+.radio-inline,
+.checkbox-inline,
+.addon,
+.form-row__help {
+  float: left;
+}
+
+/* line 34, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="time"], input[type="week"], .uneditable-input,
+textarea,
+.uneditable-input {
+  width: 210px;
+  display: block;
+  padding: 4px;
+  font-size: 14px;
+  font-family: "Dagny", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 24px;
+  color: #212121;
+  border: 1px solid #9E9E9E;
+}
+
+/* line 48, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="time"], input[type="week"], .uneditable-input,
+textarea,
+.uneditable-input {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear .2s, box-shadow linear .2s;
+  transition: border linear .2s, box-shadow linear .2s;
+}
+
+/* line 55, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+.uneditable-textarea {
+  width: auto;
+  height: auto;
+}
+
+/* line 61, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+.uneditable-input {
+  background-color: #fff;
+  cursor: not-allowed;
+  line-height: 20px;
+}
+
+/* line 68, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+input:-moz-placeholder {
+  color: #757575;
+}
+
+/* line 72, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+:-ms-input-placeholder {
+  color: #757575;
+}
+
+/* line 76, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+::-webkit-input-placeholder {
+  color: #757575;
+}
+
+/* line 81, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+input[type="image"],
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin-top: 11px;
+  *margin-top: 0;
+  /* IE7 */
+  line-height: normal;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+/* line 95, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+input[type="file"] {
+  width: auto;
+  padding: initial;
+  line-height: inherit;
+  border: initial;
+  background-color: #fff;
+  background-color: initial;
+  box-shadow: none;
+}
+
+/* line 106, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  width: auto;
+  height: auto;
+}
+
+/* line 114, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+select,
+input[type="file"] {
+  height: 28px;
+  /* In IE7, the height of the select element cannot be changed by height, only font-size */
+  *margin-top: 4px;
+  /* For IE7, add top margin to align select with labels */
+  line-height: 28px;
+}
+
+/* line 122, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+input[type="file"] {
+  line-height: 18px \9;
+}
+
+/* line 127, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+select {
+  width: 210px;
+  margin-top: 4px;
+  height: inherit \9;
+  padding: 4px \9;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  /* line 127, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+  select {
+    border: 1px solid #9E9E9E;
+    line-height: 24px;
+    padding: 4px;
+  }
+}
+/* line 142, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+select ~ select {
+  margin-left: 20px;
+}
+
+/* line 148, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+select[multiple],
+select[size] {
+  height: auto;
+}
+
+/* line 154, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+input[type="image"] {
+  box-shadow: none;
+  border: 0;
+}
+
+/* line 160, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+textarea {
+  height: auto;
+}
+
+/* line 165, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+input[type="hidden"] {
+  display: none;
+}
+
+/* line 171, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+legend {
+  color: #212121;
+}
+
+/* line 176, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+.form-title {
+  display: block;
+  width: 100%;
+  padding-top: 23px;
+  padding-bottom: 12px;
+  color: #212121;
+  font-weight: bold;
+  font-size: 17.5px;
+  line-height: 24px;
+  border: 0;
+  border-bottom: 1px solid #eee;
+  text-indent: 5px;
+}
+/* line 189, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_base.scss */
+.form-title small {
+  font-size: 14px;
+  color: #9E9E9E;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_checkbox_radio.scss */
+.radio,
+.checkbox {
+  padding-left: 18px;
+}
+
+/* line 7, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_checkbox_radio.scss */
+.radio input[type="radio"],
+.checkbox input[type="checkbox"] {
+  margin-left: -18px;
+}
+
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_checkbox_radio.scss */
+.checkbox:first-child:not(.checkbox-inline),
+.radio:first-child:not(.radio-inline) {
+  padding-top: 5px;
+}
+
+/* line 20, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_checkbox_radio.scss */
+.radio-inline,
+.checkbox-inline {
+  line-height: 36px;
+  vertical-align: middle;
+}
+
+/* line 27, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_checkbox_radio.scss */
+.radio-inline + .radio-inline,
+.checkbox-inline + .checkbox-inline {
+  margin-left: 15px;
+}
+
+/* line 32, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_checkbox_radio.scss */
+.radio-block,
+.checkbox-block {
+  line-height: 36px;
+  margin-bottom: -6px;
+  display: block;
+}
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_checkbox_radio.scss */
+fieldset:first-child .radio-block, fieldset:first-child
+.checkbox-block {
+  margin-left: 195px;
+}
+
+/* line 5, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_feedback.scss */
+input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="url"]:focus, input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, .uneditable-input:focus,
+textarea:focus {
+  border-color: #7f7f7f;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.15);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+}
+
+/* line 13, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_feedback.scss */
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus,
+select:focus {
+  box-shadow: none;
+}
+
+/* line 22, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_feedback.scss */
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly],
+select[readonly],
+textarea[readonly] {
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* line 165, /home/scott/AuditCalc/app/assets/stylesheets/utility/_mixins.scss */
+.form-row.error > label {
+  color: #B71C1C;
+}
+/* line 170, /home/scott/AuditCalc/app/assets/stylesheets/utility/_mixins.scss */
+.form-row.error input[type="email"], .form-row.error input[type="number"], .form-row.error input[type="password"], .form-row.error input[type="search"], .form-row.error input[type="tel"], .form-row.error input[type="text"], .form-row.error input[type="url"], .form-row.error input[type="color"], .form-row.error input[type="date"], .form-row.error input[type="datetime"], .form-row.error input[type="datetime-local"], .form-row.error input[type="month"], .form-row.error input[type="time"], .form-row.error input[type="week"], .form-row.error .uneditable-input,
+.form-row.error textarea {
+  border-color: #EF9A9A;
+}
+/* line 174, /home/scott/AuditCalc/app/assets/stylesheets/utility/_mixins.scss */
+.form-row.error input[type="email"]:focus, .form-row.error input[type="number"]:focus, .form-row.error input[type="password"]:focus, .form-row.error input[type="search"]:focus, .form-row.error input[type="tel"]:focus, .form-row.error input[type="text"]:focus, .form-row.error input[type="url"]:focus, .form-row.error input[type="color"]:focus, .form-row.error input[type="date"]:focus, .form-row.error input[type="datetime"]:focus, .form-row.error input[type="datetime-local"]:focus, .form-row.error input[type="month"]:focus, .form-row.error input[type="time"]:focus, .form-row.error input[type="week"]:focus, .form-row.error .uneditable-input:focus,
+.form-row.error textarea:focus {
+  border-color: #e86e6e;
+  box-shadow: 0 0 6px #fdf2f2;
+}
+/* line 180, /home/scott/AuditCalc/app/assets/stylesheets/utility/_mixins.scss */
+.form-row.error input[type="email"], .form-row.error input[type="number"], .form-row.error input[type="password"], .form-row.error input[type="search"], .form-row.error input[type="tel"], .form-row.error input[type="text"], .form-row.error input[type="url"], .form-row.error input[type="color"], .form-row.error input[type="date"], .form-row.error input[type="datetime"], .form-row.error input[type="datetime-local"], .form-row.error input[type="month"], .form-row.error input[type="time"], .form-row.error input[type="week"], .form-row.error .uneditable-input,
+.form-row.error select,
+.form-row.error textarea {
+  color: #B71C1C;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  /* line 38, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_feedback.scss */
+  .form-row.error select {
+    background: #fff5f7;
+  }
+}
+/* line 44, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_feedback.scss */
+.form-row.error .help-inline {
+  color: #999999;
+  margin-top: 5px;
+}
+/* line 48, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_feedback.scss */
+.form-row.error .help-inline span {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+/* line 55, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_feedback.scss */
+.error__msg {
+  color: #B71C1C;
+  display: block;
+  clear: both;
+  padding-top: 5px;
+  margin: 5px 0 0 190px;
+}
+
+/* line 64, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_feedback.scss */
+.error-block {
+  border-radius: 0;
+  margin: 10px 0 0 0;
+  padding: 5px 10px;
+  list-style: none;
+}
+
+/* line 73, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_feedback.scss */
+input:invalid,
+textarea:invalid,
+select:invalid {
+  color: #B71C1C;
+  border-color: #EF9A9A;
+}
+/* line 79, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_feedback.scss */
+input:invalid:focus,
+textarea:invalid:focus,
+select:invalid:focus {
+  border-color: #e86e6e;
+  box-shadow: 0 0 6px #fdf2f2;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_actions.scss */
+.form-actions {
+  color: #9E9E9E;
+  border-top: solid 3px #E0E0E0;
+  padding: 6px 10px;
+  background: #fff;
+}
+/* line 8, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_actions.scss */
+.form-actions button,
+.form-actions a,
+.form-actions .sep {
+  display: inline-block;
+  margin-bottom: 0;
+}
+/* line 15, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_actions.scss */
+.form-actions .cancel {
+  margin-top: 5px;
+  text-shadow: 0 1px 0 #fff;
+}
+/* line 20, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_actions.scss */
+.form-actions .sep {
+  color: #9E9E9E;
+  margin: 5px 10px;
+}
+/* line 23, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_actions.scss */
+.form-actions .sep:before, .form-actions .sep:after {
+  content: "\00A0\2013\00A0";
+  color: #d5d5d5;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+.input-has-prepend,
+.input-has-prepend {
+  border-radius: 0 2px 2px 0;
+}
+
+/* line 9, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+.input-has-prepend:focus,
+.input-has-prepend:focus,
+.input-has-append:focus {
+  position: relative;
+  z-index: 2;
+}
+
+/* line 16, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+.addon {
+  display: block;
+  width: auto;
+  padding: 4px 10px;
+  font-weight: normal;
+  box-shadow: none;
+  line-height: 20px;
+}
+/* line 25, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+.addon:not(.btn) {
+  color: #9E9E9E;
+  background-color: whitesmoke;
+}
+/* line 30, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+.addon:not(.btn-primary):not(.btn-secondary) {
+  border: 1px solid #9E9E9E;
+}
+/* line 34, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+.addon.btn {
+  margin-bottom: 0;
+}
+
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+.addon-prepend,
+.input-has-append {
+  border-radius: 2px 0 0 2px;
+  margin-right: -1px;
+}
+
+/* line 45, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+.input-has-append.active,
+.input-has-prepend.active {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+/* line 51, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+.input-has-append.uneditable-input {
+  border-left-color: #eee;
+  border-right-color: #ccc;
+}
+
+/* line 56, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+.addon-append {
+  margin-right: 0;
+  border-radius: 0 2px 2px 0;
+}
+
+/* line 62, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+.addon-append .cal-icon {
+  float: left;
+  top: 7px;
+}
+
+/* line 68, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+.addon.btn {
+  text-shadow: none;
+}
+
+/* line 72, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+button.add-on {
+  height: auto;
+}
+/* line 75, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_pend.scss */
+button.add-on.btn-success {
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_date_picker.scss */
+input.datepicker {
+  width: 90px;
+  padding-right: 20px;
+}
+
+/* line 6, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_date_picker.scss */
+.cal-icon {
+  width: 20px;
+  margin: 0 -20px 0 0;
+  position: relative;
+  left: -20px;
+  line-height: 24px;
+  top: 7px;
+  display: inline-block !important;
+  z-index: 2;
+}
+/* line 16, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_date_picker.scss */
+.cal-icon i {
+  color: #0d3b69;
+  cursor: pointer;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_structure.scss */
+.form-row {
+  background: #fafafa;
+  padding: 6px 10px;
+  margin: 0;
+  border-top: solid 1px #fff;
+  border-bottom: solid 1px #e5e5e5;
+}
+/* line 9, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_structure.scss */
+.form-row.active .form-row__help, .form-row:hover .form-row__help {
+  display: block;
+}
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_structure.scss */
+.form-row [class*="span"] {
+  margin-left: 0;
+}
+
+/* line 19, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_structure.scss */
+.form-row__label,
+.form-section__label {
+  float: left;
+  line-height: 36px;
+}
+
+/* line 25, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_structure.scss */
+.form-row__label {
+  width: 160px;
+  margin-right: 30px;
+}
+
+/* line 30, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_structure.scss */
+.form-row__label--full {
+  width: 100%;
+}
+
+/* line 34, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_structure.scss */
+.form-row__help {
+  display: none;
+  margin-left: 20px;
+  position: relative;
+  background: #fff;
+  border: 1px solid #E0E0E0;
+  border-radius: 2px;
+  padding: 5px 12px 3px;
+  color: #9E9E9E;
+  vertical-align: middle;
+  position: relative;
+}
+/* line 70, /home/scott/AuditCalc/app/assets/stylesheets/utility/_mixins.scss */
+.form-row__help:before, .form-row__help:after {
+  position: absolute;
+  content: '';
+}
+/* line 113, /home/scott/AuditCalc/app/assets/stylesheets/utility/_mixins.scss */
+.form-row__help:before, .form-row__help:after {
+  top: 50%;
+}
+/* line 118, /home/scott/AuditCalc/app/assets/stylesheets/utility/_mixins.scss */
+.form-row__help:before {
+  margin-top: -8px;
+}
+/* line 122, /home/scott/AuditCalc/app/assets/stylesheets/utility/_mixins.scss */
+.form-row__help:after {
+  margin-top: -7px;
+}
+/* line 128, /home/scott/AuditCalc/app/assets/stylesheets/utility/_mixins.scss */
+.form-row__help:before {
+  display: block;
+  height: 0;
+  width: 0;
+  border-top: 8px solid transparent;
+  border-right: 8px solid #EEEEEE;
+  border-bottom: 8px solid transparent;
+  margin-left: -1px;
+}
+/* line 133, /home/scott/AuditCalc/app/assets/stylesheets/utility/_mixins.scss */
+.form-row__help:after {
+  display: block;
+  height: 0;
+  width: 0;
+  border-top: 7px solid transparent;
+  border-right: 7px solid #fff;
+  border-bottom: 7px solid transparent;
+}
+
+/* line 47, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_structure.scss */
+.form-section {
+  display: table;
+  float: left;
+  margin-right: 20px;
+}
+
+/* line 55, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_structure.scss */
+legend + .control-group {
+  margin-top: 24px;
+  -webkit-margin-top-collapse: separate;
+}
+
+/* line 60, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_structure.scss */
+.form-section + .form-row__help {
+  margin-left: 0;
+}
+
+/* line 65, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_structure.scss */
+.form-section__label + input,
+input + .form-section__label,
+.form-section__label + label,
+input + button {
+  margin-left: 5px;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_bare.scss */
+.form--bare .form-title,
+.form--bare .form-actions,
+.form--bare .form-row {
+  border: none;
+}
+/* line 8, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_bare.scss */
+.form--bare .form-row {
+  padding-bottom: 0;
+  background: transparent;
+}
+/* line 13, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_bare.scss */
+.form--bare .form-row,
+.form--bare .form-actions {
+  padding-left: 0;
+}
+/* line 19, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_bare.scss */
+.form--bare:not(.form--vertical) .form-row__label {
+  text-align: right;
+  margin-right: 20px;
+}
+
+/* line 3, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_stacked.scss */
+.form--vertical .form-row {
+  margin-bottom: 8px;
+}
+/* line 6, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_stacked.scss */
+.form--vertical .form-row.active .form-row__help, .form--vertical .form-row:hover .form-row__help {
+  display: inline;
+  margin-bottom: -12px;
+}
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_stacked.scss */
+.form--vertical .form-row__label,
+.form--vertical .form-section__label {
+  width: 100%;
+  margin: 0;
+  line-height: 24px;
+}
+/* line 21, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_stacked.scss */
+.form--vertical .error__msg {
+  margin-left: 0;
+}
+/* line 26, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_stacked.scss */
+.form--vertical fieldset:first-child .radio-block,
+.form--vertical fieldset:first-child .checkbox-block {
+  margin-left: 0;
+}
+/* line 32, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_stacked.scss */
+.form--vertical .radio,
+.form--vertical .checkbox {
+  clear: both;
+}
+/* line 37, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_stacked.scss */
+.form--vertical .radio-inline,
+.form--vertical .checkbox-inline {
+  clear: none;
+}
+
+/* line 4, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_large.scss */
+.form--large .form-row {
+  padding-bottom: 6px;
+}
+/* line 8, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_large.scss */
+.form--large .form-row__label,
+.form--large .form-section__label,
+.form--large .radio-inline,
+.form--large .checkbox-inline {
+  line-height: 40px;
+}
+/* line 15, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_large.scss */
+.form--large input[type="email"], .form--large input[type="number"], .form--large input[type="password"], .form--large input[type="search"], .form--large input[type="tel"], .form--large input[type="text"], .form--large input[type="url"], .form--large input[type="color"], .form--large input[type="date"], .form--large input[type="datetime"], .form--large input[type="datetime-local"], .form--large input[type="month"], .form--large input[type="time"], .form--large input[type="week"], .form--large .uneditable-input,
+.form--large textarea,
+.form--large select,
+.form--large .uneditable-input,
+.form--large .addon {
+  padding: 6px;
+}
+/* line 23, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_large.scss */
+.form--large input[type="email"], .form--large input[type="number"], .form--large input[type="password"], .form--large input[type="search"], .form--large input[type="tel"], .form--large input[type="text"], .form--large input[type="url"], .form--large input[type="color"], .form--large input[type="date"], .form--large input[type="datetime"], .form--large input[type="datetime-local"], .form--large input[type="month"], .form--large input[type="time"], .form--large input[type="week"], .form--large .uneditable-input,
+.form--large select,
+.form--large .uneditable-input,
+.form--large .addon {
+  height: 36px;
+}
+/* line 30, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_large.scss */
+.form--large .addon {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+/* line 35, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_large.scss */
+.form--large select {
+  margin-top: 3px;
+  height: inherit \9;
+  padding: 6px \9;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+input[class*="span"],
+select[class*="span"],
+textarea[class*="span"] {
+  margin-left: 0;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+form .span1,
+form .input-micro {
+  width: 30px;
+}
+/* line 16, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+form .span2,
+form .input-mini {
+  width: 70px;
+}
+/* line 21, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+form .span3,
+form .input-small {
+  width: 110px;
+}
+/* line 26, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+form .span4,
+form .input-medium {
+  width: 150px;
+}
+/* line 31, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+form .span5 {
+  width: 190px;
+}
+/* line 35, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+form .span6,
+form .input-large {
+  width: 230px;
+}
+/* line 40, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+form .span7,
+form .input-xlarge {
+  width: 270px;
+}
+/* line 45, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+form .span8 {
+  width: 310px;
+}
+/* line 49, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+form .span9,
+form .input-xxlarge {
+  width: 350px;
+}
+/* line 54, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+form .span10 {
+  width: 390px;
+}
+/* line 58, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+form .span11 {
+  width: 430px;
+}
+/* line 62, /home/scott/AuditCalc/app/assets/stylesheets/component/forms/_grid.scss */
+form .span12,
+form .input-xxxlarge {
+  width: 470px;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_icons.scss */
+.icon-unlocked {
+  color: #74C48F;
+}
+
+/* line 5, /home/scott/AuditCalc/app/assets/stylesheets/component/_icons.scss */
+.icon-locked {
+  color: #e53935;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_modal.scss */
+.modal {
+  display: none;
+  width: 600px;
+  padding: 20px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  opacity: 0;
+  -webkit-transform: scale(1.1) translateY(-20px);
+          transform: scale(1.1) translateY(-20px);
+  -webkit-transition: opacity 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946), -webkit-transform 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+  transition: opacity 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946), -webkit-transform 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+  transition: transform 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946), opacity 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+  transition: transform 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946), opacity 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946), -webkit-transform 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+}
+/* line 13, /home/scott/AuditCalc/app/assets/stylesheets/component/_modal.scss */
+.modal form {
+  margin-bottom: 0;
+}
+/* line 17, /home/scott/AuditCalc/app/assets/stylesheets/component/_modal.scss */
+.modal .form-actions {
+  border-top: none;
+  margin-top: 12px;
+}
+/* line 22, /home/scott/AuditCalc/app/assets/stylesheets/component/_modal.scss */
+.modal--new-report {
+  width: 900px;
+}
+
+/* line 27, /home/scott/AuditCalc/app/assets/stylesheets/component/_modal.scss */
+.modal__header {
+  margin-top: -20px;
+  margin-right: -20px;
+  margin-left: -20px;
+  background-color: #f7f7f7;
+  padding: 20px;
+}
+
+/* line 35, /home/scott/AuditCalc/app/assets/stylesheets/component/_modal.scss */
+.modal__title {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* line 40, /home/scott/AuditCalc/app/assets/stylesheets/component/_modal.scss */
+.modal__close {
+  float: right;
+  margin-top: -12px;
+  margin-right: -12px;
+  color: #6e6e6e;
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+  text-align: center;
+  font-size: 12px;
+  -webkit-transition: color ease-in-out 0.3s, border-color ease-in-out 0.3s;
+  transition: color ease-in-out 0.3s, border-color ease-in-out 0.3s;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 100%;
+}
+/* line 52, /home/scott/AuditCalc/app/assets/stylesheets/component/_modal.scss */
+.modal__close i {
+  top: 2px;
+}
+/* line 56, /home/scott/AuditCalc/app/assets/stylesheets/component/_modal.scss */
+.modal__close:hover {
+  color: #212121;
+  border-color: #9E9E9E;
+}
+
+/* line 62, /home/scott/AuditCalc/app/assets/stylesheets/component/_modal.scss */
+.modal__content {
+  padding-top: 24px;
+}
+
+/* line 66, /home/scott/AuditCalc/app/assets/stylesheets/component/_modal.scss */
+.slidein {
+  -webkit-transform: scale(1) translateY(0);
+          transform: scale(1) translateY(0);
+  opacity: 1;
+  -webkit-transition: opacity 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946), -webkit-transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+  transition: opacity 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946), -webkit-transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+  transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946), opacity 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+  transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946), opacity 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946), -webkit-transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_notice.scss */
+.flash-notice,
+.flash-alert {
+  font-size: 16px;
+  font-weight: bold;
+  display: none;
+  background-color: #fafafa;
+  border-bottom: 1px solid #e8e8e8;
+  background-image: -webkit-linear-gradient(315deg, rgba(33, 150, 243, 0.05) 25%, transparent 25%, transparent 50%, rgba(33, 150, 243, 0.05) 50%, rgba(33, 150, 243, 0.05) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(135deg, rgba(33, 150, 243, 0.05) 25%, transparent 25%, transparent 50%, rgba(33, 150, 243, 0.05) 50%, rgba(33, 150, 243, 0.05) 75%, transparent 75%, transparent);
+  background-size: 10px 10px;
+  -webkit-animation: animate-notice-bg 3s linear infinite;
+          animation: animate-notice-bg 3s linear infinite;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_pane.scss */
+.pane-wrapper {
+  position: relative;
+  margin-top: -1px;
+}
+/* line 5, /home/scott/AuditCalc/app/assets/stylesheets/component/_pane.scss */
+.pane-wrapper > div {
+  width: 100%;
+  display: none;
+  top: 0;
+  left: 0;
+  position: relative;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/component/_pane.scss */
+.pane-wrapper > .active,
+.pane-wrapper > .prev,
+.pane-wrapper > .next {
+  display: block;
+}
+/* line 20, /home/scott/AuditCalc/app/assets/stylesheets/component/_pane.scss */
+.pane-wrapper > div,
+.pane-wrapper > .active.right,
+.pane-wrapper > .active.left {
+  opacity: 0;
+}
+/* line 26, /home/scott/AuditCalc/app/assets/stylesheets/component/_pane.scss */
+.pane-wrapper > .next.left,
+.pane-wrapper > .prev.right,
+.pane-wrapper > .active {
+  opacity: 1;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_sibling-menu.scss */
+.sibling-menu {
+  width: 250px;
+  float: left;
+}
+/* line 5, /home/scott/AuditCalc/app/assets/stylesheets/component/_sibling-menu.scss */
+.sibling-menu a {
+  display: block;
+  border: 1px solid #e8e8e8;
+  border-top-color: transparent;
+  color: #696969;
+  line-height: 42px;
+  background-color: #fafafa;
+  padding: 0 10px;
+}
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/component/_sibling-menu.scss */
+.sibling-menu a:hover {
+  background: #fff;
+  color: #000;
+}
+/* line 19, /home/scott/AuditCalc/app/assets/stylesheets/component/_sibling-menu.scss */
+.sibling-menu a:first-child {
+  border-top-color: #e8e8e8;
+}
+/* line 24, /home/scott/AuditCalc/app/assets/stylesheets/component/_sibling-menu.scss */
+.sibling-menu .active {
+  background-color: #fff;
+  border-right-color: transparent !important;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-color: #9E9E9E;
+  position: relative;
+  z-index: 10;
+  color: #000;
+}
+
+/* line 36, /home/scott/AuditCalc/app/assets/stylesheets/component/_sibling-menu.scss */
+.sibling-menu__title {
+  display: block;
+  padding: 0 10px;
+  border: 1px solid #e8e8e8;
+  border-top-color: transparent;
+  line-height: 42px;
+  font-weight: bold;
+}
+/* line 44, /home/scott/AuditCalc/app/assets/stylesheets/component/_sibling-menu.scss */
+.sibling-menu__title:first-child {
+  border-top-color: #e8e8e8;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_tab-menu.scss */
+.tab-menu {
+  position: relative;
+  z-index: 8;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #9E9E9E;
+  display: block;
+  line-height: 43px;
+}
+/* line 12, /home/scott/AuditCalc/app/assets/stylesheets/component/_tab-menu.scss */
+.tab-menu:hover .active a {
+  border-bottom-color: #b2dbfb;
+}
+/* line 15, /home/scott/AuditCalc/app/assets/stylesheets/component/_tab-menu.scss */
+.tab-menu:hover .active a:hover {
+  border-bottom-color: #2196F3;
+}
+/* line 21, /home/scott/AuditCalc/app/assets/stylesheets/component/_tab-menu.scss */
+.tab-menu li {
+  display: block;
+  float: left;
+  width: 20%;
+  list-style: none;
+}
+/* line 28, /home/scott/AuditCalc/app/assets/stylesheets/component/_tab-menu.scss */
+.tab-menu a {
+  border-bottom: 3px solid transparent;
+  text-align: center;
+  display: block;
+  color: #212121;
+  margin-bottom: -2px;
+}
+/* line 35, /home/scott/AuditCalc/app/assets/stylesheets/component/_tab-menu.scss */
+.tab-menu a:hover {
+  border-bottom-color: #2196F3;
+}
+/* line 40, /home/scott/AuditCalc/app/assets/stylesheets/component/_tab-menu.scss */
+.tab-menu .active a {
+  border-bottom-color: #2196F3;
+  color: #757575;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  width: 100%;
+}
+/* line 8, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.table th {
+  text-align: left;
+}
+/* line 12, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.table td,
+.table th {
+  padding: 3px 10px 0;
+  line-height: 36px;
+}
+/* line 18, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.table td {
+  background-color: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-top: none;
+  -webkit-transition: background-color 0.3s ease-in;
+  transition: background-color 0.3s ease-in;
+}
+/* line 24, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.table td:not(:last-child) {
+  border-right: none;
+}
+/* line 31, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.table tr:hover .row-actions__link {
+  opacity: 1;
+}
+/* line 35, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.table tr:hover td {
+  background-color: #fff;
+}
+/* line 42, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.table .deleting td {
+  background-color: #F2DEDE !important;
+  color: #A94442 !important;
+}
+/* line 46, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.table .deleting td a {
+  color: #A94442 !important;
+}
+/* line 52, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.table .row-actions {
+  width: 83px;
+  padding: 0;
+  border-left: none;
+  line-height: 42px !important;
+  border-right: 1px solid #e8e8e8;
+  position: relative;
+}
+/* line 62, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.table .delete-query.in {
+  height: 46px;
+}
+
+/* line 68, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.row-block-link {
+  display: block;
+}
+/* line 71, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.row-block-link i {
+  line-height: 36px;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+/* line 76, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.row-block-link .icon-chevron-right {
+  float: right;
+  opacity: 0;
+}
+/* line 81, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.row-block-link .icon-locked {
+  float: right;
+  opacity: 0.6;
+  top: 1px;
+}
+/* line 88, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.row-block-link:hover i {
+  opacity: 1;
+}
+
+/* line 94, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.row-actions__link {
+  display: block;
+  float: right;
+  text-align: center;
+  width: 40px;
+  border-left: 1px solid #e8e8e8;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+/* line 103, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.row-actions__link i {
+  font-size: 18px;
+  top: 6px;
+  -webkit-transition: font-size 0.3s ease-in-out;
+  transition: font-size 0.3s ease-in-out;
+}
+/* line 109, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.row-actions__link:hover {
+  color: #1565C0;
+}
+/* line 112, /home/scott/AuditCalc/app/assets/stylesheets/component/_table.scss */
+.row-actions__link:hover i {
+  font-size: 20px;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltips.scss */
+[data-tooltip] {
+  position: relative;
+  display: inline-block;
+}
+/* line 5, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltips.scss */
+[data-tooltip]:before, [data-tooltip]:after {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 999999;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+}
+/* line 15, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltips.scss */
+[data-tooltip]:before {
+  content: '';
+  border: 6px solid transparent;
+}
+/* line 20, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltips.scss */
+[data-tooltip]:after {
+  height: 22px;
+  padding: 11px 11px 0 11px;
+  font-size: 13px;
+  line-height: 11px;
+  content: attr(data-tooltip);
+  white-space: nowrap;
+}
+/* line 31, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltips.scss */
+[data-tooltip]:hover:before, [data-tooltip]:hover:after, [data-tooltip]:focus:before, [data-tooltip]:focus:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* line 40, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltips.scss */
+.tooltip:before, .tooltip:after {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  bottom: 100%;
+}
+/* line 47, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltips.scss */
+.tooltip:after {
+  margin-bottom: 7px;
+  background-color: #323232;
+  color: #2196F3;
+  width: auto;
+  border-radius: 2px;
+}
+/* line 55, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltips.scss */
+.tooltip:before {
+  margin-bottom: -5px;
+  border-top-color: #323232;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/component/_titlebar.scss */
+.titlebar {
+  padding: 24px 0 12px;
+}
+
+/* line 7, /home/scott/AuditCalc/app/assets/stylesheets/component/_titlebar.scss */
+.titlebar__title {
+  display: inline-block;
+  margin: 0;
+  font-size: 20px;
+  color: #212121;
+  font-weight: bold;
+}
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/component/_titlebar.scss */
+.titlebar__title + i {
+  margin-left: 5px;
+  font-size: 16px;
+  top: 2px;
+}
+
+/* line 21, /home/scott/AuditCalc/app/assets/stylesheets/component/_titlebar.scss */
+.titlebar__link {
+  margin-left: 10px;
+}
+
+/* line 25, /home/scott/AuditCalc/app/assets/stylesheets/component/_titlebar.scss */
+.titlebar__btn {
+  float: right;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/component/_data.scss */
+.data {
+  padding: 5px;
+}
+/* line 6, /home/scott/AuditCalc/app/assets/stylesheets/component/_data.scss */
+.data__label {
+  font-size: 13px;
+  color: #757575;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli {
+  position: relative;
+  height: 56px;
+  border: none !important;
+  background: transparent !important;
+  padding: 4px 4px 0 4px;
+  -webkit-transition: all 0.3s !important;
+  transition: all 0.3s !important;
+  background: #fff;
+  overflow: hidden;
+}
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli.is-disabled, .fli.is-disabled.is-completed {
+  background: #F5F5F5;
+  border-color: #E0E0E0;
+  box-shadow: none;
+}
+/* line 17, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli.is-disabled *, .fli.is-disabled.is-completed * {
+  color: #9E9E9E;
+}
+/* line 22, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli.is-disabled:hover, .fli.is-disabled *:hover {
+  cursor: not-allowed;
+}
+/* line 27, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli__input {
+  font-size: 14px !important;
+  position: relative;
+  background: transparent;
+  width: 100%;
+  border: 1px solid #E0E0E0 !important;
+  border-color: #E0E0E0 !important;
+  outline: none !important;
+  padding: 10px 0 3px;
+  box-shadow: none !important;
+}
+/* line 38, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.error .fli__input {
+  color: #B71C1C;
+}
+/* line 42, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli__input.is-active {
+  border-color: #adadad !important;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2) !important;
+}
+/* line 49, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli__label {
+  display: block;
+  height: 18px;
+  -webkit-transform: translateY(24px) !important;
+          transform: translateY(24px) !important;
+  color: #757575;
+  -webkit-transition: all 0.3s !important;
+  transition: all 0.3s !important;
+  white-space: nowrap !important;
+  padding-left: 4px;
+}
+/* line 58, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.error .fli__label {
+  color: #B71C1C;
+}
+/* line 62, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.is-completed .fli__label {
+  font-size: 14px !important;
+  -webkit-transform: translateY(0) !important;
+          transform: translateY(0) !important;
+}
+/* line 68, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli__append, .fli__prepend {
+  position: absolute;
+  bottom: 1px;
+  color: #757575;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+/* line 77, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.is-active .fli__append, .is-completed .fli__append, .is-active .fli__prepend, .is-completed .fli__prepend {
+  visibility: visible;
+  opacity: 1;
+}
+/* line 83, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.error .fli__append, .error .fli__prepend {
+  color: #B71C1C;
+}
+/* line 88, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli__prepend {
+  left: 3px;
+}
+/* line 92, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli__append {
+  text-align: right;
+  right: 3px;
+}
+/* line 97, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli__reset {
+  display: none;
+  color: #757575;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  bottom: 2px;
+}
+/* line 103, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli__reset:hover {
+  color: #1565C0 !important;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+/* line 113, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.error .fli__reset {
+  color: #B71C1C;
+}
+/* line 118, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli.error {
+  border-color: #EF9A9A;
+}
+/* line 122, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli input[type=number]::-webkit-inner-spin-button,
+.fli input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* line 129, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli--has-select .fli__label {
+  font-size: 13px;
+  -webkit-transform: translateY(0) !important;
+          transform: translateY(0) !important;
+}
+/* line 134, /home/scott/AuditCalc/app/assets/stylesheets/component/_fli.scss */
+.fli--has-select .fli__input {
+  top: 1px;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_gallery.scss */
+.gallery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 24px;
+}
+/* line 7, /home/scott/AuditCalc/app/assets/stylesheets/component/_gallery.scss */
+.gallery__item {
+  text-align: center;
+  width: 112px;
+  margin-bottom: 6px;
+  position: relative;
+}
+/* line 13, /home/scott/AuditCalc/app/assets/stylesheets/component/_gallery.scss */
+.gallery__item img {
+  width: 100px;
+  z-index: 1;
+}
+/* line 18, /home/scott/AuditCalc/app/assets/stylesheets/component/_gallery.scss */
+.gallery__item label {
+  position: absolute;
+  right: 2px;
+  bottom: 0;
+  z-index: 2;
+  padding: 4px;
+  font-size: 16px;
+}
+/* line 28, /home/scott/AuditCalc/app/assets/stylesheets/component/_gallery.scss */
+.gallery__modal-trigger {
+  -webkit-transition: opacity 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+  transition: opacity 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+}
+/* line 31, /home/scott/AuditCalc/app/assets/stylesheets/component/_gallery.scss */
+.gallery__modal-trigger.disabled {
+  opacity: 0.7;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_tablecalc.scss */
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  width: 100%;
+}
+/* line 7, /home/scott/AuditCalc/app/assets/stylesheets/component/_tablecalc.scss */
+.table th,
+.table td {
+  text-align: left;
+  padding: 6px 4px;
+}
+/* line 13, /home/scott/AuditCalc/app/assets/stylesheets/component/_tablecalc.scss */
+.table th {
+  vertical-align: bottom;
+  border-bottom: 1px solid #d9d9d9;
+}
+/* line 19, /home/scott/AuditCalc/app/assets/stylesheets/component/_tablecalc.scss */
+.table td {
+  vertical-align: top;
+  border-bottom: 1px solid #ededed;
+  background-color: #fff;
+  -webkit-transition: background-color 0.3s linear;
+  transition: background-color 0.3s linear;
+}
+/* line 25, /home/scott/AuditCalc/app/assets/stylesheets/component/_tablecalc.scss */
+.table td input[type="radio"] {
+  margin: 2px 0 0 4px;
+}
+
+/* line 31, /home/scott/AuditCalc/app/assets/stylesheets/component/_tablecalc.scss */
+.table--bordered {
+  border: 1px solid #ededed;
+}
+/* line 34, /home/scott/AuditCalc/app/assets/stylesheets/component/_tablecalc.scss */
+.table--bordered th,
+.table--bordered td {
+  border-left: 1px solid #ededed;
+}
+
+/* line 40, /home/scott/AuditCalc/app/assets/stylesheets/component/_tablecalc.scss */
+.active-table-row td {
+  background-color: #F5F5F5;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltipab.scss */
+.tooltipab {
+  text-align: center;
+  padding: .6em;
+  max-width: 12em;
+  z-index: 10001;
+  position: absolute;
+  background: #444;
+  color: #f9f9f9;
+  font-size: 90%;
+  display: none;
+  border-radius: 2px;
+  opacity: 1;
+}
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltipab.scss */
+.tooltipab .pointer {
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+/* line 21, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltipab.scss */
+.tooltipab.pos_e .pointer {
+  border-right: 8px solid #444;
+  border-top: 8px dashed transparent;
+  border-bottom: 8px dashed transparent;
+  left: -8px;
+  top: 50%;
+  margin-top: -8px;
+}
+/* line 30, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltipab.scss */
+.tooltipab.pos_w .pointer {
+  border-left: 8px solid #444;
+  border-top: 8px dashed transparent;
+  border-bottom: 8px dashed transparent;
+  right: -8px;
+  top: 50%;
+  margin-top: -8px;
+}
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltipab.scss */
+.tooltipab.pos_n .pointer {
+  border-top: 8px solid #444;
+  border-left: 8px dashed transparent;
+  border-right: 8px dashed transparent;
+  left: 50%;
+  margin-left: -8px;
+  bottom: -8px;
+}
+/* line 48, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltipab.scss */
+.tooltipab.pos_s .pointer {
+  border-bottom: 8px solid #444;
+  border-left: 8px dashed transparent;
+  border-right: 8px dashed transparent;
+  left: 50%;
+  margin-left: -8px;
+  top: -8px;
+}
+/* line 57, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltipab.scss */
+.tooltipab.pos_nw .pointer {
+  border-top: 14px solid #444;
+  border-left: 14px dashed transparent;
+  border-right: 0px dashed transparent;
+  left: 100%;
+  margin-left: -20px;
+  bottom: -13px;
+}
+/* line 66, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltipab.scss */
+.tooltipab.pos_sw .pointer {
+  border-bottom: 14px solid #444;
+  border-left: 14px dashed transparent;
+  border-right: 0px dashed transparent;
+  left: 100%;
+  margin-left: -20px;
+  top: -13px;
+}
+/* line 75, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltipab.scss */
+.tooltipab.pos_se .pointer {
+  border-bottom: 14px solid #444;
+  border-right: 14px dashed transparent;
+  border-left: 0px dashed transparent;
+  left: 8px;
+  top: -13px;
+}
+/* line 83, /home/scott/AuditCalc/app/assets/stylesheets/component/_tooltipab.scss */
+.tooltipab.pos_ne .pointer {
+  border-top: 14px solid #444;
+  border-right: 14px dashed transparent;
+  border-left: 0px dashed transparent;
+  left: 8px;
+  bottom: -13px;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/component/_totals.scss */
+.totals {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 99;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+/* line 9, /home/scott/AuditCalc/app/assets/stylesheets/component/_totals.scss */
+.totals__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #333;
+  position: relative;
+}
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/component/_totals.scss */
+.totals__row--level1 {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* line 19, /home/scott/AuditCalc/app/assets/stylesheets/component/_totals.scss */
+.totals__item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: center;
+  color: #FAFAFA;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 0;
+}
+/* line 26, /home/scott/AuditCalc/app/assets/stylesheets/component/_totals.scss */
+.totals__item:last-child {
+  border-right: none;
+}
+/* line 31, /home/scott/AuditCalc/app/assets/stylesheets/component/_totals.scss */
+.totals__label {
+  color: rgba(250, 250, 250, 0.85);
+}
+/* line 35, /home/scott/AuditCalc/app/assets/stylesheets/component/_totals.scss */
+.totals__value {
+  font-size: 16px;
+}
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/component/_totals.scss */
+.totals__toggle {
+  position: absolute;
+  color: rgba(250, 250, 250, 0.8);
+  right: 0;
+  top: -36px;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 16px;
+  border-radius: 2px 0 0 0;
+  background: #333;
+}
+/* line 51, /home/scott/AuditCalc/app/assets/stylesheets/component/_totals.scss */
+.totals__toggle i {
+  margin-left: 8px;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+/* line 56, /home/scott/AuditCalc/app/assets/stylesheets/component/_totals.scss */
+.is-collapsed .totals__toggle i {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+/* line 61, /home/scott/AuditCalc/app/assets/stylesheets/component/_totals.scss */
+.totals__toggle:hover {
+  color: #FAFAFA;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+.active-content__photos {
+  padding-top: 20px;
+}
+
+/* line 5, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+.camera {
+  margin: 0;
+  height: 0;
+}
+/* line 9, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+.camera .camera__label {
+  border: 1px solid #ddd;
+  width: 150px;
+  height: 150px;
+  padding-top: 110px;
+  text-align: center;
+  background: #fff url(/assets/camera-16956aa6e0c21492e6196f246603d30d9c5bceeb73be08c8f3596474d14b899b.png) no-repeat 50% 46px;
+  cursor: pointer;
+}
+/* line 19, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+.camera .camera__input {
+  height: 0;
+  overflow: hidden;
+}
+
+/* line 25, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+.gphoto {
+  margin: 0;
+  height: 0;
+}
+/* line 29, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+.gphoto .gphoto__label {
+  border: 1px solid #ddd;
+  width: 150px;
+  height: 150px;
+  padding-top: 110px;
+  text-align: center;
+  background: #fff url(/assets/gphotos-590280462ecd1108663c7621c37cec5dab1203981dbacaf9173acb365f670e73.png) no-repeat 50% 20px;
+  cursor: pointer;
+}
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+.gphoto .gphoto__input {
+  height: 0;
+  overflow: hidden;
+}
+
+/* line 45, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+.thumb {
+  display: block;
+  float: left;
+  margin-right: 9px;
+  margin-bottom: 3px;
+  position: relative;
+}
+/* line 52, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+.thumb:nth-child(4n + 4) {
+  margin-right: 0;
+}
+/* line 57, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+.thumb:hover .thumb__delete {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* line 64, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+.thumb__delete {
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  padding: 6px;
+  line-height: 1;
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.6);
+  color: #222;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+/* line 77, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+.thumb__delete:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+/* line 82, /home/scott/AuditCalc/app/assets/stylesheets/view/_gallery.scss */
+#rname {
+  width: 50px !important;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/view/_login.scss */
+.form-row--login-pw {
+  margin-bottom: 0 !important;
+}
+
+/* line 6, /home/scott/AuditCalc/app/assets/stylesheets/view/_login.scss */
+.form-row--login-pw-control {
+  padding-top: 0;
+  font-size: 14px;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/view/_measures.scss */
+.active-content__measures .measure-notes {
+  clear: both;
+  width: 600px;
+  display: none;
+}
+/* line 8, /home/scott/AuditCalc/app/assets/stylesheets/view/_measures.scss */
+.active-content__measures .notes-toggler:checked ~ .measure-notes {
+  display: block;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row {
+  display: block;
+  line-height: 42px;
+  border: 1px solid transparent;
+  border-bottom-color: #e8e8e8;
+  position: relative;
+  padding: 0 10px;
+  -webkit-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  position: relative;
+}
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row:before, .structure-row:after {
+  content: '';
+  background: #2196F3;
+  display: block;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  -webkit-transition: width 0.15s ease-in-out;
+  transition: width 0.15s ease-in-out;
+}
+/* line 23, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row.deleting {
+  background-color: #F2DEDE;
+  color: #A94442;
+}
+/* line 27, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row.deleting a {
+  color: #A94442;
+}
+/* line 32, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row .row-actions {
+  position: absolute;
+  z-index: 9;
+  right: 0;
+  top: 0;
+  width: 120px;
+}
+/* line 42, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row:hover:before, .structure-row:hover:after {
+  width: 50%;
+}
+/* line 47, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row:hover:before {
+  left: 50%;
+}
+/* line 51, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row:hover:after {
+  right: 50%;
+}
+/* line 55, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row:hover .row-actions__link {
+  opacity: 1;
+}
+
+/* line 61, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row__link {
+  display: block;
+  color: #212121;
+}
+
+/* line 68, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.just4demo-success-hide {
+  display: none;
+}
+
+/* line 72, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row--new {
+  display: block;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-name: successBgFlash;
+          animation-name: successBgFlash;
+}
+/* line 78, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row--new .structure-row__link {
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-name: successLinkFlash;
+          animation-name: successLinkFlash;
+}
+/* line 83, /home/scott/AuditCalc/app/assets/stylesheets/view/_sub-structures.scss */
+.structure-row--new .structure-row__link:hover {
+  color: #1565C0 !important;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-overview.scss */
+.measure-overview {
+  background: #F5F5F5;
+  border: 1px solid #E0E0E0;
+  margin-bottom: 2px;
+  padding: 4px 0;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+/* line 9, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-overview.scss */
+.measure-overview__title {
+  font-size: 16px;
+}
+/* line 13, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-overview.scss */
+.measure-overview__actions {
+  float: right;
+}
+/* line 16, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-overview.scss */
+.measure-overview__actions a {
+  color: #212121;
+  padding: 6px 10px 2px;
+  margin: -4px 0;
+  -webkit-transition: none;
+  transition: none;
+  text-align: center;
+  display: block;
+  float: left;
+  border-right: 1px solid #E0E0E0;
+}
+/* line 26, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-overview.scss */
+.measure-overview__actions a:hover {
+  color: #1565C0;
+}
+/* line 31, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-overview.scss */
+.measure-overview__actions i {
+  top: 3px;
+  margin-left: 3px;
+}
+/* line 37, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-overview.scss */
+.measure-overview__grippy {
+  display: block;
+  float: left;
+  top: 4px;
+  padding: 0 6px;
+  color: #9E9E9E;
+}
+/* line 44, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-overview.scss */
+.measure-overview__grippy:hover {
+  cursor: move;
+  cursor: -webkit-grab;
+}
+/* line 51, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-overview.scss */
+.measure-overview__enable {
+  display: inline-block;
+  min-width: 95px;
+  padding-left: 10px;
+  color: #9E9E9E;
+  margin-top: 2px;
+}
+/* line 58, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-overview.scss */
+.measure-overview__enable input[type=checkbox] {
+  position: relative;
+  float: none;
+  margin: 0 12px 0 6px;
+}
+/* line 65, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-overview.scss */
+.measure-overview--disabled {
+  opacity: 0.6;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measures-tabs {
+  position: relative;
+  z-index: 9;
+  margin: 0;
+  padding: 0;
+  float: left;
+  width: 200px;
+  margin-right: -1px;
+}
+/* line 10, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measures-tabs li {
+  list-style: none;
+}
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measures-tabs li.active a {
+  background: #fff;
+  border-color: #BDBDBD;
+  border-right-color: transparent;
+}
+/* line 22, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measures-tabs li.excluded a {
+  color: rgba(33, 33, 33, 0.5);
+}
+/* line 28, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measures-tabs li:not(:last-child):not(.active) a {
+  border-bottom: none;
+}
+/* line 33, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measures-tabs li.sortable-ghost {
+  opacity: 0.7;
+  background: #fff;
+}
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measures-tabs a {
+  display: block;
+  height: 48px;
+  line-height: 48px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 8px;
+  color: #212121;
+  background: #FAFAFA;
+  border: 1px solid #E0E0E0;
+  border-right-color: #BDBDBD;
+  -webkit-transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
+}
+/* line 53, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measures-tabs a:hover {
+  background: #fff;
+}
+/* line 58, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measures-tabs__grippy {
+  margin: 0 3px 0 -6px;
+  top: 2px;
+}
+
+/* line 65, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measure-wrapper {
+  border: 1px solid #BDBDBD;
+  position: relative;
+  z-index: 8;
+  overflow: hidden;
+}
+
+/* line 72, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measure {
+  padding: 0 12px 12px;
+}
+/* line 80, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measure__action {
+  font-size: 16px;
+  display: block;
+  float: right;
+  margin: 12px 6px;
+}
+/* line 86, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measure__action:link {
+  color: #212121;
+}
+/* line 89, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measure__action:link:hover {
+  color: #1565C0;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+/* line 97, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measure__summary__title {
+  padding-bottom: 12px;
+}
+/* line 102, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measure__summary__section-title {
+  padding-bottom: 12px;
+  font-size: 12px;
+}
+/* line 109, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.measure__empty {
+  font-size: 18px;
+  text-align: center;
+  height: 100px;
+  line-height: 70px;
+}
+
+/* line 122, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.structure {
+  width: 886px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px dashed #E0E0E0;
+}
+/* line 130, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.structure__title {
+  padding: 12px 0;
+}
+/* line 135, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.structure__column {
+  width: 437px;
+  float: left;
+}
+/* line 139, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.structure__column__title {
+  font-size: 16px;
+}
+/* line 144, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.structure__column--original {
+  margin-right: 12px;
+}
+/* line 149, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.structure__change {
+  position: relative;
+}
+/* line 152, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.structure__change__delete {
+  position: absolute;
+  top: 10px;
+  right: -6px;
+  color: #212121;
+}
+/* line 158, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.structure__change__delete:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+/* line 164, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.structure__card {
+  padding: 12px;
+  background: #FAFAFA;
+  border: 1px solid #E0E0E0;
+  margin: 12px 0;
+  position: relative;
+}
+/* line 172, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.structure__details {
+  display: block;
+  font-size: 14px;
+  padding: 12px 0 0 1px;
+}
+/* line 177, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.structure__details:after {
+  content: "\E003";
+  top: 2px;
+}
+/* line 184, /home/scott/AuditCalc/app/assets/stylesheets/views/_measure-details.scss */
+.structure__details.active:after {
+  content: "\E001";
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-builder.scss */
+.report-builder-actions {
+  margin-bottom: 36px;
+}
+/* line 5, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-builder.scss */
+.report-builder-actions__export {
+  margin-right: 20px;
+}
+/* line 8, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-builder.scss */
+.report-builder-actions__export i {
+  top: 2px;
+}
+/* line 16, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-builder.scss */
+.report-builder-actions__help:after {
+  top: 3px;
+}
+/* line 21, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-builder.scss */
+.report-builder-actions__help-content {
+  margin-top: 12px;
+  padding: 10px;
+  background: #F5F5F5;
+}
+
+/* line 28, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-builder.scss */
+.markdown-editor {
+  width: 34%;
+  float: left;
+  padding-right: 10px;
+  overflow-y: scroll;
+}
+/* line 34, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-builder.scss */
+.markdown-editor__contentblock {
+  width: 82%;
+  height: 20%;
+}
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-builder.scss */
+.markdown-editor__input {
+  width: 95%;
+  height: 65%;
+}
+/* line 44, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-builder.scss */
+.markdown-editor .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* line 50, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-builder.scss */
+.markdown-preview {
+  border-left: 1px dashed;
+  margin-left: 37%;
+  padding-left: 10px;
+  overflow-y: scroll;
+}
+
+/* line 57, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-builder.scss */
+.shortcode {
+  margin-right: 8px;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-preview.scss */
+.report h1 {
+  margin-bottom: 24px;
+}
+
+/* line 8, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-preview.scss */
+.table--recommendations {
+  table-layout: fixed;
+}
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-preview.scss */
+.table--recommendations th {
+  font-size: 12px;
+}
+/* line 19, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-preview.scss */
+.table--recommendations__recommendation {
+  width: auto;
+}
+/* line 23, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-preview.scss */
+.table--recommendations__estimated-cost {
+  width: 15%;
+}
+/* line 27, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-preview.scss */
+.table--recommendations__dollar-savings {
+  width: 19%;
+}
+/* line 31, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-preview.scss */
+.table--recommendations__usage-reductions {
+  width: 19%;
+}
+/* line 35, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-preview.scss */
+.table--recommendations__years-payback {
+  width: 9%;
+}
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-preview.scss */
+.table--recommendations__upgrade-lifetime {
+  width: 8%;
+}
+/* line 43, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-preview.scss */
+.table--recommendations__sir {
+  width: 6%;
+}
+/* line 47, /home/scott/AuditCalc/app/assets/stylesheets/views/_report-preview.scss */
+.table--recommendations__potential-rebate {
+  width: 7%;
+}
+
+/* line 2, /home/scott/AuditCalc/app/assets/stylesheets/views/_view-reports.scss */
+.table--view-reports__name {
+  width: 35%;
+}
+/* line 6, /home/scott/AuditCalc/app/assets/stylesheets/views/_view-reports.scss */
+.table--view-reports__date {
+  width: 9%;
+}
+/* line 10, /home/scott/AuditCalc/app/assets/stylesheets/views/_view-reports.scss */
+.table--view-reports__links {
+  width: 56%;
+}
+/* line 13, /home/scott/AuditCalc/app/assets/stylesheets/views/_view-reports.scss */
+.table--view-reports__links a:not(:first-child) {
+  margin-left: 15px;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_general.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 5, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_general.scss */
+body {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #212121;
+  font-family: "Dagny", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* line 12, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_general.scss */
+a {
+  text-decoration: none;
+  color: #1976D2;
+  -webkit-transition: color, 0.3s;
+  transition: color, 0.3s;
+}
+/* line 17, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_general.scss */
+a:hover, a:active {
+  color: #1565C0;
+}
+/* line 23, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_general.scss */
+a:active, a:focus {
+  outline: 0;
+}
+/* line 29, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_general.scss */
+a i {
+  top: 3px;
+}
+
+/* line 34, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_general.scss */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_general.scss */
+a,
+a:visited,
+a:focus,
+a:hover,
+a:active {
+  outline: 0;
+}
+
+/* line 47, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_general.scss */
+.hide {
+  display: none;
+}
+
+/* line 51, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_general.scss */
+.text-center {
+  text-align: center;
+}
+
+/* line 58, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_general.scss */
+.machine-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+h1, h2, h3, h4, h5, h6 {
+  color: #212121;
+  margin: 24px 0 12px 0;
+}
+
+/* line 7, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+h1, h2, h3 {
+  line-height: 36px;
+}
+
+/* line 11, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+h4, h5, h6 {
+  line-height: 24px;
+}
+
+/* line 15, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+h1 {
+  font-size: 36px;
+}
+/* line 18, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+h1 small {
+  font-size: 21px;
+}
+
+/* line 23, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+h2 {
+  font-size: 27px;
+}
+
+/* line 27, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+h3 {
+  font-size: 23px;
+}
+/* line 30, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+h3 small {
+  font-size: 16px;
+}
+
+/* line 35, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+h4 {
+  font-size: 19px;
+}
+
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+p {
+  margin: 0 0 12px 0;
+}
+
+/* line 49, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+.meta {
+  color: #9E9E9E;
+  font-weight: 200;
+}
+
+/* line 55, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+.lead {
+  font-size: 17.5px;
+}
+
+/* line 59, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/base/_type.scss */
+.fineprint {
+  font-size: 14px;
+}
+
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/component/_table.scss */
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  width: 100%;
+}
+/* line 7, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/component/_table.scss */
+.table th,
+.table td {
+  padding: 10px 8px;
+  line-height: 36px;
+}
+/* line 13, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/component/_table.scss */
+.table th {
+  vertical-align: bottom;
+  border-bottom: 1px solid #ededed;
+}
+/* line 19, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/component/_table.scss */
+.table td {
+  vertical-align: top;
+}
+
+/* line 24, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/component/_table.scss */
+.table--bordered {
+  border: 1px solid #ededed;
+}
+/* line 27, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/component/_table.scss */
+.table--bordered th,
+.table--bordered td {
+  border-left: 1px solid #ededed;
+}
+
+/* line 35, /home/scott/AuditCalc/app/assets/stylesheets/wegowise_styles/component/_table.scss */
+.table--striped tr:nth-child(even) td {
+  background: #f7f7f7;
+}
+
+/* line 78, /home/scott/AuditCalc/app/assets/stylesheets/application.css.scss */
+.hide {
+  display: none;
+}
+
+/* line 86, /home/scott/AuditCalc/app/assets/stylesheets/application.css.scss */
+.active-content {
+  border: 1px solid #9E9E9E;
+  float: left;
+  margin-left: -1px;
+  width: 870px;
+  background: #fff;
+  position: relative;
+  z-index: 9;
+  padding: 0 20px 20px 20px;
+}
+
+/* line 97, /home/scott/AuditCalc/app/assets/stylesheets/application.css.scss */
+.section-title {
+  line-height: 42px;
+  font-weight: bold;
+  background-color: #fafafa;
+  border-bottom: 1px solid #9E9E9E;
+  padding: 0 10px;
+  display: block;
+  width: 100%;
+}
+
+/* line 107, /home/scott/AuditCalc/app/assets/stylesheets/application.css.scss */
+.section-title__action {
+  float: right;
+  font-weight: normal;
+  padding: 0 10px;
+}
+
+/* line 113, /home/scott/AuditCalc/app/assets/stylesheets/application.css.scss */
+.form-row {
+  background: #fff;
+}
+
+/* line 118, /home/scott/AuditCalc/app/assets/stylesheets/application.css.scss */
+.active-content__details .form-row__label {
+  width: 200px;
+}
+
+/* line 123, /home/scott/AuditCalc/app/assets/stylesheets/application.css.scss */
+.active-content__photos {
+  padding-top: 20px;
+}

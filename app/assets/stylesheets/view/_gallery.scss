@@ -2,6 +2,10 @@
   padding-top: 20px;
 }
 
+#pickerform{
+       display:none;
+    }
+
 .camera {
   margin: 0;
   height: 0;
@@ -77,4 +81,8 @@
   &:hover {
     transform: scale(1.1);
   }
+}
+
+#rname {
+  width: 150px !important;
 }
