@@ -1,0 +1,98 @@
+/* line 1, /home/scott/AuditCalc/app/assets/stylesheets/pdf/_table.scss */
+table {
+  font-size: 11px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  width: 100%;
+  margin: 16px 0 32px;
+  page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+          break-inside: avoid;
+}
+/* line 12, /home/scott/AuditCalc/app/assets/stylesheets/pdf/_table.scss */
+table th,
+table td {
+  text-align: left;
+  padding: 6px 4px;
+}
+/* line 18, /home/scott/AuditCalc/app/assets/stylesheets/pdf/_table.scss */
+table th {
+  vertical-align: bottom;
+  border-bottom: 1px solid #cccccc;
+  font-weight: bold;
+}
+/* line 24, /home/scott/AuditCalc/app/assets/stylesheets/pdf/_table.scss */
+table td {
+  vertical-align: top;
+  border-bottom: 1px solid #E0E0E0;
+  background-color: #fff;
+}
+
+/* line 4, /home/scott/AuditCalc/app/assets/stylesheets/pdf.scss */
+body {
+  margin: 0;
+  padding: 0 3px 0 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: #222;
+  text-rendering: geometricPrecision;
+}
+
+/* line 14, /home/scott/AuditCalc/app/assets/stylesheets/pdf.scss */
+.page-break {
+  display: block;
+  clear: both;
+  page-break-after: always;
+}
+
+/* line 20, /home/scott/AuditCalc/app/assets/stylesheets/pdf.scss */
+.hide-from-pdf {
+  display: none;
+}
+
+/* line 24, /home/scott/AuditCalc/app/assets/stylesheets/pdf.scss */
+h1, h2, h3, h4 {
+  margin: 24px 0 7px;
+}
+
+/* line 28, /home/scott/AuditCalc/app/assets/stylesheets/pdf.scss */
+h1 {
+  font-size: 30px;
+  margin-top: 0;
+  line-height: 40px;
+}
+
+/* line 34, /home/scott/AuditCalc/app/assets/stylesheets/pdf.scss */
+h2 {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+/* line 39, /home/scott/AuditCalc/app/assets/stylesheets/pdf.scss */
+h3 {
+  font-size: 18px;
+  line-height: 25px;
+}
+
+/* line 44, /home/scott/AuditCalc/app/assets/stylesheets/pdf.scss */
+h4 {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* line 50, /home/scott/AuditCalc/app/assets/stylesheets/pdf.scss */
+h2, h3, h4 {
+  page-break-after: avoid;
+}
+
+/* line 54, /home/scott/AuditCalc/app/assets/stylesheets/pdf.scss */
+p {
+  margin: 0 0 8px 0;
+  line-height: 16px;
+}
+
+/* line 59, /home/scott/AuditCalc/app/assets/stylesheets/pdf.scss */
+header {
+  font-size: 10px;
+}

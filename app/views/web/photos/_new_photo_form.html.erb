@@ -1,11 +1,14 @@
 <%- unless current_audit.is_locked? %>
   <%= form_for StructureImage.new(audit_structure_id: audit_structure.id),
         url: audit_photos_path(current_audit),
-        html: { class: 'js-autosave-form camera', multipart: true } do |f| %>
+        html: { class: 'js-autosave-form camera gphoto', multipart: true } do |f| %>
+    <%= f.hidden_field :image, value: @structure_image&.cached_image_data %>
     <%= f.label :image, 'Upload image', class: 'camera__label thumb' %>
     <%= f.file_field :image, class: 'js-upload-image camera__input' %>
-    <%= f.label :remote_url, 'Google Photos', class: 'gphotos__label thumb' %>
-    <%= f.hidden_field :image_remote_url, class: 'js-upload-image camera__input', :id => "picker" %>
+    <button type='button' class='gphoto__label thumb' onclick='onApiLoad(); return false'>Google Photos</button>
+    <%= f.hidden_field :image_remote_url, class: 'js-upload-image', :id => "picker" %>
+    <%= f.text_field :remote_name, :id => "rname" %>
     <%= f.hidden_field :audit_structure_id %>
+    <%= f.submit %>
   <%- end %>
 <%- end %>

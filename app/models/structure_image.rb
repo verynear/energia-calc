@@ -17,4 +17,7 @@ class StructureImage < ActiveRecord::Base
   def expiring_url(style)
     image.expiring_url(DEFAULT_EXPIRATION_SECONDS, style)
   end
+
+  def remote_name
+  end
 end

@@ -26,17 +26,24 @@ module Web
 
     private
 
-    def file_name_param
-      params.require(:structure_image)
-            .fetch(:image)
-            .original_filename
-    end
-
     def photo_params
       params.require(:structure_image)
             .permit(:image, :audit_structure_id, :image_remote_url)
-            .merge(file_name: file_name_param)
+            .merge(file_name: image_filename)
             .merge(timestamp_params)
+    end
+
+    def filename_param
+      params.require(:structure_image)
+            .permit(:remote_name)
+    end
+
+    def image_filename
+      if params[:structure_image]['image'].try(:original_filename) != nil
+        params[:structure_image]['image'].try(:original_filename)
+      else 
+        params[:structure_image]['remote_name']
+      end
     end
 
     def timestamp_params

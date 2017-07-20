@@ -15,6 +15,7 @@
 //= require jquery.easyModal-edited
 //= require jquery.auditModal
 //= require jquery.fancybox
+//= require picker
 //= require sco.panes
 //= require sco.tab
 //= require sco.collapse-edited
