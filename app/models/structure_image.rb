@@ -24,5 +24,6 @@ class StructureImage < ActiveRecord::Base
   end
 
   def photo_path
+    self.read_attribute(:photo_path)
   end
 end

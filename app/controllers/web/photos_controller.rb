@@ -48,6 +48,12 @@ module Web
             .permit(:remote_name)
     end
 
+    def photo_path_param
+      params.require(:structure_image)
+            .permit(:photo_path)
+    end
+
+
     def image_filename
       if params[:structure_image]['image'].try(:original_filename) != nil
         params[:structure_image]['image'].try(:original_filename)
