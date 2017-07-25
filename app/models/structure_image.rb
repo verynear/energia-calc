@@ -24,6 +24,5 @@ class StructureImage < ActiveRecord::Base
   end
 
   def photo_path
-    self.photo_path
   end
 end
