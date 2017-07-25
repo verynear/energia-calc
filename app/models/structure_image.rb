@@ -22,4 +22,7 @@ class StructureImage < ActiveRecord::Base
 
   def remote_name
   end
+
+  def photo_path
+  end
 end
