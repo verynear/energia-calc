@@ -24,13 +24,23 @@ module Web
       redirect_to @image.image_url(params[:format].to_sym)
     end
 
+    def google_photo_download
+      @image = StructureImage.find(params[:id])
+      redirect_to @image.photo_path
+    end
+
     private
 
     def photo_params
       params.require(:structure_image)
             .permit(:image, :audit_structure_id, :image_remote_url)
             .merge(file_name: image_filename)
+            .merge(photo_path: photo_path_url)
             .merge(timestamp_params)
+    end
+
+    def photo_path_url
+      params[:structure_image]['image_remote_url']
     end
 
     def filename_param

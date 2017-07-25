@@ -281,6 +281,8 @@ GEM
     pry-byebug (3.4.2)
       byebug (~> 9.0)
       pry (~> 0.10)
+    pry-rails (0.3.6)
+      pry (>= 0.10.4)
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
@@ -520,6 +522,7 @@ DEPENDENCIES
   pdfkit
   pg
   pry-byebug
+  pry-rails
   pry-stack_explorer
   puma
   rails (= 4.2.1)

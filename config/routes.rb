@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     resources :photos, only: [:create, :destroy] do
       member do
         get :download
+        get :google_photo_download
       end
     end
     resources :sample_groups, only: [:create, :destroy, :show, :update]

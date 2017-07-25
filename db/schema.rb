@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711214322) do
+ActiveRecord::Schema.define(version: 20170725002413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -485,7 +485,7 @@ ActiveRecord::Schema.define(version: 20170711214322) do
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
     t.string   "file_name",            null: false
-    t.string   "s3_path"
+    t.string   "photo_path"
     t.uuid     "audit_structure_id",   null: false
     t.datetime "upload_attempt_on"
     t.datetime "successful_upload_on"

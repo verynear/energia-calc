@@ -71,6 +71,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'marginalia'
   gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'pry-stack_explorer'
   gem 'rspec-activemodel-mocks'
   gem 'rspec-rails'

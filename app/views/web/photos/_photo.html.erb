@@ -5,10 +5,23 @@
           class: 'thumb__delete' do %>
       <i class="icon-trash"></i>
     <%- end %>
-    <%= link_to(download_audit_photo_path(current_audit, photo, :original),
-          class: 'js-gallery',
-          data: { fancybox_group: 'gallery' }) do %>
-      <%= image_tag photo.image_url(:thumb) %>
-    <%- end %>
+    <% 
+    url = Retrocalc::BASE_URL + photo.image_url(:thumb)
+    res = Net::HTTP.get_response(URI.parse(url))
+    if res.code.to_i >= 200 && res.code.to_i < 400 %>
+      <%= link_to(download_audit_photo_path(current_audit, photo, :original),
+            class: 'js-gallery',
+            data: { fancybox_group: 'gallery' }) do %>
+        <%= image_tag photo.image_url(:thumb) %>
+      <%- end %>
+    <% else %>
+      <%= link_to(google_photo_download_audit_photo_path(current_audit, photo),
+            class: 'js-gallery',
+            data: { fancybox_group: 'gallery' }) do %>
+        <%= image_tag photo.photo_path %>
+      <%- end %>
+    <% end %>
+    
+
   </span>
 
