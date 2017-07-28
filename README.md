@@ -11,6 +11,8 @@ as a whole
 Retrocalc will also interact with the kilomeasure gem (see
 vendor/gems/kilomeasure), which contains the calculations for each measure.
 
+Dentaku gem MUST be at version 2.0.5 (see gemfile.lock)
+
 ## Vocabulary
 
 - **Audit:** A set of data gathered for a particular building (or set of

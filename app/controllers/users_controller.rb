@@ -21,10 +21,13 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:alert] = 'User account was successfully updated.'
+    clean_params = user_params.reject {|k, v| v == ""}
+    if @user.update!(clean_params)
+      flash[:success] = 'User account was successfully updated.'
       redirect_to users_path
     else
+      flash[:alert] = 'Missing info, unable to update user account'
+      @active_audits = Audit.where(user_id: @user.id)
       render 'edit'
     end
   end

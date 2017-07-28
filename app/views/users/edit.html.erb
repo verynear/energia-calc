@@ -3,7 +3,7 @@
 <%= form_for(@user) do |f| %>
 
   <div class="form-row">
-    <%= f.label :email, 'Email' %><br><%= f.email_field :email, autofocus: true %><br><br>
+    <%= f.label :email, 'Email' %><br><%= f.email_field :email, autofocus: true %><br><p>*required</p><br>
     <%= f.label :username, 'Username' %><br><%= f.text_field :username %>
   </div>
 
