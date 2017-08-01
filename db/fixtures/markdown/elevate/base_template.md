@@ -37,9 +37,9 @@ Elevate Energy has a partnership with the Community Investment Corporation (CIC)
 To learn more about loan options, contact CIC's Energy Savers Program Manager:
 
 <div style='text-align: center'>
-James Wheaton<br>
-(312) 870-9928<br>
-james.wheaton@cicchicago.com
+Jack Crane<br>
+(312) 870-9925<br>
+jack.crane@cicchicago.com
 </div>
 
 #### Water Saving Programs

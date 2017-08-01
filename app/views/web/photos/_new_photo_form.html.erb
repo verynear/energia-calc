@@ -2,12 +2,11 @@
   <%= form_for StructureImage.new(audit_structure_id: audit_structure.id),
         url: audit_photos_path(current_audit),
         html: { class: 'js-autosave-form camera gphoto', multipart: true } do |f| %>
-    <%= f.hidden_field :image, value: @structure_image&.cached_image_data %>
     <%= f.label :image, 'Upload image', class: 'camera__label thumb' %>
     <%= f.file_field :image, class: 'js-upload-image camera__input' %>
     <button type='button' class='gphoto__label thumb' onclick='onApiLoad(); return false'>Google Photos</button>
     <div class="form-row" id="pickerform">
-        <%= f.hidden_field :image_remote_url, class: 'js-upload-image', :id => "picker" %>
+        <%= f.hidden_field :image_remote_url, :id => "picker" %>
         <br>
         <%= f.label :remote_name, 'Filename' %>
         <br>
