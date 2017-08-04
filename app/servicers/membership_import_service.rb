@@ -1,4 +1,4 @@
-class MembershipImportService < BaseServicer
+ class MembershipImportService < BaseServicer
   attr_accessor :membership, :organization, :params
 
   def execute!

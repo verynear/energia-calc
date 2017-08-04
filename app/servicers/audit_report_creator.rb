@@ -45,7 +45,8 @@ class AuditReportCreator < Generic::Strict
       organization_id: user.organization_id,
       data: data,
       report_template: report_template,
-      wegoaudit_id: wegoaudit_id)
+      wegoaudit_id: wegoaudit_id
+    )
 
     associate_measures
     create_field_values
