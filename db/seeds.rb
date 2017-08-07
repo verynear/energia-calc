@@ -56,6 +56,7 @@ audit_measures = [
 
   # Measures implemented in Retrocalc
   'Boiler Replacement or Tune-Up',
+  'Building Envelope Upgrade',
   'DHW Pipe Insulation',
   'DHW Replacement',
   'Duct Air Sealing (heating and cooling)',

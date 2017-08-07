@@ -1,0 +1,56 @@
+
+[1mFrom:[0m /home/scott/AuditCalc/app/models/audit_report_calculator.rb @ line 34 AuditReportCalculator#_unmemoized_measure_summaries_lookup:
+
+    [1;34m16[0m: [32mdef[0m [1;34mmeasure_summaries_lookup[0m
+    [1;34m17[0m:   usage_values = audit_report.usage_values.clone
+    [1;34m18[0m:   original_structure_values = audit_report.original_structure_values.clone
+    [1;34m19[0m: 
+    [1;34m20[0m:   audit_report.measure_selections
+    [1;34m21[0m:     .each_with_object({}) [32mdo[0m |measure_selection, hash|
+    [1;34m22[0m:     inputs_hash =
+    [1;34m23[0m:       audit_report.field_values_hash_for_measure_selection(measure_selection)
+    [1;34m24[0m: 
+    [1;34m25[0m:     calculator = [1;34;4mMeasureSelectionCalculator[0m.new(
+    [1;34m26[0m:       [35mmeasure_selection[0m: measure_selection,
+    [1;34m27[0m:       [35maudit_report_inputs[0m: audit_report.field_values_hash,
+    [1;34m28[0m:       [35mmeasure_selection_inputs[0m: inputs_hash,
+    [1;34m29[0m:       [35meffective_structure_values[0m: original_structure_values,
+    [1;34m30[0m:       [35musage_values[0m: usage_values,
+    [1;34m31[0m:       [35mfull_audit_report[0m: audit_report
+    [1;34m32[0m:     )
+    [1;34m33[0m:     binding.pry
+ => [1;34m34[0m:     hash[measure_selection.id] = calculator.measure_summary
+    [1;34m35[0m: 
+    [1;34m36[0m:     adjust_original_structure_values(calculator, original_structure_values)
+    [1;34m37[0m:     decrement_usage_values(calculator, usage_values)
+    [1;34m38[0m:   [32mend[0m
+    [1;34m39[0m: [32mend[0m
+
+
+[1mFrom:[0m /home/scott/AuditCalc/app/models/audit_report_calculator.rb @ line 34 AuditReportCalculator#_unmemoized_measure_summaries_lookup:
+
+    [1;34m16[0m: [32mdef[0m [1;34mmeasure_summaries_lookup[0m
+    [1;34m17[0m:   usage_values = audit_report.usage_values.clone
+    [1;34m18[0m:   original_structure_values = audit_report.original_structure_values.clone
+    [1;34m19[0m: 
+    [1;34m20[0m:   audit_report.measure_selections
+    [1;34m21[0m:     .each_with_object({}) [32mdo[0m |measure_selection, hash|
+    [1;34m22[0m:     inputs_hash =
+    [1;34m23[0m:       audit_report.field_values_hash_for_measure_selection(measure_selection)
+    [1;34m24[0m: 
+    [1;34m25[0m:     calculator = [1;34;4mMeasureSelectionCalculator[0m.new(
+    [1;34m26[0m:       [35mmeasure_selection[0m: measure_selection,
+    [1;34m27[0m:       [35maudit_report_inputs[0m: audit_report.field_values_hash,
+    [1;34m28[0m:       [35mmeasure_selection_inputs[0m: inputs_hash,
+    [1;34m29[0m:       [35meffective_structure_values[0m: original_structure_values,
+    [1;34m30[0m:       [35musage_values[0m: usage_values,
+    [1;34m31[0m:       [35mfull_audit_report[0m: audit_report
+    [1;34m32[0m:     )
+    [1;34m33[0m:     binding.pry
+ => [1;34m34[0m:     hash[measure_selection.id] = calculator.measure_summary
+    [1;34m35[0m: 
+    [1;34m36[0m:     adjust_original_structure_values(calculator, original_structure_values)
+    [1;34m37[0m:     decrement_usage_values(calculator, usage_values)
+    [1;34m38[0m:   [32mend[0m
+    [1;34m39[0m: [32mend[0m
+

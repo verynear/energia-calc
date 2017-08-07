@@ -15,7 +15,7 @@ class Calc::MeasureSelectionsController < SecuredController
       MeasureSelectionSerializer.new(
         measure_selection: selection,
         measure_summary: measure_summary).as_json
-
+    
     render json: {
       measure_selection: measure_selection_json,
       audit_report_summary: AuditReportSummarySerializer.new(

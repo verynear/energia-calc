@@ -364,3 +364,118 @@ working_fluid:
   options:
     - steam
     - water
+# building envelope upgrade
+ventilation_heating_usage_in_therms:
+  name: 'Ventilation Heating Usage (thrms)'
+  value_type: decimal
+stud_material:
+  name: 'Stud Material'
+  value_type: picker
+  options:
+    - metal
+    - wood
+stud_space_in_inches:
+  name: 'Stud Space (inches)'
+  value_type: picker
+  options:
+    - 16
+    - 24
+stud_depth_in_inches:
+  name: 'Stud Depth (inches)'
+  value_type: picker
+  options:
+    - 3.5
+    - 5.5
+cavity_insulation_material:
+  name: 'Cavity Insulation Material'
+  value_type: picker
+  options:
+    - 'Fiberglass batt'
+    - 'Blown fiberglass'
+    - 'Blown cellulose'
+    - 'Dense-packed cellulose'
+    - 'Rockwool'
+    - 'none'
+    - '2 lb closed cell foam'
+    - '0.5 lb open cell foam'
+cavity_insulation_depth_in_inches:
+  name: 'Cavity Insulation Depth (inches)'
+  value_type: picker
+  options:
+    - 4
+    - 6
+cavity_insulation_install_quality:
+  name: 'Cavity Insulation Install Quality'
+  value_type: picker
+  options:
+    - I
+    - II
+    - III
+wall_area_1:
+  name: 'Gross wall area 1'
+  value_type: decimal
+wall_area_2:
+  name: 'Gross wall area 2'
+  value_type: decimal
+wall_area_3:
+  name: 'Gross wall area 3'
+  value_type: decimal
+wall_area_4:
+  name: 'Gross wall area 4'
+  value_type: decimal
+facade_material: 
+  name: 'Facade material'
+  value_type: picker
+  options:
+    - brick
+    - vinyl
+    - aluminum
+    - wood
+wall_type:
+  name: 'Wall Type'
+  value_type: picker
+  options:
+    - masonry
+    - stud frame
+masonry_wall_r_value:
+  name: 'Masonry Wall R-Value'
+  value_type: decimal
+window_area_1:
+  name: 'Window Area 1'
+  value_type: decimal
+window_area_2:
+  name: 'Window Area 2'
+  value_type: decimal
+window_area_3:
+  name: 'Window Area 3'
+  value_type: decimal
+window_area_4:
+  name: 'Window Area 4'
+  value_type: decimal
+window_r_value:
+  name: 'Window R-Value'
+  value_type: decimal
+roof_r_value: 
+  name: 'Roof R-Value'
+  value_type: decimal
+roof_area:
+  name: 'Roof Area'
+  value_type: decimal
+basement_r_value:
+  name: 'Basement R-Value'
+  value_type: decimal
+basement_wall_area_above_grade:
+  name: 'Basement Wall Area Above Grade'
+  value_type: decimal
+basement_wall_area_below_grade:
+  name: 'Basement Wall Area Below Grade' 
+  value_type: decimal
+basement_floor_area:
+  name: 'Basement Floor Area'
+  value_type: decimal
+basement_r_value_added:
+  name: 'Insulation Added to Basement'
+  value_type: decimal
+basement_ground_temperature_difference:
+  name: 'Temp Difference Between Ground'
+  value_type: decimal

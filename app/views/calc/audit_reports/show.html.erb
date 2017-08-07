@@ -12,6 +12,7 @@
   </nav>
 <% end %>
 
+
 <script>
 options = <%= @context.audit_report_as_json.to_json.html_safe %>;
 AuditReports.generate(options);

@@ -19,6 +19,7 @@ end
 
 measures = {
   boiler_replacement: 'Boiler Replacement or Tune-Up',
+  building_envelope_upgrade: 'Building Envelope Upgrade',
   dhw_pipe_insulation: 'DHW Pipe Insulation',
   dhw_replacement: 'DHW Replacement',
   duct_air_sealing: 'Duct Air Sealing (heating and cooling)',

@@ -47,7 +47,6 @@ field_definitions:
 inputs:
   - heating_usage_in_therms
   - heating_degree_days
-  - number_of_heating_season_hours
   - ventilation_heating_usage_in_therms
   - stud_material
   - stud_space_in_inches
@@ -59,6 +58,7 @@ inputs:
   - wall_area_2
   - wall_area_3
   - wall_area_4
+  - facade_material
   - wall_type
   - masonry_wall_r_value
   - window_area_1
@@ -210,7 +210,8 @@ formulas:
       ((basement_below_grade_factor *
         basement_wall_area_below_grade *
         basement_ground_temperature_difference *
-        number_of_heating_season_hours) / basement_r_value)
+        heating_degree_days *
+        hours_per_day) / basement_r_value)
      )"
   total_heat_loss:
     "basement_heat_loss +

@@ -1,5 +1,4 @@
 class AuditReportCalculator < Generic::Strict
-
   attr_writer :audit_report
 
   def audit_report
@@ -22,7 +21,7 @@ class AuditReportCalculator < Generic::Strict
       .each_with_object({}) do |measure_selection, hash|
       inputs_hash =
         audit_report.field_values_hash_for_measure_selection(measure_selection)
-
+        
       calculator = MeasureSelectionCalculator.new(
         measure_selection: measure_selection,
         audit_report_inputs: audit_report.field_values_hash,
@@ -31,13 +30,14 @@ class AuditReportCalculator < Generic::Strict
         usage_values: usage_values,
         full_audit_report: audit_report
       )
-
+      
       hash[measure_selection.id] = calculator.measure_summary
 
       adjust_original_structure_values(calculator, original_structure_values)
       decrement_usage_values(calculator, usage_values)
     end
   end
+
   memoize :measure_summaries_lookup
 
   def summary
