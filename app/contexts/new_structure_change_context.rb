@@ -26,7 +26,7 @@ class NewStructureChangeContext < BaseContext
       [['New structure...', '']]
   end
 
-  # private
+  private
 
   def all_structures_for_structure_type(structure_type)
     audit_report.all_structures.select do |temp_structure|
