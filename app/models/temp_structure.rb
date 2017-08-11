@@ -19,11 +19,7 @@ class TempStructure < Generic::Strict
     def containing_physical_structure
       return unless parent_structure
 
-      if parent_structure.wegowise_id
-        parent_structure
-      else
-        parent_structure.containing_physical_structure
-      end
+      parent_structure
     end
 
     def description
@@ -51,12 +47,12 @@ class TempStructure < Generic::Strict
     end
 
     def location
-      if wegowise_id
+      if wegowise_id && wegowise_id != 0
         nil
       elsif sample_group_id
         sample_group[:name]
       elsif containing_physical_structure
-        containing_physical_structure.name
+        containing_physical_structure.name + " (" + containing_physical_structure.structure_type.name + ')'
       else
         'Top level'
       end

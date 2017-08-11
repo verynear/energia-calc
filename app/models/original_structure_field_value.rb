@@ -18,7 +18,7 @@ class OriginalStructureFieldValue < ActiveRecord::Base
       id: SecureRandom.uuid,
       temp_audit: temp_audit,
       n_structures: 1,
-      name: 'Unnamed',
+      name: 'NewStructure',
       field_values: {},
       structure_type: {}
     )

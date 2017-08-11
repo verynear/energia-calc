@@ -117,7 +117,7 @@ $(function modals() {
     updateStructureTypes($modal);
   });
 
-  $('#new_structure #structure_type').on('change', function() {
+  $('js-structure-types').on('change', function() {
     var $modal = $(this).parents('.js-modal');
     updateStructureTypes($modal);
   });

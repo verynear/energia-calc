@@ -22,11 +22,11 @@
   <%= render 'tab_menu' %>
 
   <div class="pane-wrapper">
+    <%= render 'details', audit_structure: @audit_structure %>
+    <%= render 'web/photos/photos', audit_structure: @audit_structure %>
     <% if @audit_structure.audit_strc_type.child_structure_types.length > 0 %>
       <%= render 'substructures', audit_structure: @audit_structure %>
     <% end %>
-    <%= render 'details', audit_structure: @audit_structure %>
-    <%= render 'web/photos/photos', audit_structure: @audit_structure %>
   </div>
 </div>
 

@@ -74,7 +74,7 @@ class StructureChange < ActiveRecord::Base
       id: SecureRandom.uuid,
       audit: audit,
       n_structures: 1,
-      name: 'Unnamed',
+      name: 'NewStructure',
       field_values: {},
       structure_type: { 'api_name' => structure_type.api_name }
     )

@@ -5,8 +5,10 @@ class AuditStrcTypesController < SecuredController
   end
 
   def subtypes
+  	@parent_type = AuditStrcType.find(params[:id])
+  	
     render json: StructureTypeSubtypesPresenter.new(
-      AuditStrcType.find(params[:id]),
+    	@parent_type,
       params[:selected]
     )
   end

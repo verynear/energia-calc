@@ -19,9 +19,9 @@
 
   <div class="pane-wrapper">
     <%= render 'web/audit_structures/substructures', audit_structure: @audit.audit_structure %>
+    <%= render 'web/photos/photos', audit_structure: @audit.audit_structure %>
     <%= render 'web/audit_structures/details', audit_structure: @audit.audit_structure %>
     <%= render 'utility_data', audit_structure: @audit.audit_structure %>
-    <%= render 'web/photos/photos', audit_structure: @audit.audit_structure %>
     <%= render 'measures', audit: @audit %>
   </div>
 </div>

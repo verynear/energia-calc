@@ -104,7 +104,7 @@
 
 
 	$.fn[pluginName].defaults = {
-		active: 3
+		active: 1
 		,mode: 'next'                       // "next" means panes are under headers, "prev" means panes are above headers
 		,easing: ''
 	};
