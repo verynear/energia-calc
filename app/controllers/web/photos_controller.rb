@@ -21,7 +21,7 @@ module Web
 
     def download
       @image = StructureImage.find(params[:id])
-      redirect_to @image.image_url(params[:format].to_sym)
+      redirect_to @image.image_url(params[:size])
     end
 
     def google_photo_download

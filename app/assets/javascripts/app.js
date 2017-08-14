@@ -118,36 +118,12 @@ $(function modals() {
   });
 
   $('.js-structure-types').on('change', function() {
-    var $modal = $(this).parents('.js-modal'),
-    structureTypeId = $modal.find('.js-structure-types').val();
+    var $modal = $(this).parents('.js-modal');
 
-    $modal.find('.js-structure-subtypes').html('');
-    $modal.find('.js-parent-structure-type').val(structureTypeId);
-
-    updateStructureSubTypes($modal);
+    updateStructureTypes($modal);
   });
 
-  var updateStructureSubTypes = function($modal) {
-    var $structureSubtypes = $modal.find('.js-structure-subtypes'),
-        parentStructureTypeId = $modal.find('.js-parent-structure-type').val(),
-        selectedTypeId = $structureSubTypes.val(),
-        options = '';
-
-    $.ajax({ url: '/audit_strc_types/' + parentStructureTypeId + '/subtypes',
-             method: 'GET',
-             data: { selected: selectedTypeId }})
-     .done(function(data) {
-       for (var i=0; i < data['types'].length; i++) {
-         if (selectedTypeId == data['types'][i][1]) {
-           options += '<option selected value="'+ data['types'][i][1]+'">'+data['types'][i][0]+'</option>';
-         } else {
-           options += '<option value="'+ data['types'][i][1]+'">'+data['types'][i][0]+'</option>';
-         }
-       }
-       $structureSubtypes.html(options);
-     });
-  };
-
+  
   $('#new_structure #structure_type').on('change', function() {
     var $modal = $(this).parents('.js-modal');
     updateStructureTypes($modal);

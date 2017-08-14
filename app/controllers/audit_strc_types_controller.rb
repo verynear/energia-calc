@@ -9,7 +9,17 @@ class AuditStrcTypesController < SecuredController
 
     render json: StructureTypeSubtypesPresenter.new(
     	@parent_type,
-      params[:selected]
+      subtype_params
     )
+  end
+
+  private
+
+  def subtype_params
+    if params[:selected]
+    	params[:selected]
+    else
+    	params[:selectedTypeId]
+    end
   end
 end
