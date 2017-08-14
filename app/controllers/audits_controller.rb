@@ -64,6 +64,7 @@ class AuditsController < ApplicationController
   end
 
   def show
+    @tab = params[:tab]
     @substructure = AuditStructure.new(parent_structure: @audit.audit_structure)
     @sample_group = SampleGroup.new(parent_structure: @audit.audit_structure)
   end

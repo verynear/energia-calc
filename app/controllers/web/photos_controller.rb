@@ -53,7 +53,6 @@ module Web
             .permit(:photo_path)
     end
 
-
     def image_filename
       if params[:structure_image]['image'].try(:original_filename) != nil
         params[:structure_image]['image'].try(:original_filename)

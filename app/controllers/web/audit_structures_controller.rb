@@ -65,6 +65,7 @@ module Web
     end
 
     def show
+      @tab = params[:tab]
       @audit_structure = AuditStructure.find(params[:id])
       @substructure = AuditStructure.new(parent_structure: @audit_structure)
       @sample_group = SampleGroup.new(parent_structure: @audit_structure)
