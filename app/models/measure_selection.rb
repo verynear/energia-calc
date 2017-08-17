@@ -11,7 +11,6 @@ class MeasureSelection < ActiveRecord::Base
 
   has_many :structure_changes
   has_many :structures, through: :structure_changes
-  has_many :field_values, as: :parent
 
   delegate :audit, to: :audit_report
   delegate :structure_types, to: :measure

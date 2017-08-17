@@ -4,7 +4,6 @@ class Organization < ActiveRecord::Base
   OWNER = 'owner'
   ROLES = [MEMBER, ADMIN, OWNER]
 
-  belongs_to :owner, class_name: 'User'
   has_many :organization_buildings
   has_many :buildings, through: :organization_buildings
 
