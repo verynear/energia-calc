@@ -6,8 +6,6 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEXP = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   
   has_many :audits
-  has_many :memberships
-  has_many :organizations, through: :memberships
   has_many :buildings, through: :organizations
 
   has_many :audit_reports
@@ -35,11 +33,7 @@ class User < ActiveRecord::Base
   end
 
   def available_audits
-    @available_audits ||= if organizations.first.present?
-      Audit.where(user: organizations.first.users)
-    else
-      Audit.where(organization_id: organization_id)
-    end
+    @available_audits ||=Audit.where(organization_id: organization_id)
   end
 
   def as_json

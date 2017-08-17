@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe User do
   it { should have_many(:audits) }
-  it { should have_many(:memberships) }
   it { should have_many(:organizations) }
   it { should have_many(:buildings) }
 
@@ -35,13 +34,6 @@ describe User do
     let!(:audit1) { create(:audit, user: user1) }
     let!(:audit2) { create(:audit, user: user2) }
 
-    it 'returns all audits in an organization that a user belongs to' do
-      organization.memberships.create!(
-        access: 'view',
-        role: 'member',
-        user: user2)
-      expect(user1.available_audits).to eq [audit1, audit2]
-    end
 
     it 'returns only audits for a user if they are not in an organization' do
       expect(user2.available_audits).to eq [audit2]

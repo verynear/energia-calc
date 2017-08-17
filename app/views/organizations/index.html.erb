@@ -7,9 +7,9 @@
         <li>
           <div>Members</div>
           <ul>
-            <% organization.memberships.includes(:user).each do |member| %>
+            <% organization.users.each do |member| %>
               <li>
-                <%= [member.full_name, member.role, member.access].join(' - ') %>
+                <%= [member.full_name, member.role].join(' - ') %>
               </li>
             <% end %>
           </ul>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817000107) do
+ActiveRecord::Schema.define(version: 20170817220746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -345,20 +345,6 @@ ActiveRecord::Schema.define(version: 20170817000107) do
   end
 
   add_index "measures", ["api_name"], name: "index_measures_on_api_name", unique: true, using: :btree
-
-  create_table "memberships", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.uuid     "organization_id"
-    t.uuid     "user_id"
-    t.string   "role"
-    t.string   "access"
-    t.integer  "wegowise_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "memberships", ["organization_id"], name: "index_memberships_on_organization_id", using: :btree
-  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
-  add_index "memberships", ["wegowise_id"], name: "index_memberships_on_wegowise_id", using: :btree
 
   create_table "meters", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer  "wegowise_id",                 default: 0

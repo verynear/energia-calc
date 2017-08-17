@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   # before_action :authenticate_user!
   skip_before_action :verify_authenticity_token, if: :json_request?
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
 
 
   protected
@@ -39,6 +41,11 @@ class ApplicationController < ActionController::Base
     #      redirect_to root_url, :alert => 'You need to sign in for access to this page.'
     #   end
     # end
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :username, :phone, :organization_id])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :username, :phone, :organization_id])
+    end
 
     def superadmin?
       unless current_user.role == 'superadmin'
