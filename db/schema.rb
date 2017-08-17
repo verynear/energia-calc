@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725002413) do
+ActiveRecord::Schema.define(version: 20170817000107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,31 +85,6 @@ ActiveRecord::Schema.define(version: 20170725002413) do
 
   add_index "audit_fields", ["api_name", "grouping_id"], name: "index_audit_fields_on_api_name_and_grouping_id", unique: true, using: :btree
 
-  create_table "audit_measure_values", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.uuid     "audit_measure_id",                     null: false
-    t.uuid     "audit_id",                             null: false
-    t.boolean  "value",                default: false
-    t.text     "notes"
-    t.datetime "upload_attempt_on"
-    t.datetime "successful_upload_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "destroy_attempt_on"
-  end
-
-  add_index "audit_measure_values", ["audit_id"], name: "index_audit_measure_values_on_audit_id", using: :btree
-  add_index "audit_measure_values", ["audit_measure_id"], name: "index_audit_measure_values_on_audit_measure_id", using: :btree
-
-  create_table "audit_measures", id: :uuid, default: nil, force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "api_name",   limit: 255, null: false
-  end
-
-  add_index "audit_measures", ["api_name"], name: "audit_measures_api_name_idx", using: :btree
-
   create_table "audit_reports", force: :cascade do |t|
     t.uuid     "user_id"
     t.string   "name",               null: false
@@ -136,7 +111,6 @@ ActiveRecord::Schema.define(version: 20170725002413) do
   end
 
   add_index "audit_strc_types", ["api_name", "parent_structure_type_id"], name: "index_audit_strc_types_on_api_name_and_parent_structure_type_id", unique: true, using: :btree
-  add_index "audit_strc_types", ["parent_structure_type_id"], name: "index_audit_strc_types_on_parent_structure_type_id", using: :btree
 
   create_table "audit_structures", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "audit_strc_type_id"
@@ -523,9 +497,6 @@ ActiveRecord::Schema.define(version: 20170725002413) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "substructure_types", ["audit_strc_type_id"], name: "index_substructure_types_on_audit_strc_type_id", using: :btree
-  add_index "substructure_types", ["parent_structure_type_id"], name: "index_substructure_types_on_parent_structure_type_id", using: :btree
 
   create_table "temperature_locations", force: :cascade do |t|
     t.string "state_code", null: false

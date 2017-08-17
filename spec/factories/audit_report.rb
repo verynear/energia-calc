@@ -4,7 +4,6 @@ FactoryGirl.define do
       {
         'name' => name,
         'date' => Date.today,
-        'audit_measures' => [],
         'audit_structures' => []
       }
     end

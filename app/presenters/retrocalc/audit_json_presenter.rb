@@ -47,7 +47,6 @@ module Retrocalc
 
       top_level[:temp_structures] = structures_json
       top_level[:sample_groups] = sample_groups_json
-      top_level[:measures] = measures_json(audit.audit_measure_values)
       top_level[:photos] = photos_json
 
       top_level
@@ -63,14 +62,6 @@ module Retrocalc
         api_name = MAPPING[api_name] if MAPPING[api_name]
 
         hash[api_name] = value.value 
-      end
-    end
-
-    def measures_json(audit_measure_values)
-      audit_measure_values.map do |audit_measure_value|
-        { name: audit_measure_value.audit_measure_name,
-          api_name: audit_measure_value.audit_measure.api_name,
-          notes: audit_measure_value.notes }
       end
     end
 

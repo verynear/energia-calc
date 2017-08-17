@@ -30,7 +30,6 @@ Rails.application.routes.draw do
       end
     end
     resources :audit_fields, only: [:update]
-    resources :audit_measures, only: [:update]
     resources :photos, only: [:create, :destroy] do
       member do
         get :download
@@ -71,8 +70,6 @@ Rails.application.routes.draw do
   resources :audit_field_values, only: [:index, :create, :update]
   resources :audit_fields, only: [:index]
   resources :groupings, only: [:index]
-  resources :audit_measure_values, only: [:index, :create, :update, :show]
-  resources :audit_measures, only: [:index]
   resources :meters, only: [:create, :update]
   resources :organizations, only: [:index, :show] do
     member do

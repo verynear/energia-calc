@@ -12,7 +12,6 @@ class Audit < ActiveRecord::Base
   belongs_to :locked_by_user, foreign_key: :locked_by, class_name: 'User'
 
   has_many :audit_field_values, through: :audit_structure
-  has_many :audit_measure_values
 
   delegate :audit_strc_type,
            :value_for_field,
@@ -37,14 +36,6 @@ class Audit < ActiveRecord::Base
   # def field_values
   #   AuditFieldValue.where(audit_structure_id: self.audit_structure_id)
   # end
-
-  # def audit_measure_value
-  #   AuditMeasureValue.where(audit_id: self.id)
-  # end
-  
-  def audit_measure_value(audit_measure)
-    audit_measure_value.find_by(audit_measure_id: audit_measure.id)
-  end
 
   def parent_object
     nil

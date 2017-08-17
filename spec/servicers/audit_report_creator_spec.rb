@@ -36,59 +36,6 @@ describe AuditReportCreator do
       expect(creator.create).to eq(audit_report)
     end
 
-    it 'associates measures with audit report' do
-      measure1 = instance_double(Measure)
-      measure2 = instance_double(Measure)
-
-      payload = audit_payload(
-        'id' => 'uuid',
-        'name' => 'report',
-        'date' =>  'today',
-        'audit_type' => 'something',
-        'measures' => [
-          { 'name' => 'measure1',
-            'api_name' => 'measure_id1',
-            'notes' => nil
-          },
-          { 'name' => 'measure2',
-            'api_name' => 'measure_id2',
-            'notes' => 'some notes'
-          }],
-        'structures' => [])
-
-      creator = described_class.new(
-        data: payload['audit'],
-        report_template: 'report_template',
-        user: user,
-        wegoaudit_id: 'uuid')
-      allow(AuditReport).to receive(:create!)
-        .with(name: 'report',
-              user_id: user.id,
-              organization_id: user.organization_id,
-              data: payload['audit'],
-              report_template: 'report_template',
-              wegoaudit_id: 'uuid')
-        .and_return(audit_report)
-
-      measure_selection_creator1 = instance_double(MeasureSelectionCreator)
-      measure_selection_creator2 = instance_double(MeasureSelectionCreator)
-
-      allow(Measure).to receive(:by_api_name!).with('measure_id1')
-        .and_return(measure1)
-      allow(Measure).to receive(:by_api_name!).with('measure_id2')
-        .and_return(measure2)
-      allow(MeasureSelectionCreator).to receive(:new)
-        .with(audit_report: audit_report, measure: measure1, notes: nil)
-        .and_return(measure_selection_creator1)
-      allow(MeasureSelectionCreator).to receive(:new).with(
-        audit_report: audit_report, measure: measure2, notes: 'some notes')
-        .and_return(measure_selection_creator2)
-
-      expect(measure_selection_creator1).to receive(:create)
-      expect(measure_selection_creator2).to receive(:create)
-      expect(creator.create).to eq(audit_report)
-    end
-
     it 'imports wegowise data for buildings and apartments' do
       structures = [
         {

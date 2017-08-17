@@ -26,16 +26,6 @@ class AuditReportCreator < Generic::Strict
 
   private
 
-  def associate_measures
-    data['measures'].each do |wegoaudit_measure|
-      measure = Measure.by_api_name!(wegoaudit_measure['api_name'])
-      MeasureSelectionCreator.new(
-        audit_report: audit_report,
-        measure: measure,
-        notes: wegoaudit_measure['notes']
-      ).create
-    end
-  end
 
   def create_audit_report
     @user = User.find_by(wegowise_id: user.wegowise_id)
@@ -48,7 +38,6 @@ class AuditReportCreator < Generic::Strict
       wegoaudit_id: wegoaudit_id
     )
 
-    associate_measures
     create_field_values
     import_wegowise_data
   end

@@ -13,19 +13,6 @@
       "required": ["value", "value_type", "name"],
       "additionalProperties": false
     },
-    "measure": {
-      "type": "object",
-      "properties": {
-        "api_name": { "type": "string" },
-        "name": { "type": "string" },
-        "notes": {
-          "anyOf": [{ "type": "string" },
-                    { "type": "null" }]
-        }
-      },
-      "required": ["name", "api_name"],
-      "additionalProperties": false
-    },
     "structure_type": {
       "type": "object",
       "properties": {
@@ -51,7 +38,7 @@
       "properties": {
         "id": { "type": "string" },
         "thumb_url": { "type": "string" },
-        "medium_url": { "type": "string" }
+        "original_url": { "type": "string" }
       },
       "required": ["id", "thumb_url", "medium_url"],
       "additionalProperties": false
@@ -115,10 +102,6 @@
         "sample_groups": {
           "type": "array",
           "items": { "$ref": "#/definitions/sample_group" }
-        },
-        "measures": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/audit_measure" }
         },
         "photos": {
           "type": "array",

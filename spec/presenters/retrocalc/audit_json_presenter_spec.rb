@@ -14,8 +14,7 @@ describe Retrocalc::AuditJsonPresenter do
       name: :name,
       performed_on: :date,
       audit_type: mock_model(AuditType, name: :audit_type),
-      audit_structure: audit_structure,
-      audit_measure_values: []
+      audit_structure: audit_structure
     )
   end
 
@@ -30,38 +29,6 @@ describe Retrocalc::AuditJsonPresenter do
         name: :name,
         date: :date,
         audit_type: :audit_type)
-    end
-
-    it 'returns the whole audit with the measures' do
-      measure_value1 =
-        mock_model(
-          AuditMeasureValue,
-          audit_measure_name: 'foo foo',
-          audit_measure: double(api_name: 'foo_foo'),
-          notes: 'note1')
-
-      measure_value2 =
-        mock_model(
-          AuditMeasureValue,
-          audit_measure_name: 'fah fah',
-          audit_measure: double(api_name: 'fah_fah'))
-
-      allow(audit).to receive(:audit_measure_values)
-        .and_return([measure_value1, measure_value2])
-
-      audit_json_presenter = Retrocalc::AuditJsonPresenter.new(audit)
-      json = audit_json_presenter.as_json
-      expect(json).to eq(
-        id: 'id',
-        name: :name,
-        date: :date,
-        audit_type: :audit_type,
-        temp_structures: [],
-        sample_groups: [],
-        photos: [],
-        measures: [{ name: 'foo foo', api_name: 'foo_foo', notes: 'note1' },
-                   { name: 'fah fah', api_name: 'fah_fah', notes: nil }])
-      expect('audit' => json).to match_response_schema("retrocalc/audit")
     end
 
     it 'includes photos associated with the audit structure' do
@@ -89,8 +56,7 @@ describe Retrocalc::AuditJsonPresenter do
           { id: 'bar',
             thumb_url: 'http://example.com/audits/id/photos/bar/thumb.jpg',
             medium_url: 'http://example.com/audits/id/photos/bar/medium.jpg' }
-        ],
-        measures: []
+        ]
       )
       expect('audit' => json).to match_response_schema("retrocalc/audit")
     end

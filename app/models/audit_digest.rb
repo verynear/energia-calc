@@ -3,8 +3,6 @@ class AuditDigest
   attr_accessor :audit,
                 :audit_report,
 			          :audit_field,
-			          :audit_measure,
-                :audit_measure_value,
                 :sample_group,
                 :audit_structure,
 			          :audit_strc_type,
@@ -38,14 +36,6 @@ class AuditDigest
     render json: { audit_fields: audit_fields_json }
   end
 
-  def audit_measures_list
-    response = AuditMeasure.all.map do |audit_measure|
-      { name: audit_measure.name,
-        api_name: audit_measure.api_name }
-    end
-
-    return response
-  end
 
   def structure_types_list
     response = AuditStrcType.uniq(:api_name).order(:id).map do |audit_strc_type|

@@ -3,7 +3,7 @@ class AuditReports.Views.MeasurePhoto extends Backbone.View
 
   template: _.template """
     <a class="gallery__modal-trigger js-gallery"
-      href="<%= mediumUrl %>"
+      href="<%= originalUrl %>"
       data-fancybox-group="gallery">
         <img src="<%= thumbUrl %>">
     </a>
@@ -21,7 +21,7 @@ class AuditReports.Views.MeasurePhoto extends Backbone.View
     @$el.html @template(
       checked: if @model.get('selected') then 'checked' else ''
       id: @model.get('id')
-      mediumUrl: @model.get('medium_url')
+      originalUrl: @model.get('original_url')
       thumbUrl: @model.get('thumb_url')
     )
     @$el
