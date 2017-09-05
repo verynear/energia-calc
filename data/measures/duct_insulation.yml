@@ -13,7 +13,6 @@ inputs:
     - r_value_of_insulation
     - duct_insulation_cost
     - air_circulating_hours_per_day
-    - length_of_duct
 
 structures:
   distribution_system:

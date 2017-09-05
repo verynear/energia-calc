@@ -1,12 +1,12 @@
 inputs:
   audit:
     - heating_usage_in_therms
-    - gas_cost_per_therm
   measure:
-    - retrofit_lifetime
     - utility_rebate
     - ventilation_heating_usage_in_therms
     - heating_days_per_year
+    - gas_cost_per_therm
+    - retrofit_lifetime
   wall_layer:
     - stud_material
     - stud_space_in_inches
@@ -18,6 +18,7 @@ inputs:
     - wall_area_2
     - wall_area_3
     - wall_area_4
+    - facade_material
     - wall_type
     - masonry_wall_r_value
   windows:
