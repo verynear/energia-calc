@@ -46,7 +46,7 @@ field_definitions:
 
 inputs:
   - heating_usage_in_therms
-  - heating_degree_days
+  - heating_days_per_year
   - gas_cost_per_therm
   - ventilation_heating_usage_in_therms
   - stud_material
@@ -153,16 +153,16 @@ formulas:
        masonry_wall_r_value)"
 
   wall_1_heat_lost:
-    "(wall_area_1 * heating_degree_days * hours_per_day * btu_therms_conversion) /
+    "(wall_area_1 * heating_days_per_year * hours_per_day * btu_therms_conversion) /
       wall_r_value"
   wall_2_heat_lost:
-    "(wall_area_2 * heating_degree_days * hours_per_day * btu_therms_conversion) /
+    "(wall_area_2 * heating_days_per_year * hours_per_day * btu_therms_conversion) /
       wall_r_value"
   wall_3_heat_lost:
-    "(wall_area_3 * heating_degree_days * hours_per_day * btu_therms_conversion) /
+    "(wall_area_3 * heating_days_per_year * hours_per_day * btu_therms_conversion) /
       wall_r_value"
   wall_4_heat_lost:
-    "(wall_area_4 * heating_degree_days * hours_per_day * btu_therms_conversion) /
+    "(wall_area_4 * heating_days_per_year * hours_per_day * btu_therms_conversion) /
       wall_r_value"
   total_wall_heat_loss:
     "wall_1_heat_loss + wall_2_heat_loss + wall_3_heat_loss + wall_4_heat_loss"
@@ -170,32 +170,32 @@ formulas:
   roof_heat_loss:
     "(roof_heat_loss_factor *
       roof_area *
-      heating_degree_days *
+      heating_days_per_year *
       hours_per_day *
       btu_therms_conversion) /
       roof_r_value"
 
   window_area_1_heat_loss:
     "(glazing_area_1 *
-      heating_degree_days *
+      heating_days_per_year *
       hours_per_day *
       btu_therms_conversion) /
       window_r_value"
   window_area_2_heat_loss:
     "(glazing_area_2 *
-      heating_degree_days *
+      heating_days_per_year *
       hours_per_day *
       btu_therms_conversion) /
       window_r_value"
   window_area_3_heat_loss:
     "(glazing_area_3 *
-      heating_degree_days *
+      heating_days_per_year *
       hours_per_day *
       btu_therms_conversion) /
       window_r_value"
   window_area_4_heat_loss:
     "(glazing_area_4 *
-      heating_degree_days *
+      heating_days_per_year *
       hours_per_day *
       btu_therms_conversion) /
       window_r_value"
@@ -209,12 +209,12 @@ formulas:
     "(
       ((basement_above_grade_factor *
         basement_wall_area_above_grade *
-        heating_degree_days *
+        heating_days_per_year *
         hours_per_day) / basement_r_value) +
       ((basement_below_grade_factor *
         basement_wall_area_below_grade *
         basement_ground_temperature_difference *
-        heating_degree_days *
+        heating_days_per_year *
         hours_per_day) / basement_r_value)
      )"
   total_heat_loss:

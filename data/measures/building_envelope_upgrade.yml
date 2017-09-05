@@ -1,12 +1,12 @@
 inputs:
   audit:
     - heating_usage_in_therms
-    - heating_degree_days
     - gas_cost_per_therm
   measure:
     - retrofit_lifetime
     - utility_rebate
     - ventilation_heating_usage_in_therms
+    - heating_days_per_year
   wall_layer:
     - stud_material
     - stud_space_in_inches
@@ -37,8 +37,9 @@ inputs:
     - basement_r_value_added
     - basement_ground_temperature_difference
     - total_upgrade_cost
+
 structures:
-  envelope:
+  substructure:
     fields:
       per_unit_cost:
         proposed_only: true
