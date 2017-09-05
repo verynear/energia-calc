@@ -47,6 +47,7 @@ field_definitions:
 inputs:
   - heating_usage_in_therms
   - heating_degree_days
+  - gas_cost_per_therm
   - ventilation_heating_usage_in_therms
   - stud_material
   - stud_space_in_inches
@@ -256,12 +257,12 @@ output_formulas:
   total_savings:
     "wall_savings + roof_savings + window_glazing_savings + basement_savings"
   annual_gas_usage_existing:
-    'heating_usage_in_therms'
+    "heating_usage_in_therms"
   annual_gas_usage_proposed:
     "heating_usage_in_therms - total_savings"
   annual_gas_usage:
     'IF(proposed, annual_gas_usage_proposed, annual_gas_usage_existing)'
   annual_operating_cost:
-    'annual_gas_cost'
+    "annual_gas_usage * gas_cost_per_therm"
   retrofit_cost:
-    'total_upgrade_cost'
+    "total_upgrade_cost"

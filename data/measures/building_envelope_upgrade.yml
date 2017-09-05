@@ -2,10 +2,8 @@ inputs:
   audit:
     - heating_usage_in_therms
     - heating_degree_days
-    - number_of_heating_season_hours
     - gas_cost_per_therm
   measure:
-    - total_upgrade_cost
     - retrofit_lifetime
     - utility_rebate
     - ventilation_heating_usage_in_therms
@@ -37,8 +35,13 @@ inputs:
     - basement_wall_area_below_grade
     - basement_floor_area
     - basement_r_value_added
-    - basement_r_value
     - basement_ground_temperature_difference
+    - total_upgrade_cost
+structures:
+  envelope:
+    fields:
+      per_unit_cost:
+        proposed_only: true
 
 fields_mapping:
   total_upgrade_cost: 'per_unit_cost'
