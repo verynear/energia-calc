@@ -76,7 +76,7 @@ inputs:
   - basement_r_value
   - basement_ground_temperature_difference
   - utility_rebate
-  - upgrade_cost
+  - total_upgrade_cost
 
 defaults:
   outdoor_airfilm_r_value: 0.17
@@ -264,4 +264,4 @@ output_formulas:
   annual_operating_cost:
     'annual_gas_cost'
   retrofit_cost:
-    'upgrade_cost'
+    'total_upgrade_cost'

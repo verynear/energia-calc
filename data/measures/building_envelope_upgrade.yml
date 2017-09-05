@@ -5,6 +5,7 @@ inputs:
     - number_of_heating_season_hours
     - gas_cost_per_therm
   measure:
+    - total_upgrade_cost
     - retrofit_lifetime
     - utility_rebate
     - ventilation_heating_usage_in_therms
@@ -40,4 +41,4 @@ inputs:
     - basement_ground_temperature_difference
 
 fields_mapping:
-  upgrade_cost: 'per_unit_cost'
+  total_upgrade_cost: 'per_unit_cost'
