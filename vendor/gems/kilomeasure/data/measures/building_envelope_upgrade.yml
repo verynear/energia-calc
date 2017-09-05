@@ -80,6 +80,7 @@ inputs:
   - total_upgrade_cost
 
 defaults:
+  hours_per_day: 24
   outdoor_airfilm_r_value: 0.17
   indoor_airfilm_r_value: 0.68
   gypsum_wallboard_r_value: 0.45
@@ -247,13 +248,13 @@ output_formulas:
   heat_load:
     "heating_usage_in_therms - ventilation_heating_usage_in_therms"
   wall_savings:
-    "IF(wall_upgrade_savings_percentage, wall_upgrade_savings_percentage * heat_load, 0)"
+      "wall_upgrade_savings_percentage * heat_load"
   roof_savings:
-    "IF(roof_savings_percentage, roof_savings_percentage * heat_load, 0)"
+      "roof_savings_percentage * heat_load"
   window_glazing_savings:
-    "IF(window_glazing_savings_percentage, window_glazing_savings_percentage * heat_load, 0)"
+      "window_glazing_savings_percentage * heat_load"
   basement_savings:
-    "IF(basement_savings_percentage, basement_savings_percentage * heat_load, 0)"
+      "basement_savings_percentage * heat_load"
   total_savings:
     "wall_savings + roof_savings + window_glazing_savings + basement_savings"
   annual_gas_usage_existing:
