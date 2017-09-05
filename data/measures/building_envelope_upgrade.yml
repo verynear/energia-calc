@@ -3,7 +3,10 @@ inputs:
     - heating_usage_in_therms
     - heating_degree_days
     - number_of_heating_season_hours
+    - gas_cost_per_therm
   measure:
+    - retrofit_lifetime
+    - utility_rebate
     - ventilation_heating_usage_in_therms
   wall_layer:
     - stud_material
@@ -35,3 +38,6 @@ inputs:
     - basement_r_value_added
     - basement_r_value
     - basement_ground_temperature_difference
+
+fields_mapping:
+  upgrade_cost: 'per_unit_cost'

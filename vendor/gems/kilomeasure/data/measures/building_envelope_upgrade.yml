@@ -75,6 +75,8 @@ inputs:
   - basement_r_value_added
   - basement_r_value
   - basement_ground_temperature_difference
+  - utility_rebate
+  - upgrade_cost
 
 defaults:
   outdoor_airfilm_r_value: 0.17
@@ -86,6 +88,7 @@ defaults:
   basement_above_grade_factor: 0.67
   basement_below_grade_factor: 0.06
   basement_floor_factor: 0.04
+  retrofit_lifetime: 20
 
 lookups:
   facade_r_value:
@@ -243,10 +246,22 @@ output_formulas:
   heat_load:
     "heating_usage_in_therms - ventilation_heating_usage_in_therms"
   wall_savings:
-    "wall_upgrade_savings_percentage * heat_load"
+    "IF(wall_upgrade_savings_percentage, wall_upgrade_savings_percentage * heat_load, 0)"
   roof_savings:
-    "roof_savings_percentage * heat_load"
+    "IF(roof_savings_percentage, roof_savings_percentage * heat_load, 0)"
   window_glazing_savings:
-    "window_glazing_savings_percentage * heat_load"
+    "IF(window_glazing_savings_percentage, window_glazing_savings_percentage * heat_load, 0)"
   basement_savings:
-    "basement_savings_percentage * heat_load"
+    "IF(basement_savings_percentage, basement_savings_percentage * heat_load, 0)"
+  total_savings:
+    "wall_savings + roof_savings + window_glazing_savings + basement_savings"
+  annual_gas_usage_existing:
+    'heating_usage_in_therms'
+  annual_gas_usage_proposed:
+    "heating_usage_in_therms - total_savings"
+  annual_gas_usage:
+    'IF(proposed, annual_gas_usage_proposed, annual_gas_usage_existing)'
+  annual_operating_cost:
+    'annual_gas_cost'
+  retrofit_cost:
+    'upgrade_cost'

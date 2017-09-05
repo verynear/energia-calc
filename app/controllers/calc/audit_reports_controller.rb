@@ -9,7 +9,7 @@ class Calc::AuditReportsController < SecuredController
       user: current_user,
       wegoaudit_id: params[:audit_report][:id]).create
 
-    redirect_to calc_audit_report_path(audit_report.id)
+    redirect_to edit_calc_audit_report_path(audit_report.id)
   end
 
   def destroy
