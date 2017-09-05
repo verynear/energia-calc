@@ -80,7 +80,6 @@ inputs:
   - total_upgrade_cost
 
 defaults:
-  hours_per_day: 24
   outdoor_airfilm_r_value: 0.17
   indoor_airfilm_r_value: 0.68
   gypsum_wallboard_r_value: 0.45
@@ -90,6 +89,7 @@ defaults:
   basement_above_grade_factor: 0.67
   basement_below_grade_factor: 0.06
   basement_floor_factor: 0.04
+  heating_days_per_year: 150
   retrofit_lifetime: 20
 
 lookups:
@@ -231,8 +231,6 @@ formulas:
     "total_window_heat_loss / total_heat_loss"
   basement_heat_loss_percentage:
     "total_basement_heat_loss / total_heat_loss"
-
-output_formulas:
   wall_upgrade_savings_percentage:
     "(total_wall_heat_loss_existing - total_wall_heat_loss_proposed) /
       total_heat_loss_existing"
@@ -262,8 +260,10 @@ output_formulas:
   annual_gas_usage_proposed:
     "heating_usage_in_therms - total_savings"
   annual_gas_usage:
-    'IF(proposed, annual_gas_usage_proposed, annual_gas_usage_existing)'
+    "IF(proposed, 
+        annual_gas_usage_proposed, 
+        annual_gas_usage_existing)"
   annual_operating_cost:
-    "annual_gas_usage * gas_cost_per_therm"
+    "annual_gas_cost"
   retrofit_cost:
     "total_upgrade_cost"
