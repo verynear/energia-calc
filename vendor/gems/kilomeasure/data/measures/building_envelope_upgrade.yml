@@ -219,7 +219,7 @@ formulas:
      )"
   total_heat_loss:
     "basement_heat_loss +
-     window_glazing_heat_loss +
+     total_window_heat_loss +
      roof_heat_loss +
      total_wall_heat_loss"
   wall_heat_loss_percentage:
@@ -237,7 +237,7 @@ formulas:
     "(total_roof_heat_loss_existing - total_roof_heat_loss_proposed) /
       total_heat_loss_existing"
   window_glazing_savings_percentage:
-    "(total_window_glazing_loss_existing - total_window_glazing_loss_proposed) /
+    "(total_window_heat_loss_existing - total_window_heat_loss_proposed) /
       total_heat_loss_existing"
   basement_savings_percentage:
     "(total_basement_loss_existing - total_basement_loss_proposed) /

@@ -1,6 +1,4 @@
 inputs:
-  audit:
-    - heating_usage_in_therms
   measure:
     - utility_rebate
     - ventilation_heating_usage_in_therms
