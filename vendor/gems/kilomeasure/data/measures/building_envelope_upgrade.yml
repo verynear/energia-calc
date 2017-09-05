@@ -74,7 +74,6 @@ inputs:
   - basement_wall_area_below_grade
   - basement_floor_area
   - basement_r_value_added
-  - basement_r_value
   - basement_ground_temperature_difference
   - utility_rebate
   - total_upgrade_cost
@@ -177,25 +176,25 @@ formulas:
       roof_r_value"
 
   window_area_1_heat_loss:
-    "(glazing_area_1 *
+    "(window_area_1 *
       heating_days_per_year *
       hours_per_day *
       btu_therms_conversion) /
       window_r_value"
   window_area_2_heat_loss:
-    "(glazing_area_2 *
+    "(window_area_2 *
       heating_days_per_year *
       hours_per_day *
       btu_therms_conversion) /
       window_r_value"
   window_area_3_heat_loss:
-    "(glazing_area_3 *
+    "(window_area_3 *
       heating_days_per_year *
       hours_per_day *
       btu_therms_conversion) /
       window_r_value"
   window_area_4_heat_loss:
-    "(glazing_area_4 *
+    "(window_area_4 *
       heating_days_per_year *
       hours_per_day *
       btu_therms_conversion) /
