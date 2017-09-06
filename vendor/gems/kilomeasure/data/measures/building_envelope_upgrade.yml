@@ -262,6 +262,8 @@ formulas:
     "IF(proposed, 
         annual_gas_usage_proposed, 
         annual_gas_usage_existing)"
+  annual_gas_savings:
+    "total_savings"
   annual_operating_cost:
     "annual_gas_cost"
   retrofit_cost:

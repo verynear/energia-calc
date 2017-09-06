@@ -1,9 +1,10 @@
 inputs:
+  audit:
+    - gas_cost_per_therm
   measure:
     - utility_rebate
     - ventilation_heating_usage_in_therms
     - heating_days_per_year
-    - gas_cost_per_therm
     - retrofit_lifetime
     - heating_usage_in_therms
   wall_layer:
