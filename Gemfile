@@ -40,7 +40,7 @@ gem 'rollbar'
 gem 'rubyzip'
 gem 'sass-rails', '~> 5.0'
 # gem 'sidekiq', '~> 3.4.0'
-gem 'shrine', '~> 2.6', '>= 2.6.1'
+gem 'shrine', '~> 3.3'
 gem 'sinatra', '>= 1.3.0', require: false
 gem 'skylight'
 gem 'uglifier', '>= 1.3.0'
